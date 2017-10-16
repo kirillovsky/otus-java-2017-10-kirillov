@@ -71,6 +71,7 @@
                 <executions>
                     <execution>
                         <phase>package</phase>
+                        <id>build-fat-jar</id>
                         <goals>
                             <goal>shade</goal>
                         </goals>
@@ -88,7 +89,45 @@
                     </execution>
                 </executions>
             </plugin>
-            
+            <plugin>
+                <groupId>com.github.wvengen</groupId>
+                <artifactId>proguard-maven-plugin</artifactId>
+                <version>2.0.14</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <id>obfuscation</id>
+                        <goals><goal>proguard</goal></goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <obfuscate>true</obfuscate>
+                    <includeDependency>false</includeDependency>
+                    <options>
+                        <option>-allowaccessmodification</option>
+                        <!-->Точка входа в приложение</-->
+                        <option>-keep public class ru.otus.kirillov.hw01.Main{
+                                    public static void main(java.lang.String[]);
+                                }
+                        </option>
+                        <!-->Guava ссылается на javax.annotation.** из package-info, но при этом не может их найти
+                        javax.annotation.** не относится к рантайму Java SE.
+                        Другим вариантом решения данной проблемы было - добалвение в libs jsr305<-->
+                        <option>-dontwarn javax.annotation.**</option>
+
+                        <!-->Apache Common Lang 3 пользуется дженериками на динамически получаемые классы. Снова фейл</-->
+                        <option>-dontnote org.apache.commons.lang3.ObjectUtils</option>
+                        <option>-dontnote org.apache.commons.lang3.ClassUtils</option>
+                        <option>-dontnote org.apache.commons.lang3.StringUtils$InitStripAccents</option>
+                    </options>
+                    <libs>
+                        <lib>${java.home}/lib/rt.jar</lib>
+                    </libs>
+                </configuration>
+            </plugin>
+            <!--plugin>
+
+            </plugin-->
         </plugins>
     </build>
 </project>
