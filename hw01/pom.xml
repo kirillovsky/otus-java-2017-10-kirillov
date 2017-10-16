@@ -19,6 +19,7 @@
 
     <properties>
         <com.google.guava.version>23.0</com.google.guava.version>
+        <org.apache.commons.common-lang3.version>3.1</org.apache.commons.common-lang3.version>
     </properties>
 
     <dependencies>
@@ -30,7 +31,7 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.1</version>
+            <version>${org.apache.commons.common-lang3.version}</version>
         </dependency>
     </dependencies>
 
@@ -62,6 +63,7 @@
                     </archive>
                 </configuration>
             </plugin-->
+            <!-->Fat jar with shade-plugin (по размеру получается меньше, за счет minimizeJar)</-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>

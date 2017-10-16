@@ -14,10 +14,21 @@ import java.util.stream.Collectors;
 
 public class Main {
 
+    /**
+     * Тестовый метод, для подключения библиотек Apache Common Lang 3 и Google Guava.
+     * Преобразование входного массива осуществляется по следующему алгоритму:
+     * 1. Входной массив строк преобразуется в лист интеджеров (строки не соответствующие числам мапятся в null)
+     * 2. Меняется порядок массива интеджеров, полученного на шаге 1, на обратный
+     * 3. Создается Map<Boolean, List<Integer>>. В которой: ключи - флаги того, четно ли число или нет;
+     * значение - массивы чисел, соответствующие данному флагу.
+     * Для null-элемента массива, ключ - false
+     * @param argv - входной массив строк
+     */
     public static void main(String... argv) {
         //Преобразовать входной массив в лист чисел
         List<Integer> lst = Lists.transform(Arrays.asList(argv),
                 (str) -> NumberUtils.isNumber(str) ? Integer.valueOf(str): null);
+        System.out.println(lst);
         //Развернуть его
         lst = Lists.reverse(lst);
         System.out.println(lst);
