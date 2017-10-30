@@ -74,8 +74,9 @@ public class MyArrayListTest {
 
     @Test
     public void sortEmptyArrayList() {
+        List<String> expected = Collections.emptyList();
         Collections.sort(lst);
-        assertEquals(Collections.emptyList(), lst);
+        assertEquals(expected, lst);
     }
 
     @Test
@@ -83,7 +84,7 @@ public class MyArrayListTest {
         Collections.addAll(lst, "4", "3", "Tape Deck", "0", "100", "-10");
         List<String> expected = Arrays.asList("-10", "0", "100", "3", "4", "Tape Deck");
         Collections.sort(lst);
-        assertEquals(expected.toString() + " not equals expected " + expected.toString(),
+        assertEquals(lst.toString() + " not equals expected " + expected.toString(),
                 expected, lst);
     }
 
