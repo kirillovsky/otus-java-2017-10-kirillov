@@ -5,6 +5,8 @@ import org.junit.Test;
 import ru.otus.kirillov.hw03.collection.MyArrayList;
 
 import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.IntStream;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -41,6 +43,19 @@ public class MyArrayListTest {
         assertTrue("MyArrayList not changed after test elements add", isChanged);
         assertEquals(lst.toString() + " is not contains " + expected.toString(),
                 expected, lst);
+    }
+
+    @Test
+    public void addAll1mlnToNotEmptyArrayList() {
+        String[] testData = IntStream.range(0, 1_000_000)
+                .mapToObj(Integer::toString)
+                .toArray(String[]::new);
+        List<String> expected = Arrays.asList(testData);
+
+        boolean isChanged = Collections.addAll(lst, testData);
+        assertTrue("MyArrayList not changed after test elements add", isChanged);
+        assertEquals(String.format("MyArrayList (size=%d) is not equals of expected List(size=%d) ",
+                        lst.size(), expected.size()), expected, lst);
     }
 
     @Test(expected = NullPointerException.class)
