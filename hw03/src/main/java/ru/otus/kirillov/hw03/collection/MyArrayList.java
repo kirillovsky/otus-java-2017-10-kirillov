@@ -1,5 +1,7 @@
 package ru.otus.kirillov.hw03.collection;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -135,7 +137,7 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public boolean contains(Object o) {
-        return false;
+        throw new NotImplementedException();
     }
 
     @Override
@@ -167,12 +169,12 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public boolean remove(Object o) {
-        return false;
+        throw new NotImplementedException();
     }
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        return false;
+        throw new NotImplementedException();
     }
 
     @Override
@@ -201,12 +203,12 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        return false;
+        throw new NotImplementedException();
     }
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        return false;
+        throw new NotImplementedException();
     }
 
     @Override
@@ -239,17 +241,17 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public T remove(int index) {
-        return null;
+        throw new NotImplementedException();
     }
 
     @Override
     public int indexOf(Object o) {
-        return 0;
+        throw new NotImplementedException();
     }
 
     @Override
     public int lastIndexOf(Object o) {
-        return 0;
+        throw new NotImplementedException();
     }
 
     @Override
@@ -265,7 +267,7 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public List<T> subList(int fromIndex, int toIndex) {
-        return null;
+        throw new NotImplementedException();
     }
 
     private void ensureCapacity(int expectedCapacity) {
