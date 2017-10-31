@@ -4,10 +4,7 @@ import org.junit.After;
 import org.junit.Test;
 import ru.otus.kirillov.hw03.collection.MyArrayList;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -90,6 +87,23 @@ public class MyArrayListTest {
         Collections.addAll(lst, "4", "3", "Tape Deck", "0", "100", "-10");
         List<String> expected = Arrays.asList("-10", "0", "100", "3", "4", "Tape Deck");
         Collections.sort(lst);
+        assertEquals(lst.toString() + " not equals expected " + expected.toString(),
+                expected, lst);
+    }
+
+    @Test
+    public void sortEmptyArrayListWithSpecComparator() {
+        List<String> expected = Collections.emptyList();
+        Collections.sort(lst, Comparator.comparing(String::length, Comparator.naturalOrder()));
+        assertEquals(lst.toString() + " not equals expected " + expected.toString(),
+                expected, lst);
+    }
+
+    @Test
+    public void sortNotEmptyArrayListWithSpecComparator() {
+        Collections.addAll(lst, "1234567", "12", "1", "1234567890", "012", "8101");
+        List<String> expected = Arrays.asList("1234567890", "1234567", "8101", "012", "12", "1");
+        Collections.sort(lst, Comparator.comparing(String::length, Comparator.reverseOrder()));
         assertEquals(lst.toString() + " not equals expected " + expected.toString(),
                 expected, lst);
     }
