@@ -1,20 +1,20 @@
 package ru.otus.kirillov.hw03;
 
 import org.junit.After;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import org.junit.FixMethodOrder;
 import org.junit.Test;
-import org.junit.runners.MethodSorters;
 import ru.otus.kirillov.hw03.collection.MyArrayList;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Александр on 29.10.2017.
  */
-@FixMethodOrder(MethodSorters.JVM)
 public class MyArrayListTest {
 
     private List<String> lst = new MyArrayList<>();
@@ -44,6 +44,12 @@ public class MyArrayListTest {
         assertTrue("MyArrayList not changed after test elements add", isChanged);
         assertEquals(lst.toString() + " is not contains " + expected.toString(),
                 expected, lst);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void addAllNullElementsToNotEmptyArrayList() {
+        lst.addAll(Arrays.asList("1", "2", "3", "THREE", "Zero"));
+        Collections.addAll(lst, null);
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
@@ -87,6 +93,4 @@ public class MyArrayListTest {
         assertEquals(lst.toString() + " not equals expected " + expected.toString(),
                 expected, lst);
     }
-
-
 }
