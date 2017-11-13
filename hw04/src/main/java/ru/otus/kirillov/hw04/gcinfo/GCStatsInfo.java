@@ -13,18 +13,64 @@ import java.util.stream.Collectors;
  */
 public class GCStatsInfo {
 
+    /**
+     * Длительность сборки
+     */
     private Duration duration;
+
+    /**
+     * Время начала
+     */
     private LocalDateTime startTime;
+
+    /**
+     * Время завершения
+     */
     private LocalDateTime endTime;
+
+    /**
+     * Назание текущей части алгоритма сборки мусора
+     */
     private String gcName;
+
+    /**
+     * Тип сборки - младшая/старшая сборка
+     */
     private String gcAction;
+
+    /**
+     * Причина сборки мусора
+     */
     private String gcCause;
+
+    /**
+     * Информация по работе сборщика мусора с областями памяти
+     */
     private Map<String, MemoryUsageInfo> memoryUsageInfoMap = new HashMap<>();
 
+    /**
+     * Информация по изменениям занимамой памяти для области
+     */
     public static class MemoryUsageInfo {
+
+        /**
+         * Предыдщий объем занимаемой памяти для области в процентах
+         */
         private Long beforePercent;
+
+        /**
+         * Текущий объем занимаемой памяти для области в процентах
+         */
         private Long percent;
+
+        /**
+         * Предыдущий объем занимаемой памяти для области в байтах
+         */
         private Long beforeUsedBytes;
+
+        /**
+         * Текущий объем занимаемой памяти для области в байтах
+         */
         private Long usedBytes;
 
         public Long getBeforePercent() {

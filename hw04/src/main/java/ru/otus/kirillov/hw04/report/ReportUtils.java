@@ -76,12 +76,12 @@ public final class ReportUtils {
                         System.out.print(entry.getKey() + ": ");
                         GCStatsInfo.MemoryUsageInfo memoryUsageInfo = entry.getValue();
                         System.out.println(String.format("%s.%s%%(%s MB)->%s.%s%%(%s MB)",
-                                mapOrNull(memoryUsageInfo.getBeforePercent(), p -> p / PRECISION_VALUE_DEFAULT),
-                                mapOrNull(memoryUsageInfo.getBeforePercent(), p -> p % PRECISION_VALUE_DEFAULT),
-                                mapOrNull(memoryUsageInfo.getBeforeUsedBytes(), p -> p / BYTES_IN_MEGABYTE),
-                                mapOrNull(memoryUsageInfo.getPercent(), p -> p / PRECISION_VALUE_DEFAULT),
-                                mapOrNull(memoryUsageInfo.getPercent(), p -> p % PRECISION_VALUE_DEFAULT),
-                                mapOrNull(memoryUsageInfo.getUsedBytes(), p -> p / BYTES_IN_MEGABYTE)
+                                mapOrNull(memoryUsageInfo.getBeforePercent(), toPercentsIntegralPart),
+                                mapOrNull(memoryUsageInfo.getBeforePercent(), toPercentsFractionalPart),
+                                mapOrNull(memoryUsageInfo.getBeforeUsedBytes(), toMB),
+                                mapOrNull(memoryUsageInfo.getPercent(), toPercentsIntegralPart),
+                                mapOrNull(memoryUsageInfo.getPercent(), toPercentsFractionalPart),
+                                mapOrNull(memoryUsageInfo.getUsedBytes(), toMB)
                         ));
                     });
             printDoubleRowSeparator();
