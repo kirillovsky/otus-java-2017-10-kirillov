@@ -13,6 +13,12 @@ import java.util.stream.IntStream;
 public class LeakedThread implements Runnable{
 
     private List<String> list = new ArrayList<>();
+
+    public static int getLastListSize() {
+        return lastListSize;
+    }
+
+    private static int lastListSize;
     private static final int SKIP_LIST_STEP = 2;
     private static final int BATCH_LIST_SIZE = 100_000;
     private static final long SLEEP_MILLISECONDS = 2_000;
@@ -40,11 +46,13 @@ public class LeakedThread implements Runnable{
                 .mapToObj((i) -> LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME) + "_" + i)
                 .collect(Collectors.toList())
         );
+        lastListSize = list.size();
     }
 
     private void truncateLst() {
         for(int i = list.size() - BATCH_LIST_SIZE; i < list.size(); i += SKIP_LIST_STEP) {
             list.remove(i);
         }
+        lastListSize = list.size();
     }
 }

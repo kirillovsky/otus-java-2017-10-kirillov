@@ -22,6 +22,7 @@ public class Main {
         t.start();
         t.join();
         System.out.println("Minutes: " + Duration.between(start, LocalTime.now()).toMinutes());
+        System.out.println("Max list size: " + LeakedThread.getLastListSize());
         ReportUtils.printReport();
     }
 

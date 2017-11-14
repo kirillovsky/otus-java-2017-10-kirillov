@@ -3,7 +3,7 @@ package ru.otus.kirillov.hw04.gcinfo;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
+/** Хранилище статистики по сборкам мусора
  * Created by Александр on 12.11.2017.
  */
 public class GCStatsInfoHolder {

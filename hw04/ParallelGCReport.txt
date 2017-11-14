@@ -1,15 +1,16 @@
 Minutes: 2
+Max list size: 4199958
 ==========================================================================================
                                  Summary Info
 ==========================================================================================
-Garbage collections counts: 88
-Garbage collections summary duration (sec.): 29
-First garbage collection start time: 2017-11-13T23:00:49.863
-Last garbage collection start time: 2017-11-13T23:03:44.557
-Garbage collection count per action: {end of minor GC=52, end of major GC=36}
-Garbage collection count per cause: {Ergonomics=35, Allocation Failure=53}
-Garbage collection count per names: {PS MarkSweep=36, PS Scavenge=52}
-Garbage collection durations (sec.) per action: {end of minor GC=0, end of major GC=28}
+Garbage collections counts: 84
+Garbage collections summary duration (sec.): 27
+First garbage collection start time: 2017-11-14T09:28:55.854
+Last garbage collection start time: 2017-11-14T09:31:48.267
+Garbage collection count per action: {end of minor GC=49, end of major GC=35}
+Garbage collection count per cause: {Ergonomics=34, Allocation Failure=50}
+Garbage collection count per names: {PS MarkSweep=35, PS Scavenge=49}
+Garbage collection durations (sec.) per action: {end of minor GC=0, end of major GC=26}
 ==========================================================================================
 ==========================================================================================
                                  Details Info
@@ -17,839 +18,839 @@ Garbage collection durations (sec.) per action: {end of minor GC=0, end of major
 Garbage collection name: PS Scavenge
 Garbage collection action: end of minor GC
 Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:00:49.863
-Garbage collection end time: 2017-11-13T23:00:49.871
-Garbage collection duration (nanosec.): 8000000
+Garbage collection start time: 2017-11-14T09:28:55.854
+Garbage collection end time: 2017-11-14T09:28:55.861
+Garbage collection duration (nanosec.): 7000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
 PS Eden Space: 100.0%(128 MB)->0.0%(0 MB)
-Code Cache: 89.800%(2 MB)->89.800%(2 MB)
+Code Cache: 92.0%(2 MB)->92.0%(2 MB)
 Compressed Class Space: 78.700%(0 MB)->78.700%(0 MB)
 PS Old Gen: 0.0%(0 MB)->0.0%(0 MB)
-PS Survivor Space: 0.0%(0 MB)->51.400%(10 MB)
+PS Survivor Space: 0.0%(0 MB)->50.600%(10 MB)
 Metaspace: 94.300%(5 MB)->94.300%(5 MB)
 ==========================================================================================
 Garbage collection name: PS Scavenge
 Garbage collection action: end of minor GC
 Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:00:52.214
-Garbage collection end time: 2017-11-13T23:00:52.222
+Garbage collection start time: 2017-11-14T09:29:00.452
+Garbage collection end time: 2017-11-14T09:29:00.460
 Garbage collection duration (nanosec.): 8000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
 PS Eden Space: 100.0%(128 MB)->0.0%(0 MB)
-Code Cache: 98.800%(2 MB)->98.800%(2 MB)
-Compressed Class Space: 77.400%(0 MB)->77.400%(0 MB)
+Code Cache: 97.400%(2 MB)->97.400%(2 MB)
+Compressed Class Space: 77.600%(0 MB)->77.600%(0 MB)
 PS Old Gen: 0.0%(0 MB)->0.0%(0 MB)
-PS Survivor Space: 51.400%(10 MB)->87.0%(18 MB)
-Metaspace: 93.400%(5 MB)->93.400%(5 MB)
+PS Survivor Space: 50.600%(10 MB)->71.400%(15 MB)
+Metaspace: 93.500%(5 MB)->93.500%(5 MB)
 ==========================================================================================
 Garbage collection name: PS Scavenge
 Garbage collection action: end of minor GC
 Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:00:56.795
-Garbage collection end time: 2017-11-13T23:00:56.805
+Garbage collection start time: 2017-11-14T09:29:02.784
+Garbage collection end time: 2017-11-14T09:29:02.794
 Garbage collection duration (nanosec.): 10000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
 PS Eden Space: 100.0%(128 MB)->0.0%(0 MB)
-Code Cache: 97.200%(2 MB)->97.200%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 0.0%(0 MB)->0.400%(1 MB)
-PS Survivor Space: 87.0%(18 MB)->99.800%(20 MB)
-Metaspace: 90.900%(5 MB)->90.900%(5 MB)
-==========================================================================================
-Garbage collection name: PS Scavenge
-Garbage collection action: end of minor GC
-Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:00:59.136
-Garbage collection end time: 2017-11-13T23:00:59.147
-Garbage collection duration (nanosec.): 11000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(128 MB)->0.0%(0 MB)
 Code Cache: 98.100%(2 MB)->98.100%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 0.400%(1 MB)->2.700%(9 MB)
-PS Survivor Space: 99.800%(20 MB)->99.900%(20 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 0.0%(0 MB)->0.600%(2 MB)
+PS Survivor Space: 71.400%(15 MB)->99.800%(20 MB)
 Metaspace: 91.0%(5 MB)->91.0%(5 MB)
 ==========================================================================================
 Garbage collection name: PS Scavenge
 Garbage collection action: end of minor GC
 Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:01:01.474
-Garbage collection end time: 2017-11-13T23:01:01.486
+Garbage collection start time: 2017-11-14T09:29:05.117
+Garbage collection end time: 2017-11-14T09:29:05.129
 Garbage collection duration (nanosec.): 12000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
 PS Eden Space: 100.0%(128 MB)->0.0%(0 MB)
-Code Cache: 98.800%(2 MB)->98.800%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 2.700%(9 MB)->4.900%(16 MB)
-PS Survivor Space: 99.900%(20 MB)->99.800%(20 MB)
-Metaspace: 91.100%(5 MB)->91.100%(5 MB)
+Code Cache: 99.0%(2 MB)->99.0%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 0.600%(2 MB)->3.0%(10 MB)
+PS Survivor Space: 99.800%(20 MB)->99.800%(20 MB)
+Metaspace: 91.0%(5 MB)->91.0%(5 MB)
 ==========================================================================================
 Garbage collection name: PS Scavenge
 Garbage collection action: end of minor GC
 Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:01:03.810
-Garbage collection end time: 2017-11-13T23:01:03.821
+Garbage collection start time: 2017-11-14T09:29:07.464
+Garbage collection end time: 2017-11-14T09:29:07.475
 Garbage collection duration (nanosec.): 11000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(125 MB)->0.0%(0 MB)
-Code Cache: 99.300%(2 MB)->99.300%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 4.900%(16 MB)->7.200%(24 MB)
+PS Eden Space: 100.0%(128 MB)->0.0%(0 MB)
+Code Cache: 97.200%(2 MB)->97.200%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 3.0%(10 MB)->5.400%(18 MB)
 PS Survivor Space: 99.800%(20 MB)->99.900%(20 MB)
 Metaspace: 91.100%(5 MB)->91.100%(5 MB)
 ==========================================================================================
 Garbage collection name: PS Scavenge
 Garbage collection action: end of minor GC
 Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:01:06.129
-Garbage collection end time: 2017-11-13T23:01:06.139
-Garbage collection duration (nanosec.): 10000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(93 MB)->0.0%(0 MB)
-Code Cache: 99.500%(2 MB)->99.500%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 7.200%(24 MB)->7.500%(25 MB)
-PS Survivor Space: 99.900%(20 MB)->116.300%(24 MB)
-Metaspace: 91.100%(5 MB)->91.100%(5 MB)
-==========================================================================================
-Garbage collection name: PS Scavenge
-Garbage collection action: end of minor GC
-Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:01:06.196
-Garbage collection end time: 2017-11-13T23:01:06.208
+Garbage collection start time: 2017-11-14T09:29:09.794
+Garbage collection end time: 2017-11-14T09:29:09.806
 Garbage collection duration (nanosec.): 12000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(93 MB)->0.0%(0 MB)
-Code Cache: 97.800%(2 MB)->97.800%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 7.500%(25 MB)->8.300%(28 MB)
-PS Survivor Space: 63.400%(24 MB)->78.0%(30 MB)
+PS Eden Space: 100.0%(125 MB)->0.0%(0 MB)
+Code Cache: 97.600%(2 MB)->97.600%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 5.400%(18 MB)->7.800%(26 MB)
+PS Survivor Space: 99.900%(20 MB)->99.900%(20 MB)
 Metaspace: 91.200%(5 MB)->91.200%(5 MB)
 ==========================================================================================
 Garbage collection name: PS Scavenge
 Garbage collection action: end of minor GC
 Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:01:08.512
-Garbage collection end time: 2017-11-13T23:01:08.526
-Garbage collection duration (nanosec.): 14000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(93 MB)->0.0%(0 MB)
-Code Cache: 97.900%(2 MB)->97.900%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 8.300%(28 MB)->12.500%(42 MB)
-PS Survivor Space: 81.200%(30 MB)->57.400%(21 MB)
-Metaspace: 91.200%(5 MB)->91.200%(5 MB)
-==========================================================================================
-Garbage collection name: PS Scavenge
-Garbage collection action: end of minor GC
-Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:01:10.834
-Garbage collection end time: 2017-11-13T23:01:10.845
-Garbage collection duration (nanosec.): 11000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(93 MB)->0.0%(0 MB)
-Code Cache: 98.100%(2 MB)->98.100%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 12.500%(42 MB)->15.600%(53 MB)
-PS Survivor Space: 55.200%(21 MB)->39.600%(15 MB)
-Metaspace: 91.200%(5 MB)->91.200%(5 MB)
-==========================================================================================
-Garbage collection name: PS Scavenge
-Garbage collection action: end of minor GC
-Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:01:13.156
-Garbage collection end time: 2017-11-13T23:01:13.166
-Garbage collection duration (nanosec.): 10000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(95 MB)->0.0%(0 MB)
-Code Cache: 98.300%(2 MB)->98.300%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 15.600%(53 MB)->19.500%(66 MB)
-PS Survivor Space: 40.700%(15 MB)->17.300%(6 MB)
-Metaspace: 91.200%(5 MB)->91.200%(5 MB)
-==========================================================================================
-Garbage collection name: PS Scavenge
-Garbage collection action: end of minor GC
-Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:01:15.471
-Garbage collection end time: 2017-11-13T23:01:15.485
-Garbage collection duration (nanosec.): 14000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(95 MB)->0.0%(0 MB)
-Code Cache: 98.500%(2 MB)->98.500%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 19.500%(66 MB)->21.100%(72 MB)
-PS Survivor Space: 99.900%(6 MB)->89.200%(5 MB)
-Metaspace: 91.200%(5 MB)->91.200%(5 MB)
-==========================================================================================
-Garbage collection name: PS Scavenge
-Garbage collection action: end of minor GC
-Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:01:15.541
-Garbage collection end time: 2017-11-13T23:01:15.550
-Garbage collection duration (nanosec.): 9000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(91 MB)->0.0%(0 MB)
-Code Cache: 98.600%(2 MB)->98.600%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 21.100%(72 MB)->22.800%(77 MB)
-PS Survivor Space: 15.0%(5 MB)->21.400%(8 MB)
-Metaspace: 91.200%(5 MB)->91.200%(5 MB)
-==========================================================================================
-Garbage collection name: PS Scavenge
-Garbage collection action: end of minor GC
-Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:01:17.856
-Garbage collection end time: 2017-11-13T23:01:17.863
-Garbage collection duration (nanosec.): 7000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(91 MB)->0.0%(0 MB)
-Code Cache: 97.500%(2 MB)->97.500%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 22.800%(77 MB)->25.200%(86 MB)
-PS Survivor Space: 20.800%(8 MB)->20.300%(8 MB)
-Metaspace: 91.300%(5 MB)->91.300%(5 MB)
-==========================================================================================
-Garbage collection name: PS Scavenge
-Garbage collection action: end of minor GC
-Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:01:20.178
-Garbage collection end time: 2017-11-13T23:01:20.188
-Garbage collection duration (nanosec.): 10000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(91 MB)->0.0%(0 MB)
-Code Cache: 97.700%(2 MB)->97.700%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 25.200%(86 MB)->26.800%(91 MB)
-PS Survivor Space: 20.300%(8 MB)->28.600%(11 MB)
-Metaspace: 91.300%(5 MB)->91.300%(5 MB)
-==========================================================================================
-Garbage collection name: PS Scavenge
-Garbage collection action: end of minor GC
-Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:01:22.489
-Garbage collection end time: 2017-11-13T23:01:22.500
-Garbage collection duration (nanosec.): 11000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(91 MB)->0.0%(0 MB)
-Code Cache: 98.0%(2 MB)->98.0%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 26.800%(91 MB)->29.700%(101 MB)
-PS Survivor Space: 28.600%(11 MB)->14.900%(5 MB)
-Metaspace: 91.300%(5 MB)->91.300%(5 MB)
-==========================================================================================
-Garbage collection name: PS Scavenge
-Garbage collection action: end of minor GC
-Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:01:24.804
-Garbage collection end time: 2017-11-13T23:01:24.819
+Garbage collection start time: 2017-11-14T09:29:12.114
+Garbage collection end time: 2017-11-14T09:29:12.129
 Garbage collection duration (nanosec.): 15000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(94 MB)->0.0%(0 MB)
-Code Cache: 98.300%(2 MB)->98.300%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 29.700%(101 MB)->31.200%(106 MB)
-PS Survivor Space: 15.500%(5 MB)->14.300%(5 MB)
-Metaspace: 91.400%(5 MB)->91.400%(5 MB)
+PS Eden Space: 100.0%(91 MB)->0.0%(0 MB)
+Code Cache: 97.0%(2 MB)->97.0%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 7.800%(26 MB)->8.100%(27 MB)
+PS Survivor Space: 99.900%(20 MB)->115.500%(24 MB)
+Metaspace: 91.200%(5 MB)->91.200%(5 MB)
 ==========================================================================================
 Garbage collection name: PS Scavenge
 Garbage collection action: end of minor GC
 Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:01:24.876
-Garbage collection end time: 2017-11-13T23:01:24.886
-Garbage collection duration (nanosec.): 10000000
+Garbage collection start time: 2017-11-14T09:29:14.441
+Garbage collection end time: 2017-11-14T09:29:14.453
+Garbage collection duration (nanosec.): 12000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(94 MB)->0.0%(0 MB)
-Code Cache: 98.500%(2 MB)->98.500%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 31.200%(106 MB)->32.700%(112 MB)
-PS Survivor Space: 14.300%(5 MB)->22.200%(8 MB)
-Metaspace: 91.400%(5 MB)->91.400%(5 MB)
+PS Eden Space: 100.0%(91 MB)->0.0%(0 MB)
+Code Cache: 97.400%(2 MB)->97.400%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 8.100%(27 MB)->8.500%(29 MB)
+PS Survivor Space: 61.400%(24 MB)->71.200%(28 MB)
+Metaspace: 91.200%(5 MB)->91.200%(5 MB)
 ==========================================================================================
 Garbage collection name: PS Scavenge
 Garbage collection action: end of minor GC
 Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:01:27.196
-Garbage collection end time: 2017-11-13T23:01:27.204
+Garbage collection start time: 2017-11-14T09:29:14.507
+Garbage collection end time: 2017-11-14T09:29:14.521
+Garbage collection duration (nanosec.): 14000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(93 MB)->0.0%(0 MB)
+Code Cache: 97.500%(2 MB)->97.500%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 8.500%(29 MB)->12.800%(43 MB)
+PS Survivor Space: 74.0%(28 MB)->57.800%(21 MB)
+Metaspace: 91.200%(5 MB)->91.200%(5 MB)
+==========================================================================================
+Garbage collection name: PS Scavenge
+Garbage collection action: end of minor GC
+Garbage collection cause: Allocation Failure
+Garbage collection start time: 2017-11-14T09:29:16.823
+Garbage collection end time: 2017-11-14T09:29:16.834
+Garbage collection duration (nanosec.): 11000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(93 MB)->0.0%(0 MB)
+Code Cache: 97.600%(2 MB)->97.600%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 12.800%(43 MB)->16.800%(57 MB)
+PS Survivor Space: 57.0%(21 MB)->34.300%(13 MB)
+Metaspace: 91.200%(5 MB)->91.200%(5 MB)
+==========================================================================================
+Garbage collection name: PS Scavenge
+Garbage collection action: end of minor GC
+Garbage collection cause: Allocation Failure
+Garbage collection start time: 2017-11-14T09:29:19.141
+Garbage collection end time: 2017-11-14T09:29:19.158
+Garbage collection duration (nanosec.): 17000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(95 MB)->0.0%(0 MB)
+Code Cache: 97.800%(2 MB)->97.800%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 16.800%(57 MB)->19.900%(68 MB)
+PS Survivor Space: 35.600%(13 MB)->20.100%(7 MB)
+Metaspace: 91.200%(5 MB)->91.200%(5 MB)
+==========================================================================================
+Garbage collection name: PS Scavenge
+Garbage collection action: end of minor GC
+Garbage collection cause: Allocation Failure
+Garbage collection start time: 2017-11-14T09:29:21.464
+Garbage collection end time: 2017-11-14T09:29:21.476
+Garbage collection duration (nanosec.): 12000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(95 MB)->0.0%(0 MB)
+Code Cache: 98.0%(2 MB)->98.0%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 19.900%(68 MB)->21.500%(73 MB)
+PS Survivor Space: 99.400%(7 MB)->91.500%(6 MB)
+Metaspace: 91.300%(5 MB)->91.300%(5 MB)
+==========================================================================================
+Garbage collection name: PS Scavenge
+Garbage collection action: end of minor GC
+Garbage collection cause: Allocation Failure
+Garbage collection start time: 2017-11-14T09:29:23.787
+Garbage collection end time: 2017-11-14T09:29:23.800
+Garbage collection duration (nanosec.): 13000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(92 MB)->0.0%(0 MB)
+Code Cache: 98.0%(2 MB)->98.0%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 21.500%(73 MB)->23.100%(79 MB)
+PS Survivor Space: 17.800%(6 MB)->15.300%(5 MB)
+Metaspace: 91.300%(5 MB)->91.300%(5 MB)
+==========================================================================================
+Garbage collection name: PS Scavenge
+Garbage collection action: end of minor GC
+Garbage collection cause: Allocation Failure
+Garbage collection start time: 2017-11-14T09:29:23.857
+Garbage collection end time: 2017-11-14T09:29:23.865
 Garbage collection duration (nanosec.): 8000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(96 MB)->0.0%(0 MB)
-Code Cache: 96.900%(2 MB)->96.900%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 32.700%(112 MB)->35.200%(120 MB)
-PS Survivor Space: 22.500%(8 MB)->22.600%(8 MB)
-Metaspace: 91.500%(5 MB)->91.500%(5 MB)
+PS Eden Space: 100.0%(92 MB)->0.0%(0 MB)
+Code Cache: 97.100%(2 MB)->97.100%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 23.100%(79 MB)->24.800%(84 MB)
+PS Survivor Space: 98.700%(5 MB)->141.100%(8 MB)
+Metaspace: 91.300%(5 MB)->91.300%(5 MB)
 ==========================================================================================
 Garbage collection name: PS Scavenge
 Garbage collection action: end of minor GC
 Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:01:29.510
-Garbage collection end time: 2017-11-13T23:01:29.522
+Garbage collection start time: 2017-11-14T09:29:26.173
+Garbage collection end time: 2017-11-14T09:29:26.183
+Garbage collection duration (nanosec.): 10000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(92 MB)->0.0%(0 MB)
+Code Cache: 97.200%(2 MB)->97.200%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 24.800%(84 MB)->27.300%(93 MB)
+PS Survivor Space: 21.400%(8 MB)->32.200%(12 MB)
+Metaspace: 91.300%(5 MB)->91.300%(5 MB)
+==========================================================================================
+Garbage collection name: PS Scavenge
+Garbage collection action: end of minor GC
+Garbage collection cause: Allocation Failure
+Garbage collection start time: 2017-11-14T09:29:28.491
+Garbage collection end time: 2017-11-14T09:29:28.501
+Garbage collection duration (nanosec.): 10000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(92 MB)->0.0%(0 MB)
+Code Cache: 97.500%(2 MB)->97.500%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 27.300%(93 MB)->30.200%(103 MB)
+PS Survivor Space: 32.600%(12 MB)->18.800%(7 MB)
+Metaspace: 91.400%(5 MB)->91.400%(5 MB)
+==========================================================================================
+Garbage collection name: PS Scavenge
+Garbage collection action: end of minor GC
+Garbage collection cause: Allocation Failure
+Garbage collection start time: 2017-11-14T09:29:30.803
+Garbage collection end time: 2017-11-14T09:29:30.815
 Garbage collection duration (nanosec.): 12000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
 PS Eden Space: 100.0%(96 MB)->0.0%(0 MB)
-Code Cache: 96.900%(2 MB)->96.900%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 35.200%(120 MB)->37.0%(126 MB)
-PS Survivor Space: 23.200%(8 MB)->19.700%(7 MB)
-Metaspace: 91.500%(5 MB)->91.500%(5 MB)
+Code Cache: 97.800%(2 MB)->97.800%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 30.200%(103 MB)->31.800%(108 MB)
+PS Survivor Space: 19.500%(7 MB)->18.400%(6 MB)
+Metaspace: 91.400%(5 MB)->91.400%(5 MB)
 ==========================================================================================
 Garbage collection name: PS Scavenge
 Garbage collection action: end of minor GC
 Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:01:31.834
-Garbage collection end time: 2017-11-13T23:01:31.847
+Garbage collection start time: 2017-11-14T09:29:33.116
+Garbage collection end time: 2017-11-14T09:29:33.129
 Garbage collection duration (nanosec.): 13000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(101 MB)->0.0%(0 MB)
-Code Cache: 97.200%(2 MB)->97.200%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 37.0%(126 MB)->38.600%(131 MB)
-PS Survivor Space: 20.600%(7 MB)->20.200%(7 MB)
-Metaspace: 91.500%(5 MB)->91.500%(5 MB)
+PS Eden Space: 100.0%(96 MB)->0.0%(0 MB)
+Code Cache: 98.0%(2 MB)->98.0%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 31.800%(108 MB)->33.400%(114 MB)
+PS Survivor Space: 18.700%(6 MB)->17.100%(6 MB)
+Metaspace: 91.400%(5 MB)->91.400%(5 MB)
 ==========================================================================================
 Garbage collection name: PS Scavenge
 Garbage collection action: end of minor GC
 Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:01:34.162
-Garbage collection end time: 2017-11-13T23:01:34.175
-Garbage collection duration (nanosec.): 13000000
+Garbage collection start time: 2017-11-14T09:29:35.435
+Garbage collection end time: 2017-11-14T09:29:35.450
+Garbage collection duration (nanosec.): 15000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(101 MB)->0.0%(0 MB)
-Code Cache: 97.300%(2 MB)->97.300%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 38.600%(131 MB)->40.300%(137 MB)
-PS Survivor Space: 20.800%(7 MB)->38.700%(13 MB)
+PS Eden Space: 100.0%(98 MB)->0.0%(0 MB)
+Code Cache: 98.600%(2 MB)->98.600%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 33.400%(114 MB)->35.0%(119 MB)
+PS Survivor Space: 17.300%(6 MB)->16.200%(5 MB)
 Metaspace: 91.500%(5 MB)->91.500%(5 MB)
 ==========================================================================================
 Garbage collection name: PS Scavenge
 Garbage collection action: end of minor GC
 Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:01:36.488
-Garbage collection end time: 2017-11-13T23:01:36.502
-Garbage collection duration (nanosec.): 14000000
+Garbage collection start time: 2017-11-14T09:29:35.507
+Garbage collection end time: 2017-11-14T09:29:35.516
+Garbage collection duration (nanosec.): 9000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(106 MB)->0.0%(0 MB)
-Code Cache: 98.200%(2 MB)->98.200%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 40.300%(137 MB)->43.900%(150 MB)
-PS Survivor Space: 39.800%(13 MB)->19.0%(6 MB)
+PS Eden Space: 100.0%(98 MB)->0.0%(0 MB)
+Code Cache: 98.700%(2 MB)->98.700%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 35.0%(119 MB)->36.700%(125 MB)
+PS Survivor Space: 16.400%(5 MB)->24.900%(8 MB)
 Metaspace: 91.500%(5 MB)->91.500%(5 MB)
 ==========================================================================================
 Garbage collection name: PS Scavenge
 Garbage collection action: end of minor GC
 Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:01:36.567
-Garbage collection end time: 2017-11-13T23:01:36.578
+Garbage collection start time: 2017-11-14T09:29:37.823
+Garbage collection end time: 2017-11-14T09:29:37.830
+Garbage collection duration (nanosec.): 7000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(102 MB)->0.0%(0 MB)
+Code Cache: 98.900%(2 MB)->98.900%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 36.700%(125 MB)->39.300%(134 MB)
+PS Survivor Space: 25.600%(8 MB)->26.400%(9 MB)
+Metaspace: 91.500%(5 MB)->91.500%(5 MB)
+==========================================================================================
+Garbage collection name: PS Scavenge
+Garbage collection action: end of minor GC
+Garbage collection cause: Allocation Failure
+Garbage collection start time: 2017-11-14T09:29:40.134
+Garbage collection end time: 2017-11-14T09:29:40.145
 Garbage collection duration (nanosec.): 11000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(106 MB)->0.0%(0 MB)
-Code Cache: 98.400%(2 MB)->98.400%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 43.900%(150 MB)->45.700%(156 MB)
-PS Survivor Space: 20.200%(6 MB)->30.800%(9 MB)
-Metaspace: 91.600%(5 MB)->91.600%(5 MB)
-==========================================================================================
-Garbage collection name: PS Scavenge
-Garbage collection action: end of minor GC
-Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:01:38.892
-Garbage collection end time: 2017-11-13T23:01:38.900
-Garbage collection duration (nanosec.): 8000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(111 MB)->0.0%(0 MB)
+PS Eden Space: 100.0%(102 MB)->0.0%(0 MB)
 Code Cache: 98.900%(2 MB)->98.900%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 45.700%(156 MB)->48.500%(165 MB)
-PS Survivor Space: 31.300%(9 MB)->32.200%(9 MB)
-Metaspace: 91.600%(5 MB)->91.600%(5 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 39.300%(134 MB)->41.100%(140 MB)
+PS Survivor Space: 27.600%(9 MB)->45.100%(15 MB)
+Metaspace: 91.500%(5 MB)->91.500%(5 MB)
 ==========================================================================================
 Garbage collection name: PS Scavenge
 Garbage collection action: end of minor GC
 Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:01:41.215
-Garbage collection end time: 2017-11-13T23:01:41.228
-Garbage collection duration (nanosec.): 13000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(111 MB)->0.0%(0 MB)
-Code Cache: 99.0%(2 MB)->99.0%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 48.500%(165 MB)->50.400%(172 MB)
-PS Survivor Space: 33.900%(9 MB)->33.0%(9 MB)
-Metaspace: 91.700%(5 MB)->91.700%(5 MB)
-==========================================================================================
-Garbage collection name: PS Scavenge
-Garbage collection action: end of minor GC
-Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:01:43.555
-Garbage collection end time: 2017-11-13T23:01:43.569
+Garbage collection start time: 2017-11-14T09:29:42.456
+Garbage collection end time: 2017-11-14T09:29:42.470
 Garbage collection duration (nanosec.): 14000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(117 MB)->0.0%(0 MB)
-Code Cache: 99.200%(2 MB)->99.200%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 50.400%(172 MB)->52.200%(178 MB)
-PS Survivor Space: 34.800%(9 MB)->36.100%(9 MB)
-Metaspace: 91.700%(5 MB)->91.700%(5 MB)
+PS Eden Space: 100.0%(107 MB)->0.0%(0 MB)
+Code Cache: 97.700%(2 MB)->97.700%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 41.100%(140 MB)->44.900%(153 MB)
+PS Survivor Space: 47.300%(15 MB)->26.100%(8 MB)
+Metaspace: 91.600%(5 MB)->91.600%(5 MB)
 ==========================================================================================
 Garbage collection name: PS Scavenge
 Garbage collection action: end of minor GC
 Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:01:45.886
-Garbage collection end time: 2017-11-13T23:01:45.899
+Garbage collection start time: 2017-11-14T09:29:44.778
+Garbage collection end time: 2017-11-14T09:29:44.791
 Garbage collection duration (nanosec.): 13000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(117 MB)->0.0%(0 MB)
-Code Cache: 99.300%(2 MB)->99.300%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 52.200%(178 MB)->54.200%(185 MB)
-PS Survivor Space: 38.200%(9 MB)->38.400%(10 MB)
+PS Eden Space: 100.0%(107 MB)->0.0%(0 MB)
+Code Cache: 97.800%(2 MB)->97.800%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 44.900%(153 MB)->46.700%(159 MB)
+PS Survivor Space: 26.900%(8 MB)->26.300%(8 MB)
+Metaspace: 91.600%(5 MB)->91.600%(5 MB)
+==========================================================================================
+Garbage collection name: PS Scavenge
+Garbage collection action: end of minor GC
+Garbage collection cause: Allocation Failure
+Garbage collection start time: 2017-11-14T09:29:47.103
+Garbage collection end time: 2017-11-14T09:29:47.117
+Garbage collection duration (nanosec.): 14000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(111 MB)->0.0%(0 MB)
+Code Cache: 98.400%(2 MB)->98.400%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 46.700%(159 MB)->48.500%(165 MB)
+PS Survivor Space: 27.200%(8 MB)->27.900%(8 MB)
 Metaspace: 91.700%(5 MB)->91.700%(5 MB)
 ==========================================================================================
 Garbage collection name: PS Scavenge
 Garbage collection action: end of minor GC
 Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:01:48.228
-Garbage collection end time: 2017-11-13T23:01:48.241
-Garbage collection duration (nanosec.): 13000000
+Garbage collection start time: 2017-11-14T09:29:49.430
+Garbage collection end time: 2017-11-14T09:29:49.444
+Garbage collection duration (nanosec.): 14000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(121 MB)->0.0%(0 MB)
-Code Cache: 99.400%(2 MB)->99.400%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 54.200%(185 MB)->56.100%(191 MB)
-PS Survivor Space: 40.0%(10 MB)->41.300%(10 MB)
+PS Eden Space: 100.0%(111 MB)->0.0%(0 MB)
+Code Cache: 98.400%(2 MB)->98.400%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 48.500%(165 MB)->50.400%(172 MB)
+PS Survivor Space: 28.900%(8 MB)->28.300%(8 MB)
 Metaspace: 91.700%(5 MB)->91.700%(5 MB)
 ==========================================================================================
 Garbage collection name: PS Scavenge
 Garbage collection action: end of minor GC
 Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:01:50.564
-Garbage collection end time: 2017-11-13T23:01:50.577
-Garbage collection duration (nanosec.): 13000000
+Garbage collection start time: 2017-11-14T09:29:51.761
+Garbage collection end time: 2017-11-14T09:29:51.775
+Garbage collection duration (nanosec.): 14000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(121 MB)->0.0%(0 MB)
-Code Cache: 99.400%(2 MB)->99.400%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 56.100%(191 MB)->58.100%(198 MB)
-PS Survivor Space: 43.100%(10 MB)->43.600%(10 MB)
+PS Eden Space: 100.0%(115 MB)->0.0%(0 MB)
+Code Cache: 98.700%(2 MB)->98.700%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 50.400%(172 MB)->52.300%(178 MB)
+PS Survivor Space: 29.300%(8 MB)->30.400%(8 MB)
 Metaspace: 91.700%(5 MB)->91.700%(5 MB)
 ==========================================================================================
 Garbage collection name: PS Scavenge
 Garbage collection action: end of minor GC
 Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:01:52.898
-Garbage collection end time: 2017-11-13T23:01:52.911
-Garbage collection duration (nanosec.): 13000000
+Garbage collection start time: 2017-11-14T09:29:54.095
+Garbage collection end time: 2017-11-14T09:29:54.110
+Garbage collection duration (nanosec.): 15000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 95.900%(121 MB)->0.0%(0 MB)
-Code Cache: 99.400%(2 MB)->99.400%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 58.100%(198 MB)->60.100%(205 MB)
-PS Survivor Space: 46.500%(10 MB)->48.500%(10 MB)
+PS Eden Space: 100.0%(115 MB)->0.0%(0 MB)
+Code Cache: 98.700%(2 MB)->98.700%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 52.300%(178 MB)->54.200%(185 MB)
+PS Survivor Space: 31.500%(8 MB)->31.900%(8 MB)
 Metaspace: 91.700%(5 MB)->91.700%(5 MB)
 ==========================================================================================
 Garbage collection name: PS Scavenge
 Garbage collection action: end of minor GC
 Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:01:55.232
-Garbage collection end time: 2017-11-13T23:01:55.249
-Garbage collection duration (nanosec.): 17000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(126 MB)->0.0%(0 MB)
-Code Cache: 99.400%(2 MB)->99.400%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 60.100%(205 MB)->62.300%(212 MB)
-PS Survivor Space: 50.700%(10 MB)->95.200%(20 MB)
-Metaspace: 91.700%(5 MB)->91.700%(5 MB)
-==========================================================================================
-Garbage collection name: PS Scavenge
-Garbage collection action: end of minor GC
-Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:01:59.827
-Garbage collection end time: 2017-11-13T23:01:59.847
-Garbage collection duration (nanosec.): 20000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(118 MB)->0.0%(0 MB)
-Code Cache: 98.200%(2 MB)->98.200%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 62.300%(212 MB)->67.300%(229 MB)
-PS Survivor Space: 99.900%(20 MB)->32.900%(6 MB)
-Metaspace: 91.800%(5 MB)->91.800%(5 MB)
-==========================================================================================
-Garbage collection name: PS Scavenge
-Garbage collection action: end of minor GC
-Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:02:02.171
-Garbage collection end time: 2017-11-13T23:02:02.191
-Garbage collection duration (nanosec.): 20000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(118 MB)->0.0%(0 MB)
-Code Cache: 98.300%(2 MB)->98.300%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 67.300%(229 MB)->69.200%(236 MB)
-PS Survivor Space: 25.900%(6 MB)->26.200%(6 MB)
-Metaspace: 91.800%(5 MB)->91.800%(5 MB)
-==========================================================================================
-Garbage collection name: PS Scavenge
-Garbage collection action: end of minor GC
-Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:02:04.526
-Garbage collection end time: 2017-11-13T23:02:04.545
-Garbage collection duration (nanosec.): 19000000
+Garbage collection start time: 2017-11-14T09:29:56.424
+Garbage collection end time: 2017-11-14T09:29:56.439
+Garbage collection duration (nanosec.): 15000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
 PS Eden Space: 100.0%(120 MB)->0.0%(0 MB)
-Code Cache: 98.600%(2 MB)->98.600%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 69.200%(236 MB)->71.200%(243 MB)
-PS Survivor Space: 26.700%(6 MB)->27.400%(7 MB)
-Metaspace: 91.800%(5 MB)->91.800%(5 MB)
-==========================================================================================
-Garbage collection name: PS Scavenge
-Garbage collection action: end of minor GC
-Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:02:06.864
-Garbage collection end time: 2017-11-13T23:02:06.883
-Garbage collection duration (nanosec.): 19000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(120 MB)->0.0%(0 MB)
-Code Cache: 98.600%(2 MB)->98.600%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 71.200%(243 MB)->73.200%(249 MB)
-PS Survivor Space: 28.0%(7 MB)->28.300%(7 MB)
-Metaspace: 91.800%(5 MB)->91.800%(5 MB)
-==========================================================================================
-Garbage collection name: PS Scavenge
-Garbage collection action: end of minor GC
-Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:02:09.204
-Garbage collection end time: 2017-11-13T23:02:09.224
-Garbage collection duration (nanosec.): 20000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(122 MB)->0.0%(0 MB)
-Code Cache: 98.600%(2 MB)->98.600%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 73.200%(249 MB)->75.100%(256 MB)
-PS Survivor Space: 28.900%(7 MB)->30.300%(7 MB)
-Metaspace: 91.800%(5 MB)->91.800%(5 MB)
-==========================================================================================
-Garbage collection name: PS Scavenge
-Garbage collection action: end of minor GC
-Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:02:11.550
-Garbage collection end time: 2017-11-13T23:02:11.568
-Garbage collection duration (nanosec.): 18000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(122 MB)->0.0%(0 MB)
-Code Cache: 98.600%(2 MB)->98.600%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 75.100%(256 MB)->77.100%(263 MB)
-PS Survivor Space: 30.900%(7 MB)->31.700%(7 MB)
-Metaspace: 91.800%(5 MB)->91.800%(5 MB)
-==========================================================================================
-Garbage collection name: PS Scavenge
-Garbage collection action: end of minor GC
-Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:02:13.894
-Garbage collection end time: 2017-11-13T23:02:13.912
-Garbage collection duration (nanosec.): 18000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(125 MB)->0.0%(0 MB)
-Code Cache: 98.600%(2 MB)->98.600%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 77.100%(263 MB)->79.200%(270 MB)
-PS Survivor Space: 33.0%(7 MB)->34.800%(8 MB)
-Metaspace: 91.800%(5 MB)->91.800%(5 MB)
-==========================================================================================
-Garbage collection name: PS Scavenge
-Garbage collection action: end of minor GC
-Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:02:16.242
-Garbage collection end time: 2017-11-13T23:02:16.260
-Garbage collection duration (nanosec.): 18000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(125 MB)->0.0%(0 MB)
-Code Cache: 98.700%(2 MB)->98.700%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 79.200%(270 MB)->81.200%(277 MB)
-PS Survivor Space: 35.600%(8 MB)->37.0%(8 MB)
-Metaspace: 91.800%(5 MB)->91.800%(5 MB)
-==========================================================================================
-Garbage collection name: PS Scavenge
-Garbage collection action: end of minor GC
-Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:02:18.588
-Garbage collection end time: 2017-11-13T23:02:18.605
-Garbage collection duration (nanosec.): 17000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(128 MB)->0.0%(0 MB)
-Code Cache: 98.700%(2 MB)->98.700%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 81.200%(277 MB)->83.300%(284 MB)
-PS Survivor Space: 38.700%(8 MB)->41.200%(8 MB)
-Metaspace: 91.800%(5 MB)->91.800%(5 MB)
-==========================================================================================
-Garbage collection name: PS Scavenge
-Garbage collection action: end of minor GC
-Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:02:20.930
-Garbage collection end time: 2017-11-13T23:02:20.947
-Garbage collection duration (nanosec.): 17000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(128 MB)->0.0%(0 MB)
-Code Cache: 98.700%(2 MB)->98.700%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 83.300%(284 MB)->85.400%(291 MB)
-PS Survivor Space: 43.200%(8 MB)->45.200%(9 MB)
-Metaspace: 91.800%(5 MB)->91.800%(5 MB)
-==========================================================================================
-Garbage collection name: PS Scavenge
-Garbage collection action: end of minor GC
-Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:02:23.277
-Garbage collection end time: 2017-11-13T23:02:23.293
-Garbage collection duration (nanosec.): 16000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(132 MB)->0.0%(0 MB)
-Code Cache: 98.300%(2 MB)->98.300%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 85.400%(291 MB)->87.500%(299 MB)
-PS Survivor Space: 47.500%(9 MB)->51.200%(9 MB)
-Metaspace: 91.800%(5 MB)->91.800%(5 MB)
-==========================================================================================
-Garbage collection name: PS Scavenge
-Garbage collection action: end of minor GC
-Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:02:25.619
-Garbage collection end time: 2017-11-13T23:02:25.635
-Garbage collection duration (nanosec.): 16000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(132 MB)->0.0%(0 MB)
 Code Cache: 98.900%(2 MB)->98.900%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 87.500%(299 MB)->89.700%(306 MB)
-PS Survivor Space: 54.0%(9 MB)->56.900%(10 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 54.200%(185 MB)->56.200%(191 MB)
+PS Survivor Space: 33.100%(8 MB)->34.500%(8 MB)
+Metaspace: 91.700%(5 MB)->91.700%(5 MB)
+==========================================================================================
+Garbage collection name: PS Scavenge
+Garbage collection action: end of minor GC
+Garbage collection cause: Allocation Failure
+Garbage collection start time: 2017-11-14T09:29:58.756
+Garbage collection end time: 2017-11-14T09:29:58.771
+Garbage collection duration (nanosec.): 15000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(120 MB)->0.0%(0 MB)
+Code Cache: 98.900%(2 MB)->98.900%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 56.200%(191 MB)->58.200%(198 MB)
+PS Survivor Space: 36.600%(8 MB)->37.400%(9 MB)
+Metaspace: 91.700%(5 MB)->91.700%(5 MB)
+==========================================================================================
+Garbage collection name: PS Scavenge
+Garbage collection action: end of minor GC
+Garbage collection cause: Allocation Failure
+Garbage collection start time: 2017-11-14T09:30:01.086
+Garbage collection end time: 2017-11-14T09:30:01.103
+Garbage collection duration (nanosec.): 17000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(124 MB)->0.0%(0 MB)
+Code Cache: 98.900%(2 MB)->98.900%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 58.200%(198 MB)->60.200%(205 MB)
+PS Survivor Space: 39.0%(9 MB)->84.0%(19 MB)
+Metaspace: 91.700%(5 MB)->91.700%(5 MB)
+==========================================================================================
+Garbage collection name: PS Scavenge
+Garbage collection action: end of minor GC
+Garbage collection cause: Allocation Failure
+Garbage collection start time: 2017-11-14T09:30:03.423
+Garbage collection end time: 2017-11-14T09:30:03.443
+Garbage collection duration (nanosec.): 20000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(121 MB)->0.0%(0 MB)
+Code Cache: 98.900%(2 MB)->98.900%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 60.200%(205 MB)->65.300%(223 MB)
+PS Survivor Space: 98.700%(19 MB)->47.400%(9 MB)
+Metaspace: 91.700%(5 MB)->91.700%(5 MB)
+==========================================================================================
+Garbage collection name: PS Scavenge
+Garbage collection action: end of minor GC
+Garbage collection cause: Allocation Failure
+Garbage collection start time: 2017-11-14T09:30:05.765
+Garbage collection end time: 2017-11-14T09:30:05.780
+Garbage collection duration (nanosec.): 15000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(121 MB)->0.0%(0 MB)
+Code Cache: 97.800%(2 MB)->97.800%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 65.300%(223 MB)->67.400%(230 MB)
+PS Survivor Space: 37.900%(9 MB)->39.100%(9 MB)
+Metaspace: 91.800%(5 MB)->91.800%(5 MB)
+==========================================================================================
+Garbage collection name: PS Scavenge
+Garbage collection action: end of minor GC
+Garbage collection cause: Allocation Failure
+Garbage collection start time: 2017-11-14T09:30:08.101
+Garbage collection end time: 2017-11-14T09:30:08.116
+Garbage collection duration (nanosec.): 15000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(121 MB)->0.0%(0 MB)
+Code Cache: 97.900%(2 MB)->97.900%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 67.400%(230 MB)->69.400%(237 MB)
+PS Survivor Space: 40.700%(9 MB)->42.300%(10 MB)
+Metaspace: 91.800%(5 MB)->91.800%(5 MB)
+==========================================================================================
+Garbage collection name: PS Scavenge
+Garbage collection action: end of minor GC
+Garbage collection cause: Allocation Failure
+Garbage collection start time: 2017-11-14T09:30:10.434
+Garbage collection end time: 2017-11-14T09:30:10.448
+Garbage collection duration (nanosec.): 14000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(125 MB)->0.0%(0 MB)
+Code Cache: 98.100%(2 MB)->98.100%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 69.400%(237 MB)->71.500%(244 MB)
+PS Survivor Space: 44.100%(10 MB)->46.100%(10 MB)
 Metaspace: 91.900%(5 MB)->91.900%(5 MB)
 ==========================================================================================
 Garbage collection name: PS Scavenge
 Garbage collection action: end of minor GC
 Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:02:27.975
-Garbage collection end time: 2017-11-13T23:02:27.991
+Garbage collection start time: 2017-11-14T09:30:12.772
+Garbage collection end time: 2017-11-14T09:30:12.787
+Garbage collection duration (nanosec.): 15000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(125 MB)->0.0%(0 MB)
+Code Cache: 98.100%(2 MB)->98.100%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 71.500%(244 MB)->73.600%(251 MB)
+PS Survivor Space: 48.200%(10 MB)->49.700%(10 MB)
+Metaspace: 91.900%(5 MB)->91.900%(5 MB)
+==========================================================================================
+Garbage collection name: PS Scavenge
+Garbage collection action: end of minor GC
+Garbage collection cause: Allocation Failure
+Garbage collection start time: 2017-11-14T09:30:17.368
+Garbage collection end time: 2017-11-14T09:30:17.388
+Garbage collection duration (nanosec.): 20000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(129 MB)->0.0%(0 MB)
+Code Cache: 98.200%(2 MB)->98.200%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 73.600%(251 MB)->75.700%(258 MB)
+PS Survivor Space: 52.0%(10 MB)->38.300%(8 MB)
+Metaspace: 91.900%(5 MB)->91.900%(5 MB)
+==========================================================================================
+Garbage collection name: PS Scavenge
+Garbage collection action: end of minor GC
+Garbage collection cause: Allocation Failure
+Garbage collection start time: 2017-11-14T09:30:19.711
+Garbage collection end time: 2017-11-14T09:30:19.730
+Garbage collection duration (nanosec.): 19000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(129 MB)->0.0%(0 MB)
+Code Cache: 98.200%(2 MB)->98.200%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 75.700%(258 MB)->77.900%(266 MB)
+PS Survivor Space: 40.200%(8 MB)->42.600%(8 MB)
+Metaspace: 91.900%(5 MB)->91.900%(5 MB)
+==========================================================================================
+Garbage collection name: PS Scavenge
+Garbage collection action: end of minor GC
+Garbage collection cause: Allocation Failure
+Garbage collection start time: 2017-11-14T09:30:22.055
+Garbage collection end time: 2017-11-14T09:30:22.072
+Garbage collection duration (nanosec.): 17000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(132 MB)->0.0%(0 MB)
+Code Cache: 98.200%(2 MB)->98.200%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 77.900%(266 MB)->80.100%(273 MB)
+PS Survivor Space: 43.700%(8 MB)->47.800%(9 MB)
+Metaspace: 91.900%(5 MB)->91.900%(5 MB)
+==========================================================================================
+Garbage collection name: PS Scavenge
+Garbage collection action: end of minor GC
+Garbage collection cause: Allocation Failure
+Garbage collection start time: 2017-11-14T09:30:24.398
+Garbage collection end time: 2017-11-14T09:30:24.415
+Garbage collection duration (nanosec.): 17000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(132 MB)->0.0%(0 MB)
+Code Cache: 98.200%(2 MB)->98.200%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 80.100%(273 MB)->82.300%(281 MB)
+PS Survivor Space: 49.100%(9 MB)->51.700%(9 MB)
+Metaspace: 91.900%(5 MB)->91.900%(5 MB)
+==========================================================================================
+Garbage collection name: PS Scavenge
+Garbage collection action: end of minor GC
+Garbage collection cause: Allocation Failure
+Garbage collection start time: 2017-11-14T09:30:26.753
+Garbage collection end time: 2017-11-14T09:30:26.769
 Garbage collection duration (nanosec.): 16000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(135 MB)->0.0%(0 MB)
-Code Cache: 99.0%(2 MB)->99.0%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 89.700%(306 MB)->91.900%(314 MB)
-PS Survivor Space: 58.500%(10 MB)->62.300%(11 MB)
+PS Eden Space: 100.0%(134 MB)->0.0%(0 MB)
+Code Cache: 98.200%(2 MB)->98.200%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 82.300%(281 MB)->84.600%(289 MB)
+PS Survivor Space: 53.100%(9 MB)->57.700%(10 MB)
 Metaspace: 91.900%(5 MB)->91.900%(5 MB)
 ==========================================================================================
 Garbage collection name: PS Scavenge
 Garbage collection action: end of minor GC
 Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:02:30.320
-Garbage collection end time: 2017-11-13T23:02:30.342
+Garbage collection start time: 2017-11-14T09:30:29.111
+Garbage collection end time: 2017-11-14T09:30:29.127
+Garbage collection duration (nanosec.): 16000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(134 MB)->0.0%(0 MB)
+Code Cache: 98.200%(2 MB)->98.200%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 84.600%(289 MB)->86.800%(296 MB)
+PS Survivor Space: 61.0%(10 MB)->65.300%(11 MB)
+Metaspace: 91.900%(5 MB)->91.900%(5 MB)
+==========================================================================================
+Garbage collection name: PS Scavenge
+Garbage collection action: end of minor GC
+Garbage collection cause: Allocation Failure
+Garbage collection start time: 2017-11-14T09:30:33.711
+Garbage collection end time: 2017-11-14T09:30:33.733
 Garbage collection duration (nanosec.): 22000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(135 MB)->0.0%(0 MB)
-Code Cache: 99.100%(2 MB)->99.100%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 91.900%(314 MB)->96.800%(330 MB)
-PS Survivor Space: 64.100%(11 MB)->99.900%(17 MB)
+PS Eden Space: 100.0%(136 MB)->0.0%(0 MB)
+Code Cache: 98.0%(2 MB)->98.0%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 86.800%(296 MB)->89.100%(304 MB)
+PS Survivor Space: 67.200%(11 MB)->49.100%(8 MB)
 Metaspace: 91.900%(5 MB)->91.900%(5 MB)
+==========================================================================================
+Garbage collection name: PS Scavenge
+Garbage collection action: end of minor GC
+Garbage collection cause: Allocation Failure
+Garbage collection start time: 2017-11-14T09:30:36.057
+Garbage collection end time: 2017-11-14T09:30:36.083
+Garbage collection duration (nanosec.): 26000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(136 MB)->0.0%(0 MB)
+Code Cache: 98.600%(2 MB)->98.600%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 89.100%(304 MB)->93.600%(319 MB)
+PS Survivor Space: 49.100%(8 MB)->96.900%(16 MB)
+Metaspace: 92.0%(5 MB)->92.0%(5 MB)
+==========================================================================================
+Garbage collection name: PS Scavenge
+Garbage collection action: end of minor GC
+Garbage collection cause: Allocation Failure
+Garbage collection start time: 2017-11-14T09:30:38.409
+Garbage collection end time: 2017-11-14T09:30:38.435
+Garbage collection duration (nanosec.): 26000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(122 MB)->0.0%(0 MB)
+Code Cache: 98.700%(2 MB)->98.700%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 93.600%(319 MB)->98.400%(336 MB)
+PS Survivor Space: 99.800%(16 MB)->49.500%(8 MB)
+Metaspace: 92.0%(5 MB)->92.0%(5 MB)
 ==========================================================================================
 Garbage collection name: PS MarkSweep
 Garbage collection action: end of major GC
 Garbage collection cause: Ergonomics
-Garbage collection start time: 2017-11-13T23:02:30.342
-Garbage collection end time: 2017-11-13T23:02:31.222
-Garbage collection duration (nanosec.): 880000000
+Garbage collection start time: 2017-11-14T09:30:38.435
+Garbage collection end time: 2017-11-14T09:30:39.339
+Garbage collection duration (nanosec.): 904000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
 PS Eden Space: 0.0%(0 MB)->0.0%(0 MB)
-Code Cache: 99.100%(2 MB)->99.100%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 96.800%(330 MB)->90.200%(308 MB)
-PS Survivor Space: 99.900%(17 MB)->0.0%(0 MB)
-Metaspace: 91.900%(5 MB)->91.900%(5 MB)
+Code Cache: 98.700%(2 MB)->98.700%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 98.400%(336 MB)->90.0%(307 MB)
+PS Survivor Space: 34.0%(8 MB)->0.0%(0 MB)
+Metaspace: 92.0%(5 MB)->92.0%(5 MB)
 ==========================================================================================
 Garbage collection name: PS Scavenge
 Garbage collection action: end of minor GC
 Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:02:33.541
-Garbage collection end time: 2017-11-13T23:02:33.547
-Garbage collection duration (nanosec.): 6000000
+Garbage collection start time: 2017-11-14T09:30:41.654
+Garbage collection end time: 2017-11-14T09:30:41.663
+Garbage collection duration (nanosec.): 9000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(119 MB)->0.0%(0 MB)
-Code Cache: 97.200%(2 MB)->97.200%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 90.200%(308 MB)->90.200%(308 MB)
-PS Survivor Space: 0.0%(0 MB)->60.300%(10 MB)
-Metaspace: 91.900%(5 MB)->91.900%(5 MB)
+PS Eden Space: 100.0%(122 MB)->0.0%(0 MB)
+Code Cache: 99.0%(2 MB)->99.0%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 90.0%(307 MB)->90.0%(307 MB)
+PS Survivor Space: 0.0%(0 MB)->46.400%(11 MB)
+Metaspace: 92.0%(5 MB)->92.0%(5 MB)
 ==========================================================================================
 Garbage collection name: PS Scavenge
 Garbage collection action: end of minor GC
 Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:02:38.120
-Garbage collection end time: 2017-11-13T23:02:38.141
-Garbage collection duration (nanosec.): 21000000
+Garbage collection start time: 2017-11-14T09:30:43.986
+Garbage collection end time: 2017-11-14T09:30:44.002
+Garbage collection duration (nanosec.): 16000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(119 MB)->0.0%(0 MB)
-Code Cache: 97.300%(2 MB)->97.300%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 90.200%(308 MB)->90.200%(308 MB)
-PS Survivor Space: 41.400%(10 MB)->53.400%(13 MB)
-Metaspace: 91.900%(5 MB)->91.900%(5 MB)
+PS Eden Space: 100.0%(124 MB)->0.0%(0 MB)
+Code Cache: 99.0%(2 MB)->99.0%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 90.0%(307 MB)->90.0%(307 MB)
+PS Survivor Space: 47.400%(11 MB)->79.200%(18 MB)
+Metaspace: 92.0%(5 MB)->92.0%(5 MB)
 ==========================================================================================
 Garbage collection name: PS Scavenge
 Garbage collection action: end of minor GC
 Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:02:40.467
-Garbage collection end time: 2017-11-13T23:02:40.495
+Garbage collection start time: 2017-11-14T09:30:46.323
+Garbage collection end time: 2017-11-14T09:30:46.348
+Garbage collection duration (nanosec.): 25000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(124 MB)->0.0%(0 MB)
+Code Cache: 99.0%(2 MB)->99.0%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 90.0%(307 MB)->90.600%(309 MB)
+PS Survivor Space: 97.900%(18 MB)->126.200%(23 MB)
+Metaspace: 92.0%(5 MB)->92.0%(5 MB)
+==========================================================================================
+Garbage collection name: PS Scavenge
+Garbage collection action: end of minor GC
+Garbage collection cause: Allocation Failure
+Garbage collection start time: 2017-11-14T09:30:48.659
+Garbage collection end time: 2017-11-14T09:30:48.687
 Garbage collection duration (nanosec.): 28000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(122 MB)->0.0%(0 MB)
-Code Cache: 97.400%(2 MB)->97.400%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 90.200%(308 MB)->90.200%(308 MB)
-PS Survivor Space: 55.600%(13 MB)->84.0%(20 MB)
-Metaspace: 91.900%(5 MB)->91.900%(5 MB)
-==========================================================================================
-Garbage collection name: PS Scavenge
-Garbage collection action: end of minor GC
-Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:02:42.817
-Garbage collection end time: 2017-11-13T23:02:42.852
-Garbage collection duration (nanosec.): 35000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(122 MB)->0.0%(0 MB)
-Code Cache: 97.400%(2 MB)->97.400%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 90.200%(308 MB)->90.700%(309 MB)
-PS Survivor Space: 98.0%(20 MB)->123.700%(25 MB)
-Metaspace: 91.900%(5 MB)->91.900%(5 MB)
-==========================================================================================
-Garbage collection name: PS Scavenge
-Garbage collection action: end of minor GC
-Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:02:45.164
-Garbage collection end time: 2017-11-13T23:02:45.210
-Garbage collection duration (nanosec.): 46000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(110 MB)->0.0%(0 MB)
-Code Cache: 97.500%(2 MB)->97.500%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 90.700%(309 MB)->94.600%(323 MB)
-PS Survivor Space: 99.900%(25 MB)->71.700%(18 MB)
-Metaspace: 92.0%(5 MB)->92.0%(5 MB)
-==========================================================================================
-Garbage collection name: PS Scavenge
-Garbage collection action: end of minor GC
-Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:02:47.521
-Garbage collection end time: 2017-11-13T23:02:47.556
-Garbage collection duration (nanosec.): 35000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(110 MB)->0.0%(0 MB)
-Code Cache: 97.600%(2 MB)->97.600%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 94.600%(323 MB)->98.200%(335 MB)
-PS Survivor Space: 62.100%(18 MB)->41.800%(12 MB)
+PS Eden Space: 100.0%(114 MB)->0.0%(0 MB)
+Code Cache: 99.0%(2 MB)->99.0%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 90.600%(309 MB)->95.600%(326 MB)
+PS Survivor Space: 99.900%(23 MB)->57.500%(13 MB)
 Metaspace: 92.0%(5 MB)->92.0%(5 MB)
 ==========================================================================================
 Garbage collection name: PS MarkSweep
 Garbage collection action: end of major GC
 Garbage collection cause: Ergonomics
-Garbage collection start time: 2017-11-13T23:02:47.556
-Garbage collection end time: 2017-11-13T23:02:48.586
-Garbage collection duration (nanosec.): 30000000
+Garbage collection start time: 2017-11-14T09:30:48.687
+Garbage collection end time: 2017-11-14T09:30:49.331
+Garbage collection duration (nanosec.): 644000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
 PS Eden Space: 0.0%(0 MB)->0.0%(0 MB)
+Code Cache: 99.0%(2 MB)->99.0%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 95.600%(326 MB)->98.400%(336 MB)
+PS Survivor Space: 49.200%(13 MB)->0.0%(0 MB)
+Metaspace: 92.0%(5 MB)->92.0%(5 MB)
+==========================================================================================
+Garbage collection name: PS MarkSweep
+Garbage collection action: end of major GC
+Garbage collection cause: Ergonomics
+Garbage collection start time: 2017-11-14T09:30:51.646
+Garbage collection end time: 2017-11-14T09:30:52.645
+Garbage collection duration (nanosec.): 999000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(114 MB)->0.700%(0 MB)
+Code Cache: 99.200%(2 MB)->99.200%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 98.400%(336 MB)->99.900%(341 MB)
+PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
+Metaspace: 92.0%(5 MB)->92.0%(5 MB)
+==========================================================================================
+Garbage collection name: PS MarkSweep
+Garbage collection action: end of major GC
+Garbage collection cause: Ergonomics
+Garbage collection start time: 2017-11-14T09:30:54.962
+Garbage collection end time: 2017-11-14T09:30:55.592
+Garbage collection duration (nanosec.): 630000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(114 MB)->6.200%(7 MB)
+Code Cache: 99.300%(2 MB)->99.300%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
+PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
+Metaspace: 92.0%(5 MB)->92.0%(5 MB)
+==========================================================================================
+Garbage collection name: PS MarkSweep
+Garbage collection action: end of major GC
+Garbage collection cause: Ergonomics
+Garbage collection start time: 2017-11-14T09:30:57.900
+Garbage collection end time: 2017-11-14T09:30:58.536
+Garbage collection duration (nanosec.): 636000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(114 MB)->11.300%(12 MB)
+Code Cache: 99.300%(2 MB)->99.300%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
+PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
+Metaspace: 92.0%(5 MB)->92.0%(5 MB)
+==========================================================================================
+Garbage collection name: PS MarkSweep
+Garbage collection action: end of major GC
+Garbage collection cause: Ergonomics
+Garbage collection start time: 2017-11-14T09:31:00.844
+Garbage collection end time: 2017-11-14T09:31:01.497
+Garbage collection duration (nanosec.): 653000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(114 MB)->16.0%(18 MB)
+Code Cache: 97.500%(2 MB)->97.500%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
+PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
+PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
+Metaspace: 92.0%(5 MB)->92.0%(5 MB)
+==========================================================================================
+Garbage collection name: PS MarkSweep
+Garbage collection action: end of major GC
+Garbage collection cause: Ergonomics
+Garbage collection start time: 2017-11-14T09:31:03.798
+Garbage collection end time: 2017-11-14T09:31:04.465
+Garbage collection duration (nanosec.): 667000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(114 MB)->20.300%(23 MB)
 Code Cache: 97.600%(2 MB)->97.600%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 98.200%(335 MB)->99.900%(341 MB)
-PS Survivor Space: 41.800%(12 MB)->6.300%(1 MB)
-Metaspace: 92.0%(5 MB)->92.0%(5 MB)
-==========================================================================================
-Garbage collection name: PS MarkSweep
-Garbage collection action: end of major GC
-Garbage collection cause: Ergonomics
-Garbage collection start time: 2017-11-13T23:02:48.651
-Garbage collection end time: 2017-11-13T23:02:49.279
-Garbage collection duration (nanosec.): 628000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(111 MB)->10.400%(11 MB)
-Code Cache: 98.100%(2 MB)->98.100%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
-PS Survivor Space: 6.300%(1 MB)->0.0%(0 MB)
-Metaspace: 92.0%(5 MB)->92.0%(5 MB)
-==========================================================================================
-Garbage collection name: PS MarkSweep
-Garbage collection action: end of major GC
-Garbage collection cause: Ergonomics
-Garbage collection start time: 2017-11-13T23:02:51.583
-Garbage collection end time: 2017-11-13T23:02:52.274
-Garbage collection duration (nanosec.): 691000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(111 MB)->15.0%(16 MB)
-Code Cache: 98.100%(2 MB)->98.100%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
 PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
 PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
 Metaspace: 92.0%(5 MB)->92.0%(5 MB)
@@ -857,74 +858,59 @@ Metaspace: 92.0%(5 MB)->92.0%(5 MB)
 Garbage collection name: PS MarkSweep
 Garbage collection action: end of major GC
 Garbage collection cause: Ergonomics
-Garbage collection start time: 2017-11-13T23:02:54.577
-Garbage collection end time: 2017-11-13T23:02:55.264
-Garbage collection duration (nanosec.): 687000000
+Garbage collection start time: 2017-11-14T09:31:04.518
+Garbage collection end time: 2017-11-14T09:31:05.182
+Garbage collection duration (nanosec.): 664000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(111 MB)->19.0%(21 MB)
-Code Cache: 98.200%(2 MB)->98.200%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
+PS Eden Space: 100.0%(114 MB)->27.400%(31 MB)
+Code Cache: 97.700%(2 MB)->97.700%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
 PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
 PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
-Metaspace: 92.0%(5 MB)->92.0%(5 MB)
+Metaspace: 92.100%(5 MB)->92.100%(5 MB)
 ==========================================================================================
 Garbage collection name: PS MarkSweep
 Garbage collection action: end of major GC
 Garbage collection cause: Ergonomics
-Garbage collection start time: 2017-11-13T23:02:57.564
-Garbage collection end time: 2017-11-13T23:02:58.241
-Garbage collection duration (nanosec.): 677000000
+Garbage collection start time: 2017-11-14T09:31:07.473
+Garbage collection end time: 2017-11-14T09:31:08.163
+Garbage collection duration (nanosec.): 690000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(111 MB)->22.800%(25 MB)
-Code Cache: 98.400%(2 MB)->98.400%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
+PS Eden Space: 100.0%(114 MB)->30.700%(35 MB)
+Code Cache: 97.800%(2 MB)->97.800%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
 PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
 PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
-Metaspace: 92.0%(5 MB)->92.0%(5 MB)
+Metaspace: 92.100%(5 MB)->92.100%(5 MB)
 ==========================================================================================
 Garbage collection name: PS MarkSweep
 Garbage collection action: end of major GC
 Garbage collection cause: Ergonomics
-Garbage collection start time: 2017-11-13T23:03:00.540
-Garbage collection end time: 2017-11-13T23:03:01.253
-Garbage collection duration (nanosec.): 713000000
+Garbage collection start time: 2017-11-14T09:31:10.461
+Garbage collection end time: 2017-11-14T09:31:11.157
+Garbage collection duration (nanosec.): 696000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(111 MB)->26.200%(29 MB)
-Code Cache: 98.400%(2 MB)->98.400%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
+PS Eden Space: 100.0%(114 MB)->33.600%(38 MB)
+Code Cache: 97.800%(2 MB)->97.800%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.500%(0 MB)
 PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
 PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
-Metaspace: 92.0%(5 MB)->92.0%(5 MB)
+Metaspace: 92.100%(5 MB)->92.100%(5 MB)
 ==========================================================================================
 Garbage collection name: PS MarkSweep
 Garbage collection action: end of major GC
 Garbage collection cause: Ergonomics
-Garbage collection start time: 2017-11-13T23:03:01.302
-Garbage collection end time: 2017-11-13T23:03:01.974
-Garbage collection duration (nanosec.): 672000000
+Garbage collection start time: 2017-11-14T09:31:13.447
+Garbage collection end time: 2017-11-14T09:31:14.405
+Garbage collection duration (nanosec.): 958000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(111 MB)->32.700%(36 MB)
-Code Cache: 98.500%(2 MB)->98.500%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->78.300%(0 MB)
-PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
-PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
-Metaspace: 92.0%(5 MB)->92.0%(5 MB)
-==========================================================================================
-Garbage collection name: PS MarkSweep
-Garbage collection action: end of major GC
-Garbage collection cause: Ergonomics
-Garbage collection start time: 2017-11-13T23:03:04.266
-Garbage collection end time: 2017-11-13T23:03:05.222
-Garbage collection duration (nanosec.): 956000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(111 MB)->35.300%(39 MB)
-Code Cache: 98.200%(2 MB)->98.200%(2 MB)
-Compressed Class Space: 78.300%(0 MB)->77.800%(0 MB)
+PS Eden Space: 100.0%(114 MB)->36.300%(41 MB)
+Code Cache: 97.300%(2 MB)->97.300%(2 MB)
+Compressed Class Space: 78.500%(0 MB)->78.0%(0 MB)
 PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
 PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
 Metaspace: 92.100%(5 MB)->91.900%(5 MB)
@@ -932,14 +918,14 @@ Metaspace: 92.100%(5 MB)->91.900%(5 MB)
 Garbage collection name: PS MarkSweep
 Garbage collection action: end of major GC
 Garbage collection cause: Ergonomics
-Garbage collection start time: 2017-11-13T23:03:07.515
-Garbage collection end time: 2017-11-13T23:03:08.488
-Garbage collection duration (nanosec.): 973000000
+Garbage collection start time: 2017-11-14T09:31:14.447
+Garbage collection end time: 2017-11-14T09:31:15.378
+Garbage collection duration (nanosec.): 931000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(111 MB)->37.600%(41 MB)
-Code Cache: 98.200%(2 MB)->98.200%(2 MB)
-Compressed Class Space: 77.800%(0 MB)->77.800%(0 MB)
+PS Eden Space: 100.0%(114 MB)->42.100%(48 MB)
+Code Cache: 97.500%(2 MB)->97.500%(2 MB)
+Compressed Class Space: 78.0%(0 MB)->78.0%(0 MB)
 PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
 PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
 Metaspace: 91.900%(5 MB)->91.900%(5 MB)
@@ -947,14 +933,14 @@ Metaspace: 91.900%(5 MB)->91.900%(5 MB)
 Garbage collection name: PS MarkSweep
 Garbage collection action: end of major GC
 Garbage collection cause: Ergonomics
-Garbage collection start time: 2017-11-13T23:03:08.537
-Garbage collection end time: 2017-11-13T23:03:09.272
-Garbage collection duration (nanosec.): 735000000
+Garbage collection start time: 2017-11-14T09:31:17.662
+Garbage collection end time: 2017-11-14T09:31:18.369
+Garbage collection duration (nanosec.): 707000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(111 MB)->43.100%(48 MB)
-Code Cache: 98.200%(2 MB)->98.200%(2 MB)
-Compressed Class Space: 77.800%(0 MB)->77.800%(0 MB)
+PS Eden Space: 100.0%(114 MB)->43.900%(50 MB)
+Code Cache: 97.500%(2 MB)->97.500%(2 MB)
+Compressed Class Space: 78.0%(0 MB)->78.0%(0 MB)
 PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
 PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
 Metaspace: 91.900%(5 MB)->91.900%(5 MB)
@@ -962,14 +948,14 @@ Metaspace: 91.900%(5 MB)->91.900%(5 MB)
 Garbage collection name: PS MarkSweep
 Garbage collection action: end of major GC
 Garbage collection cause: Ergonomics
-Garbage collection start time: 2017-11-13T23:03:11.560
-Garbage collection end time: 2017-11-13T23:03:12.296
-Garbage collection duration (nanosec.): 736000000
+Garbage collection start time: 2017-11-14T09:31:18.406
+Garbage collection end time: 2017-11-14T09:31:19.110
+Garbage collection duration (nanosec.): 704000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(111 MB)->44.700%(49 MB)
-Code Cache: 98.100%(2 MB)->98.100%(2 MB)
-Compressed Class Space: 77.800%(0 MB)->77.800%(0 MB)
+PS Eden Space: 100.0%(114 MB)->49.0%(56 MB)
+Code Cache: 97.500%(2 MB)->97.500%(2 MB)
+Compressed Class Space: 78.0%(0 MB)->78.0%(0 MB)
 PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
 PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
 Metaspace: 91.900%(5 MB)->91.900%(5 MB)
@@ -977,14 +963,14 @@ Metaspace: 91.900%(5 MB)->91.900%(5 MB)
 Garbage collection name: PS MarkSweep
 Garbage collection action: end of major GC
 Garbage collection cause: Ergonomics
-Garbage collection start time: 2017-11-13T23:03:12.333
-Garbage collection end time: 2017-11-13T23:03:13.057
-Garbage collection duration (nanosec.): 724000000
+Garbage collection start time: 2017-11-14T09:31:21.388
+Garbage collection end time: 2017-11-14T09:31:22.111
+Garbage collection duration (nanosec.): 723000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(111 MB)->49.600%(55 MB)
-Code Cache: 89.700%(2 MB)->89.700%(2 MB)
-Compressed Class Space: 77.800%(0 MB)->77.800%(0 MB)
+PS Eden Space: 100.0%(114 MB)->50.300%(57 MB)
+Code Cache: 97.500%(2 MB)->97.500%(2 MB)
+Compressed Class Space: 78.0%(0 MB)->78.0%(0 MB)
 PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
 PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
 Metaspace: 91.900%(5 MB)->91.900%(5 MB)
@@ -992,14 +978,14 @@ Metaspace: 91.900%(5 MB)->91.900%(5 MB)
 Garbage collection name: PS MarkSweep
 Garbage collection action: end of major GC
 Garbage collection cause: Ergonomics
-Garbage collection start time: 2017-11-13T23:03:15.339
-Garbage collection end time: 2017-11-13T23:03:16.082
-Garbage collection duration (nanosec.): 743000000
+Garbage collection start time: 2017-11-14T09:31:22.144
+Garbage collection end time: 2017-11-14T09:31:22.867
+Garbage collection duration (nanosec.): 723000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(111 MB)->50.600%(56 MB)
-Code Cache: 90.700%(2 MB)->90.700%(2 MB)
-Compressed Class Space: 77.800%(0 MB)->77.800%(0 MB)
+PS Eden Space: 100.0%(114 MB)->54.800%(62 MB)
+Code Cache: 87.300%(2 MB)->87.300%(2 MB)
+Compressed Class Space: 78.0%(0 MB)->78.0%(0 MB)
 PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
 PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
 Metaspace: 92.0%(5 MB)->92.0%(5 MB)
@@ -1007,14 +993,14 @@ Metaspace: 92.0%(5 MB)->92.0%(5 MB)
 Garbage collection name: PS MarkSweep
 Garbage collection action: end of major GC
 Garbage collection cause: Ergonomics
-Garbage collection start time: 2017-11-13T23:03:16.114
-Garbage collection end time: 2017-11-13T23:03:16.844
-Garbage collection duration (nanosec.): 730000000
+Garbage collection start time: 2017-11-14T09:31:25.145
+Garbage collection end time: 2017-11-14T09:31:25.879
+Garbage collection duration (nanosec.): 734000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(111 MB)->55.0%(61 MB)
-Code Cache: 90.700%(2 MB)->90.700%(2 MB)
-Compressed Class Space: 77.800%(0 MB)->77.800%(0 MB)
+PS Eden Space: 100.0%(114 MB)->55.500%(63 MB)
+Code Cache: 87.400%(2 MB)->87.400%(2 MB)
+Compressed Class Space: 78.0%(0 MB)->78.0%(0 MB)
 PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
 PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
 Metaspace: 92.0%(5 MB)->92.0%(5 MB)
@@ -1022,14 +1008,14 @@ Metaspace: 92.0%(5 MB)->92.0%(5 MB)
 Garbage collection name: PS MarkSweep
 Garbage collection action: end of major GC
 Garbage collection cause: Ergonomics
-Garbage collection start time: 2017-11-13T23:03:19.121
-Garbage collection end time: 2017-11-13T23:03:19.873
-Garbage collection duration (nanosec.): 752000000
+Garbage collection start time: 2017-11-14T09:31:25.908
+Garbage collection end time: 2017-11-14T09:31:26.636
+Garbage collection duration (nanosec.): 728000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(111 MB)->55.500%(61 MB)
-Code Cache: 90.700%(2 MB)->90.700%(2 MB)
-Compressed Class Space: 77.800%(0 MB)->77.800%(0 MB)
+PS Eden Space: 100.0%(114 MB)->59.600%(68 MB)
+Code Cache: 87.400%(2 MB)->87.400%(2 MB)
+Compressed Class Space: 78.0%(0 MB)->78.0%(0 MB)
 PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
 PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
 Metaspace: 92.0%(5 MB)->92.0%(5 MB)
@@ -1037,14 +1023,14 @@ Metaspace: 92.0%(5 MB)->92.0%(5 MB)
 Garbage collection name: PS MarkSweep
 Garbage collection action: end of major GC
 Garbage collection cause: Ergonomics
-Garbage collection start time: 2017-11-13T23:03:19.902
-Garbage collection end time: 2017-11-13T23:03:20.649
-Garbage collection duration (nanosec.): 747000000
+Garbage collection start time: 2017-11-14T09:31:28.909
+Garbage collection end time: 2017-11-14T09:31:29.662
+Garbage collection duration (nanosec.): 753000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(111 MB)->59.500%(66 MB)
-Code Cache: 90.800%(2 MB)->90.800%(2 MB)
-Compressed Class Space: 77.800%(0 MB)->77.800%(0 MB)
+PS Eden Space: 100.0%(114 MB)->59.800%(68 MB)
+Code Cache: 87.500%(2 MB)->87.500%(2 MB)
+Compressed Class Space: 78.0%(0 MB)->78.0%(0 MB)
 PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
 PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
 Metaspace: 92.0%(5 MB)->92.0%(5 MB)
@@ -1052,59 +1038,119 @@ Metaspace: 92.0%(5 MB)->92.0%(5 MB)
 Garbage collection name: PS MarkSweep
 Garbage collection action: end of major GC
 Garbage collection cause: Ergonomics
-Garbage collection start time: 2017-11-13T23:03:20.675
-Garbage collection end time: 2017-11-13T23:03:21.436
+Garbage collection start time: 2017-11-14T09:31:29.688
+Garbage collection end time: 2017-11-14T09:31:30.428
+Garbage collection duration (nanosec.): 740000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(114 MB)->63.500%(72 MB)
+Code Cache: 87.600%(2 MB)->87.600%(2 MB)
+Compressed Class Space: 78.0%(0 MB)->78.0%(0 MB)
+PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
+PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
+Metaspace: 92.0%(5 MB)->92.0%(5 MB)
+==========================================================================================
+Garbage collection name: PS MarkSweep
+Garbage collection action: end of major GC
+Garbage collection cause: Ergonomics
+Garbage collection start time: 2017-11-14T09:31:30.453
+Garbage collection end time: 2017-11-14T09:31:31.206
+Garbage collection duration (nanosec.): 753000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(114 MB)->66.700%(76 MB)
+Code Cache: 87.600%(2 MB)->87.600%(2 MB)
+Compressed Class Space: 78.0%(0 MB)->78.0%(0 MB)
+PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
+PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
+Metaspace: 92.0%(5 MB)->92.0%(5 MB)
+==========================================================================================
+Garbage collection name: PS MarkSweep
+Garbage collection action: end of major GC
+Garbage collection cause: Ergonomics
+Garbage collection start time: 2017-11-14T09:31:33.475
+Garbage collection end time: 2017-11-14T09:31:34.266
+Garbage collection duration (nanosec.): 791000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(114 MB)->66.400%(76 MB)
+Code Cache: 87.600%(2 MB)->87.600%(2 MB)
+Compressed Class Space: 78.0%(0 MB)->78.0%(0 MB)
+PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
+PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
+Metaspace: 92.0%(5 MB)->92.0%(5 MB)
+==========================================================================================
+Garbage collection name: PS MarkSweep
+Garbage collection action: end of major GC
+Garbage collection cause: Ergonomics
+Garbage collection start time: 2017-11-14T09:31:34.289
+Garbage collection end time: 2017-11-14T09:31:35.077
+Garbage collection duration (nanosec.): 788000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(114 MB)->69.500%(79 MB)
+Code Cache: 87.600%(2 MB)->87.600%(2 MB)
+Compressed Class Space: 78.0%(0 MB)->78.0%(0 MB)
+PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
+PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
+Metaspace: 92.0%(5 MB)->92.0%(5 MB)
+==========================================================================================
+Garbage collection name: PS MarkSweep
+Garbage collection action: end of major GC
+Garbage collection cause: Ergonomics
+Garbage collection start time: 2017-11-14T09:31:35.099
+Garbage collection end time: 2017-11-14T09:31:35.880
+Garbage collection duration (nanosec.): 781000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(114 MB)->72.200%(82 MB)
+Code Cache: 88.0%(2 MB)->88.0%(2 MB)
+Compressed Class Space: 78.0%(0 MB)->78.0%(0 MB)
+PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
+PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
+Metaspace: 92.0%(5 MB)->92.0%(5 MB)
+==========================================================================================
+Garbage collection name: PS MarkSweep
+Garbage collection action: end of major GC
+Garbage collection cause: Ergonomics
+Garbage collection start time: 2017-11-14T09:31:38.154
+Garbage collection end time: 2017-11-14T09:31:38.929
+Garbage collection duration (nanosec.): 775000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(114 MB)->71.400%(81 MB)
+Code Cache: 88.200%(2 MB)->88.200%(2 MB)
+Compressed Class Space: 78.0%(0 MB)->78.0%(0 MB)
+PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
+PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
+Metaspace: 92.100%(5 MB)->92.100%(5 MB)
+==========================================================================================
+Garbage collection name: PS MarkSweep
+Garbage collection action: end of major GC
+Garbage collection cause: Ergonomics
+Garbage collection start time: 2017-11-14T09:31:38.948
+Garbage collection end time: 2017-11-14T09:31:39.706
+Garbage collection duration (nanosec.): 758000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 100.0%(114 MB)->74.0%(84 MB)
+Code Cache: 88.300%(2 MB)->88.300%(2 MB)
+Compressed Class Space: 78.0%(0 MB)->78.0%(0 MB)
+PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
+PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
+Metaspace: 92.100%(5 MB)->92.100%(5 MB)
+==========================================================================================
+Garbage collection name: PS MarkSweep
+Garbage collection action: end of major GC
+Garbage collection cause: Ergonomics
+Garbage collection start time: 2017-11-14T09:31:39.724
+Garbage collection end time: 2017-11-14T09:31:40.485
 Garbage collection duration (nanosec.): 761000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(111 MB)->63.0%(70 MB)
-Code Cache: 90.900%(2 MB)->90.900%(2 MB)
-Compressed Class Space: 77.800%(0 MB)->77.800%(0 MB)
-PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
-PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
-Metaspace: 92.0%(5 MB)->92.0%(5 MB)
-==========================================================================================
-Garbage collection name: PS MarkSweep
-Garbage collection action: end of major GC
-Garbage collection cause: Ergonomics
-Garbage collection start time: 2017-11-13T23:03:23.705
-Garbage collection end time: 2017-11-13T23:03:24.469
-Garbage collection duration (nanosec.): 764000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(111 MB)->62.900%(70 MB)
-Code Cache: 90.900%(2 MB)->90.900%(2 MB)
-Compressed Class Space: 77.800%(0 MB)->77.800%(0 MB)
-PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
-PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
-Metaspace: 92.0%(5 MB)->92.0%(5 MB)
-==========================================================================================
-Garbage collection name: PS MarkSweep
-Garbage collection action: end of major GC
-Garbage collection cause: Ergonomics
-Garbage collection start time: 2017-11-13T23:03:24.494
-Garbage collection end time: 2017-11-13T23:03:25.254
-Garbage collection duration (nanosec.): 760000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(111 MB)->66.200%(73 MB)
-Code Cache: 91.0%(2 MB)->91.0%(2 MB)
-Compressed Class Space: 77.800%(0 MB)->77.800%(0 MB)
-PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
-PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
-Metaspace: 92.0%(5 MB)->92.0%(5 MB)
-==========================================================================================
-Garbage collection name: PS MarkSweep
-Garbage collection action: end of major GC
-Garbage collection cause: Ergonomics
-Garbage collection start time: 2017-11-13T23:03:25.277
-Garbage collection end time: 2017-11-13T23:03:26.049
-Garbage collection duration (nanosec.): 772000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(111 MB)->69.100%(77 MB)
-Code Cache: 91.300%(2 MB)->91.300%(2 MB)
-Compressed Class Space: 77.800%(0 MB)->77.800%(0 MB)
+PS Eden Space: 100.0%(114 MB)->76.400%(87 MB)
+Code Cache: 88.300%(2 MB)->88.300%(2 MB)
+Compressed Class Space: 78.0%(0 MB)->78.0%(0 MB)
 PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
 PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
 Metaspace: 92.100%(5 MB)->92.100%(5 MB)
@@ -1112,14 +1158,14 @@ Metaspace: 92.100%(5 MB)->92.100%(5 MB)
 Garbage collection name: PS MarkSweep
 Garbage collection action: end of major GC
 Garbage collection cause: Ergonomics
-Garbage collection start time: 2017-11-13T23:03:28.317
-Garbage collection end time: 2017-11-13T23:03:29.102
-Garbage collection duration (nanosec.): 785000000
+Garbage collection start time: 2017-11-14T09:31:40.500
+Garbage collection end time: 2017-11-14T09:31:41.284
+Garbage collection duration (nanosec.): 784000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(111 MB)->68.500%(76 MB)
-Code Cache: 91.500%(2 MB)->91.500%(2 MB)
-Compressed Class Space: 77.800%(0 MB)->77.800%(0 MB)
+PS Eden Space: 100.0%(114 MB)->78.400%(89 MB)
+Code Cache: 88.400%(2 MB)->88.400%(2 MB)
+Compressed Class Space: 78.0%(0 MB)->78.0%(0 MB)
 PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
 PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
 Metaspace: 92.100%(5 MB)->92.100%(5 MB)
@@ -1127,59 +1173,14 @@ Metaspace: 92.100%(5 MB)->92.100%(5 MB)
 Garbage collection name: PS MarkSweep
 Garbage collection action: end of major GC
 Garbage collection cause: Ergonomics
-Garbage collection start time: 2017-11-13T23:03:29.123
-Garbage collection end time: 2017-11-13T23:03:29.906
-Garbage collection duration (nanosec.): 783000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(111 MB)->71.300%(79 MB)
-Code Cache: 91.600%(2 MB)->91.600%(2 MB)
-Compressed Class Space: 77.800%(0 MB)->77.800%(0 MB)
-PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
-PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
-Metaspace: 92.100%(5 MB)->92.100%(5 MB)
-==========================================================================================
-Garbage collection name: PS MarkSweep
-Garbage collection action: end of major GC
-Garbage collection cause: Ergonomics
-Garbage collection start time: 2017-11-13T23:03:29.924
-Garbage collection end time: 2017-11-13T23:03:30.709
-Garbage collection duration (nanosec.): 785000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(111 MB)->73.800%(82 MB)
-Code Cache: 91.600%(2 MB)->91.600%(2 MB)
-Compressed Class Space: 77.800%(0 MB)->77.800%(0 MB)
-PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
-PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
-Metaspace: 92.100%(5 MB)->92.100%(5 MB)
-==========================================================================================
-Garbage collection name: PS MarkSweep
-Garbage collection action: end of major GC
-Garbage collection cause: Ergonomics
-Garbage collection start time: 2017-11-13T23:03:32.974
-Garbage collection end time: 2017-11-13T23:03:33.767
-Garbage collection duration (nanosec.): 793000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(111 MB)->72.700%(81 MB)
-Code Cache: 91.700%(2 MB)->91.700%(2 MB)
-Compressed Class Space: 77.800%(0 MB)->77.800%(0 MB)
-PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
-PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
-Metaspace: 92.100%(5 MB)->92.100%(5 MB)
-==========================================================================================
-Garbage collection name: PS MarkSweep
-Garbage collection action: end of major GC
-Garbage collection cause: Ergonomics
-Garbage collection start time: 2017-11-13T23:03:33.784
-Garbage collection end time: 2017-11-13T23:03:34.584
+Garbage collection start time: 2017-11-14T09:31:43.545
+Garbage collection end time: 2017-11-14T09:31:44.345
 Garbage collection duration (nanosec.): 800000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(111 MB)->75.100%(83 MB)
-Code Cache: 91.700%(2 MB)->91.700%(2 MB)
-Compressed Class Space: 77.800%(0 MB)->77.800%(0 MB)
+PS Eden Space: 100.0%(114 MB)->77.100%(88 MB)
+Code Cache: 88.400%(2 MB)->88.400%(2 MB)
+Compressed Class Space: 78.0%(0 MB)->78.0%(0 MB)
 PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
 PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
 Metaspace: 92.100%(5 MB)->92.100%(5 MB)
@@ -1187,14 +1188,14 @@ Metaspace: 92.100%(5 MB)->92.100%(5 MB)
 Garbage collection name: PS MarkSweep
 Garbage collection action: end of major GC
 Garbage collection cause: Ergonomics
-Garbage collection start time: 2017-11-13T23:03:34.600
-Garbage collection end time: 2017-11-13T23:03:35.437
-Garbage collection duration (nanosec.): 837000000
+Garbage collection start time: 2017-11-14T09:31:44.360
+Garbage collection end time: 2017-11-14T09:31:45.134
+Garbage collection duration (nanosec.): 774000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(111 MB)->77.300%(86 MB)
-Code Cache: 91.800%(2 MB)->91.800%(2 MB)
-Compressed Class Space: 77.800%(0 MB)->77.800%(0 MB)
+PS Eden Space: 100.0%(114 MB)->79.100%(90 MB)
+Code Cache: 88.500%(2 MB)->88.500%(2 MB)
+Compressed Class Space: 78.0%(0 MB)->78.0%(0 MB)
 PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
 PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
 Metaspace: 92.100%(5 MB)->92.100%(5 MB)
@@ -1202,136 +1203,76 @@ Metaspace: 92.100%(5 MB)->92.100%(5 MB)
 Garbage collection name: PS MarkSweep
 Garbage collection action: end of major GC
 Garbage collection cause: Ergonomics
-Garbage collection start time: 2017-11-13T23:03:35.452
-Garbage collection end time: 2017-11-13T23:03:36.281
-Garbage collection duration (nanosec.): 829000000
+Garbage collection start time: 2017-11-14T09:31:45.148
+Garbage collection end time: 2017-11-14T09:31:45.924
+Garbage collection duration (nanosec.): 776000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(111 MB)->79.300%(88 MB)
-Code Cache: 91.900%(2 MB)->91.900%(2 MB)
-Compressed Class Space: 77.800%(0 MB)->77.800%(0 MB)
-PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
-PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
-Metaspace: 92.100%(5 MB)->92.100%(5 MB)
-==========================================================================================
-Garbage collection name: PS MarkSweep
-Garbage collection action: end of major GC
-Garbage collection cause: Ergonomics
-Garbage collection start time: 2017-11-13T23:03:38.542
-Garbage collection end time: 2017-11-13T23:03:39.384
-Garbage collection duration (nanosec.): 842000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(111 MB)->77.800%(86 MB)
-Code Cache: 90.800%(2 MB)->90.800%(2 MB)
-Compressed Class Space: 77.800%(0 MB)->77.800%(0 MB)
-PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
-PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
-Metaspace: 92.200%(5 MB)->92.200%(5 MB)
-==========================================================================================
-Garbage collection name: PS MarkSweep
-Garbage collection action: end of major GC
-Garbage collection cause: Ergonomics
-Garbage collection start time: 2017-11-13T23:03:39.399
-Garbage collection end time: 2017-11-13T23:03:40.253
-Garbage collection duration (nanosec.): 854000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(111 MB)->79.700%(88 MB)
-Code Cache: 90.800%(2 MB)->90.800%(2 MB)
-Compressed Class Space: 77.800%(0 MB)->77.800%(0 MB)
-PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
-PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
-Metaspace: 92.200%(5 MB)->92.200%(5 MB)
-==========================================================================================
-Garbage collection name: PS MarkSweep
-Garbage collection action: end of major GC
-Garbage collection cause: Ergonomics
-Garbage collection start time: 2017-11-13T23:03:40.267
-Garbage collection end time: 2017-11-13T23:03:41.119
-Garbage collection duration (nanosec.): 852000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(111 MB)->81.500%(90 MB)
-Code Cache: 88.900%(2 MB)->88.900%(2 MB)
-Compressed Class Space: 77.800%(0 MB)->77.800%(0 MB)
-PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
-PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
-Metaspace: 92.200%(5 MB)->92.200%(5 MB)
-==========================================================================================
-Garbage collection name: PS MarkSweep
-Garbage collection action: end of major GC
-Garbage collection cause: Ergonomics
-Garbage collection start time: 2017-11-13T23:03:41.132
-Garbage collection end time: 2017-11-13T23:03:42.001
-Garbage collection duration (nanosec.): 869000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(111 MB)->83.100%(92 MB)
+PS Eden Space: 100.0%(114 MB)->81.0%(92 MB)
 Code Cache: 88.600%(2 MB)->88.600%(2 MB)
-Compressed Class Space: 77.800%(0 MB)->77.800%(0 MB)
+Compressed Class Space: 78.0%(0 MB)->78.0%(0 MB)
 PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
 PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
-Metaspace: 92.200%(5 MB)->92.200%(5 MB)
+Metaspace: 92.100%(5 MB)->92.100%(5 MB)
 ==========================================================================================
 Garbage collection name: PS MarkSweep
 Garbage collection action: end of major GC
 Garbage collection cause: Ergonomics
-Garbage collection start time: 2017-11-13T23:03:42.016
-Garbage collection end time: 2017-11-13T23:03:42.859
-Garbage collection duration (nanosec.): 843000000
+Garbage collection start time: 2017-11-14T09:31:45.937
+Garbage collection end time: 2017-11-14T09:31:46.707
+Garbage collection duration (nanosec.): 770000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(111 MB)->84.700%(94 MB)
-Code Cache: 88.700%(2 MB)->88.700%(2 MB)
-Compressed Class Space: 77.800%(0 MB)->77.800%(0 MB)
-PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
-PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
-Metaspace: 92.200%(5 MB)->92.200%(5 MB)
-==========================================================================================
-Garbage collection name: PS MarkSweep
-Garbage collection action: end of major GC
-Garbage collection cause: Ergonomics
-Garbage collection start time: 2017-11-13T23:03:42.869
-Garbage collection end time: 2017-11-13T23:03:43.712
-Garbage collection duration (nanosec.): 843000000
-Memory usage: 
-------------------------------------------------------------------------------------------
-PS Eden Space: 100.0%(111 MB)->86.0%(95 MB)
+PS Eden Space: 100.0%(114 MB)->82.800%(94 MB)
 Code Cache: 88.900%(2 MB)->88.900%(2 MB)
-Compressed Class Space: 77.800%(0 MB)->77.800%(0 MB)
+Compressed Class Space: 78.0%(0 MB)->78.0%(0 MB)
 PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
 PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
-Metaspace: 92.300%(5 MB)->92.300%(5 MB)
+Metaspace: 92.200%(5 MB)->92.200%(5 MB)
 ==========================================================================================
 Garbage collection name: PS MarkSweep
 Garbage collection action: end of major GC
 Garbage collection cause: Ergonomics
-Garbage collection start time: 2017-11-13T23:03:43.718
-Garbage collection end time: 2017-11-13T23:03:44.557
-Garbage collection duration (nanosec.): 839000000
+Garbage collection start time: 2017-11-14T09:31:46.719
+Garbage collection end time: 2017-11-14T09:31:47.488
+Garbage collection duration (nanosec.): 769000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 95.300%(106 MB)->87.100%(97 MB)
-Code Cache: 89.800%(2 MB)->89.800%(2 MB)
-Compressed Class Space: 77.800%(0 MB)->77.800%(0 MB)
+PS Eden Space: 100.0%(114 MB)->84.300%(96 MB)
+Code Cache: 88.900%(2 MB)->88.900%(2 MB)
+Compressed Class Space: 78.0%(0 MB)->78.0%(0 MB)
 PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
 PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
-Metaspace: 92.500%(5 MB)->92.500%(5 MB)
+Metaspace: 92.200%(5 MB)->92.200%(5 MB)
+==========================================================================================
+Garbage collection name: PS MarkSweep
+Garbage collection action: end of major GC
+Garbage collection cause: Ergonomics
+Garbage collection start time: 2017-11-14T09:31:47.490
+Garbage collection end time: 2017-11-14T09:31:48.267
+Garbage collection duration (nanosec.): 777000000
+Memory usage: 
+------------------------------------------------------------------------------------------
+PS Eden Space: 86.300%(98 MB)->84.700%(97 MB)
+Code Cache: 88.900%(2 MB)->88.900%(2 MB)
+Compressed Class Space: 78.0%(0 MB)->78.0%(0 MB)
+PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
+PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
+Metaspace: 92.200%(5 MB)->92.200%(5 MB)
 ==========================================================================================
 Garbage collection name: PS MarkSweep
 Garbage collection action: end of major GC
 Garbage collection cause: Allocation Failure
-Garbage collection start time: 2017-11-13T23:03:44.557
-Garbage collection end time: 2017-11-13T23:03:45.681
-Garbage collection duration (nanosec.): 124000000
+Garbage collection start time: 2017-11-14T09:31:48.267
+Garbage collection end time: 2017-11-14T09:31:49.283
+Garbage collection duration (nanosec.): 16000000
 Memory usage: 
 ------------------------------------------------------------------------------------------
-PS Eden Space: 87.100%(97 MB)->87.100%(97 MB)
-Code Cache: 89.800%(2 MB)->89.800%(2 MB)
-Compressed Class Space: 77.800%(0 MB)->77.800%(0 MB)
+PS Eden Space: 84.700%(97 MB)->84.700%(97 MB)
+Code Cache: 88.900%(2 MB)->88.900%(2 MB)
+Compressed Class Space: 78.0%(0 MB)->78.0%(0 MB)
 PS Old Gen: 99.900%(341 MB)->99.900%(341 MB)
 PS Survivor Space: 0.0%(0 MB)->0.0%(0 MB)
-Metaspace: 92.500%(5 MB)->92.500%(5 MB)
+Metaspace: 92.200%(5 MB)->92.200%(5 MB)
 ==========================================================================================
 ==========================================================================================
