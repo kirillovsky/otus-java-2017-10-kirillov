@@ -22,6 +22,8 @@ public final class TestCaseExecutor {
         CommonUtils.requiredNotNull(testCaseClass, "Test class must be not null");
         CommonUtils.requiredPredicate(ReflectionHelper::isTestCase, testCaseClass,
                 "Test-case class must be annotated with TestCase");
+        CommonUtils.requiredPredicate(ReflectionHelper::hasDefaultPublicConstructor, testCaseClass,
+                "Test-case class must have default constructor");
         MyTestCaseResult result;
         try {
             List<Method> beforeMethods = ReflectionHelper.getBeforeMethods(testCaseClass);
@@ -49,8 +51,6 @@ public final class TestCaseExecutor {
      * @return его инстанс
      */
     private static Object instanceTestCase(Class<?> clazz) {
-        CommonUtils.requiredPredicate(ReflectionHelper::hasDefaultConstructor, clazz,
-                "Test-case class must have default constructor");
         return ReflectionHelper.instantiate(clazz);
     }
 

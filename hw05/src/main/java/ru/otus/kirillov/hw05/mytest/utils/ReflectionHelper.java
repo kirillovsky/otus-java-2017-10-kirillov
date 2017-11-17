@@ -10,6 +10,7 @@ import ru.otus.kirillov.hw05.mytest.annotations.Test;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -77,10 +78,11 @@ public class ReflectionHelper {
         return isAnnotated(method, Test.class);
     }
 
-    public static boolean hasDefaultConstructor(Class<?> clazz) {
+    public static boolean hasDefaultPublicConstructor(Class<?> clazz) {
         CommonUtils.requiredNotNull(clazz, "Class must be not null");
         return Arrays.stream(clazz.getDeclaredConstructors())
                 .filter(c -> c.getGenericParameterTypes().length == 0)
+                .filter(c -> Modifier.isPublic(c.getModifiers()))
                 .findAny()
                 .isPresent();
     }
@@ -141,7 +143,7 @@ public class ReflectionHelper {
         CommonUtils.requiredNotNull(name, "Method name must be not null");
         Class<?>[] argsClasses = toClasses(args);
         return callMethod(object, getMethodByName(object.getClass(), name,argsClasses),
-                argsClasses);
+                args);
     }
 
     public static Object callMethod(Object obj, Method method, Object... args) {

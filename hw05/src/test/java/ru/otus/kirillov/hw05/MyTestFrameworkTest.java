@@ -46,40 +46,10 @@ public class MyTestFrameworkTest {
         assertEquals(result.getTestCaseClass(), EmptyTests2.class);
     }
 
-    @Test
-    public void testForFullSuccessTestCaseClass() {
-        testForTestCaseFullSuccess(FullSuccess1.class, "test1", "test2", "test3");
-    }
-
-    @Test
-    public void testForFullSuccessTestCaseClassWithAfterAndBefore() {
-        testForTestCaseFullSuccess(FullSuccessWithAfterAndBefore.class, "test1", "test2", "test3");
-
-        assertEquals(FullSuccessWithAfterAndBefore.getMethodCallOrderHolder().size(), 15);
-        List<List<String>> methodCallOrder =
-                ListUtils.partition(FullSuccessWithAfterAndBefore.getMethodCallOrderHolder(), 5);
-
-        for(List<String> lst: methodCallOrder) {
-            Object[] beforeMethods = lst.subList(0, 2).toArray();
-            Arrays.sort(beforeMethods);
-            assertArrayEquals(
-                    beforeMethods,
-                    new String[] {"b1", "b2"}
-            );
-
-            Object[] afterMethods = lst.subList(3, 5).toArray();
-            Arrays.sort(afterMethods);
-            assertArrayEquals(
-                    afterMethods,
-                    new String[] {"a1", "a2"}
-            );
-        }
-    }
-
     private void testForTestCaseFullSuccess(Class<?> clazz, String... methodNames) {
         Arrays.sort(methodNames);
         MyTestCaseResult result = MyTestFramework.runTestClass(getClassName(clazz));
-        assertEquals(result.getStatus(), TestCaseStatus.PASSED);
+        assertEquals(TestCaseStatus.PASSED, result.getStatus());
         assertEquals(result.getPassedTestsCount(), methodNames.length);
         assertEquals(result.getFailedTestsCount(), 0);
         assertEquals(result.getNotPassedTests(), 0);
@@ -105,8 +75,38 @@ public class MyTestFrameworkTest {
     }
 
     @Test
-    public void testForTestCaseClassWithPrivateConstructor() {
+    public void testForFullSuccessTestCaseClass() {
+        testForTestCaseFullSuccess(FullSuccess1.class, "test1", "test2", "test3");
+    }
 
+    @Test
+    public void testForFullSuccessTestCaseClassWithAfterAndBefore() {
+        testForTestCaseFullSuccess(FullSuccessWithAfterAndBefore.class, "test1", "test2", "test3");
+
+        assertEquals(FullSuccessWithAfterAndBefore.getMethodCallOrderHolder().size(), 15);
+        List<List<String>> methodCallOrder =
+                ListUtils.partition(FullSuccessWithAfterAndBefore.getMethodCallOrderHolder(), 5);
+
+        for (List<String> lst : methodCallOrder) {
+            Object[] beforeMethods = lst.subList(0, 2).toArray();
+            Arrays.sort(beforeMethods);
+            assertArrayEquals(
+                    beforeMethods,
+                    new String[]{"b1", "b2"}
+            );
+
+            Object[] afterMethods = lst.subList(3, 5).toArray();
+            Arrays.sort(afterMethods);
+            assertArrayEquals(
+                    afterMethods,
+                    new String[]{"a1", "a2"}
+            );
+        }
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testForTestCaseClassWithPrivateConstructor() {
+        MyTestFramework.runTestClass(getClassName(PrivateDefaultConstructor.class));
     }
 
     @Test
