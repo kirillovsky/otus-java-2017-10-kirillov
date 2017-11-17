@@ -17,11 +17,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
+ * Доработанный набор утилит для работы с рефлексией
+ * от Виталия Чибрикова
  * Created by tully.
  */
 public class ReflectionHelper {
-
-    //todo: добавить логгер
 
     interface ReflectionBiFunction<T, U, R> {
         R apply(T o, U o2) throws ReflectiveOperationException;
@@ -140,7 +140,7 @@ public class ReflectionHelper {
     public static Object callMethod(Object object, String name, Object... args) {
         CommonUtils.requiredNotNull(name, "Method name must be not null");
         Class<?>[] argsClasses = toClasses(args);
-        return callMethod(object, getMethodByName(object.getClass(), name,argsClasses),
+        return callMethod(object, getMethodByName(object.getClass(), name, argsClasses),
                 args);
     }
 

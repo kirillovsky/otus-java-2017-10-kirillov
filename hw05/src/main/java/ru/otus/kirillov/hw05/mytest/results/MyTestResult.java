@@ -5,7 +5,7 @@ import java.util.Objects;
 
 import static ru.otus.kirillov.hw05.mytest.results.MyTestResult.TestStatus.*;
 
-/** Класс, отвечающий за результат одого теста
+/** Класс, отвечающий за результат одного теста
  * Created by Александр on 15.11.2017.
  */
 public class MyTestResult {

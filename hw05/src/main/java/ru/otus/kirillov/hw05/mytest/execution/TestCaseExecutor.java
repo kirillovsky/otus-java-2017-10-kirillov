@@ -11,35 +11,44 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Запуск тест-кейсов
+ * Прямой запуск тест-кейсов.
  * Created by Александр on 15.11.2017.
  */
 public final class TestCaseExecutor {
 
-    private TestCaseExecutor() {}
+    private TestCaseExecutor() {
+    }
 
+    /**
+     * Выполнение единственного тест-кейса
+     * и сбор результатов его тестов
+     *
+     * @param testCaseClass - тест-кейс класс
+     * @return результат выполнения тест-кейса
+     * @throws IllegalArgumentException -
+     *                                  в случае, если testCaseClass == null,
+     *                                  класс testCaseClass - не был помечен аннотацией
+     *                                  {@link ru.otus.kirillov.hw05.mytest.annotations.TestCase},
+     *                                  либо у него отсутствует дефолтный public-конструктор.
+     */
     public static MyTestCaseResult runTestCase(Class<?> testCaseClass) {
         CommonUtils.requiredNotNull(testCaseClass, "Test class must be not null");
         CommonUtils.requiredPredicate(ReflectionHelper::isTestCase, testCaseClass,
                 "Test-case class must be annotated with TestCase");
         CommonUtils.requiredPredicate(ReflectionHelper::hasDefaultPublicConstructor, testCaseClass,
-                "Test-case class must have default constructor");
-        MyTestCaseResult result;
-        try {
-            List<Method> beforeMethods = ReflectionHelper.getBeforeMethods(testCaseClass);
-            List<Method> afterMethods = ReflectionHelper.getAfterMethods(testCaseClass);
+                "Test-case class must h" +
+                        "ave default constructor");
 
-            List<MyTestResult> testResult = ReflectionHelper.getTestMethods(testCaseClass).stream()
-                    .map(test -> runTest(
-                            instanceTestCase(testCaseClass), test,
-                            beforeMethods, afterMethods
-                    ))
-                    .collect(Collectors.toList());
-            result = MyTestCaseResult.getTestCaseResult(testCaseClass, testResult);
-        } catch (Throwable th) {
-            result = MyTestCaseResult.getFailedTestCaseResult(testCaseClass);
-        }
-        return result;
+        List<Method> beforeMethods = ReflectionHelper.getBeforeMethods(testCaseClass);
+        List<Method> afterMethods = ReflectionHelper.getAfterMethods(testCaseClass);
+
+        List<MyTestResult> testResult = ReflectionHelper.getTestMethods(testCaseClass).stream()
+                .map(test -> runTest(
+                        instanceTestCase(testCaseClass), test,
+                        beforeMethods, afterMethods
+                ))
+                .collect(Collectors.toList());
+        return MyTestCaseResult.getTestCaseResult(testCaseClass, testResult);
     }
 
     /**
@@ -54,6 +63,19 @@ public final class TestCaseExecutor {
         return ReflectionHelper.instantiate(clazz);
     }
 
+    /**
+     * Запуск едиственного тест-метода, из набора тестов.
+     *
+     * @param testObject    - объект тестового класса
+     * @param testMethod    - тест-метод
+     * @param methodsBefore - список методов, предназначенных
+     *                      для запуска перед выполнением каждого тест-метода
+     * @param methodsAfter  - список методов, предназначенных
+     *                      для запуска после выполнения каждого тест-метода
+     * @return результат выполения тест-метода
+     * @throws IllegalArgumentException - в случае, если тест-метод
+     *                                  имеет какие-либо входные параметры
+     */
     private static MyTestResult runTest(Object testObject, Method testMethod,
                                         List<Method> methodsBefore, List<Method> methodsAfter) {
         CommonUtils.requiredPredicate(ReflectionHelper::isNoArgsMethod, testMethod,
@@ -94,7 +116,7 @@ public final class TestCaseExecutor {
             }
         }
 
-        if(exception != null) {
+        if (exception != null) {
             throw exception;
         }
     }

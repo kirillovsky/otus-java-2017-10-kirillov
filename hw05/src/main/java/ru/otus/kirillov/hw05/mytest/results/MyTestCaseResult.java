@@ -11,7 +11,7 @@ import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 
 /**
- * Класс, отвечающий за результат тесткейса.
+ * Класс, отвечающий за результат тест-кейса.
  * Created by Александр on 15.11.2017.
  */
 public class MyTestCaseResult {
@@ -22,11 +22,13 @@ public class MyTestCaseResult {
         FAILED
     }
 
-    public static MyTestCaseResult getFailedTestCaseResult(Class<?> clazz) {
-        Objects.requireNonNull(clazz, "Test class must be not null");
-        return new MyTestCaseResult(clazz, TestCaseStatus.FAILED);
-    }
-
+    /**
+     * Статический метод генерации результата выполнения тест-кейса,
+     * по результатм работы его тестов
+     * @param clazz - тест-кейс класс
+     * @param testResults - список результатов выполнения тестов
+     * @return
+     */
     public static MyTestCaseResult getTestCaseResult(Class<?> clazz, List<MyTestResult> testResults) {
         Objects.requireNonNull(clazz, "Test class must be not null");
         Objects.requireNonNull(testResults, "Test results must be not null");

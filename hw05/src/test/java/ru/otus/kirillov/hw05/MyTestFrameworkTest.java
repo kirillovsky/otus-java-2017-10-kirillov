@@ -27,6 +27,7 @@ import static org.junit.Assert.*;
  */
 public class MyTestFrameworkTest {
 
+    //region Тесты для запуска единичных тест-кейсов MyTestFramework#runTestClass
     @Test(expected = IllegalArgumentException.class)
     public void testForNotTestCaseClass() {
         MyTestFramework.runTestClass(getClassName(NonTestCaseClass.class));
@@ -172,6 +173,9 @@ public class MyTestFrameworkTest {
         );
     }
 
+    //endregion
+
+    //region Тесты для запуска тест-кейсов по пакетам MyTestFramework#runInPackage
     @Test
     public void testForEmptyPackage() {
         List<MyTestCaseResult> result =
@@ -237,6 +241,8 @@ public class MyTestFrameworkTest {
                 MyTestResult.TestStatus.NOT_PASSED, "test1", "test2", "test3");
 
     }
+
+    //endregion
 
     private String getClassName(Class<?> clazz) {
         return clazz.getName();

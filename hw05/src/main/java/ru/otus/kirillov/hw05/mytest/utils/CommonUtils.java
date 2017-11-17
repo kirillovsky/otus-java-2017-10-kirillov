@@ -4,7 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.function.Predicate;
 
-/**
+/** Набор утилит общего характера
  * Created by Александр on 15.11.2017.
  */
 public final class CommonUtils {
