@@ -7,7 +7,7 @@ import ru.otus.kirillov.hw05.mytest.annotations.TestCase;
  * Created by Александр on 17.11.2017.
  */
 @TestCase
-public class FullSuccess {
+public class FullSuccess1 {
 
     @Test
     public void test1() {
@@ -15,12 +15,13 @@ public class FullSuccess {
     }
 
     @Test
-    public Object test2() {
+    protected Object test2() {
         System.out.println("test2");
         return null;
     }
 
-    public String test3() {
+    @Test
+    private String test3() {
         return "test3";
     }
 }
