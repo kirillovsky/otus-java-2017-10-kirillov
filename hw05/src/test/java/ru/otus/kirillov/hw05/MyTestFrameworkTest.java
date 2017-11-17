@@ -11,6 +11,7 @@ import ru.otus.kirillov.hw05.testCases.*;
 import ru.otus.kirillov.hw05.testCases.hierarhicalStructure.TestCase1;
 import ru.otus.kirillov.hw05.testCases.hierarhicalStructure.a.TestCase2;
 import ru.otus.kirillov.hw05.testCases.hierarhicalStructure.b.b1.TestCase3;
+import ru.otus.kirillov.hw05.testCases.oneClass.OneTestClass1;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -186,26 +187,13 @@ public class MyTestFrameworkTest {
     }
 
     @Test
-    public void testForPackageWithHierarhicalStructure() {
+    public void testForPackageWithOneTestClass() {
         List<MyTestCaseResult> result =
-                MyTestFramework.runInPackage("ru.otus.kirillov.hw05.testCases.hierarhicalStructure");
-        assertFalse(result.isEmpty());
+                MyTestFramework.runInPackage("ru.otus.kirillov.hw05.testCases.oneClass");
+        assertEquals(result.size(), 1);
 
-        Map<Class<?>, MyTestCaseResult> resultMap = result.stream()
-                .collect(
-                        Collectors.toMap(MyTestCaseResult::getTestCaseClass, Function.identity())
-                );
-
-        MyTestCaseResult tmpResult = resultMap.get(TestCase1.class);
-        testForTestsWithOneStatus(TestCase1.class, tmpResult,
-                MyTestResult.TestStatus.PASSED, "test1", "test2", "test3");
-
-        tmpResult = resultMap.get(TestCase3.class);
-        testForTestsWithOneStatus(TestCase3.class, tmpResult,
-                MyTestResult.TestStatus.FAILED, "test1", "test2", "test3");
-
-        tmpResult = resultMap.get(TestCase2.class);
-        testForTestCaseResults(tmpResult, TestCase2.class, 3, 2, 1, 0);
+        MyTestCaseResult tmpResult = result.get(0);
+        testForTestCaseResults(tmpResult, OneTestClass1.class, 3, 2, 1, 0);
         testForTestsNames(tmpResult, new String[]{"test1", "test2", "test3"});
         assertArrayEquals(
                 tmpResult.getTestResults().stream()
@@ -223,6 +211,30 @@ public class MyTestFrameworkTest {
                         .sorted().toArray(),
                 new String[]{"test1", "test2"}
         );
+    }
+
+    @Test
+    public void testForPackageWithHierarhicalStructure() {
+        List<MyTestCaseResult> result =
+                MyTestFramework.runInPackage("ru.otus.kirillov.hw05.testCases.hierarhicalStructure");
+        assertEquals(result.size(), 3);
+
+        Map<Class<?>, MyTestCaseResult> resultMap = result.stream()
+                .collect(
+                        Collectors.toMap(MyTestCaseResult::getTestCaseClass, Function.identity())
+                );
+
+        MyTestCaseResult tmpResult = resultMap.get(TestCase1.class);
+        testForTestsWithOneStatus(TestCase1.class, tmpResult,
+                MyTestResult.TestStatus.PASSED, "test1", "test2", "test3");
+
+        tmpResult = resultMap.get(TestCase3.class);
+        testForTestsWithOneStatus(TestCase3.class, tmpResult,
+                MyTestResult.TestStatus.FAILED, "test1", "test2", "test3");
+
+        tmpResult = resultMap.get(TestCase2.class);
+        testForTestsWithOneStatus(TestCase2.class, tmpResult,
+                MyTestResult.TestStatus.NOT_PASSED, "test1", "test2", "test3");
 
     }
 
