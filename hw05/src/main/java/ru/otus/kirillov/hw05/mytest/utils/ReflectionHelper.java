@@ -65,7 +65,7 @@ public class ReflectionHelper {
 
     public static List<Class<?>> getTestClassesFromPackage(String packageFullName) {
         Reflections reflections = new Reflections(packageFullName);
-        return new ArrayList<>(reflections.getTypesAnnotatedWith(Test.class));
+        return new ArrayList<>(reflections.getTypesAnnotatedWith(TestCase.class));
     }
 
     public static boolean isTestCase(Class<?> clazz) {

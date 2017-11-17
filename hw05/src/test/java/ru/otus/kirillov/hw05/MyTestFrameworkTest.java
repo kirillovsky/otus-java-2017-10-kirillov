@@ -8,10 +8,16 @@ import ru.otus.kirillov.hw05.mytest.results.MyTestCaseResult;
 import ru.otus.kirillov.hw05.mytest.results.MyTestCaseResult.TestCaseStatus;
 import ru.otus.kirillov.hw05.mytest.results.MyTestResult;
 import ru.otus.kirillov.hw05.testCases.*;
+import ru.otus.kirillov.hw05.testCases.hierarhicalStructure.TestCase1;
+import ru.otus.kirillov.hw05.testCases.hierarhicalStructure.a.TestCase2;
+import ru.otus.kirillov.hw05.testCases.hierarhicalStructure.b.b1.TestCase3;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
 
@@ -179,14 +185,59 @@ public class MyTestFrameworkTest {
         assertTrue(result.isEmpty());
     }
 
+    @Test
+    public void testForPackageWithHierarhicalStructure() {
+        List<MyTestCaseResult> result =
+                MyTestFramework.runInPackage("ru.otus.kirillov.hw05.testCases.hierarhicalStructure");
+        assertFalse(result.isEmpty());
+
+        Map<Class<?>, MyTestCaseResult> resultMap = result.stream()
+                .collect(
+                        Collectors.toMap(MyTestCaseResult::getTestCaseClass, Function.identity())
+                );
+
+        MyTestCaseResult tmpResult = resultMap.get(TestCase1.class);
+        testForTestsWithOneStatus(TestCase1.class, tmpResult,
+                MyTestResult.TestStatus.PASSED, "test1", "test2", "test3");
+
+        tmpResult = resultMap.get(TestCase3.class);
+        testForTestsWithOneStatus(TestCase3.class, tmpResult,
+                MyTestResult.TestStatus.FAILED, "test1", "test2", "test3");
+
+        tmpResult = resultMap.get(TestCase2.class);
+        testForTestCaseResults(tmpResult, TestCase2.class, 3, 2, 1, 0);
+        testForTestsNames(tmpResult, new String[]{"test1", "test2", "test3"});
+        assertArrayEquals(
+                tmpResult.getTestResults().stream()
+                        .filter(r -> r.getTestStatus() == MyTestResult.TestStatus.NOT_PASSED)
+                        .map(MyTestResult::getTestMethod)
+                        .map(Method::getName)
+                        .sorted().toArray(),
+                new String[]{"test3"}
+        );
+        assertArrayEquals(
+                tmpResult.getTestResults().stream()
+                        .filter(r -> r.getTestStatus() == MyTestResult.TestStatus.PASSED)
+                        .map(MyTestResult::getTestMethod)
+                        .map(Method::getName)
+                        .sorted().toArray(),
+                new String[]{"test1", "test2"}
+        );
+
+    }
+
     private String getClassName(Class<?> clazz) {
         return clazz.getName();
     }
 
     private void testForTestsWithOneStatus(Class<?> clazz, MyTestResult.TestStatus status, String... methodNames) {
         MyTestCaseResult result = MyTestFramework.runTestClass(getClassName(clazz));
-        testForTestsNames(result, methodNames);
+        testForTestsWithOneStatus(clazz, result, status, methodNames);
+    }
 
+    private void testForTestsWithOneStatus(Class<?> clazz, MyTestCaseResult result,
+                                           MyTestResult.TestStatus status, String... methodNames) {
+        testForTestsNames(result, methodNames);
         switch (status) {
             case PASSED:
                 testForTestCaseResults(result, clazz, methodNames.length, methodNames.length, 0, 0);
