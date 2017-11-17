@@ -62,8 +62,14 @@ public final class TestCaseExecutor {
         try {
             runBeforeOrAfterMethods(testObject, methodsBefore);
             ReflectionHelper.callMethod(testObject, testMethod);
-            runBeforeOrAfterMethods(testObject, methodsAfter);
             result = MyTestResult.getPassedStatus(testMethod);
+        } catch (Throwable th) {
+            result = from(testMethod, th);
+        }
+
+        //For guaranteed execution of @After methods
+        try {
+            runBeforeOrAfterMethods(testObject, methodsAfter);
         } catch (Throwable th) {
             result = from(testMethod, th);
         }
@@ -79,12 +85,19 @@ public final class TestCaseExecutor {
     }
 
     private static void runBeforeOrAfterMethods(Object testObject, List<Method> methods) {
+        BeforeOrAfterMethodsException exception = null;
         for (Method method : methods) {
             try {
                 ReflectionHelper.callMethod(testObject, method);
             } catch (Throwable th) {
-                throw new BeforeOrAfterMethodsException(th);
+                exception = new BeforeOrAfterMethodsException(th);
             }
         }
+
+        if(exception != null) {
+            throw exception;
+        }
     }
+
+
 }

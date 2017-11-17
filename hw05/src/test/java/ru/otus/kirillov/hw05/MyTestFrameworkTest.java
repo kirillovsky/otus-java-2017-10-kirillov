@@ -1,6 +1,7 @@
 package ru.otus.kirillov.hw05;
 
 import org.apache.commons.collections4.ListUtils;
+import org.junit.Before;
 import org.junit.Test;
 import ru.otus.kirillov.hw05.mytest.MyTestFramework;
 import ru.otus.kirillov.hw05.mytest.results.MyTestCaseResult;
@@ -48,12 +49,14 @@ public class MyTestFrameworkTest {
 
     @Test
     public void testForFullSuccessTestCaseClass() {
-        testForTestCaseFullSuccess(FullSuccess.class, "test1", "test2", "test3");
+        testForTestsWithOneStatus(FullSuccess.class,
+                MyTestResult.TestStatus.PASSED, "test1", "test2", "test3");
     }
 
     @Test
     public void testForFullSuccessTestCaseClassWithAfterAndBefore() {
-        testForTestCaseFullSuccess(FullSuccessWithAfterAndBefore.class, "test1", "test2", "test3");
+        testForTestsWithOneStatus(FullSuccessWithAfterAndBefore.class,
+                MyTestResult.TestStatus.PASSED, "test1", "test2", "test3");
 
         assertEquals(FullSuccessWithAfterAndBefore.getMethodCallOrderHolder().size(), 15);
         List<List<String>> methodCallOrder =
@@ -85,14 +88,14 @@ public class MyTestFrameworkTest {
     public void testForNotPassedTestCase() {
         MyTestCaseResult result = MyTestFramework.runTestClass(getClassName(NotPassedTestCase.class));
         testForTestCaseResults(result, NotPassedTestCase.class, 4, 2, 2, 0);
-        testForTestsNames(result, new String[] {"test1", "test2", "test3", "test4"});
+        testForTestsNames(result, new String[]{"test1", "test2", "test3", "test4"});
         assertArrayEquals(
                 result.getTestResults().stream()
                         .filter(r -> r.getTestStatus() == MyTestResult.TestStatus.NOT_PASSED)
                         .map(MyTestResult::getTestMethod)
                         .map(Method::getName)
                         .sorted().toArray(),
-                new String[] {"test2", "test4"}
+                new String[]{"test2", "test4"}
         );
         assertArrayEquals(
                 result.getTestResults().stream()
@@ -100,7 +103,7 @@ public class MyTestFrameworkTest {
                         .map(MyTestResult::getTestMethod)
                         .map(Method::getName)
                         .sorted().toArray(),
-                new String[] {"test1", "test3"}
+                new String[]{"test1", "test3"}
         );
     }
 
@@ -108,14 +111,14 @@ public class MyTestFrameworkTest {
     public void testFailedTestCase() {
         MyTestCaseResult result = MyTestFramework.runTestClass(getClassName(FailedTestCase.class));
         testForTestCaseResults(result, FailedTestCase.class, 4, 2, 1, 1);
-        testForTestsNames(result, new String[] {"test1", "test2", "test3", "test4"});
+        testForTestsNames(result, new String[]{"test1", "test2", "test3", "test4"});
         assertArrayEquals(
                 result.getTestResults().stream()
                         .filter(r -> r.getTestStatus() == MyTestResult.TestStatus.FAILED)
                         .map(MyTestResult::getTestMethod)
                         .map(Method::getName)
                         .sorted().toArray(),
-                new String[] {"test4"}
+                new String[]{"test4"}
         );
         assertArrayEquals(
                 result.getTestResults().stream()
@@ -123,7 +126,7 @@ public class MyTestFrameworkTest {
                         .map(MyTestResult::getTestMethod)
                         .map(Method::getName)
                         .sorted().toArray(),
-                new String[] {"test2"}
+                new String[]{"test2"}
         );
         assertArrayEquals(
                 result.getTestResults().stream()
@@ -131,7 +134,34 @@ public class MyTestFrameworkTest {
                         .map(MyTestResult::getTestMethod)
                         .map(Method::getName)
                         .sorted().toArray(),
-                new String[] {"test1", "test3"}
+                new String[]{"test1", "test3"}
+        );
+    }
+
+    @Test
+    public void testForExceptionInBefore() {
+        testForTestsWithOneStatus(ExceptionInBefore.class,
+                MyTestResult.TestStatus.FAILED, "test4");
+
+        assertArrayEquals(new String[]{"before1", "before2"},
+                ExceptionInBefore.getBeforeHolder().stream()
+                        .sorted().toArray()
+        );
+
+        assertArrayEquals(new String[]{"after1", "after2"},
+                ExceptionInBefore.getAfterHolder().stream()
+                        .sorted().toArray()
+        );
+    }
+
+    @Test
+    public void testForExceptionInAfter() {
+        testForTestsWithOneStatus(ExceptionInAfter.class,
+                MyTestResult.TestStatus.FAILED, "test1", "test2");
+
+        assertArrayEquals(new String[]{"after1", "after1", "after2", "after2"},
+                ExceptionInAfter.getAfterHolder().stream()
+                        .sorted().toArray()
         );
     }
 
@@ -153,14 +183,20 @@ public class MyTestFrameworkTest {
         return clazz.getName();
     }
 
-    private void testForTestCaseFullSuccess(Class<?> clazz, String... methodNames) {
-        testForTestsWithOneStatus(clazz, MyTestResult.TestStatus.PASSED, methodNames);
-    }
-
     private void testForTestsWithOneStatus(Class<?> clazz, MyTestResult.TestStatus status, String... methodNames) {
         MyTestCaseResult result = MyTestFramework.runTestClass(getClassName(clazz));
         testForTestsNames(result, methodNames);
-        testForTestCaseResults(result, clazz, methodNames.length, methodNames.length, 0, 0);
+
+        switch (status) {
+            case PASSED:
+                testForTestCaseResults(result, clazz, methodNames.length, methodNames.length, 0, 0);
+                break;
+            case NOT_PASSED:
+                testForTestCaseResults(result, clazz, methodNames.length, 0, methodNames.length, 0);
+                break;
+            case FAILED:
+                testForTestCaseResults(result, clazz, methodNames.length, 0, 0, methodNames.length);
+        }
 
         Arrays.sort(methodNames);
         assertArrayEquals(
