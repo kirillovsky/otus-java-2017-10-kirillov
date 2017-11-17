@@ -105,6 +105,37 @@ public class MyTestFrameworkTest {
     }
 
     @Test
+    public void testFailedTestCase() {
+        MyTestCaseResult result = MyTestFramework.runTestClass(getClassName(FailedTestCase.class));
+        testForTestCaseResults(result, FailedTestCase.class, 4, 2, 1, 1);
+        testForTestsNames(result, new String[] {"test1", "test2", "test3", "test4"});
+        assertArrayEquals(
+                result.getTestResults().stream()
+                        .filter(r -> r.getTestStatus() == MyTestResult.TestStatus.FAILED)
+                        .map(MyTestResult::getTestMethod)
+                        .map(Method::getName)
+                        .sorted().toArray(),
+                new String[] {"test4"}
+        );
+        assertArrayEquals(
+                result.getTestResults().stream()
+                        .filter(r -> r.getTestStatus() == MyTestResult.TestStatus.NOT_PASSED)
+                        .map(MyTestResult::getTestMethod)
+                        .map(Method::getName)
+                        .sorted().toArray(),
+                new String[] {"test2"}
+        );
+        assertArrayEquals(
+                result.getTestResults().stream()
+                        .filter(r -> r.getTestStatus() == MyTestResult.TestStatus.PASSED)
+                        .map(MyTestResult::getTestMethod)
+                        .map(Method::getName)
+                        .sorted().toArray(),
+                new String[] {"test1", "test3"}
+        );
+    }
+
+    @Test
     public void testForEmptyPackage() {
         List<MyTestCaseResult> result =
                 MyTestFramework.runInPackage("ru.otus.kirillov.hw05.testCases.emptyPackage");

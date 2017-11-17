@@ -73,7 +73,7 @@ public final class TestCaseExecutor {
 
     private static MyTestResult from(Method method, Throwable th) {
         Throwable actualTh = th.getCause().getCause();
-        return (actualTh instanceof Throwable) ?
+        return (actualTh instanceof AssertionError) ?
                 MyTestResult.getNotPassedStatus(method, actualTh.getMessage()) :
                 MyTestResult.getFailedStatus(method, actualTh.getMessage());
     }
