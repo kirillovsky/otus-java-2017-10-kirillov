@@ -18,7 +18,7 @@ public final class CommonUtils {
     }
 
     public static void requiredNotEmptyString(String str, String msg) {
-        requiredPredicate(StringUtils::isEmpty, str, msg);
+        requiredPredicate(StringUtils::isNotEmpty, str, msg);
     }
 
     public static void requiredNotNull(Object obj, String msg) {
