@@ -25,11 +25,10 @@ public final class TestCaseExecutor {
      *
      * @param testCaseClass - тест-кейс класс
      * @return результат выполнения тест-кейса
-     * @throws IllegalArgumentException -
-     *                                  в случае, если testCaseClass == null,
-     *                                  класс testCaseClass - не был помечен аннотацией
-     *                                  {@link ru.otus.kirillov.hw05.mytest.annotations.TestCase},
-     *                                  либо у него отсутствует дефолтный public-конструктор.
+     * @throws IllegalArgumentException в случае, если testCaseClass == null,
+     * класс testCaseClass - не был помечен аннотацией
+     * {@link ru.otus.kirillov.hw05.mytest.annotations.TestCase},
+     * либо у него отсутствует дефолтный public-конструктор.
      */
     public static MyTestCaseResult runTestCase(Class<?> testCaseClass) {
         CommonUtils.requiredNotNull(testCaseClass, "Test class must be not null");
