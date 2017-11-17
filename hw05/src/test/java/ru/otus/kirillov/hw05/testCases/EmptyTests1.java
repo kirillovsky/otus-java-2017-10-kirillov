@@ -9,6 +9,6 @@ import ru.otus.kirillov.hw05.mytest.annotations.TestCase;
 public class EmptyTests1 {
 
     public void hello() {
-        System.out.println(EmptyTests1.class.getName());
+        throw new RuntimeException();
     }
 }
