@@ -72,6 +72,10 @@ public class MyTestCaseResult {
         return new ArrayList<>(testResults);
     }
 
+    public Class<?> getTestCaseClass() {
+        return testCaseClass;
+    }
+
     private void initSummaryFields(List<MyTestResult> testResults) {
         testResults.stream()
                 .collect(groupingBy(MyTestResult::getTestStatus, counting()))
