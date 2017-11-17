@@ -64,13 +64,18 @@ public final class TestCaseExecutor {
             ReflectionHelper.callMethod(testObject, testMethod);
             runBeforeOrAfterMethods(testObject, methodsAfter);
             result = MyTestResult.getPassedStatus(testMethod);
-        } catch (AssertionError error) {
-            result = MyTestResult.getNotPassedStatus(testMethod, error.getMessage());
         } catch (Throwable th) {
-            result = MyTestResult.getFailedStatus(testMethod, th.toString());
+            result = from(testMethod, th);
         }
 
         return result;
+    }
+
+    private static MyTestResult from(Method method, Throwable th) {
+        Throwable actualTh = th.getCause().getCause();
+        return (actualTh instanceof Throwable) ?
+                MyTestResult.getNotPassedStatus(method, actualTh.getMessage()) :
+                MyTestResult.getFailedStatus(method, actualTh.getMessage());
     }
 
     private static void runBeforeOrAfterMethods(Object testObject, List<Method> methods) {

@@ -46,37 +46,9 @@ public class MyTestFrameworkTest {
         assertEquals(result.getTestCaseClass(), EmptyTests2.class);
     }
 
-    private void testForTestCaseFullSuccess(Class<?> clazz, String... methodNames) {
-        Arrays.sort(methodNames);
-        MyTestCaseResult result = MyTestFramework.runTestClass(getClassName(clazz));
-        assertEquals(TestCaseStatus.PASSED, result.getStatus());
-        assertEquals(result.getPassedTestsCount(), methodNames.length);
-        assertEquals(result.getFailedTestsCount(), 0);
-        assertEquals(result.getNotPassedTests(), 0);
-
-        List<MyTestResult> resultDetails = result.getTestResults();
-        assertEquals(resultDetails.size(), methodNames.length);
-        assertEquals(result.getTestCaseClass(), clazz);
-
-        assertArrayEquals(
-                resultDetails.stream().map(MyTestResult::getTestStatus).distinct().toArray(),
-                new MyTestResult.TestStatus[]{MyTestResult.TestStatus.PASSED}
-        );
-        assertArrayEquals(
-                resultDetails.stream().map(MyTestResult::getMessage).distinct().toArray(),
-                new String[]{"OK"}
-        );
-
-        assertArrayEquals(
-                resultDetails.stream().map(MyTestResult::getTestMethod)
-                        .map(Method::getName).sorted().toArray(),
-                methodNames
-        );
-    }
-
     @Test
     public void testForFullSuccessTestCaseClass() {
-        testForTestCaseFullSuccess(FullSuccess1.class, "test1", "test2", "test3");
+        testForTestCaseFullSuccess(FullSuccess.class, "test1", "test2", "test3");
     }
 
     @Test
@@ -110,6 +82,29 @@ public class MyTestFrameworkTest {
     }
 
     @Test
+    public void testForNotPassedTestCase() {
+        MyTestCaseResult result = MyTestFramework.runTestClass(getClassName(NotPassedTestCase.class));
+        testForTestCaseResults(result, NotPassedTestCase.class, 4, 2, 2, 0);
+        testForTestsNames(result, new String[] {"test1", "test2", "test3", "test4"});
+        assertArrayEquals(
+                result.getTestResults().stream()
+                        .filter(r -> r.getTestStatus() == MyTestResult.TestStatus.NOT_PASSED)
+                        .map(MyTestResult::getTestMethod)
+                        .map(Method::getName)
+                        .sorted().toArray(),
+                new String[] {"test2", "test4"}
+        );
+        assertArrayEquals(
+                result.getTestResults().stream()
+                        .filter(r -> r.getTestStatus() == MyTestResult.TestStatus.PASSED)
+                        .map(MyTestResult::getTestMethod)
+                        .map(Method::getName)
+                        .sorted().toArray(),
+                new String[] {"test1", "test3"}
+        );
+    }
+
+    @Test
     public void testForEmptyPackage() {
         List<MyTestCaseResult> result =
                 MyTestFramework.runInPackage("ru.otus.kirillov.hw05.testCases.emptyPackage");
@@ -123,8 +118,50 @@ public class MyTestFrameworkTest {
         assertTrue(result.isEmpty());
     }
 
-    public String getClassName(Class<?> clazz) {
+    private String getClassName(Class<?> clazz) {
         return clazz.getName();
+    }
+
+    private void testForTestCaseFullSuccess(Class<?> clazz, String... methodNames) {
+        testForTestsWithOneStatus(clazz, MyTestResult.TestStatus.PASSED, methodNames);
+    }
+
+    private void testForTestsWithOneStatus(Class<?> clazz, MyTestResult.TestStatus status, String... methodNames) {
+        MyTestCaseResult result = MyTestFramework.runTestClass(getClassName(clazz));
+        testForTestsNames(result, methodNames);
+        testForTestCaseResults(result, clazz, methodNames.length, methodNames.length, 0, 0);
+
+        Arrays.sort(methodNames);
+        assertArrayEquals(
+                result.getTestResults().stream()
+                        .filter(r -> r.getTestStatus() == status)
+                        .map(MyTestResult::getTestMethod)
+                        .map(Method::getName)
+                        .sorted().toArray(),
+                methodNames
+        );
+    }
+
+    private void testForTestCaseResults(MyTestCaseResult result, Class<?> clazz, int tests,
+                                        int passedTestCount, int notPassedTestCount, int failedTestCount) {
+        assertEquals(result.getTestCaseClass(), clazz);
+        assertEquals(tests, passedTestCount + notPassedTestCount + failedTestCount);
+        TestCaseStatus expectedStatus = failedTestCount > 0 ? TestCaseStatus.FAILED :
+                notPassedTestCount > 0 ? TestCaseStatus.NOT_PASSED : TestCaseStatus.PASSED;
+        assertEquals(expectedStatus, result.getStatus());
+
+        assertEquals(result.getFailedTestsCount(), failedTestCount);
+        assertEquals(result.getNotPassedTests(), notPassedTestCount);
+        assertEquals(result.getPassedTestsCount(), passedTestCount);
+        assertEquals(result.getTestResults().size(), tests);
+    }
+
+    private void testForTestsNames(MyTestCaseResult result, String... testNames) {
+        assertArrayEquals(
+                result.getTestResults().stream().map(MyTestResult::getTestMethod)
+                        .map(Method::getName).sorted().toArray(),
+                testNames
+        );
     }
 
 }

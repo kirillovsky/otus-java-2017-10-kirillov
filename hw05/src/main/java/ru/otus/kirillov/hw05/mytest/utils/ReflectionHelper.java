@@ -64,8 +64,6 @@ public class ReflectionHelper {
     }
 
     public static List<Class<?>> getTestClassesFromPackage(String packageFullName) {
-        Package pkg = Package.getPackage(packageFullName);
-        CommonUtils.requiredNotNull(pkg, "Package not found");
         Reflections reflections = new Reflections(packageFullName);
         return new ArrayList<>(reflections.getTypesAnnotatedWith(Test.class));
     }
