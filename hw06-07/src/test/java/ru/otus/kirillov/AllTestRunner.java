@@ -4,6 +4,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import ru.otus.kirillov.atm.ATMImplTest;
 import ru.otus.kirillov.atm.cells.CellRackTest;
+import ru.otus.kirillov.atm.cells.CellTest;
 import ru.otus.kirillov.atm.commands.BalanceCommandTest;
 import ru.otus.kirillov.atm.commands.DepositCommandTest;
 import ru.otus.kirillov.atm.commands.UndoToDefaultCommandTest;
@@ -30,9 +31,9 @@ import ru.otus.kirillov.atmdepartment.NamedATMDepartmentTest;
         DepositCommandTest.class,
         WithdrawCommandTest.class,
         //Тест для системы управления ячейками
-        CellRackTest.class
-
-
+        CellRackTest.class,
+        //Тесты для ячейки
+        CellTest.class
 })
 public class AllTestRunner {
 }

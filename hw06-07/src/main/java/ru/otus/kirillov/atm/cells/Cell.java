@@ -13,7 +13,7 @@ public class Cell {
      * Сохранение состояние ячейки при создании
      */
     public class CellMemento {
-        private final int banknoteCount;
+        protected final int banknoteCount;
 
         public CellMemento() {
             banknoteCount = Cell.this.banknoteCount;
@@ -61,7 +61,7 @@ public class Cell {
     public Pair<Banknote, Integer> get(int banknoteCount) {
         Commons.requiredMoreThanZero(banknoteCount,
                 "banknote count must me more than zero");
-        Commons.requiredTrue(this.banknoteCount - banknoteCount > 0,
+        Commons.requiredTrue(this.banknoteCount - banknoteCount >= 0,
                 "banknote count must not be negative after withdrawal");
 
         this.banknoteCount -= banknoteCount;
