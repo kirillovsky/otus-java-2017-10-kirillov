@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 /** Пачка денег.
  * Created by Александр on 03.12.2017.
  */
-public final class BillsPack {
+public class BillsPack {
 
     /**
      * Множество пар (тип банкноты, количество купюр)
@@ -45,7 +45,7 @@ public final class BillsPack {
      * Вернуть типы банкнот в пачке
      * @return
      */
-    public Set<Banknote> getBankonotesType() {
+    public Set<Banknote> getBanknotesType() {
         return banknotesPack.keySet();
     }
 }

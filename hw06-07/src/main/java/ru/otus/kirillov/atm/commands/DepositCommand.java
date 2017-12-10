@@ -27,7 +27,7 @@ public class DepositCommand extends AbstractCommand<DepositQuery, Void> {
 
     private void checkBillsPack(CellManagement cellManagement, BillsPack billsPack) {
         Commons.requiredTrue(
-                cellManagement.getBanknoteCountByType().keySet().containsAll(billsPack.getBankonotesType()),
+                cellManagement.getBanknoteCountByType().keySet().containsAll(billsPack.getBanknotesType()),
                 "Deposit of entered banknotes not supported for this ATM");
         Commons.requiredTrue(
                 cellManagement.getBanknoteCountByType().values().stream().allMatch(i -> i > 0),
