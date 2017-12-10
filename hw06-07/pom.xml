@@ -15,6 +15,7 @@
   <properties>
     <junit.version>4.12</junit.version>
     <commons-lang3.version>LATEST</commons-lang3.version>
+    <mockito-core>1.10.19</mockito-core>
   </properties>
 
   <name>hw06-07</name>
@@ -38,6 +39,11 @@
       <artifactId>junit</artifactId>
       <version>${junit.version}</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>${mockito-core}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.commons</groupId>

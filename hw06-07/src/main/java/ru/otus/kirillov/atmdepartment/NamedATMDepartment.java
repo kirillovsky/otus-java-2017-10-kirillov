@@ -7,13 +7,18 @@ import ru.otus.kirillov.atmdepartment.exception.UndoNamedATMException;
 
 import java.util.*;
 
-/** Департамент банкоматов. Реализация
+/**
+ * Департамент банкоматов. Реализация
+ *
  * @see ATMDepartment
  * Created by Александр on 09.12.2017.
  */
 public class NamedATMDepartment implements ATMDepartment {
 
     private List<NamedATM> atms = new ArrayList<>();
+
+    public NamedATMDepartment() {
+    }
 
     public NamedATMDepartment(Collection<ATM> atms) {
         Commons.requiredNotNull(atms, "atms required must be not null");
@@ -39,7 +44,7 @@ public class NamedATMDepartment implements ATMDepartment {
 
         atms.forEach(
                 (atm) -> {
-                    try{
+                    try {
                         atm.restoreToDefaultState();
                     } catch (Exception e) {
                         failedATMRestore.add(atm.getName());
@@ -47,7 +52,7 @@ public class NamedATMDepartment implements ATMDepartment {
                 }
         );
 
-        if(!failedATMRestore.isEmpty()) {
+        if (!failedATMRestore.isEmpty()) {
             throw new UndoNamedATMException(failedATMRestore);
         }
     }
