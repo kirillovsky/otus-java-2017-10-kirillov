@@ -7,8 +7,10 @@ import ru.otus.kirillov.atm.utils.Commons;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
-/** Обработчик комманд.
+/**
+ * Обработчик комманд.
  * Created by Александр on 08.12.2017.
  */
 public class CommandInvokerImpl implements CommandInvoker {
@@ -21,8 +23,15 @@ public class CommandInvokerImpl implements CommandInvoker {
         setCellManagement(cellManagement);
         typeCommandMap.put(Query.Type.BALANCE, new BalanceCommand(cellManagement));
         typeCommandMap.put(Query.Type.DEPOSITING, new DepositCommand(cellManagement));
-        typeCommandMap.put(Query.Type.WITHRDAWAL, new WindrawCommand(cellManagement));
+        typeCommandMap.put(Query.Type.WITHRDAWAL, new WithdrawCommand(cellManagement));
         typeCommandMap.put(Query.Type.UNDO_TO_INITIAL, new UndoToDefaultCommand(cellManagement));
+    }
+
+    public CommandInvokerImpl(CellManagement cellManagement,
+                              Map<Query.Type, Function<CellManagement, ? extends Command>> creatorsCommandMap) {
+        setCellManagement(cellManagement);
+        Commons.requiredMapValuesNotNull(creatorsCommandMap);
+        creatorsCommandMap.forEach((k, v) -> typeCommandMap.put(k, v.apply(cellManagement)));
     }
 
     public void setCellManagement(CellManagement cellManagement) {

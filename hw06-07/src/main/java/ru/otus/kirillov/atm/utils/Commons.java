@@ -35,6 +35,17 @@ public final class Commons {
         requiredTrue(value > 0, message);
     }
 
+    public static <K, V> void requiredMapValuesNotNull(Map<K, V> map) {
+        Commons.requiredNotNull(map, "Map required must be not null");
+        map.entrySet().stream()
+                .filter(e -> e.getValue() == null)
+                .forEach(e -> {
+                    throw new IllegalArgumentException(
+                            String.format("Value for key %s must be not null", e.getValue())
+                    );
+                });
+    }
+
     public static <K, V> Map<K, V> ofMap(Pair<K, V>... pairs) {
         return Arrays.stream(pairs)
                 .collect(Collectors.toMap(Pair::getKey, Pair::getValue));
