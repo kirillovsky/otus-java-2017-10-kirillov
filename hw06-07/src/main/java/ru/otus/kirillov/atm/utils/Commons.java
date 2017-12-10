@@ -23,7 +23,7 @@ public final class Commons {
 
     public static void requiredTrue(boolean test, String message) {
         if(!test) {
-            throw new IllegalStateException(message);
+            throw new IllegalArgumentException(message);
         }
     }
 

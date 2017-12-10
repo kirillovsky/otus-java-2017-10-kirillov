@@ -33,12 +33,8 @@ public class BillsPack {
      * Вернуть содержимое пачки купюр по типам банкнот
      * @return
      */
-    public List<Pair<Banknote, Integer>> getCountsByType() {
-        return banknotesPack.entrySet().stream()
-                .collect(Collectors.mapping(
-                        entry -> Pair.of(entry.getKey(), entry.getValue()),
-                        Collectors.toList()
-                ));
+    public Map<Banknote, Integer> getCountsByType() {
+        return new HashMap<>(banknotesPack);
     }
 
     /**

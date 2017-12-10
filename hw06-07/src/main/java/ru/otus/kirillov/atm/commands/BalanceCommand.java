@@ -1,5 +1,6 @@
 package ru.otus.kirillov.atm.commands;
 
+import ru.otus.kirillov.atm.ATM;
 import ru.otus.kirillov.atm.cells.CellManagement;
 import ru.otus.kirillov.atm.commands.queries.BalanceQuery;
 import ru.otus.kirillov.atm.currency.Currency;
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
 
 /**
  * Получение сводки баланска по всем валютам в банкомате
+ * @see ATM#getBalance()
  * Created by Александр on 07.12.2017.
  */
 public class BalanceCommand extends AbstractCommand<BalanceQuery, Map<Currency, Long>> {

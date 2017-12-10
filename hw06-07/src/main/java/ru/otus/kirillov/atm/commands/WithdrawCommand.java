@@ -18,6 +18,7 @@ import java.util.stream.Stream;
 /**
  * Команда на выдачу денег банкоматом
  * Created by Александр on 06.12.2017.
+ * @see ru.otus.kirillov.atm.ATM#withdraw(Currency, long)
  */
 public class WithdrawCommand extends AbstractCommand<WithdrawQuery, BillsPack> {
 
@@ -90,6 +91,9 @@ public class WithdrawCommand extends AbstractCommand<WithdrawQuery, BillsPack> {
         for (Pair<Banknote, Integer> pair : sortedBanknotePair) {
             int ejectedBanknotesCount =
                     Math.min(Banknote.getBanknoteCountForSum(pair.getKey(), retainSum), pair.getRight());
+
+            if(ejectedBanknotesCount == 0)
+                continue;
             retainSum -= Banknote.getSum(pair.getKey(), ejectedBanknotesCount);
 
             withdrawSucceedConsumer.accept(pair.getKey(), ejectedBanknotesCount);

@@ -7,6 +7,7 @@ import ru.otus.kirillov.atm.utils.Commons;
 
 /**
  * Внесение денег в банкомат
+ * @see ru.otus.kirillov.atm.ATM#deposit(BillsPack)
  * Created by Александр on 08.12.2017.
  */
 public class DepositCommand extends AbstractCommand<DepositQuery, Void> {
@@ -21,7 +22,7 @@ public class DepositCommand extends AbstractCommand<DepositQuery, Void> {
         BillsPack billsPack = query.getBillsPack();
 
         checkBillsPack(management, billsPack);
-        billsPack.getCountsByType().forEach(p -> management.put(p.getKey(), p.getRight()));
+        billsPack.getCountsByType().forEach(management::put);
         return null;
     }
 
@@ -29,8 +30,5 @@ public class DepositCommand extends AbstractCommand<DepositQuery, Void> {
         Commons.requiredTrue(
                 cellManagement.getBanknoteCountByType().keySet().containsAll(billsPack.getBanknotesType()),
                 "Deposit of entered banknotes not supported for this ATM");
-        Commons.requiredTrue(
-                cellManagement.getBanknoteCountByType().values().stream().allMatch(i -> i > 0),
-                "Bill pack invariants violated");
     }
 }

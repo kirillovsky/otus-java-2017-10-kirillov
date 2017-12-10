@@ -36,7 +36,7 @@ public interface ATM {
      * @return пачка купюр
      * @throws IllegalArgumentException - если:
      *                                  1. ATM не поддерживает выдачу валюты {@param currency}
-     *                                  2. если сумма выдачи не пренадлежит интервалу (0, atmSum(currency)
+     *                                  2. если сумма выдачи не пренадлежит интервалу (0, atmSum(currency)]
      * @throws UnableToWithdraw         - если выдача не возможна,
      *                                  так как в ATM недостаточно купюр для ее выдачи
      */
