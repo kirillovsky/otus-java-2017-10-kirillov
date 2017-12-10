@@ -13,10 +13,10 @@ public class Cell {
      * Сохранение состояние ячейки при создании
      */
     public class CellMemento {
-        private final int banknoteCout;
+        private final int banknoteCount;
 
         public CellMemento() {
-            banknoteCout = Cell.this.banknoteCount;
+            banknoteCount = Cell.this.banknoteCount;
         }
     }
 
@@ -83,7 +83,7 @@ public class Cell {
      * @param memento - снимок состояния
      */
     public void restore(CellMemento memento) {
-        this.banknoteCount = memento.banknoteCout;
+        this.banknoteCount = memento.banknoteCount;
     }
 
     /**

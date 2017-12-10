@@ -15,7 +15,7 @@ public interface CellManagement {
      * @param banknote - тип банкоты
      * @param count - тип ячейки
      * @throws IllegalArgumentException - если отсутствует соответствующая ячейка
-     * для типа {@param banknote}, или {@param count} <= 0
+     * для типа {@param banknote}
      */
     void put(Banknote banknote, int count);
 
@@ -24,11 +24,13 @@ public interface CellManagement {
      * банкноты из ячейки с максимальным их кол-вом. Если
      * банкнот в такой ячейке не хватает, но есть ячейки
      * с таким же типом банкнот, то система попытается забрать
-     * все банкноты из первой ячейки и далее будет забирать из следующих
-     * с тем же типом банкнот.
+     * все банкноты из ячейки c максимальным кол-вом
+     * и далее будет забирать из следующих с тем же типом банкнот.
      * @param banknote - тип банкноты
-     * @param count - кол-во необходимых банкнот
+     * @param count - кол-во выданных банкнот
      * @return кол-во извлеченных банкнот
+     * @throws IllegalArgumentException - если отсутствует соответствующая ячейка
+     * для типа {@param banknote} или недостаточно купюр в ней
      */
     int get(Banknote banknote, int count);
 

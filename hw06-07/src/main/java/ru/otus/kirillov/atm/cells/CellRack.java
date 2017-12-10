@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
  * она знает только про типы купюр и умеет их выдавать,
  * принимать, возвращать кол-во купюр по их типам.
  * Ну и откатывать состояние ячеек в исходное.
+ * @see CellManagement
  * Created by Александр on 04.12.2017.
  */
 public class CellRack implements CellManagement{
@@ -41,6 +42,10 @@ public class CellRack implements CellManagement{
         this.cells.addAll(cells);
     }
 
+    public void addCells(Cell... cells) {
+        addCells(Arrays.asList(cells));
+    }
+
     /**
      * Добавить ячейку в стойку
      * @param cell
@@ -60,13 +65,12 @@ public class CellRack implements CellManagement{
         return this;
     }
 
-
     /**
      * @see CellManagement#put(Banknote, int)
      */
     public void put(Banknote banknote, int count) {
-        banknoteAndCountCheck(banknote, count);
-
+        Commons.requiredTrue(getBanknoteCountByType().containsKey(banknote),
+                String.format("cell rack has no banknote type - %s", banknote));
         Cell targetCell = getFirstCell(banknote, Comparator.comparingInt(Cell::getBanknoteCount));
         targetCell.put(count);
     }
@@ -75,7 +79,8 @@ public class CellRack implements CellManagement{
      * @see CellManagement#get(Banknote, int)
      */
     public int get(Banknote banknote, int count) {
-        banknoteAndCountCheck(banknote, count);
+        Commons.requiredTrue(getBanknoteCountByType().containsKey(banknote),
+                String.format("cell rack has no banknote type - %s", banknote));
         Commons.requiredTrue(getBanknoteCountByType().getOrDefault(banknote, 0) > count,
                 String.format("Not enough banknotes for type %s in rack", banknote));
 
@@ -95,12 +100,6 @@ public class CellRack implements CellManagement{
             }
         }
         return count;
-    }
-
-    private void banknoteAndCountCheck(Banknote banknote, int count) {
-        Commons.requiredTrue(getBanknoteCountByType().containsKey(banknote),
-                String.format("cell rack has no banknote type - %s", banknote));
-        Commons.requiredMoreThanZero(count, "banknote count must be more than zero");
     }
 
     private Cell getFirstCell(Banknote banknote, Comparator<Cell> comp) {
