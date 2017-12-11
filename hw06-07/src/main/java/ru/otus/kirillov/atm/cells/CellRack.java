@@ -26,7 +26,7 @@ public class CellRack implements CellManagement{
     public CellRack(Collection<Cell> cells) {
         this();
         Commons.requiredNotNull(cells, "cells must be not null");
-        cells.addAll(cells);
+        this.cells.addAll(cells);
     }
 
     public CellRack(Cell... cells) {

@@ -19,6 +19,10 @@ import ru.otus.kirillov.atmdepartment.NamedATMDepartmentTest;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
+        //Бизнес-сценарий использования ATMDepartment и ATM
+        BusinessScenarioTest.class,
+
+        //Модульные тесты элементов системы
         //Тест для текущей реализации ATMDepartment
         NamedATMDepartmentTest.class,
         //Тест для текущей реализации ATM
