@@ -38,6 +38,8 @@ public final class ReflectionUtils {
     private static StackTraceElement getStackElement(int i) {
         Throwable th = new Throwable();
         StackTraceElement[] stackTrace = th.getStackTrace();
-        return stackTrace[i];
+        // i + 1, где 1 - значит, что стектрейс элемент для метода getStackElement(int)
+        // лежащий под индексом 0 нас не интересует
+        return stackTrace[i + 1];
     }
 }
