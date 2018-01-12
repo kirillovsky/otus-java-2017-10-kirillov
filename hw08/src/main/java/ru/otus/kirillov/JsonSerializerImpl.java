@@ -1,17 +1,28 @@
 package ru.otus.kirillov;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-/** @see JsonSerializer
+/**
+ * @see JsonSerializer
  * Created by Александр on 08.01.2018.
  */
-public class JsonSerializerImpl implements JsonSerializer{
+//TODO: Добавить логгирование, через Log4j
+public class JsonSerializerImpl implements JsonSerializer {
 
 
     @Override
     public String toJson(Object src) {
-        return null;
+        if (src == null) return null;
+
+        OutputStream strOutputStream = new ByteArrayOutputStream();
+        try {
+            toJson(src, strOutputStream);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return src.toString();
     }
 
     @Override
