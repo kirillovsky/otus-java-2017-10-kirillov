@@ -1,7 +1,5 @@
 package ru.otus.kirillov.utils;
 
-import java.util.Objects;
-
 /**
  * Рефлекшн утилз.
  * Когда в проект добавляется еще один класс утилит
