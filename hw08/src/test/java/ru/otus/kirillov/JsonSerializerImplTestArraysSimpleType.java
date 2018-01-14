@@ -27,7 +27,9 @@ public class JsonSerializerImplTestArraysSimpleType {
 
     private static final TestEnum[] TEST_ENUM = {TestEnum.TEST_2, TestEnum.TEST_3, TestEnum.TEST_1, TestEnum.TEST_3, null};
 
-    //// TODO: 14.01.2018 Добавить тест для массивов (примитивов, например) с разнородным содержимым
+    // TODO: 14.01.2018 Добавить тест для массивов (примитивов, например) с разнородным содержимым
+
+    // TODO: 14.01.2018 Добавить тест для многомерных массивов
 
     private static Gson gson;
     private static JsonSerializer serializer;
