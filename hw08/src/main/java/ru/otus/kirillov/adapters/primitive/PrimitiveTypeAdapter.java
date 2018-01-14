@@ -1,5 +1,6 @@
-package ru.otus.kirillov.adapters;
+package ru.otus.kirillov.adapters.primitive;
 
+import ru.otus.kirillov.adapters.TypeAdapter;
 import ru.otus.kirillov.utils.CommonUtils;
 
 /** Абсракция для

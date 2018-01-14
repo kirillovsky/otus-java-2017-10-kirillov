@@ -1,6 +1,11 @@
-package ru.otus.kirillov.adapters;
+package ru.otus.kirillov.adapters.primitive;
 
 import ru.otus.kirillov.SerializationContext;
+import ru.otus.kirillov.adapters.StringTypeAdapter;
+import ru.otus.kirillov.adapters.TypeAdapter;
+import ru.otus.kirillov.adapters.primitive.DoubleTypeAdapter;
+import ru.otus.kirillov.adapters.primitive.IntegerTypeAdapter;
+import ru.otus.kirillov.adapters.primitive.PrimitiveTypeAdapter;
 
 /**
  * Created by Александр on 14.01.2018.
@@ -64,8 +69,5 @@ public final class SimpleTypesAdapters {
                     context.getGenerator().write(fieldName, value.toString());
                 }
             };
-
-    public static final TypeAdapter<String> STRING_TYPE_ADAPTER = new StringTypeAdapter();
-
 }
 
