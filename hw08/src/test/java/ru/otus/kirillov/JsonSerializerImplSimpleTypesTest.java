@@ -9,10 +9,10 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Тест сериализации примитивных типов, строк и null
+ * Тест сериализации примитивных типов, строк, enum и null
  * Created by Александр on 10.01.2018.
  */
-public class JsonSerializerImplPrimitiveTypesTest {
+public class JsonSerializerImplSimpleTypesTest {
 
     private static final short SHORT_TEST = 10_000;
     private static final byte BYTE_TEST = 120;
@@ -29,6 +29,9 @@ public class JsonSerializerImplPrimitiveTypesTest {
 
     private static final String EMPTY_STRING_TEST = "";
     private static final String STRING_TEST = "abczABCZ1234";
+
+    private static final TestEnum TEST_ENUM_1 = TestEnum.TEST_2;
+    private static final TestEnum TEST_ENUM_2 = TestEnum.TEST_3;
 
     private static Gson gson;
     private static JsonSerializer serializer;
@@ -93,8 +96,15 @@ public class JsonSerializerImplPrimitiveTypesTest {
         Assert.assertEquals(STRING_TEST, gson.fromJson(jsonData, String.class));
 
         jsonData = serializer.toJson(EMPTY_STRING_TEST);
-        Assert.assertEquals(gson.toJson(EMPTY_STRING_TEST), jsonData);
+        Assert.assertEquals(EMPTY_STRING_TEST, gson.fromJson(jsonData, String.class));
+    }
 
+    @Test
+    public void testEnum() {
+        jsonData = serializer.toJson(TEST_ENUM_1);
+        Assert.assertEquals(TEST_ENUM_1, gson.fromJson(jsonData, TestEnum.class));
 
+        jsonData = serializer.toJson(TEST_ENUM_2);
+        Assert.assertEquals(TEST_ENUM_2, gson.fromJson(jsonData, TestEnum.class));
     }
 }
