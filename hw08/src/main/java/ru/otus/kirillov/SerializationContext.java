@@ -10,26 +10,26 @@ import java.util.List;
 /** Контекст сериализации. Используется в процессе сериализации объекта.
  * Created by Александр on 12.01.2018.
  */
-public final class SerializationContext {
+public final class SerializationContext<T> {
 
-    private final Object value;
+    private final T value;
 
     private final JsonGenerator generator;
 
     private final List<TypeAdapter> adapters;
 
-    public static SerializationContext of(Object value, JsonGenerator generator, List<TypeAdapter> adapters) {
+    public static <T> SerializationContext of(T value, JsonGenerator generator, List<TypeAdapter> adapters) {
         CommonUtils.requiredNotNull(value, generator, adapters);
         return new SerializationContext(value, generator, adapters);
     }
 
-    public SerializationContext(Object value, JsonGenerator generator, List<TypeAdapter> adapters) {
+    public SerializationContext(T value, JsonGenerator generator, List<TypeAdapter> adapters) {
         this.value = value;
         this.generator = generator;
         this.adapters = Collections.unmodifiableList(adapters);
     }
 
-    public Object getValue() {
+    public T getValue() {
         return value;
     }
 
@@ -38,4 +38,7 @@ public final class SerializationContext {
     }
 
 
+    public List<TypeAdapter> getAdapters() {
+        return adapters;
+    }
 }

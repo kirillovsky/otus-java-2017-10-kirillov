@@ -1,8 +1,12 @@
 package ru.otus.kirillov;
 
+import ru.otus.kirillov.adapters.TypeAdapter;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import static ru.otus.kirillov.utils.CommonUtils.*;
@@ -14,6 +18,12 @@ import static ru.otus.kirillov.utils.CommonUtils.*;
 public class JsonSerializerImpl implements JsonSerializer {
 
     private static final Logger LOGGER = Logger.getLogger(getClassName(JsonSerializerImpl.class));
+
+    private final List<TypeAdapter<?>> adapters = new ArrayList<>();
+
+    {
+
+    }
 
     @Override
     public String toJson(Object src) {
