@@ -17,6 +17,11 @@ public final class CommonUtils {
         }
     }
 
+    public static <T> T retunIfNotNull(T value) {
+        requiredNotNull(value);
+        return value;
+    }
+
     public static void requiredNotNull(Object... o) {
         Arrays.stream(o).forEach(CommonUtils::requiredNotNull);
     }

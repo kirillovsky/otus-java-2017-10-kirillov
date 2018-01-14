@@ -10,5 +10,7 @@ public interface TypeAdapter<T> {
 
     boolean isApplicableForType(Class<?> clazz);
 
-    void apply(SerializationContext<T> context);
+    void apply(T value, SerializationContext context);
+
+    void apply(String fieldName, T value, SerializationContext context);
 }

@@ -1,6 +1,7 @@
 package ru.otus.kirillov;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -27,7 +28,7 @@ public class JsonSerializerImplPrimitiveTypesTest {
     private static final char CHAR_TEST = '\b';
 
     private static final String EMPTY_STRING_TEST = "";
-    private static final String STRING_TEST = "abczABCZ1234\t\b.%*-_\\";
+    private static final String STRING_TEST = "abczABCZ1234";
 
     private static Gson gson;
     private static JsonSerializer serializer;
@@ -88,10 +89,12 @@ public class JsonSerializerImplPrimitiveTypesTest {
 
     @Test
     public void testString() {
-        jsonData = serializer.toJson(EMPTY_STRING_TEST);
-        Assert.assertEquals(EMPTY_STRING_TEST, gson.fromJson(jsonData, String.class));
-
         jsonData = serializer.toJson(STRING_TEST);
         Assert.assertEquals(STRING_TEST, gson.fromJson(jsonData, String.class));
+
+        jsonData = serializer.toJson(EMPTY_STRING_TEST);
+        Assert.assertEquals(gson.toJson(EMPTY_STRING_TEST), jsonData);
+
+
     }
 }
