@@ -14,6 +14,10 @@ import static org.junit.Assert.*;
  */
 public class JsonSerializerImplSimpleTypesTest {
 
+    enum InnerEnum {
+        A, B
+    }
+
     private static final short SHORT_TEST = 10_000;
     private static final byte BYTE_TEST = 120;
 
@@ -32,6 +36,7 @@ public class JsonSerializerImplSimpleTypesTest {
 
     private static final TestEnum TEST_ENUM_1 = TestEnum.TEST_2;
     private static final TestEnum TEST_ENUM_2 = TestEnum.TEST_3;
+    private static final InnerEnum TEST_ENUM_3 = InnerEnum.A;
 
     private static Gson gson;
     private static JsonSerializer serializer;
@@ -106,5 +111,8 @@ public class JsonSerializerImplSimpleTypesTest {
 
         jsonData = serializer.toJson(TEST_ENUM_2);
         Assert.assertEquals(TEST_ENUM_2, gson.fromJson(jsonData, TestEnum.class));
+
+        jsonData = serializer.toJson(TEST_ENUM_3);
+        Assert.assertEquals(TEST_ENUM_3, gson.fromJson(jsonData, InnerEnum.class));
     }
 }

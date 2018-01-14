@@ -5,7 +5,6 @@ package ru.otus.kirillov;
  */
 public enum TestEnum {
 
-    TEST_1("test_1"),
     TEST_2("test_2"),
     TEST_3("test_3");
 

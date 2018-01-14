@@ -1,9 +1,6 @@
 package ru.otus.kirillov;
 
-import ru.otus.kirillov.adapters.NullObjectAdapter;
-import ru.otus.kirillov.adapters.SimpleTypesAdapters;
-import ru.otus.kirillov.adapters.TerminateTypeAdapter;
-import ru.otus.kirillov.adapters.TypeAdapter;
+import ru.otus.kirillov.adapters.*;
 
 import javax.json.Json;
 import javax.json.stream.JsonGenerator;
@@ -42,7 +39,9 @@ public class JsonSerializerImpl implements JsonSerializer {
                 SimpleTypesAdapters.DOUBLE_PRIMITIVE_TYPE_ADAPTER,
                 SimpleTypesAdapters.CHARACTER_PRIMITIVE_TYPE_ADAPTER,
                 SimpleTypesAdapters.BOOLEAN_PRIMITIVE_TYPE_ADAPTER,
-                SimpleTypesAdapters.STRING_TYPE_ADAPTER
+                SimpleTypesAdapters.STRING_TYPE_ADAPTER,
+                new EnumTypeAdapter()
+
         ));
     }
 
