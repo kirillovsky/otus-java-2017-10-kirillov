@@ -1,10 +1,12 @@
 package ru.otus.kirillov;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.lang.reflect.Type;
 import java.util.*;
 
 /**
@@ -51,26 +53,24 @@ public class JsonSerializerImplCollectionTestTest {
 
     @Test
     public void testLong() {
-        jsonData = serializer.toJson(LONG_TEST);
-        Assert.assertEquals(LONG_TEST, gson.fromJson(jsonData, Collection.class));
+        collectionTest(LONG_TEST, new TypeToken<Collection<Long>>(){}.getType());
     }
 
     @Test
     public void testEnum() {
-        jsonData = serializer.toJson(ENUM_TEST);
-        Assert.assertEquals(ENUM_TEST, gson.fromJson(jsonData, Collection.class));
+        collectionTest(ENUM_TEST, new TypeToken<Collection<TestEnum>>(){}.getType());
     }
 
     @Test
     public void testString() {
-        jsonData = serializer.toJson(STRING_TEST);
-        Assert.assertEquals(STRING_TEST, gson.fromJson(jsonData, Collection.class));
+        collectionTest(STRING_TEST);
     }
 
     @Test
     public void testArray() {
         jsonData = serializer.toJson(ARRAY_TEST);
-        Collection<String[]> gsonCollection  = gson.fromJson(jsonData, Collection.class);
+        Collection<String[]> gsonCollection  = gson.fromJson(jsonData,
+                new TypeToken<Collection<String[]>>(){}.getType());
         Assert.assertEquals(ARRAY_TEST.size(), gsonCollection.size());
 
         for(Iterator<String[]> it1 = ARRAY_TEST.iterator(), it2 = gsonCollection.iterator();
@@ -81,19 +81,27 @@ public class JsonSerializerImplCollectionTestTest {
 
     @Test
     public void testSomeCollectionTypes() {
-        jsonData = serializer.toJson(new HashSet<>(STRING_TEST));
-        Assert.assertEquals(STRING_TEST, gson.fromJson(jsonData, Set.class));
+        collectionTest(new HashSet<>(STRING_TEST), new TypeToken<Collection<String>>(){}.getType());
 
-        jsonData = serializer.toJson(new LinkedList<>(LONG_TEST));
-        Assert.assertEquals(LONG_TEST, gson.fromJson(jsonData, List.class));
+        collectionTest(new LinkedList<>(LONG_TEST), new TypeToken<Collection<Long>>(){}.getType());
 
-        jsonData = serializer.toJson(new ArrayList<>(ENUM_TEST));
-        Assert.assertEquals(ENUM_TEST, gson.fromJson(jsonData, List.class));
+        collectionTest(new ArrayList<>(ENUM_TEST), new TypeToken<Collection<TestEnum>>(){}.getType());
     }
 
     @Test
     public void testMultiDimCollection() {
-        jsonData = serializer.toJson(Arrays.asList(STRING_TEST));
-        Assert.assertEquals(STRING_TEST, gson.fromJson(jsonData, Collection.class));
+        collectionTest(Arrays.asList(STRING_TEST), new TypeToken<Collection<Collection<String>>>(){}.getType());
+    }
+
+    public <E> void collectionTest(Collection<E> expected) {
+        collectionTest(expected, Collection.class);
+    }
+
+    public <E> void collectionTest(Collection<E> expected, Type token) {
+        jsonData = serializer.toJson(expected);
+        Collection<E> gsonCollection = gson.fromJson(jsonData, token);
+        Assert.assertEquals(expected.size(), gsonCollection.size());
+        Assert.assertTrue(String.format("Collections not equal(%s, %s)", expected, gsonCollection),
+                gsonCollection.containsAll(expected));
     }
 }

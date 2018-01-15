@@ -14,5 +14,4 @@ public enum TestEnum {
     TestEnum(String tstField) {
         this.tstField = tstField;
     }
-
 }
