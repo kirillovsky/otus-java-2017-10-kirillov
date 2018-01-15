@@ -26,9 +26,6 @@ public class JsonSerializerImpl implements JsonSerializer {
 
     private static final Logger LOGGER = Logger.getLogger(getClassName(JsonSerializerImpl.class));
 
-    private static final TypeAdapter<?> TERMINATE_TYPE_ADAPTER = new TerminateTypeAdapter();
-    private static final TypeAdapter<?> NULL_OBJECT_ADAPTER = new NullObjectAdapter();
-
     private final List<TypeAdapter<?>> adapters = new ArrayList<>();
 
     {
@@ -42,7 +39,8 @@ public class JsonSerializerImpl implements JsonSerializer {
                 PrimitiveTypesAdapters.CHARACTER_PRIMITIVE_TYPE_ADAPTER,
                 PrimitiveTypesAdapters.BOOLEAN_PRIMITIVE_TYPE_ADAPTER,
                 new StringTypeAdapter(),
-                new EnumTypeAdapter()
+                new EnumTypeAdapter(),
+                new ArrayTypeAdapter()
 
         ));
     }
@@ -64,21 +62,8 @@ public class JsonSerializerImpl implements JsonSerializer {
     @Override
     public void toJson(Object src, OutputStream outputStream) throws IOException {
         Objects.requireNonNull(outputStream);
-        JsonGenerator generator = Json.createGenerator(outputStream);
-        process(src, SerializationContext.of(generator, adapters));
-        generator.flush();
-    }
-
-    private TypeAdapter<?> findTypeAdapterFor(Class<?> clazz) {
-        return adapters.stream()
-                .filter(adapter -> adapter.isApplicableForType(clazz))
-                .findFirst()
-                .orElse(TERMINATE_TYPE_ADAPTER);
-    }
-
-    private void process(Object obj, SerializationContext context) {
-        TypeAdapter adapter = (obj == null) ? NULL_OBJECT_ADAPTER:
-                findTypeAdapterFor(obj.getClass());
-        adapter.apply(obj, context);
+        SerializationContext context = SerializationContext.of(Json.createGenerator(outputStream), adapters);
+        context.process(src);
+        context.getGenerator().flush();
     }
 }

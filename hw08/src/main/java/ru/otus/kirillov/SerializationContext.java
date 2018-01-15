@@ -4,7 +4,6 @@ import ru.otus.kirillov.adapters.TypeAdapter;
 import ru.otus.kirillov.utils.CommonUtils;
 
 import javax.json.stream.JsonGenerator;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -15,7 +14,7 @@ public final class SerializationContext {
 
     private final JsonGenerator generator;
 
-    private final List<TypeAdapter<?>> adapters;
+    private final ContextAdapters adapters;
 
     public static SerializationContext of(JsonGenerator generator, List<TypeAdapter<?>> adapters) {
         CommonUtils.requiredNotNull(generator, adapters);
@@ -24,15 +23,14 @@ public final class SerializationContext {
 
     public SerializationContext(JsonGenerator generator, List<TypeAdapter<?>> adapters) {
         this.generator = generator;
-        this.adapters = Collections.unmodifiableList(adapters);
+        this.adapters = ContextAdapters.of(adapters);
     }
 
     public JsonGenerator getGenerator() {
         return generator;
     }
 
-
-    public List<TypeAdapter<?>> getAdapters() {
-        return adapters;
+    public void process(Object src){
+        adapters.process(src, this);
     }
 }

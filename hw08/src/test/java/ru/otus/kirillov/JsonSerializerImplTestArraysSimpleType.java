@@ -5,7 +5,8 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-/** Тесты для массивов простых типов (примитивные типы, enum и строки)
+/**
+ * Тесты для массивов простых типов (примитивные типы, enum и строки)
  * Created by Александр on 14.01.2018.
  */
 public class JsonSerializerImplTestArraysSimpleType {
@@ -27,9 +28,9 @@ public class JsonSerializerImplTestArraysSimpleType {
 
     private static final TestEnum[] TEST_ENUM = {TestEnum.TEST_2, TestEnum.TEST_3, TestEnum.TEST_1, TestEnum.TEST_3, null};
 
-    // TODO: 14.01.2018 Добавить тест для массивов (примитивов, например) с разнородным содержимым
+    private static final int[][] MULTI_DIM_PRIMITIVE_TEST = {{1, 2, 3}, null, {4, 5}, {}, null, {1}};
 
-    // TODO: 14.01.2018 Добавить тест для многомерных массивов
+    private static final String[][] MULTI_DIM_STRING_TEST = {{"1", "b", "dc"}, {null, "w"}, {"tezzzz"}, {}, null};
 
     private static Gson gson;
     private static JsonSerializer serializer;
@@ -91,5 +92,25 @@ public class JsonSerializerImplTestArraysSimpleType {
     public void testEnum() {
         jsonData = serializer.toJson(TEST_ENUM);
         Assert.assertArrayEquals(TEST_ENUM, gson.fromJson(jsonData, TestEnum[].class));
+    }
+
+    @Test
+    public void testPrimitiveMultiDimArray() {
+        jsonData = serializer.toJson(MULTI_DIM_PRIMITIVE_TEST);
+        int[][] gsonResult = gson.fromJson(jsonData, int[][].class);
+
+        for (int i = 0; i < MULTI_DIM_PRIMITIVE_TEST.length; i++) {
+            Assert.assertArrayEquals(MULTI_DIM_PRIMITIVE_TEST[i], gsonResult[i]);
+        }
+    }
+
+    @Test
+    public void testStringMultiDimArray() {
+        jsonData = serializer.toJson(MULTI_DIM_STRING_TEST);
+        String[][] gsonResult = gson.fromJson(jsonData, String[][].class);
+
+        for (int i = 0; i < MULTI_DIM_STRING_TEST.length; i++) {
+            Assert.assertArrayEquals(MULTI_DIM_STRING_TEST[i], gsonResult[i]);
+        }
     }
 }
