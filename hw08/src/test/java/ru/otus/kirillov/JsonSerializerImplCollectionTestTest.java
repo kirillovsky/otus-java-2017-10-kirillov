@@ -96,7 +96,4 @@ public class JsonSerializerImplCollectionTestTest {
         jsonData = serializer.toJson(Arrays.asList(STRING_TEST));
         Assert.assertEquals(STRING_TEST, gson.fromJson(jsonData, Collection.class));
     }
-    
-
-
 }

@@ -1,6 +1,6 @@
 package ru.otus.kirillov;
 
-import ru.otus.kirillov.adapters.ArrayTypeAdapter;
+import ru.otus.kirillov.adapters.containers.ArrayTypeAdapter;
 import ru.otus.kirillov.adapters.EnumTypeAdapter;
 import ru.otus.kirillov.adapters.StringTypeAdapter;
 import ru.otus.kirillov.adapters.TypeAdapter;

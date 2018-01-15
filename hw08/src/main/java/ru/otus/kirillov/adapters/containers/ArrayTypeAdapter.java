@@ -1,6 +1,7 @@
-package ru.otus.kirillov.adapters;
+package ru.otus.kirillov.adapters.containers;
 
 import ru.otus.kirillov.SerializationContext;
+import ru.otus.kirillov.adapters.TypeAdapter;
 
 import java.lang.reflect.Array;
 
