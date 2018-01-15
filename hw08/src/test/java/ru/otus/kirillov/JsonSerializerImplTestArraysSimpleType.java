@@ -15,7 +15,7 @@ public class JsonSerializerImplTestArraysSimpleType {
     private static final byte[] BYTE_TEST = {120, 12};
 
     private static final int[] INTEGER_TEST = {100_500_100, -10};
-    private static final long[] LONG_TEST = {1_000_500_100_500L, -11_000_500_100_500L};
+    private static final long[] LONG_TEST = {1_000_500_100_500L, -11_000_500_100_500L, 11L};
 
     private static final float[] FLOAT_TEST = {1.12f, 2_000.12f};
     private static final double[] DOUBLE_TEST = {100.123, 1_000.45};
@@ -24,7 +24,7 @@ public class JsonSerializerImplTestArraysSimpleType {
 
     private static final char[] CHAR_TEST = {'\b', 'c', 'a', 'd'};
 
-    private static final String[] STRING_TEST = {"abczABCZ1234", "ds", null};
+    private static final String[] STRING_TEST = {"abczABCZ1234", "ds", null, ""};
 
     private static final TestEnum[] TEST_ENUM = {TestEnum.TEST_2, TestEnum.TEST_3, TestEnum.TEST_1, TestEnum.TEST_3, null};
 
@@ -99,6 +99,7 @@ public class JsonSerializerImplTestArraysSimpleType {
         jsonData = serializer.toJson(MULTI_DIM_PRIMITIVE_TEST);
         int[][] gsonResult = gson.fromJson(jsonData, int[][].class);
 
+        Assert.assertEquals(MULTI_DIM_PRIMITIVE_TEST.length, gsonResult.length);
         for (int i = 0; i < MULTI_DIM_PRIMITIVE_TEST.length; i++) {
             Assert.assertArrayEquals(MULTI_DIM_PRIMITIVE_TEST[i], gsonResult[i]);
         }
@@ -109,6 +110,7 @@ public class JsonSerializerImplTestArraysSimpleType {
         jsonData = serializer.toJson(MULTI_DIM_STRING_TEST);
         String[][] gsonResult = gson.fromJson(jsonData, String[][].class);
 
+        Assert.assertEquals(MULTI_DIM_STRING_TEST.length, gsonResult.length);
         for (int i = 0; i < MULTI_DIM_STRING_TEST.length; i++) {
             Assert.assertArrayEquals(MULTI_DIM_STRING_TEST[i], gsonResult[i]);
         }

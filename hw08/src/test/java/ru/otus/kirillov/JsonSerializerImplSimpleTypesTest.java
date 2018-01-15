@@ -6,6 +6,10 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
 import static org.junit.Assert.*;
 
 /**
@@ -49,6 +53,13 @@ public class JsonSerializerImplSimpleTypesTest {
         gson = new Gson();
     }
 
+    @Test
+    public void testNullInOutputStream() throws Exception {
+        OutputStream outputStream = new ByteArrayOutputStream();
+        serializer.toJson(null, outputStream);
+        jsonData = outputStream.toString();
+        Assert.assertNull(gson.fromJson(jsonData, Object.class));
+    }
 
     @Test
     public void testNull() {
