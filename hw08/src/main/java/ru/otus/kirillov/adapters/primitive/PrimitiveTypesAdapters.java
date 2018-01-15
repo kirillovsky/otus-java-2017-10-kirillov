@@ -7,12 +7,12 @@ import ru.otus.kirillov.adapters.primitive.DoubleTypeAdapter;
 import ru.otus.kirillov.adapters.primitive.IntegerTypeAdapter;
 import ru.otus.kirillov.adapters.primitive.PrimitiveTypeAdapter;
 
-/**
+/** Адаптеры для сериализации сущностей примитивных типов
  * Created by Александр on 14.01.2018.
  */
-public final class SimpleTypesAdapters {
+public final class PrimitiveTypesAdapters {
 
-    private SimpleTypesAdapters() {
+    private PrimitiveTypesAdapters() {
     }
 
     public static final PrimitiveTypeAdapter<Long> LOG_TYPE_ADAPTER =

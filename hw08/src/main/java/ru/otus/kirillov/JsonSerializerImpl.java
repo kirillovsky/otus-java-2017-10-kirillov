@@ -2,7 +2,7 @@ package ru.otus.kirillov;
 
 import ru.otus.kirillov.adapters.*;
 import ru.otus.kirillov.adapters.primitive.NullObjectAdapter;
-import ru.otus.kirillov.adapters.primitive.SimpleTypesAdapters;
+import ru.otus.kirillov.adapters.primitive.PrimitiveTypesAdapters;
 
 import javax.json.Json;
 import javax.json.stream.JsonGenerator;
@@ -33,14 +33,14 @@ public class JsonSerializerImpl implements JsonSerializer {
 
     {
         adapters.addAll(Arrays.asList(
-                SimpleTypesAdapters.SHORT_PRIMITIVE_TYPE_ADAPTER,
-                SimpleTypesAdapters.BYTE_PRIMITIVE_TYPE_ADAPTER,
-                SimpleTypesAdapters.INTEGER_TYPE_ADAPTER,
-                SimpleTypesAdapters.LOG_TYPE_ADAPTER,
-                SimpleTypesAdapters.FLOAT_PRIMITIVE_TYPE_ADAPTER,
-                SimpleTypesAdapters.DOUBLE_PRIMITIVE_TYPE_ADAPTER,
-                SimpleTypesAdapters.CHARACTER_PRIMITIVE_TYPE_ADAPTER,
-                SimpleTypesAdapters.BOOLEAN_PRIMITIVE_TYPE_ADAPTER,
+                PrimitiveTypesAdapters.SHORT_PRIMITIVE_TYPE_ADAPTER,
+                PrimitiveTypesAdapters.BYTE_PRIMITIVE_TYPE_ADAPTER,
+                PrimitiveTypesAdapters.INTEGER_TYPE_ADAPTER,
+                PrimitiveTypesAdapters.LOG_TYPE_ADAPTER,
+                PrimitiveTypesAdapters.FLOAT_PRIMITIVE_TYPE_ADAPTER,
+                PrimitiveTypesAdapters.DOUBLE_PRIMITIVE_TYPE_ADAPTER,
+                PrimitiveTypesAdapters.CHARACTER_PRIMITIVE_TYPE_ADAPTER,
+                PrimitiveTypesAdapters.BOOLEAN_PRIMITIVE_TYPE_ADAPTER,
                 new StringTypeAdapter(),
                 new EnumTypeAdapter()
 
