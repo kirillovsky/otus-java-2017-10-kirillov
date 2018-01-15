@@ -1,11 +1,12 @@
 package ru.otus.kirillov;
 
-import ru.otus.kirillov.adapters.*;
-import ru.otus.kirillov.adapters.primitive.NullObjectAdapter;
+import ru.otus.kirillov.adapters.ArrayTypeAdapter;
+import ru.otus.kirillov.adapters.EnumTypeAdapter;
+import ru.otus.kirillov.adapters.StringTypeAdapter;
+import ru.otus.kirillov.adapters.TypeAdapter;
 import ru.otus.kirillov.adapters.primitive.PrimitiveTypesAdapters;
 
 import javax.json.Json;
-import javax.json.stream.JsonGenerator;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;

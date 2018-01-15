@@ -1,8 +1,8 @@
 package ru.otus.kirillov;
 
-import ru.otus.kirillov.adapters.TerminateTypeAdapter;
+import ru.otus.kirillov.adapters.special.TerminateTypeAdapter;
 import ru.otus.kirillov.adapters.TypeAdapter;
-import ru.otus.kirillov.adapters.primitive.NullObjectAdapter;
+import ru.otus.kirillov.adapters.special.NullObjectAdapter;
 
 import java.util.Collections;
 import java.util.List;

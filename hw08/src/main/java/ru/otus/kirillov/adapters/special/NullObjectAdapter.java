@@ -1,4 +1,4 @@
-package ru.otus.kirillov.adapters.primitive;
+package ru.otus.kirillov.adapters.special;
 
 import ru.otus.kirillov.SerializationContext;
 import ru.otus.kirillov.adapters.TypeAdapter;
