@@ -18,14 +18,14 @@ public class TerminateTypeAdapter implements TypeAdapter<Object> {
     @Override
     public void apply(Object value, SerializationContext context) {
         throw new IllegalStateException("Нет адаптеров, позволяющих обработать объект: " +
-                value == null ? null : String.format("класс - %s, объект - %s", value.getClass(), value)
+                (value == null ? null : String.format("класс - %s, объект - %s", value.getClass(), value))
         );
     }
 
     @Override
     public void apply(String fieldName, Object value, SerializationContext context) {
         throw new IllegalStateException("Нет адаптеров, позволяющих обработать объект для поля '" + fieldName + "'. " +
-                value == null ? null : String.format("класс - %s, объект - %s", value.getClass(), value)
+                (value == null ? null : String.format("класс - %s, объект - %s", value.getClass(), value))
         );
     }
 }
