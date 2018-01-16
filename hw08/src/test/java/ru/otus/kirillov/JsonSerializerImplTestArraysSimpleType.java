@@ -11,26 +11,26 @@ import org.junit.Test;
  */
 public class JsonSerializerImplTestArraysSimpleType {
 
-    private static final short[] SHORT_TEST = {10_000, 10_010, 2};
-    private static final byte[] BYTE_TEST = {120, 12};
+    private final short[] SHORT_TEST = {10_000, 10_010, 2};
+    private final byte[] BYTE_TEST = {120, 12};
 
-    private static final int[] INTEGER_TEST = {100_500_100, -10};
-    private static final long[] LONG_TEST = {1_000_500_100_500L, -11_000_500_100_500L, 11L};
+    private final int[] INTEGER_TEST = {100_500_100, -10};
+    private final long[] LONG_TEST = {1_000_500_100_500L, -11_000_500_100_500L, 11L};
 
-    private static final float[] FLOAT_TEST = {1.12f, 2_000.12f};
-    private static final double[] DOUBLE_TEST = {100.123, 1_000.45};
+    private final float[] FLOAT_TEST = {1.12f, 2_000.12f};
+    private final double[] DOUBLE_TEST = {100.123, 1_000.45};
 
-    private static final boolean[] BOOLEAN_TEST = {true, false, true, false};
+    private final boolean[] BOOLEAN_TEST = {true, false, true, false};
 
-    private static final char[] CHAR_TEST = {'\b', 'c', 'a', 'd'};
+    private final char[] CHAR_TEST = {'\b', 'c', 'a', 'd'};
 
-    private static final String[] STRING_TEST = {"abczABCZ1234", "ds", null, ""};
+    private final String[] STRING_TEST = {"abczABCZ1234", "ds", null, ""};
 
-    private static final TestEnum[] TEST_ENUM = {TestEnum.TEST_2, TestEnum.TEST_3, TestEnum.TEST_1, TestEnum.TEST_3, null};
+    private final TestEnum[] TEST_ENUM = {TestEnum.TEST_2, TestEnum.TEST_3, TestEnum.TEST_1, TestEnum.TEST_3, null};
 
-    private static final int[][] MULTI_DIM_PRIMITIVE_TEST = {{1, 2, 3}, null, {4, 5}, {}, null, {1}};
+    private final int[][] MULTI_DIM_PRIMITIVE_TEST = {{1, 2, 3}, null, {4, 5}, {}, null, {1}};
 
-    private static final String[][] MULTI_DIM_STRING_TEST = {{"1", "b", "dc"}, {null, "w"}, {"tezzzz"}, {}, null};
+    private final String[][] MULTI_DIM_STRING_TEST = {{"1", "b", "dc"}, {null, "w"}, {"tezzzz"}, {}, null};
 
     private static Gson gson;
     private static JsonSerializer serializer;

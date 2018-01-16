@@ -22,25 +22,25 @@ public class JsonSerializerImplSimpleTypesTest {
         A, B
     }
 
-    private static final short SHORT_TEST = 10_000;
-    private static final byte BYTE_TEST = 120;
+    private final short SHORT_TEST = 10_000;
+    private final byte BYTE_TEST = 120;
 
-    private static final int INTEGER_TEST = 100_500_100;
-    private static final long LONG_TEST = 1_000_500_100_500L;
+    private final int INTEGER_TEST = 100_500_100;
+    private final long LONG_TEST = 1_000_500_100_500L;
 
-    private static final float FLOAT_TEST = 1.12f;
-    private static final double DOUBLE_TEST = 100.123;
+    private final float FLOAT_TEST = 1.12f;
+    private final double DOUBLE_TEST = 100.123;
 
-    private static final boolean BOOLEAN_TEST = true;
+    private final boolean BOOLEAN_TEST = true;
 
-    private static final char CHAR_TEST = '\b';
+    private final char CHAR_TEST = '\b';
 
-    private static final String EMPTY_STRING_TEST = "";
-    private static final String STRING_TEST = "abczABCZ1234";
+    private final String EMPTY_STRING_TEST = "";
+    private final String STRING_TEST = "abczABCZ1234";
 
-    private static final TestEnum TEST_ENUM_1 = TestEnum.TEST_2;
-    private static final TestEnum TEST_ENUM_2 = TestEnum.TEST_3;
-    private static final InnerEnum TEST_ENUM_3 = InnerEnum.A;
+    private final TestEnum TEST_ENUM_1 = TestEnum.TEST_2;
+    private final TestEnum TEST_ENUM_2 = TestEnum.TEST_3;
+    private final InnerEnum TEST_ENUM_3 = InnerEnum.A;
 
     private static Gson gson;
     private static JsonSerializer serializer;
