@@ -7,6 +7,7 @@ import ru.otus.kirillov.adapters.TypeAdapter;
 import ru.otus.kirillov.adapters.containers.CollectionTypeAdapter;
 import ru.otus.kirillov.adapters.containers.MapTypeAdapter;
 import ru.otus.kirillov.adapters.primitive.PrimitiveTypesAdapters;
+import ru.otus.kirillov.adapters.special.ObjectTypeAdapter;
 
 import javax.json.Json;
 import java.io.ByteArrayOutputStream;
@@ -41,9 +42,9 @@ public class JsonSerializerImpl implements JsonSerializer {
                 PrimitiveTypesAdapters.DOUBLE_PRIMITIVE_TYPE_ADAPTER,
                 PrimitiveTypesAdapters.CHARACTER_PRIMITIVE_TYPE_ADAPTER,
                 PrimitiveTypesAdapters.BOOLEAN_PRIMITIVE_TYPE_ADAPTER,
-                new StringTypeAdapter(), new EnumTypeAdapter(),
-                new ArrayTypeAdapter(), new CollectionTypeAdapter(),
-                new MapTypeAdapter()
+                new ObjectTypeAdapter(), new StringTypeAdapter(),
+                new EnumTypeAdapter(), new ArrayTypeAdapter(),
+                new CollectionTypeAdapter(), new MapTypeAdapter()
 
         ));
     }
