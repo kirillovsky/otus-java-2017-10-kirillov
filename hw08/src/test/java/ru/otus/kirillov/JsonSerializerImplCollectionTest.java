@@ -20,7 +20,7 @@ import java.util.*;
  * 7. Хмм. Вложенные коллекции
  * Created by Александр on 15.01.2018.
  */
-public class JsonSerializerImplCollectionTestTest {
+public class JsonSerializerImplCollectionTest {
 
     private static final Collection<Long> LONG_TEST = Arrays.asList(
             1_000_500_100_500L, -11_000_500_100_500L, 11L
