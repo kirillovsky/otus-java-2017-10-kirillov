@@ -6,8 +6,10 @@ import ru.otus.kirillov.adapters.special.NullObjectAdapter;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
-/** Класс, предоставляющий доступ к адаптерам текущего контекста
+/**
+ * Класс, предоставляющий доступ к адаптерам текущего контекста
  * Created by Александр on 15.01.2018.
  */
 public final class ContextAdapters {
@@ -25,17 +27,12 @@ public final class ContextAdapters {
         return new ContextAdapters(adapters);
     }
 
-
-    private TypeAdapter<?> findTypeAdapterFor(Class<?> clazz) {
-        return adapters.stream()
-                .filter(adapter -> adapter.isApplicableForType(clazz))
-                .findFirst()
-                .orElse(TERMINATE_TYPE_ADAPTER);
-    }
-
     public void process(Object obj, SerializationContext context) {
-        TypeAdapter adapter = (obj == null) ? NULL_OBJECT_ADAPTER:
-                findTypeAdapterFor(obj.getClass());
+        TypeAdapter adapter = (obj == null) ? NULL_OBJECT_ADAPTER :
+                adapters.stream()
+                        .filter(a -> a.isApplicableForType(obj.getClass()))
+                        .findFirst()
+                        .orElse(TERMINATE_TYPE_ADAPTER);
         adapter.apply(obj, context);
     }
 }
