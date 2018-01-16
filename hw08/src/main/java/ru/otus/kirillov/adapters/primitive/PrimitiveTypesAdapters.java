@@ -22,11 +22,6 @@ public final class PrimitiveTypesAdapters {
                 public void apply(Long value, SerializationContext context) {
                     context.getGenerator().write(value.longValue());
                 }
-
-                @Override
-                public void apply(String fieldName, Long value, SerializationContext context) {
-                    context.getGenerator().write(value.longValue());
-                }
             };
 
     public static final PrimitiveTypeAdapter<Integer> INTEGER_TYPE_ADAPTER =
@@ -50,11 +45,6 @@ public final class PrimitiveTypesAdapters {
                 public void apply(Boolean value, SerializationContext context) {
                     context.getGenerator().write(value.booleanValue());
                 }
-
-                @Override
-                public void apply(String fieldName, Boolean value, SerializationContext context) {
-                    context.getGenerator().write(fieldName, value.booleanValue());
-                }
             };
 
     public static final PrimitiveTypeAdapter<Character> CHARACTER_PRIMITIVE_TYPE_ADAPTER =
@@ -62,11 +52,6 @@ public final class PrimitiveTypesAdapters {
                 @Override
                 public void apply(Character value, SerializationContext context) {
                     context.getGenerator().write(value.toString());
-                }
-
-                @Override
-                public void apply(String fieldName, Character value, SerializationContext context) {
-                    context.getGenerator().write(fieldName, value.toString());
                 }
             };
 }

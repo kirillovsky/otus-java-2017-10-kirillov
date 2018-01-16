@@ -1,12 +1,13 @@
 package ru.otus.kirillov.adapters.special;
 
 import ru.otus.kirillov.SerializationContext;
-import ru.otus.kirillov.adapters.TypeAdapter;
+import ru.otus.kirillov.adapters.AbstractTypeAdapter;
 
-/** Адаптер для объектов класса {@link Object}
+/**
+ * Адаптер для объектов класса {@link Object}
  * Created by Александр on 16.01.2018.
  */
-public class ObjectTypeAdapter implements TypeAdapter<Object> {
+public class ObjectTypeAdapter extends AbstractTypeAdapter<Object> {
 
     @Override
     public boolean isApplicableForType(Class<?> clazz) {
@@ -17,11 +18,5 @@ public class ObjectTypeAdapter implements TypeAdapter<Object> {
     public void apply(Object value, SerializationContext context) {
         context.getGenerator().writeStartObject();
         context.getGenerator().writeEnd();
-    }
-
-    @Override
-    public void apply(String fieldName, Object value, SerializationContext context) {
-        context.getGenerator().writeKey(fieldName);
-        apply(value, context);
     }
 }

@@ -23,9 +23,4 @@ class IntegerTypeAdapter<T extends Number> extends PrimitiveTypeAdapter<T> {
     public void apply(T value, SerializationContext context) {
         context.getGenerator().write(intProducer.applyAsInt(value));
     }
-
-    @Override
-    public void apply(String fieldName, T value, SerializationContext context) {
-        context.getGenerator().write(fieldName, intProducer.applyAsInt(value));
-    }
 }

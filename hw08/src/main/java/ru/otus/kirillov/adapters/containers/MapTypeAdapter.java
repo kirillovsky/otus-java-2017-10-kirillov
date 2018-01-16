@@ -1,14 +1,16 @@
 package ru.otus.kirillov.adapters.containers;
 
 import ru.otus.kirillov.SerializationContext;
+import ru.otus.kirillov.adapters.AbstractTypeAdapter;
 import ru.otus.kirillov.adapters.TypeAdapter;
 
 import java.util.Map;
 
-/** Адаптер для мап
+/**
+ * Адаптер для мап
  * Created by Александр on 16.01.2018.
  */
-public class MapTypeAdapter implements TypeAdapter<Map>{
+public class MapTypeAdapter extends AbstractTypeAdapter<Map> {
 
     @Override
     public boolean isApplicableForType(Class<?> clazz) {
@@ -23,11 +25,5 @@ public class MapTypeAdapter implements TypeAdapter<Map>{
             context.process(v);
         });
         context.getGenerator().writeEnd();
-    }
-
-    @Override
-    public void apply(String fieldName, Map value, SerializationContext context) {
-        context.getGenerator().writeKey(fieldName);
-        apply(value, context);
     }
 }

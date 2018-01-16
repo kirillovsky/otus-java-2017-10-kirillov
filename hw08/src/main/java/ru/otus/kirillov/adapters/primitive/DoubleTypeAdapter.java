@@ -24,9 +24,4 @@ class DoubleTypeAdapter<T extends Number> extends PrimitiveTypeAdapter<T> {
     public void apply(T value, SerializationContext context) {
         context.getGenerator().write(doubleProducer.applyAsDouble(value));
     }
-
-    @Override
-    public void apply(String fieldName, T value, SerializationContext context) {
-        context.getGenerator().write(fieldName, doubleProducer.applyAsDouble(value));
-    }
 }

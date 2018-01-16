@@ -6,7 +6,8 @@ import ru.otus.kirillov.adapters.TypeAdapter;
 /**
  * Адаптор-терминатор, для случая когда нет ни одного адаптера
  * для заданного класса. В случае, если есть адаптер для всех наследников
- * {@link Object} терминатор никогда не будет достигнут
+ * {@link Object} - {@link ru.otus.kirillov.adapters.CommonReferenceTypeAdapter}
+ * терминатор никогда не будет достигнут
  * Created by Александр on 14.01.2018.
  */
 public class TerminateTypeAdapter implements TypeAdapter<Object> {
