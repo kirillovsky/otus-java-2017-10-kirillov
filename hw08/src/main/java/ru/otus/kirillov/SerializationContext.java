@@ -5,6 +5,7 @@ import ru.otus.kirillov.utils.CommonUtils;
 
 import javax.json.stream.JsonGenerator;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Контекст сериализации. Используется в процессе сериализации объекта.

@@ -1,7 +1,7 @@
 package ru.otus.kirillov.adapters;
 
-import org.omg.CORBA.Object;
 import ru.otus.kirillov.SerializationContext;
+import ru.otus.kirillov.utils.ReflectionUtils;
 
 /** Общий случай сериализации объектов ссылочных типов.
  * Т.Е перебором их полей
@@ -16,6 +16,7 @@ public class CommonReferenceTypeAdapter extends AbstractTypeAdapter<Object> {
 
     @Override
     public void apply(Object value, SerializationContext context) {
-
+        //Будем обрабатывать объект, как мапу (Имя Поля, Его Значение)
+        context.process(ReflectionUtils.getSerializedFieldNameValueMap(value));
     }
 }

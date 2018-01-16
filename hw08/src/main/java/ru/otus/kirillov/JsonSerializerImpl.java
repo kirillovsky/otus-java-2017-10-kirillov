@@ -1,5 +1,7 @@
 package ru.otus.kirillov;
 
+import org.apache.commons.lang3.StringUtils;
+import ru.otus.kirillov.adapters.CommonReferenceTypeAdapter;
 import ru.otus.kirillov.adapters.containers.ArrayTypeAdapter;
 import ru.otus.kirillov.adapters.EnumTypeAdapter;
 import ru.otus.kirillov.adapters.StringTypeAdapter;
@@ -7,16 +9,14 @@ import ru.otus.kirillov.adapters.TypeAdapter;
 import ru.otus.kirillov.adapters.containers.CollectionTypeAdapter;
 import ru.otus.kirillov.adapters.containers.MapTypeAdapter;
 import ru.otus.kirillov.adapters.primitive.PrimitiveTypesAdapters;
+import ru.otus.kirillov.adapters.special.ExcludeTypeAdapter;
 import ru.otus.kirillov.adapters.special.ObjectTypeAdapter;
 
 import javax.json.Json;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.logging.Logger;
 
 import static ru.otus.kirillov.utils.CommonUtils.getClassName;
@@ -30,7 +30,11 @@ public class JsonSerializerImpl implements JsonSerializer {
 
     private static final Logger LOGGER = Logger.getLogger(getClassName(JsonSerializerImpl.class));
 
-    private final List<TypeAdapter<?>> adapters = new ArrayList<>();
+    private final List<TypeAdapter<?>> excludedAdapters = Arrays.asList(
+            new ExcludeTypeAdapter()
+    );
+
+    private List<TypeAdapter<?>> adapters = new ArrayList<>();
 
     {
         adapters.addAll(Arrays.asList(
@@ -44,9 +48,24 @@ public class JsonSerializerImpl implements JsonSerializer {
                 PrimitiveTypesAdapters.BOOLEAN_PRIMITIVE_TYPE_ADAPTER,
                 new ObjectTypeAdapter(), new StringTypeAdapter(),
                 new EnumTypeAdapter(), new ArrayTypeAdapter(),
-                new CollectionTypeAdapter(), new MapTypeAdapter()
-
+                new CollectionTypeAdapter(), new MapTypeAdapter(),
+                new CommonReferenceTypeAdapter()
         ));
+    }
+
+    public JsonSerializerImpl() {
+        this(Collections.emptyList());
+    }
+
+    public JsonSerializerImpl(Collection<TypeAdapter<?>> usersAdapters) {
+        List<TypeAdapter<?>> effectiveAdapters = new ArrayList<>();
+        //Добавим исключающие адаптеры
+        effectiveAdapters.addAll(excludedAdapters);
+        //Далее, пользовательские
+        effectiveAdapters.addAll(usersAdapters);
+        //Далее, предустановленные
+        effectiveAdapters.addAll(adapters);
+        adapters = effectiveAdapters;
     }
 
     @Override
@@ -60,7 +79,8 @@ public class JsonSerializerImpl implements JsonSerializer {
             LOGGER.throwing(getClassName(), getMethodName(), e);
             throw new RuntimeException(e);
         }
-        return strOutputStream.toString();
+        String result = strOutputStream.toString();
+        return StringUtils.isEmpty(result) ? null: result;
     }
 
     @Override

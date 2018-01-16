@@ -93,6 +93,13 @@ public class JsonSerializerImplMapTest {
     }
 
     @Test
+    public void testMapWithEmpty() {
+        jsonData = serializer.toJson(Collections.singletonMap("AHAHA", null));
+        String gsonResult = gson.toJson(Collections.singletonMap("AHAHA", null));
+        Assert.assertEquals(jsonData, gsonResult);
+    }
+
+    @Test
     public void testLongDoubleMap() {
         testMap(LONG_DOUBLE_MAP, new TypeToken<Map<Long, Double>>() {
         }.getType());

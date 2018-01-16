@@ -433,7 +433,7 @@ public class UniversalTestObject extends Parent {
                 .withIntVal1(Integer.MAX_VALUE)
                 .withBoolVal1(null)
                 .withLongVal1(3L)
-                .withStringVal("1111: { TEZZZZZ@dd")
+                .withStringVal("1111: { TEST@dd")
                 .withStringArr(new String[]{"12", null})
                 .withIntArr(new int[]{1, 2})
                 .withFloatArr(new float[]{1, 3, 0.9f, 0.3333f})
@@ -441,7 +441,7 @@ public class UniversalTestObject extends Parent {
                 .withEnumArr(new AEnum[]{null, A1, A2, A3})
                 .withStringList(Collections.emptyList())
                 .withEnumStringMap(Collections.singletonMap(A2, "Tezzz"))
-                .withObjectChild(Arrays.asList(1, 2, 3, 8))
+                .withObjectChild("ABSDG")
                 .withObject(new Object())
                 .withObjectNull(null)
                 .withCreateNonStaticNestedObject(12)
@@ -488,7 +488,9 @@ public class UniversalTestObject extends Parent {
         if (enumStringMap != null ? !enumStringMap.equals(that.enumStringMap) : that.enumStringMap != null)
             return false;
         if (objectChild != null ? !objectChild.equals(that.objectChild) : that.objectChild != null) return false;
-        if (object != null && that.object != null ? !(Object.class == object.getClass() && Object.class == that.object.getClass())
+        if (object != null && that.object != null ?
+                !((Object.class == object.getClass() && Object.class == that.object.getClass())
+                        || (Map.class.isAssignableFrom(that.object.getClass()) && ((Map)that.object).isEmpty()))
                 : that.object == null && object == null)
             return false;
         if (objectNull != null ? !objectNull.equals(that.objectNull) : that.objectNull != null) return false;

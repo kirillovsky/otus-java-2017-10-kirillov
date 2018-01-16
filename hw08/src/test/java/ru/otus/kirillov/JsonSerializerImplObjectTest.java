@@ -43,4 +43,20 @@ public class JsonSerializerImplObjectTest {
         Assert.assertNull(gsonResult.getTransientString());
     }
 
+    @Test
+    public void testLocalClass() {
+        class Local {
+            int i = 10;
+            String local = "local";
+        }
+        jsonData = serializer.toJson(new Local());
+        Assert.assertNull(jsonData);
+    }
+
+    @Test
+    public void testMethodClass() {
+        jsonData = serializer.toJson(UNIVERSAL_TEST_OBJECT.getNonStaticNestedObject());
+        Assert.assertNull(jsonData);
+    }
+
 }

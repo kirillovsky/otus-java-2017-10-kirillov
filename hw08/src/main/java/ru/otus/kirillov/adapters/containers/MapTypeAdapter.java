@@ -21,8 +21,10 @@ public class MapTypeAdapter extends AbstractTypeAdapter<Map> {
     public void apply(Map value, SerializationContext context) {
         context.getGenerator().writeStartObject();
         value.forEach((k, v) -> {
-            context.getGenerator().writeKey(String.valueOf(k));
-            context.process(v);
+            if (v != null) {
+                context.getGenerator().writeKey(String.valueOf(k));
+                context.process(v);
+            }
         });
         context.getGenerator().writeEnd();
     }
