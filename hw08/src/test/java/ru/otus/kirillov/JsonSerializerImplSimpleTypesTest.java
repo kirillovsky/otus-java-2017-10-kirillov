@@ -1,16 +1,13 @@
 package ru.otus.kirillov;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import ru.otus.kirillov.testClasses.TestEnum;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.OutputStream;
-
-import static org.junit.Assert.*;
 
 /**
  * Тест сериализации примитивных типов, строк, enum и null

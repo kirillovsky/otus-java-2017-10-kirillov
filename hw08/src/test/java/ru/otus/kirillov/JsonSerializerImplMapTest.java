@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import ru.otus.kirillov.testClasses.TestEnum;
 
 import java.lang.reflect.Type;
 import java.util.*;

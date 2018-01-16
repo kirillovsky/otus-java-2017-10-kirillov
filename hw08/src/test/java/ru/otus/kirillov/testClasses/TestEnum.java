@@ -1,4 +1,4 @@
-package ru.otus.kirillov;
+package ru.otus.kirillov.testClasses;
 
 /**
  * Created by Александр on 14.01.2018.

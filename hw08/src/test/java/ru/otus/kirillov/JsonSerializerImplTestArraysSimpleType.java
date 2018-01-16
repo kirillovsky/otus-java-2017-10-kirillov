@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import ru.otus.kirillov.testClasses.TestEnum;
 
 /**
  * Тесты для массивов простых типов (примитивные типы, enum и строки)

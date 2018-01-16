@@ -45,5 +45,10 @@
       <version>${gson.version}</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>LATEST</version>
+    </dependency>
   </dependencies>
 </project>
