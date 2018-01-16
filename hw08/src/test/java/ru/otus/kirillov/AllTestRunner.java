@@ -3,7 +3,8 @@ package ru.otus.kirillov;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
-/** Запускалка всех тестов
+/**
+ * Запускалка всех тестов
  * Created by Александр on 16.01.2018.
  */
 @RunWith(Suite.class)
@@ -11,7 +12,8 @@ import org.junit.runners.Suite;
         JsonSerializerImplSimpleTypesTest.class,
         JsonSerializerImplTestArraysSimpleType.class,
         JsonSerializerImplCollectionTest.class,
-        JsonSerializerImplMapTest.class
+        JsonSerializerImplMapTest.class,
+        JsonSerializerImplObjectTest.class
 })
 public class AllTestRunner {
 }

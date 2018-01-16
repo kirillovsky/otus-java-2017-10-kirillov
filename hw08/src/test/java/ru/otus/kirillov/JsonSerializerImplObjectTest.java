@@ -34,7 +34,7 @@ public class JsonSerializerImplObjectTest {
         jsonData = serializer.toJson(UNIVERSAL_TEST_OBJECT);
         UniversalTestObject gsonResult = gson.fromJson(jsonData, UniversalTestObject.class);
 
-        //Не былл ли случайно сериализовано статическое поле
+        //Не было ли случайно сериализовано статическое поле
         Assert.assertFalse(jsonData.contains("TEZZZZ"));
 
         Assert.assertEquals(UNIVERSAL_TEST_OBJECT, gsonResult);

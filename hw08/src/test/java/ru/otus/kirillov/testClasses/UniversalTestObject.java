@@ -1,10 +1,7 @@
 package ru.otus.kirillov.testClasses;
 
 import java.time.LocalTime;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static ru.otus.kirillov.testClasses.UniversalTestObject.AEnum.*;
 
@@ -12,7 +9,7 @@ import static ru.otus.kirillov.testClasses.UniversalTestObject.AEnum.*;
  * Универсальный тестовый класс.
  * Created by Александр on 16.01.2018.
  */
-public class UniversalTestObject {
+public class UniversalTestObject extends Parent {
 
     //Вложенный нестатический класс
     public class NestedNonStaticClass {
@@ -392,6 +389,38 @@ public class UniversalTestObject {
         return this;
     }
 
+    public String getParentString() {
+        return parentString;
+    }
+
+    public UniversalTestObject withParentString(String parentString) {
+        this.parentString = parentString;
+        return this;
+    }
+
+    public int getParentInt() {
+        return parentInt;
+    }
+
+    public UniversalTestObject withParentInt(int parentInt) {
+        this.parentInt = parentInt;
+        return this;
+    }
+
+    public List<Long> getBaseListLong() {
+        return baseListLong;
+    }
+
+    public UniversalTestObject withBaseListLong(List<Long> baseListLong) {
+        this.baseListLong = baseListLong;
+        return this;
+    }
+
+    public UniversalTestObject withBaseEnum(AEnum baseEnum) {
+        setBaseEnum(baseEnum);
+        return this;
+    }
+
     public static UniversalTestObject createDefaultTestObject() {
         return new UniversalTestObject()
                 .withIntVal(LocalTime.now().toSecondOfDay())
@@ -421,7 +450,11 @@ public class UniversalTestObject {
                         "abcd", new UniversalTestObject.NestedStaticClass("WOW!!!")
                 ))
                 .withTransientInt(123)
-                .withTransientString("156782abcd");
+                .withTransientString("156782abcd")
+                .withParentInt(100500)
+                .withParentString("I'm parent string!!!")
+                .withBaseListLong(Arrays.asList(1l, 200L, null, 3_000_000L))
+                .withBaseEnum(A3);
     }
 
     @Override
@@ -461,6 +494,12 @@ public class UniversalTestObject {
         if (objectNull != null ? !objectNull.equals(that.objectNull) : that.objectNull != null) return false;
         if (staticNestedObject != null ? !staticNestedObject.equals(that.staticNestedObject) : that.staticNestedObject != null)
             return false;
+        if (!Objects.equals(parentString, that.parentString)) return false;
+        if (parentInt != that.parentInt) return false;
+        if (getBaseEnum() != that.getBaseEnum()) return false;
+        if (baseListLong != null ? baseListLong.size() != that.getBaseListLong().size()
+                || !baseListLong.containsAll(that.getBaseListLong()) : that.getBaseListLong() != null)
+            return false;
         return enclosureStaticObject != null ? enclosureStaticObject.equals(that.enclosureStaticObject) : that.enclosureStaticObject == null;
     }
 
@@ -492,7 +531,29 @@ public class UniversalTestObject {
         result = 31 * result + (objectNull != null ? objectNull.hashCode() : 0);
         result = 31 * result + (staticNestedObject != null ? staticNestedObject.hashCode() : 0);
         result = 31 * result + (enclosureStaticObject != null ? enclosureStaticObject.hashCode() : 0);
+        result = 31 * result + Objects.hashCode(parentString);
+        result = 31 * result + Objects.hashCode(parentInt);
+        result = 31 * result + Objects.hashCode(getBaseEnum());
+        result = 31 * result + Objects.hashCode(baseListLong);
         return result;
     }
     //endregion
+}
+
+class Parent extends Base {
+    protected String parentString;
+    protected int parentInt;
+}
+
+class Base {
+    private UniversalTestObject.AEnum baseEnum;
+    protected List<Long> baseListLong;
+
+    public UniversalTestObject.AEnum getBaseEnum() {
+        return baseEnum;
+    }
+
+    public void setBaseEnum(UniversalTestObject.AEnum baseEnum) {
+        this.baseEnum = baseEnum;
+    }
 }
