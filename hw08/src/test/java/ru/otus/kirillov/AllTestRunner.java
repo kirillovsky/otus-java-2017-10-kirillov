@@ -13,7 +13,8 @@ import org.junit.runners.Suite;
         JsonSerializerImplTestArraysSimpleType.class,
         JsonSerializerImplCollectionTest.class,
         JsonSerializerImplMapTest.class,
-        JsonSerializerImplObjectTest.class
+        JsonSerializerImplObjectTest.class,
+        JsonSerializerImplAdditionalObjectTypeTest.class
 })
 public class AllTestRunner {
 }
