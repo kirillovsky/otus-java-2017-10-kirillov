@@ -34,7 +34,6 @@ public class JsonSerializerImplAdditionalObjectTypeTest {
     public void testSimpleSerialize() {
         LocalDateTime localDateTime = LocalDateTime.now();
         jsonData = serializer.toJson(localDateTime);
-        System.out.println(jsonData);
         Assert.assertEquals("\"" + localDateTime.toString() + "\"", jsonData);
     }
 
