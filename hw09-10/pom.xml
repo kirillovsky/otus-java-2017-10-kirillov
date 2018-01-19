@@ -1,0 +1,62 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>ru.otus.kirillov</groupId>
+        <artifactId>parent-hw</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>hw09-10</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <properties>
+        <junit.version>4.12</junit.version>
+        <commons-lang3.version>LATEST</commons-lang3.version>
+        <mockito-core>1.10.19</mockito-core>
+    </properties>
+
+    <description>
+        HW09:Создайте в базе таблицу с полями:
+            • id bigint(20) NOT NULL auto_increment
+            • name varchar(255)
+            • age int(3)
+            Создайте абстрактный класс DataSet. Поместите long id в DataSet.
+            Добавьте класс UserDataSet (с полями, которые соответствуют таблице) унаследуйте его от DataSet.
+            Напишите Executor, который сохраняет наследников DataSet в базу и читает их из базы по id и классу.
+            T extends DataSet void save(T user){…}
+            T extends DataSet T load(long id, ClassT clazz){…}
+            Проверьте его работу на UserDataSet
+        HW10:На основе ДЗ 9:
+            1. Оформить решение в виде DBService (interface DBService, class DBServiceImpl, UsersDAO, UsersDataSet,
+            Executor)
+            2. Не меняя интерфейс DBSerivice сделать DBServiceHibernateImpl на Hibernate.
+            3. Добавить в UsersDataSet поля:
+            адресс (OneToOne)
+            class AddressDataSet{
+                private String street;
+            }
+            и телефон* (OneToMany)
+            class PhoneDataSet{
+                private String number;
+            }
+            Добавить соответствущие датасеты и DAO.
+            * можно не поддерживать в ДЗ 8
+    </description>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>
