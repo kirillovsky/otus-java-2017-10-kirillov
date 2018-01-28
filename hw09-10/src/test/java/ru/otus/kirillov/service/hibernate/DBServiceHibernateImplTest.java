@@ -6,6 +6,7 @@ import org.junit.Test;
 import ru.otus.kirillov.configuration.DBServiceConfig;
 import ru.otus.kirillov.service.DBService;
 import ru.otus.kirillov.service.DBServiceTest;
+import ru.otus.kirillov.service.factory.hibernate.HibernateDBServiceFactory;
 
 /**
  * Created by Александр on 25.01.2018.

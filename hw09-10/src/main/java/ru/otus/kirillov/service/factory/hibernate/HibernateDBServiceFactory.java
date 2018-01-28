@@ -1,4 +1,4 @@
-package ru.otus.kirillov.service.hibernate;
+package ru.otus.kirillov.service.factory.hibernate;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -13,6 +13,7 @@ import ru.otus.kirillov.model.PhoneDataSet;
 import ru.otus.kirillov.model.UserDataSet;
 import ru.otus.kirillov.service.DBService;
 import ru.otus.kirillov.service.DBServiceFactory;
+import ru.otus.kirillov.service.hibernate.DBServiceHibernateImpl;
 import ru.otus.kirillov.utils.ReflectionUtils;
 
 import java.util.Arrays;
