@@ -21,6 +21,7 @@ public class JsonSerializerImplAdditionalObjectTypeTest {
         LocalDateTime timeNow = LocalDateTime.parse("2018-11-17T11:48:58.571");
     }
 
+
     private static final String JSON_REPRESENTATION_TEST_FIELD = "{\"timeNow\":\"2018-11-17T11:48:58.571\"}";
 
     @BeforeClass
