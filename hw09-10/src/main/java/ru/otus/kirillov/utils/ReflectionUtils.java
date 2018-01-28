@@ -2,6 +2,7 @@ package ru.otus.kirillov.utils;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.internal.SessionFactoryImpl;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
@@ -54,6 +55,30 @@ public final class ReflectionUtils {
         return null;
     }
 
+    /** Попытка создать инстанс объекта класса {@param type} и проинджектить
+     *  в него параметр {@param obj}. Здесь возможно 3 случая:
+     *  1. У него есть конструктор с одним параметров {@param <I>}
+     *  2. У него есть дефолтный конструктор и поле {@param <I>}
+     *  3. Он должен иметь модификатор public
+     * @param type - класс инстанцируемого объекта
+     * @param obj - инжектируемый объект
+     * @param <T> - тип инстанцируемого объекта
+     * @param <I> - тип инжектируемого объекта
+     * @return инстанс
+     */
+    public static <T, I> T instantiateWithInjections(Class<?> type, I obj) {
+        T instance = instantiate(type, obj);
+        if (instance == null && hasConstructor(type, obj.getClass())) {
+            instance = instantiate(type, obj);
+        }
+        if (instance == null && hasConstructor(type)
+                && hasSingleFieldByType(type, obj.getClass())) {
+            instance = withFieldValue(instantiate(type),
+                    getField(type, obj.getClass()), obj);
+        }
+        return instance;
+    }
+
     public static <T> boolean hasConstructor(Class<T> type, Class<?>... args) {
         try {
             return type.getDeclaredConstructor(args) != null;
@@ -69,7 +94,7 @@ public final class ReflectionUtils {
 
     public static Field getField(Class<?> clazz, Class<?> fieldType) {
         return getAllFields(clazz)
-                .filter(f -> f.getType() == fieldType)
+                .filter(f -> f.getType().isAssignableFrom(fieldType))
                 .findFirst().orElse(null);
     }
 
@@ -84,7 +109,7 @@ public final class ReflectionUtils {
 
     protected static Field getFieldNonSafe(Class<?> clazz, String fieldName) throws NoSuchFieldException {
         return getAllFields(clazz)
-                .filter(f -> f.getName() == fieldName)
+                .filter(f -> f.getName().equals(fieldName))
                 .findFirst().orElseThrow(NoSuchFieldException::new);
     }
 

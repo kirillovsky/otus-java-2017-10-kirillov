@@ -32,15 +32,7 @@ public class DBServiceHibernateImpl extends AbstractDBService {
      */
     @Override
     protected Dao<?> createDao(Class<?> daoClass) {
-        Dao<?> dao = instantiate(daoClass, sessionFactory);
-        if (dao == null && hasConstructor(daoClass, SessionFactory.class)) {
-            dao = instantiate(daoClass, sessionFactory);
-        }
-        if (dao == null && hasConstructor(daoClass)
-                && hasSingleFieldByType(daoClass, SessionFactory.class)) {
-            dao = withFieldValue(instantiate(daoClass),
-                    getField(daoClass, SessionFactory.class), sessionFactory);
-        }
+        Dao<?> dao = instantiateWithInjections(daoClass, sessionFactory);
         if(dao == null) {
             throw new RuntimeException(
                     String.format("Unable to create DAO %s: try to check contract " +
