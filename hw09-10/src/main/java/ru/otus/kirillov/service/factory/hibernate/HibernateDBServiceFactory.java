@@ -5,6 +5,8 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
+import org.hibernate.type.descriptor.sql.BigIntTypeDescriptor;
+import org.hibernate.type.descriptor.sql.VarcharTypeDescriptor;
 import ru.otus.kirillov.configuration.DBServiceConfig;
 import ru.otus.kirillov.configuration.DBServiceConfig.DB;
 import ru.otus.kirillov.dao.hibernate.AbstractHibernateDao;
@@ -13,6 +15,7 @@ import ru.otus.kirillov.model.PhoneDataSet;
 import ru.otus.kirillov.model.UserDataSet;
 import ru.otus.kirillov.service.DBService;
 import ru.otus.kirillov.service.DBServiceFactory;
+import ru.otus.kirillov.service.factory.AbstractDBServiceFactory;
 import ru.otus.kirillov.service.hibernate.DBServiceHibernateImpl;
 import ru.otus.kirillov.utils.ReflectionUtils;
 
@@ -26,7 +29,7 @@ import java.util.stream.Stream;
  * Фабрика для создания {@link DBService} с реализацией Hibernate
  * Created by Александр on 24.01.2018.
  */
-public class HibernateDBServiceFactory implements DBServiceFactory {
+public class HibernateDBServiceFactory extends AbstractDBServiceFactory {
 
     //region DAO-классы для модели из задания
     public static class UserDataSetDao extends AbstractHibernateDao<UserDataSet> {}
@@ -37,6 +40,11 @@ public class HibernateDBServiceFactory implements DBServiceFactory {
 
     private static final List<Class<?>> DEFAULT_DAO_CLASSES =
             Arrays.asList(UserDataSetDao.class, AddressDataSetDao.class, PhoneDataSetDao.class);
+
+    @Override
+    protected List<Class<?>> getDefaultDaoClasses() {
+        return DEFAULT_DAO_CLASSES;
+    }
 
     private static final Map<DB, String> DB_TYPES_TO_DIALECT = new HashMap<>();
 
@@ -69,16 +77,12 @@ public class HibernateDBServiceFactory implements DBServiceFactory {
         configuration.setProperty(Environment.FORMAT_SQL, Boolean.TRUE.toString());
         configuration.setProperty(Environment.ENABLE_LAZY_LOAD_NO_TRANS, Boolean.TRUE.toString());
         configuration.setProperty(Environment.HBM2DDL_AUTO, "create");
+        configuration.setProperty(Environment.SHOW_SQL, Boolean.TRUE.toString());
 
         getDaoClasses(dbServiceConfig.getUsersDaoClasses())
                 .forEach(dao -> configuration.addAnnotatedClass(getDaoTypeArgument(dao)));
 
         return configuration;
-    }
-
-    private void registerDAO(DBService dbService, DBServiceConfig config) {
-        getDaoClasses(config.getUsersDaoClasses())
-                .forEach(clazz -> dbService.registerNewDao(clazz));
     }
 
     private SessionFactory createSessionFactory(Configuration configuration) {
@@ -88,18 +92,5 @@ public class HibernateDBServiceFactory implements DBServiceFactory {
         return configuration.buildSessionFactory(serviceRegistry);
     }
 
-    private Stream<Class<?>> getDaoClasses(List<Class<?>> daoClasses) {
-        return Stream.of(DEFAULT_DAO_CLASSES, daoClasses)
-                .flatMap(List::stream);
-    }
 
-    private Class<?> getDaoTypeArgument(Class<?> clazz) {
-        Class<?> result = ReflectionUtils.getGenericType(clazz);
-
-        if(result == null) {
-            throw new RuntimeException("Cannot get actual argument type for class^ " + clazz.getName());
-        }
-
-        return result;
-    }
 }

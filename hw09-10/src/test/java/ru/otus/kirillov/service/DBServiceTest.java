@@ -5,7 +5,6 @@ import ru.otus.kirillov.model.AddressDataSet;
 import ru.otus.kirillov.model.DataSet;
 import ru.otus.kirillov.model.PhoneDataSet;
 import ru.otus.kirillov.model.UserDataSet;
-import ru.otus.kirillov.service.DBService;
 
 import java.util.ArrayList;
 import java.util.Arrays;

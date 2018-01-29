@@ -32,7 +32,7 @@
         HW10:На основе ДЗ 9:
             1. Оформить решение в виде DBService (interface DBService, class DBServiceImpl, UsersDAO, UsersDataSet,
             Executor)
-            2. Не меняя интерфейс DBSerivice сделать DBServiceHibernateImpl на Hibernate.
+            2. Не меняя интерфейс DBService сделать DBServiceHibernateImpl на Hibernate.
             3. Добавить в UsersDataSet поля:
             адресс (OneToOne)
             class AddressDataSet{

@@ -1,8 +1,5 @@
 package ru.otus.kirillov.configuration;
 
-import ru.otus.kirillov.dao.Dao;
-import ru.otus.kirillov.model.DataSet;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,5 +63,11 @@ public class DBServiceConfig {
     public DBServiceConfig withPassword(String password) {
         this.password = password;
         return this;
+    }
+
+    public String getConnectionString() {
+        return connectionURL
+                + (username.isEmpty() ? "":
+                "?user=" + username + "&password=" + (username.isEmpty() ? "": password));
     }
 }
