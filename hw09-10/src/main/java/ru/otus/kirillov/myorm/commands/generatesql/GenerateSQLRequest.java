@@ -23,14 +23,18 @@ public class GenerateSQLRequest extends Request {
 
     public static GenerateSQLRequest insertRequest(EntityDescriptor descriptor) {
         return new GenerateSQLRequest(DmlType.INSERT, descriptor.getTableName(),
-                descriptor.getFieldNames(f -> f.isPrimitiveField()),
+                descriptor.getFieldNames(f -> f.isPrimitiveField()
+                        || f.isGeneratedIdField()
+                        || f.isSyntheticField()),
                 Collections.emptyList());
     }
 
     public static GenerateSQLRequest selectRequest(EntityDescriptor descriptor,
                                                    Collection<AbstractFieldDescriptor> whereDescriptors) {
         return new GenerateSQLRequest(DmlType.SELECT, descriptor.getTableName(),
-                descriptor.getFieldNames(f -> f.isPrimitiveField()),
+                descriptor.getFieldNames(f -> f.isPrimitiveField()
+                        || f.isGeneratedIdField()
+                        || f.isSyntheticField()),
                 getFieldsNames(whereDescriptors)
         );
     }
@@ -44,7 +48,7 @@ public class GenerateSQLRequest extends Request {
     public static GenerateSQLRequest updateRequest(EntityDescriptor descriptor,
                                                    Collection<AbstractFieldDescriptor> whereDescriptors) {
         return new GenerateSQLRequest(DmlType.UPDATE, descriptor.getTableName(),
-                descriptor.getFieldNames(f -> f.isPrimitiveField()),
+                descriptor.getFieldNames(f -> f.isPrimitiveField() || f.isSyntheticField()),
                 getFieldsNames(whereDescriptors)
         );
     }

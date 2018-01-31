@@ -48,7 +48,7 @@ public abstract class AbstractFieldDescriptor {
     }
 
     public boolean isPrimitiveField() {
-        return descriptorType == DescriptorType.SIMPLE_FIELD || descriptorType == DescriptorType.SYNTHETIC_FIELD;
+        return descriptorType == DescriptorType.SIMPLE_FIELD;
     }
 
     public boolean isOneToOneField() {
