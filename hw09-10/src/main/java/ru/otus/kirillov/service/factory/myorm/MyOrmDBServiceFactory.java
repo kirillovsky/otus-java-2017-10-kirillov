@@ -1,7 +1,7 @@
 package ru.otus.kirillov.service.factory.myorm;
 
 import ru.otus.kirillov.configuration.DBServiceConfig;
-import ru.otus.kirillov.dao.myorm.AbstractMyormDao;
+import ru.otus.kirillov.dao.myorm.AbstractMyOrmDao;
 import ru.otus.kirillov.model.AddressDataSet;
 import ru.otus.kirillov.model.PhoneDataSet;
 import ru.otus.kirillov.model.UserDataSet;
@@ -19,9 +19,9 @@ import java.util.List;
 public class MyOrmDBServiceFactory extends AbstractDBServiceFactory {
 
     //region DAO-классы для модели из задания
-    public static class UserDataSetDao extends AbstractMyormDao<UserDataSet> {}
-    public static class AddressDataSetDao extends AbstractMyormDao<AddressDataSet> {}
-    public static class PhoneDataSetDao extends AbstractMyormDao<PhoneDataSet> {}
+    public static class UserDataSetDao extends AbstractMyOrmDao<UserDataSet> {}
+    public static class AddressDataSetDao extends AbstractMyOrmDao<AddressDataSet> {}
+    public static class PhoneDataSetDao extends AbstractMyOrmDao<PhoneDataSet> {}
     //endregion
 
     private static final List<Class<?>> DEFAULT_DAO_CLASSES =

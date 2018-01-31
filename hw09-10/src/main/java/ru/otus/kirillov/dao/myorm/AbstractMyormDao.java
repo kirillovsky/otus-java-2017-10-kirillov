@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by Александр on 29.01.2018.
  */
-public abstract class AbstractMyormDao<T extends DataSet> implements Dao<T> {
+public abstract class AbstractMyOrmDao<T extends DataSet> implements Dao<T> {
 
     private MyOrmService service;
 

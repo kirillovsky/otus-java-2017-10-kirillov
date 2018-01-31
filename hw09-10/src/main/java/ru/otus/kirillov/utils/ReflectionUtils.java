@@ -2,14 +2,11 @@ package ru.otus.kirillov.utils;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.hibernate.internal.SessionFactoryImpl;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -38,6 +35,7 @@ public final class ReflectionUtils {
 
     /**
      * Инстанцирование нового объекта класса, c заданными аргументами
+     *
      * @param type - класс инстанцируемого объекта
      * @param args - аргументы, необходимые для его создания
      * @return объект нового класса, или null, если его создать не удалось
@@ -55,15 +53,17 @@ public final class ReflectionUtils {
         return null;
     }
 
-    /** Попытка создать инстанс объекта класса {@param type} и проинджектить
-     *  в него параметр {@param obj}. Здесь возможно 3 случая:
-     *  1. У него есть конструктор с одним параметров {@param <I>}
-     *  2. У него есть дефолтный конструктор и поле {@param <I>}
-     *  3. Он должен иметь модификатор public
+    /**
+     * Попытка создать инстанс объекта класса {@param type} и проинджектить
+     * в него параметр {@param obj}. Здесь возможно 3 случая:
+     * 1. У него есть конструктор с одним параметров {@param <I>}
+     * 2. У него есть дефолтный конструктор и поле {@param <I>}
+     * 3. Он должен иметь модификатор public
+     *
      * @param type - класс инстанцируемого объекта
-     * @param obj - инжектируемый объект
-     * @param <T> - тип инстанцируемого объекта
-     * @param <I> - тип инжектируемого объекта
+     * @param obj  - инжектируемый объект
+     * @param <T>  - тип инстанцируемого объекта
+     * @param <I>  - тип инжектируемого объекта
      * @return инстанс
      */
     public static <T, I> T instantiateWithInjections(Class<?> type, I obj) {
@@ -147,6 +147,16 @@ public final class ReflectionUtils {
         }
     }
 
+    public static void setFieldCollectionValue(Object object, Field field, Collection value) {
+        if (field.getType() == List.class) {
+            setFieldValue(object, field, new ArrayList<>(value));
+        } else if (field.getType() == Set.class) {
+            setFieldValue(object, field, new HashSet<>(value));
+        } else {
+            setFieldValue(object, field, value);
+        }
+    }
+
     public static <T> T withFieldValue(T object, Field field, Object value) {
         T result = object;
         try {
@@ -158,8 +168,8 @@ public final class ReflectionUtils {
     }
 
     public static Class<?> getGenericType(Class<?> clazz) {
-        Type result = ((ParameterizedType)clazz.getGenericSuperclass()).getActualTypeArguments()[0];
-        return result instanceof Class ? (Class) result: null;
+        Type result = ((ParameterizedType) clazz.getGenericSuperclass()).getActualTypeArguments()[0];
+        return result instanceof Class ? (Class) result : null;
     }
 
     private static Class<?>[] toClasses(Object[] args) {
