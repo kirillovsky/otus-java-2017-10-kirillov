@@ -135,7 +135,7 @@ public class SelectCommand extends AbstractCommand<SelectRequest, List<? extends
         }
 
 
-        DataSet result = ReflectionUtils.instantiate(descriptor.getClass());
+        DataSet result = ReflectionUtils.instantiate(descriptor.getEntityClass());
         fieldValues.forEach(
                 (k, v) -> {
                     if (Collections.class.isAssignableFrom(k.getJavaField().getType())) {

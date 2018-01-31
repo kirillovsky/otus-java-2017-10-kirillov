@@ -20,7 +20,7 @@ public abstract class Request {
 
     private CommandInvoker invoker;
 
-    protected Request(Type type) {
+    public Request(Type type) {
         this.type = CommonUtils.retunIfNotNull(type);
     }
 

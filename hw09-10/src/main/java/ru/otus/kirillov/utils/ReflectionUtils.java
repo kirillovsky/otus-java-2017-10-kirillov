@@ -179,7 +179,7 @@ public final class ReflectionUtils {
         return classes.toArray(new Class<?>[classes.size()]);
     }
 
-    private static Object getFieldValue(Field fld, Object obj) {
+    public static Object getFieldValue(Field fld, Object obj) {
         boolean oldAccessible = fld.isAccessible();
         if (!oldAccessible) {
             fld.setAccessible(true);

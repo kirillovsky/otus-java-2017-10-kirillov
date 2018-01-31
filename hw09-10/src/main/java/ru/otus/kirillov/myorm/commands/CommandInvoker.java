@@ -1,5 +1,6 @@
 package ru.otus.kirillov.myorm.commands;
 
+import ru.otus.kirillov.myorm.commands.delete.DeleteCommand;
 import ru.otus.kirillov.myorm.commands.generatesql.GenerateSqlCommand;
 import ru.otus.kirillov.myorm.commands.select.SelectCommand;
 
@@ -28,6 +29,7 @@ public class CommandInvoker {
     private CommandInvoker() {
         addCommand(Request.Type.GENERATE_SQL, new GenerateSqlCommand(this));
         addCommand(Request.Type.SELECT, new SelectCommand(this));
+        addCommand(Request.Type.DELETE, new DeleteCommand(this));
     }
 
     public CommandInvoker(Connection connection) {
