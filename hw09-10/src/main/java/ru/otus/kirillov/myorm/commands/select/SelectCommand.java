@@ -56,7 +56,7 @@ public class SelectCommand extends AbstractCommand<SelectRequest, List<? extends
             processOneToOneRefs(resultObjectFields, request.getEntityDescriptor());
             //4. Обрабатываем OneToMany:
             processOneToManyRefs(resultObjectFields, request.getEntityDescriptor());
-            //Мапа сформирована, можно из нее создавать результирующий объект
+            //5. Мапа сформирована, можно из нее создавать результирующий объект
             result.add(buildResultObject(request.getEntityDescriptor(), resultObjectFields));
         }
 
