@@ -5,7 +5,6 @@ import ru.otus.kirillov.model.DataSet;
 import ru.otus.kirillov.myorm.commands.AbstractCommand;
 import ru.otus.kirillov.myorm.commands.CommandInvoker;
 import ru.otus.kirillov.myorm.commands.generatesql.GenerateSQLRequest;
-import ru.otus.kirillov.myorm.commands.generatesql.GenerateSqlCommand;
 import ru.otus.kirillov.myorm.commands.select.SelectRequest;
 import ru.otus.kirillov.myorm.executors.DmlExecutor;
 import ru.otus.kirillov.myorm.mapper.AbstractFieldDescriptor;
@@ -53,7 +52,7 @@ public class DeleteCommand extends AbstractCommand<DeleteRequest, Void> {
             );
 
         } catch (Exception e) {
-            //6. Иначе - роллбэк
+            //6. Eсли не все ок - роллбэк
             unhandled(connection, con -> con.rollback());
             throw new RuntimeException(e);
         } finally {
