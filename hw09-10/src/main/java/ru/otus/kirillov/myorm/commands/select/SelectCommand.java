@@ -81,8 +81,12 @@ public class SelectCommand extends AbstractCommand<SelectRequest, List<? extends
                                      EntityDescriptor descriptor) {
         descriptor.getOneToOneFields()
                 .forEach(f -> {
+                    Object refIdValue = selectionResult.get(f.getRefIdFieldDescriptor());
+                    if(refIdValue == null) {
+                        return;
+                    }
                     //3.1. Селектим объект из связанной таблицы, по id - полученному из синтетического поля для OneToOne
-                    DataSet result = getOneToOneRefObject(f, selectionResult.get(f.getRefIdFieldDescriptor()));
+                    DataSet result = getOneToOneRefObject(f, refIdValue);
                     //3.2. Удаляем из мапы полей данные о данном синтетическом поле
                     selectionResult.remove(f.getRefIdFieldDescriptor());
                     //3.3. Заносим в мапу объект, полученный из результата
