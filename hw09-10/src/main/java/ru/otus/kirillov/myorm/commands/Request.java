@@ -9,6 +9,7 @@ public abstract class Request {
 
     public enum Type {
         GENERATE_SQL,
+        GENERATE_SCHEMA,
         SELECT,
         INSERT,
         UPDATE,

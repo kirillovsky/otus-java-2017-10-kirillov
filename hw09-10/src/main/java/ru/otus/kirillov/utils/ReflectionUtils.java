@@ -2,7 +2,13 @@ package ru.otus.kirillov.utils;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ru.otus.kirillov.model.DataSet;
 
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -20,6 +26,7 @@ import java.util.stream.Stream;
 public final class ReflectionUtils {
 
     private static final Logger LOGGER = LogManager.getLogger();
+    private static final String DEFAULT_REF_FIELD_POSTFIX = "_id";
 
     private ReflectionUtils() {
     }
@@ -195,6 +202,67 @@ public final class ReflectionUtils {
         } finally {
             fld.setAccessible(oldAccessible);
         }
+    }
+
+    public static boolean isAnnotated(Class<?> clazz, Class<? extends Annotation> annotationClass) {
+        CommonUtils.requiredNotNull(clazz, "Class must be not null");
+        CommonUtils.requiredNotNull(annotationClass, "Annotation clazz must be not null");
+        return clazz.isAnnotationPresent(annotationClass);
+    }
+
+    public static boolean isAnnotated(Field field, Class<? extends Annotation> annotationClass) {
+        CommonUtils.requiredNotNull(field, "Field must be not null");
+        CommonUtils.requiredNotNull(annotationClass, "Annotation clazz must be not null");
+        return field.isAnnotationPresent(annotationClass);
+    }
+
+    public static boolean hasAnnotations(Field field) {
+        CommonUtils.requiredNotNull(field, "Field must be not null");
+        return field.getAnnotations().length != 0;
+    }
+
+    public static <T extends Annotation> T getAnnotation(Class<?> clazz, Class<? extends T> annotationClass) {
+        CommonUtils.requiredNotNull(clazz, "Class must be not null");
+        CommonUtils.requiredNotNull(annotationClass, "Annotation clazz must be not null");
+        return clazz.getAnnotation(annotationClass);
+    }
+
+    public static <T extends Annotation> T getAnnotation(Field field, Class<? extends T> annotationClass) {
+        CommonUtils.requiredNotNull(field, "Class must be not null");
+        CommonUtils.requiredNotNull(annotationClass, "Annotation clazz must be not null");
+        return field.getAnnotation(annotationClass);
+    }
+
+    public static String getTableName(Class<? extends DataSet> clazz) {
+        CommonUtils.requiredNotNull(clazz, "Class must be not null");
+        if(!isAnnotated(clazz, Table.class)) {
+            return clazz.getSimpleName().toLowerCase();
+        }
+        String resultName = getAnnotation(clazz, Table.class).name();
+        return resultName.isEmpty() ? clazz.getSimpleName().toLowerCase(): resultName;
+    }
+
+    public static String getSqlColumnName(Field field) {
+        CommonUtils.requiredNotNull(field, "field must be not null");
+        if(!isAnnotated(field, Column.class)) {
+            return field.getName().toLowerCase();
+        }
+        String resultName = getAnnotation(field, Column.class).name();
+        return resultName.isEmpty() ? field.getName().toLowerCase(): resultName;
+    }
+
+    public static String getRefFieldName(Field field, Class<? extends Annotation> annotationClaz, String defaultPrefix) {
+        CommonUtils.requiredNotNull(field, "field must be not null");
+
+        if(!isAnnotated(field, OneToOne.class)) {
+            throw new RuntimeException("This is not OneToOne field");
+        }
+
+        if(isAnnotated(field, JoinColumn.class)) {
+            return getAnnotation(field, JoinColumn.class).name();
+        }
+
+        return CommonUtils.retunIfNotNull(defaultPrefix) + DEFAULT_REF_FIELD_POSTFIX;
     }
 
 

@@ -36,6 +36,10 @@ public class EntityDescriptor {
         return Collections.unmodifiableList(fieldDescriptors);
     }
 
+    public void addSyntheticField(SyntheticFieldDescriptor field) {
+        fieldDescriptors.add(field);
+    }
+
     public List<AbstractFieldDescriptor> getFieldDescriptors(Predicate<AbstractFieldDescriptor> fieldPredicate) {
         return getFieldDescriptors().stream()
                 .filter(fieldPredicate)
