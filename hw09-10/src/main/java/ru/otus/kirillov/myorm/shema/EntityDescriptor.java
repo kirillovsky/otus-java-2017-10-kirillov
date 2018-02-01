@@ -1,4 +1,4 @@
-package ru.otus.kirillov.myorm.mapper;
+package ru.otus.kirillov.myorm.shema;
 
 import ru.otus.kirillov.model.DataSet;
 
@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import ru.otus.kirillov.myorm.mapper.FieldDescriptors.*;
+import ru.otus.kirillov.myorm.shema.FieldDescriptors.*;
 
 
 /**

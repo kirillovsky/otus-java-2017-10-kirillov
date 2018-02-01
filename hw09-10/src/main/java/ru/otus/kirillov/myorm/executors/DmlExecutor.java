@@ -1,16 +1,12 @@
 package ru.otus.kirillov.myorm.executors;
 
 import org.apache.commons.lang3.tuple.Pair;
-import ru.otus.kirillov.myorm.mapper.AbstractFieldDescriptor;
+import ru.otus.kirillov.myorm.shema.AbstractFieldDescriptor;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Александр on 31.01.2018.

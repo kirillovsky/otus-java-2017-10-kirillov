@@ -7,8 +7,8 @@ import ru.otus.kirillov.myorm.commands.CommandInvoker;
 import ru.otus.kirillov.myorm.commands.generatesql.GenerateSQLRequest;
 import ru.otus.kirillov.myorm.commands.select.SelectRequest;
 import ru.otus.kirillov.myorm.executors.DmlExecutor;
-import ru.otus.kirillov.myorm.mapper.AbstractFieldDescriptor;
-import ru.otus.kirillov.myorm.mapper.EntityDescriptor;
+import ru.otus.kirillov.myorm.shema.AbstractFieldDescriptor;
+import ru.otus.kirillov.myorm.shema.EntityDescriptor;
 import ru.otus.kirillov.utils.ReflectionUtils;
 
 import java.sql.Connection;
@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
 /**
  * Алгоритм:
  * 1. По полученным данным селектим сущность
- * 2. Удаляем OneToOne по id, который получаем из заселекченного объекта на шаге 1 (без коммита)
- * 3. Удаляем OneToMany по id-шникам, полученным и заселекченного объекта на шаге 1 (без коммита)
- * 4. Генерируем и выполняем запрос на удаление по входным данным
+ * 2. Удаляем OneToMany по id-шникам, полученным и заселекченного объекта на шаге 1 (без коммита)
+ * 3. Генерируем и выполняем запрос на удаление по входным данным
+ * 4. Удаляем OneToOne по id, который получаем из заселекченного объекта на шаге 1 (без коммита)
  * 5. Если все ок - коммит
  * 6. Иначе - роллбэк
  * Created by Александр on 31.01.2018.
@@ -41,13 +41,13 @@ public class DeleteCommand extends AbstractCommand<DeleteRequest, Void> {
             //1. По полученным данным селектим сущность
             getDeletedEntities(rq.getEntityDescriptor(), rq.getWhereClojure()).forEach(
                     o -> {
-                        //2. Удаляем OneToOne по id, который получаем из заселекченного объекта на шаге 1 (без коммита)
-                        deleteOneToOne(rq.getEntityDescriptor(), o);
-                        //3. Удаляем OneToMany по id-шникам, полученным и заселекченного объекта на шаге 1 (без коммита)
+                        //2. Удаляем OneToMany по id-шникам, полученным и заселекченного объекта на шаге 1 (без коммита)
                         deleteOneToMany(rq.getEntityDescriptor(), o);
-                        //4. Генерируем и выполняем запрос на удаление по входным данным
+                        //3. Генерируем и выполняем запрос на удаление по входным данным
                         String deleteQuery = createQuery(rq);
                         new DmlExecutor(getConnection()).execute(deleteQuery, rq.getWhereClojure());
+                        //4. Удаляем OneToOne по id, который получаем из заселекченного объекта на шаге 1 (без коммита)
+                        deleteOneToOne(rq.getEntityDescriptor(), o);
                     }
             );
 

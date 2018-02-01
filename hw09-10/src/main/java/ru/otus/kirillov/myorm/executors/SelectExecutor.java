@@ -1,7 +1,7 @@
 package ru.otus.kirillov.myorm.executors;
 
 import org.apache.commons.lang3.tuple.Pair;
-import ru.otus.kirillov.myorm.mapper.AbstractFieldDescriptor;
+import ru.otus.kirillov.myorm.shema.AbstractFieldDescriptor;
 
 import java.sql.*;
 import java.util.*;
