@@ -1,4 +1,4 @@
-package ru.otus.kirillov.myorm.shema;
+package ru.otus.kirillov.myorm.shema.elements;
 
 import java.lang.reflect.Field;
 import java.sql.JDBCType;

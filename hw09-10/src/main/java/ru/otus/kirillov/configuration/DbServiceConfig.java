@@ -1,5 +1,7 @@
 package ru.otus.kirillov.configuration;
 
+import ru.otus.kirillov.dao.Dao;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +26,7 @@ public class DBServiceConfig {
         return usersDaoClasses;
     }
 
-    public DBServiceConfig withNewUsersDaoClasses(Class<?> usersDaoClass) {
+    public DBServiceConfig withNewUsersDaoClasses(Class<? extends Dao> usersDaoClass) {
         this.usersDaoClasses.add(retunIfNotNull(usersDaoClass));
         return this;
     }

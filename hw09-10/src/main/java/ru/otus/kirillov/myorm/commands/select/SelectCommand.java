@@ -6,10 +6,10 @@ import ru.otus.kirillov.myorm.commands.AbstractCommand;
 import ru.otus.kirillov.myorm.commands.CommandInvoker;
 import ru.otus.kirillov.myorm.commands.generatesql.GenerateSQLRequest;
 import ru.otus.kirillov.myorm.executors.SelectExecutor;
-import ru.otus.kirillov.myorm.shema.AbstractFieldDescriptor;
-import ru.otus.kirillov.myorm.shema.EntityDescriptor;
-import ru.otus.kirillov.myorm.shema.FieldDescriptors.OneToOneFieldDescriptor;
-import ru.otus.kirillov.myorm.shema.FieldDescriptors.OneToManyFieldDescriptor;
+import ru.otus.kirillov.myorm.shema.elements.AbstractFieldDescriptor;
+import ru.otus.kirillov.myorm.shema.elements.EntityDescriptor;
+import ru.otus.kirillov.myorm.shema.elements.FieldDescriptors.OneToOneFieldDescriptor;
+import ru.otus.kirillov.myorm.shema.elements.FieldDescriptors.OneToManyFieldDescriptor;
 import ru.otus.kirillov.utils.ReflectionUtils;
 
 import java.util.*;

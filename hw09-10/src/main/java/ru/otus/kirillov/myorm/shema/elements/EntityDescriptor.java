@@ -1,4 +1,4 @@
-package ru.otus.kirillov.myorm.shema;
+package ru.otus.kirillov.myorm.shema.elements;
 
 import ru.otus.kirillov.model.DataSet;
 
@@ -7,7 +7,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import ru.otus.kirillov.myorm.shema.FieldDescriptors.*;
 
 
 /**
@@ -36,7 +35,7 @@ public class EntityDescriptor {
         return Collections.unmodifiableList(fieldDescriptors);
     }
 
-    public void addSyntheticField(SyntheticFieldDescriptor field) {
+    public void addSyntheticField(FieldDescriptors.SyntheticFieldDescriptor field) {
         fieldDescriptors.add(field);
     }
 
@@ -56,23 +55,23 @@ public class EntityDescriptor {
                 .map(f -> f.getSqlFieldName()).collect(Collectors.toList());
     }
 
-    public GeneratedIdFieldDescriptor getGeneratedIdField() {
+    public FieldDescriptors.GeneratedIdFieldDescriptor getGeneratedIdField() {
         return getFieldDescriptors(f -> f.isGeneratedIdField()).stream()
-                .map(f -> (GeneratedIdFieldDescriptor)f)
+                .map(f -> (FieldDescriptors.GeneratedIdFieldDescriptor)f)
                 .findAny().orElseThrow(
                         () -> new RuntimeException("Not found generatedId field")
                 );
     }
 
-    public List<OneToOneFieldDescriptor> getOneToOneFields() {
+    public List<FieldDescriptors.OneToOneFieldDescriptor> getOneToOneFields() {
         return getFieldDescriptors(f -> f.isOneToOneField()).stream()
-                .map(f -> (OneToOneFieldDescriptor)f)
+                .map(f -> (FieldDescriptors.OneToOneFieldDescriptor)f)
                 .collect(Collectors.toList());
     }
 
-    public List<OneToManyFieldDescriptor> getOneToManyFields() {
+    public List<FieldDescriptors.OneToManyFieldDescriptor> getOneToManyFields() {
         return getFieldDescriptors(f -> f.isOneToManyField()).stream()
-                .map(f -> (OneToManyFieldDescriptor)f)
+                .map(f -> (FieldDescriptors.OneToManyFieldDescriptor)f)
                 .collect(Collectors.toList());
     }
 

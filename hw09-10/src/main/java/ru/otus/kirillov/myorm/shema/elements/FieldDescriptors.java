@@ -1,4 +1,4 @@
-package ru.otus.kirillov.myorm.shema;
+package ru.otus.kirillov.myorm.shema.elements;
 
 import ru.otus.kirillov.utils.CommonUtils;
 import ru.otus.kirillov.utils.ReflectionUtils;
@@ -7,7 +7,6 @@ import javax.persistence.Id;
 import java.lang.reflect.Field;
 import java.sql.JDBCType;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 /**

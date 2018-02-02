@@ -7,10 +7,10 @@ import ru.otus.kirillov.myorm.commands.CommandInvoker;
 import ru.otus.kirillov.myorm.commands.generatesql.GenerateSQLRequest;
 import ru.otus.kirillov.myorm.commands.select.SelectRequest;
 import ru.otus.kirillov.myorm.executors.DmlExecutor;
-import ru.otus.kirillov.myorm.shema.AbstractFieldDescriptor;
-import ru.otus.kirillov.myorm.shema.EntityDescriptor;
+import ru.otus.kirillov.myorm.shema.elements.AbstractFieldDescriptor;
+import ru.otus.kirillov.myorm.shema.elements.EntityDescriptor;
 import ru.otus.kirillov.utils.ReflectionUtils;
-import ru.otus.kirillov.myorm.shema.FieldDescriptors.*;
+import ru.otus.kirillov.myorm.shema.elements.FieldDescriptors.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;

@@ -3,10 +3,10 @@ package ru.otus.kirillov.myorm.commands.generateschema;
 import ru.otus.kirillov.model.DataSet;
 import ru.otus.kirillov.myorm.commands.AbstractCommand;
 import ru.otus.kirillov.myorm.commands.CommandInvoker;
-import ru.otus.kirillov.myorm.shema.AbstractFieldDescriptor;
-import ru.otus.kirillov.myorm.shema.EntityDescriptor;
-import ru.otus.kirillov.myorm.shema.FieldDescriptors;
-import ru.otus.kirillov.myorm.shema.FieldDescriptors.*;
+import ru.otus.kirillov.myorm.shema.elements.AbstractFieldDescriptor;
+import ru.otus.kirillov.myorm.shema.elements.EntityDescriptor;
+import ru.otus.kirillov.myorm.shema.elements.FieldDescriptors;
+import ru.otus.kirillov.myorm.shema.elements.FieldDescriptors.*;
 import ru.otus.kirillov.utils.ReflectionUtils;
 
 import javax.persistence.Column;

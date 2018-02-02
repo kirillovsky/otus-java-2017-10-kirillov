@@ -1,6 +1,6 @@
 package ru.otus.kirillov.myorm.executors;
 
-import ru.otus.kirillov.myorm.shema.AbstractFieldDescriptor;
+import ru.otus.kirillov.myorm.shema.elements.AbstractFieldDescriptor;
 
 import java.sql.Connection;
 import java.sql.JDBCType;

@@ -1,8 +1,8 @@
 package ru.otus.kirillov.myorm.commands.generatesql;
 
 import ru.otus.kirillov.myorm.commands.Request;
-import ru.otus.kirillov.myorm.shema.AbstractFieldDescriptor;
-import ru.otus.kirillov.myorm.shema.EntityDescriptor;
+import ru.otus.kirillov.myorm.shema.elements.AbstractFieldDescriptor;
+import ru.otus.kirillov.myorm.shema.elements.EntityDescriptor;
 
 import java.util.Collection;
 import java.util.Collections;

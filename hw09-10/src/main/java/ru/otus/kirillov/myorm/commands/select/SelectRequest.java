@@ -2,8 +2,8 @@ package ru.otus.kirillov.myorm.commands.select;
 
 import org.apache.commons.lang3.tuple.Pair;
 import ru.otus.kirillov.myorm.commands.Request;
-import ru.otus.kirillov.myorm.shema.AbstractFieldDescriptor;
-import ru.otus.kirillov.myorm.shema.EntityDescriptor;
+import ru.otus.kirillov.myorm.shema.elements.AbstractFieldDescriptor;
+import ru.otus.kirillov.myorm.shema.elements.EntityDescriptor;
 
 import java.util.List;
 
