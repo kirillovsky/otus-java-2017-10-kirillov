@@ -75,4 +75,8 @@ public class EntityDescriptor {
                 .map(f -> (OneToManyFieldDescriptor)f)
                 .collect(Collectors.toList());
     }
+
+    public List<AbstractFieldDescriptor> getSqlVisibleFields() {
+        return getFieldDescriptors(f -> f.isSQLVisibleFields());
+    }
 }

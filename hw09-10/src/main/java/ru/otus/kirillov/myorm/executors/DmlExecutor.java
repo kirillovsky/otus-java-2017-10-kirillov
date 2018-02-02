@@ -17,8 +17,8 @@ public class DmlExecutor extends AbstractPreparedStatementExecutor {
         super(connection);
     }
 
-    public void execute(String select, List<Pair<AbstractFieldDescriptor, Object>> columns) {
-        try (PreparedStatement stmt = getConnection().prepareStatement(select)) {
+    public void execute(String dmlQuery, List<Pair<AbstractFieldDescriptor, Object>> columns) {
+        try (PreparedStatement stmt = getConnection().prepareStatement(dmlQuery)) {
             for (int i = 0; i < columns.size(); i++) {
                 Pair<AbstractFieldDescriptor, Object> pair = columns.get(i);
                 processPreparedStatement(stmt, i + 1, pair.getKey(), pair.getValue());

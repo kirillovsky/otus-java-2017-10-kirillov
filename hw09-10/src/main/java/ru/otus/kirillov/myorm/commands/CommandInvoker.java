@@ -3,6 +3,7 @@ package ru.otus.kirillov.myorm.commands;
 import ru.otus.kirillov.myorm.commands.delete.DeleteCommand;
 import ru.otus.kirillov.myorm.commands.generateschema.GenerateSchemaCommand;
 import ru.otus.kirillov.myorm.commands.generatesql.GenerateSqlCommand;
+import ru.otus.kirillov.myorm.commands.saveOrUpdate.SaveOrUpdateCommand;
 import ru.otus.kirillov.myorm.commands.select.SelectCommand;
 
 import java.sql.Connection;
@@ -23,7 +24,7 @@ public class CommandInvoker {
         }
     }
 
-    private static Command UNKNOWN_COMMAND_INSTACE = new UnknownCommand();
+    private static Command UNKNOWN_COMMAND_INSTANCE = new UnknownCommand();
 
     private Map<Request.Type, Command> commandsMap = new HashMap<>();
 
@@ -32,6 +33,7 @@ public class CommandInvoker {
         addCommand(Request.Type.SELECT, new SelectCommand(this));
         addCommand(Request.Type.DELETE, new DeleteCommand(this));
         addCommand(Request.Type.GENERATE_SCHEMA, new GenerateSchemaCommand(this));
+        addCommand(Request.Type.SAVE_OR_UPDATE, new SaveOrUpdateCommand(this));
     }
 
     public CommandInvoker(Connection connection) {
@@ -40,7 +42,7 @@ public class CommandInvoker {
     }
 
     public <RQ extends Request, RS> RS invoke(RQ request) {
-        Command<RQ, RS> command = commandsMap.getOrDefault(request.getType(), UNKNOWN_COMMAND_INSTACE);
+        Command<RQ, RS> command = commandsMap.getOrDefault(request.getType(), UNKNOWN_COMMAND_INSTANCE);
         return command.execute(request);
     }
 

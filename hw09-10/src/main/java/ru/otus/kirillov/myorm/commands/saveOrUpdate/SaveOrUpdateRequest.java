@@ -10,14 +10,22 @@ import ru.otus.kirillov.utils.CommonUtils;
  */
 public class SaveOrUpdateRequest extends Request {
 
-    EntityDescriptor descriptor;
+    private EntityDescriptor descriptor;
 
-    DataSet object;
+    private DataSet object;
+
+    private boolean needsToCommit;
+
 
     public SaveOrUpdateRequest(EntityDescriptor descriptor, DataSet object) {
         super(Type.SAVE_OR_UPDATE);
         this.descriptor = CommonUtils.retunIfNotNull(descriptor);
         this.object = CommonUtils.retunIfNotNull(object);
+    }
+
+    public SaveOrUpdateRequest(EntityDescriptor descriptor, DataSet object, boolean needsToCommit) {
+        this(descriptor, object);
+        this.needsToCommit = needsToCommit;
     }
 
     public EntityDescriptor getDescriptor() {
@@ -26,5 +34,9 @@ public class SaveOrUpdateRequest extends Request {
 
     public DataSet getObject() {
         return object;
+    }
+
+    public boolean isNeedsToCommit() {
+        return needsToCommit;
     }
 }

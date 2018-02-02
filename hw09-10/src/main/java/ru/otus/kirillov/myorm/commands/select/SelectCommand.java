@@ -45,7 +45,7 @@ public class SelectCommand extends AbstractCommand<SelectRequest, List<? extends
         String query = createQuery(generatedRequest);
         List<Map<AbstractFieldDescriptor, Object>> selectionResults =
                 new SelectExecutor(getConnection()).execute(query,
-                        request.getEntityDescriptor().getFieldDescriptors(f -> f.isPrimitiveField()),
+                        request.getEntityDescriptor().getFieldDescriptors(f -> f.isSQLVisibleFields()),
                         request.getWhereClojure()
                 );
 

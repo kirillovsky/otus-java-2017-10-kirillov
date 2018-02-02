@@ -66,4 +66,10 @@ public abstract class AbstractFieldDescriptor {
     public boolean isSyntheticField() {
         return descriptorType == DescriptorType.SYNTHETIC_FIELD;
     }
+
+    public boolean isSQLVisibleFields() {
+        return descriptorType == DescriptorType.GENERATED_ID
+                || descriptorType == DescriptorType.SYNTHETIC_FIELD
+                || descriptorType == DescriptorType.SIMPLE_FIELD;
+    }
 }

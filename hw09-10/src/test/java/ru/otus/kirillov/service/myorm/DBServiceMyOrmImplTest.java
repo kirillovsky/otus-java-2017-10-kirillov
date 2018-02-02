@@ -15,6 +15,7 @@ import java.sql.Statement;
 /**
  * Created by Александр on 28.01.2018.
  */
+// TODO: 02.02.2018 Поправить тесты - id-щники должны предварительно задаваться
 public class DBServiceMyOrmImplTest extends DBServiceTest {
 
     public static final String H2_TEST_DB_CONNECTION_STRING = "jdbc:h2:mem:test";
