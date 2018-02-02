@@ -11,8 +11,6 @@ public abstract class Request {
         GENERATE_SQL,
         GENERATE_SCHEMA,
         SELECT,
-        INSERT,
-        UPDATE,
         SAVE_OR_UPDATE,
         DELETE
     }

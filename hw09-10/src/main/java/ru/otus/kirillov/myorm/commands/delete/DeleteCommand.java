@@ -53,11 +53,15 @@ public class DeleteCommand extends AbstractCommand<DeleteRequest, Void> {
 
         } catch (Exception e) {
             //6. Eсли не все ок - роллбэк
-            unhandled(connection, con -> con.rollback());
+            if(rq.isNeedToCommit()) {
+                unhandled(connection, con -> con.rollback());
+            }
             throw new RuntimeException(e);
         } finally {
             //5. Если все ок - коммит
-            unhandled(connection, con -> con.commit());
+            if(rq.isNeedToCommit()) {
+                unhandled(connection, con -> con.commit());
+            }
         }
 
         return null;
