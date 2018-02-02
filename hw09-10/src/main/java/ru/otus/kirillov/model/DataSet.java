@@ -7,15 +7,13 @@ import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicLong;
 
 /** Базовый класс для всех моделей
  * Created by Александр on 20.01.2018.
  */
 @MappedSuperclass
 public abstract class DataSet {
-
-    private static Random ID_GENERATOR =
-            new Random(LocalDateTime.now().toEpochSecond(ZoneOffset.UTC));
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,8 +28,5 @@ public abstract class DataSet {
     }
 
     public DataSet() {
-        //Так как самописный ORM-фреймворк не умеет сетить
-        //Только что сгенеренную дату, будем генерить id-шники так
-        id = ID_GENERATOR.nextLong();
     }
 }
