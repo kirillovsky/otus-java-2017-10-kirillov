@@ -2,7 +2,7 @@ package ru.otus.kirillov.myorm.commands.generateschema;
 
 import ru.otus.kirillov.model.DataSet;
 import ru.otus.kirillov.myorm.commands.Request;
-import ru.otus.kirillov.myorm.shema.elements.EntityDescriptor;
+import ru.otus.kirillov.myorm.schema.elements.EntityDescriptor;
 import ru.otus.kirillov.utils.CommonUtils;
 
 import java.util.HashMap;

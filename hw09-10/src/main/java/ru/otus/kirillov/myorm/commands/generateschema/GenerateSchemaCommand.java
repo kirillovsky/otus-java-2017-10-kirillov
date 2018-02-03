@@ -3,10 +3,10 @@ package ru.otus.kirillov.myorm.commands.generateschema;
 import ru.otus.kirillov.model.DataSet;
 import ru.otus.kirillov.myorm.commands.AbstractCommand;
 import ru.otus.kirillov.myorm.commands.CommandInvoker;
-import ru.otus.kirillov.myorm.shema.elements.AbstractFieldDescriptor;
-import ru.otus.kirillov.myorm.shema.elements.EntityDescriptor;
-import ru.otus.kirillov.myorm.shema.elements.FieldDescriptors;
-import ru.otus.kirillov.myorm.shema.elements.FieldDescriptors.*;
+import ru.otus.kirillov.myorm.schema.elements.AbstractFieldDescriptor;
+import ru.otus.kirillov.myorm.schema.elements.EntityDescriptor;
+import ru.otus.kirillov.myorm.schema.elements.FieldDescriptors;
+import ru.otus.kirillov.myorm.schema.elements.FieldDescriptors.*;
 import ru.otus.kirillov.utils.ReflectionUtils;
 
 import javax.persistence.Column;
@@ -120,7 +120,7 @@ public class GenerateSchemaCommand extends AbstractCommand<GenerateSchemaRequest
                 .filter(f -> ReflectionUtils.isAnnotated(f, OneToMany.class))
                 .forEach(f -> {
                     Class<? extends DataSet> refClazz =
-                            (Class<? extends DataSet>) ReflectionUtils.getGenericType(f.getType());
+                            (Class<? extends DataSet>) ReflectionUtils.getGenericType(f);
                     if (!descriptionsMap.containsKey(refClazz)) {
                         descriptionsMap.putAll(
                                 calcNewEntity(refClazz, descriptionsMap)

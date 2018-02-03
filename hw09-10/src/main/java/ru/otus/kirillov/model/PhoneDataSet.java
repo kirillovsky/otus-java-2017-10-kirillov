@@ -25,8 +25,17 @@ public class PhoneDataSet extends DataSet {
         this.number = number;
     }
 
+    public PhoneDataSet(long id, String number) {
+        this(number);
+        this.setId(id);
+    }
+
     public static PhoneDataSet of(String number) {
         return new PhoneDataSet(number);
+    }
+
+    public static PhoneDataSet of(long id, String number) {
+        return new PhoneDataSet(id, number);
     }
 
     public String getNumber() {

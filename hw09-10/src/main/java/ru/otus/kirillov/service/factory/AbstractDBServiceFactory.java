@@ -25,7 +25,7 @@ public abstract class AbstractDBServiceFactory implements DBServiceFactory {
     }
 
     protected Class<?> getDaoTypeArgument(Class<?> clazz) {
-        Class<?> result = ReflectionUtils.getGenericType(clazz);
+        Class<?> result = ReflectionUtils.getParentGenericType(clazz);
 
         if(result == null) {
             throw new RuntimeException("Cannot get actual argument type for class^ " + clazz.getName());

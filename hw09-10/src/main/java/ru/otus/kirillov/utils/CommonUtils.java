@@ -1,6 +1,9 @@
 package ru.otus.kirillov.utils;
 
+import org.apache.commons.lang3.tuple.Pair;
+
 import java.util.Arrays;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -76,5 +79,10 @@ public final class CommonUtils {
             consumer.accept(t);
             return null;
         };
+    }
+
+    public static <K, V> void putPair(Map<K, V> map, Pair<K, V> pair) {
+        CommonUtils.requiredNotNull(map, pair);
+        map.put(pair.getKey(), pair.getValue());
     }
 }

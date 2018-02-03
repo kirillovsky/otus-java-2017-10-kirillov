@@ -18,8 +18,8 @@ public class DBServiceConfig {
 
     private DB dbType;
     private String connectionURL;
-    private String username;
-    private String password;
+    private String username = "";
+    private String password = "";
     private List<Class<?>> usersDaoClasses = new ArrayList<>();
 
     public List<Class<?>> getUsersDaoClasses() {

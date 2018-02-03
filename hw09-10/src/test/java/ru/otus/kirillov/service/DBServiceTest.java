@@ -9,6 +9,7 @@ import ru.otus.kirillov.model.UserDataSet;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by Александр on 28.01.2018.
@@ -101,30 +102,30 @@ public abstract class DBServiceTest {
         UserDataSet user = getFullTestUser();
         getDbService().saveOrUpdate(user);
         user.withPhoneDataSets(new ArrayList<>(user.getPhoneDataSets()))
-                .withNewPhoneDataSets(PhoneDataSet.of("333333"))
-                .withNewPhoneDataSets(PhoneDataSet.of("55555555"))
-                .withNewPhoneDataSets(PhoneDataSet.of("77777777"));
+                .withNewPhoneDataSets(createPhone("333333"))
+                .withNewPhoneDataSets(createPhone("55555555"))
+                .withNewPhoneDataSets(createPhone("77777777"));
         getDbService().saveOrUpdate(user);
         Assert.assertEquals(user, getDbService().read(user.getId(), UserDataSet.class));
     }
 
-    public void updateReduceDependentDataSets() {
+    public void updateReduceOneToOneFields() {
         UserDataSet user = getFullTestUser();
         user.withPhoneDataSets(new ArrayList<>(user.getPhoneDataSets()))
-                .withNewPhoneDataSets(PhoneDataSet.of("333333"))
-                .withNewPhoneDataSets(PhoneDataSet.of("55555555"))
-                .withNewPhoneDataSets(PhoneDataSet.of("77777777"));
+                .withNewPhoneDataSets(createPhone("333333"))
+                .withNewPhoneDataSets(createPhone("55555555"))
+                .withNewPhoneDataSets(createPhone("77777777"));
         getDbService().saveOrUpdate(user);
-        user.withPhoneDataSets(Collections.singletonList(PhoneDataSet.of("000101010101")));
+        user.withPhoneDataSets(Collections.singletonList(createPhone("000101010101")));
         getDbService().saveOrUpdate(user);
         Assert.assertEquals(user, getDbService().read(user.getId(), UserDataSet.class));
     }
 
     public void deleteSimpleDataSets() {
-        AddressDataSet address = AddressDataSet.of("9-may street");
+        AddressDataSet address = createAddress("9-may street");
         getDbService().saveOrUpdate(address);
 
-        PhoneDataSet phone = PhoneDataSet.of("NUMBER");
+        PhoneDataSet phone = createPhone("NUMBER");
         getDbService().saveOrUpdate(phone);
 
         Assert.assertTrue(getDbService().readAll(PhoneDataSet.class).contains(phone));
@@ -148,17 +149,29 @@ public abstract class DBServiceTest {
     }
 
     protected UserDataSet getFullTestUser() {
-        PhoneDataSet phone1 = getDbService().saveOrUpdate(PhoneDataSet.of("122421"));
-        PhoneDataSet phone2 = getDbService().saveOrUpdate(PhoneDataSet.of("8932421"));
+        PhoneDataSet phone1 = getDbService().saveOrUpdate(createPhone("122421"));
+        PhoneDataSet phone2 = getDbService().saveOrUpdate(createPhone("8932421"));
 
         AddressDataSet address =
-                getDbService().saveOrUpdate(AddressDataSet.of("Moscow, Pushkin's str., h. Kolotushkin's"));
+                getDbService().saveOrUpdate(createAddress("Moscow, Pushkin's str., h. Kolotushkin's"));
 
-        return new UserDataSet("Vasya Pupkin", 100, address, Arrays.asList(phone1, phone2));
+        return createUser("Vasya Pupkin", 100, address, Arrays.asList(phone1, phone2));
     }
 
     protected <T extends DataSet> void deleteAll(Class<T> clazz) {
         getDbService().readAll(clazz).forEach(obj -> getDbService().delete(obj));
+    }
+
+    protected PhoneDataSet createPhone(String number) {
+        return PhoneDataSet.of(number);
+    }
+
+    protected AddressDataSet createAddress(String street) {
+        return AddressDataSet.of(street);
+    }
+
+    protected UserDataSet createUser(String name, int age, AddressDataSet address, List<PhoneDataSet> phones) {
+        return new UserDataSet(name, age, address, phones);
     }
 
 

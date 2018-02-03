@@ -32,7 +32,9 @@ public class SingletonH2ConnectionFactory implements ConnectionFactory {
     @Override
     public void closeConnections() {
         try {
-            connection.close();
+            if (connection != null) {
+                connection.close();
+            }
             connection = null;
         } catch (SQLException e) {
             throw new RuntimeException(e);

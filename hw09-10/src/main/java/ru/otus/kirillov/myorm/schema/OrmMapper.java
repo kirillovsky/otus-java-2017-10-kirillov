@@ -1,7 +1,7 @@
-package ru.otus.kirillov.myorm.shema;
+package ru.otus.kirillov.myorm.schema;
 
 import ru.otus.kirillov.model.DataSet;
-import ru.otus.kirillov.myorm.shema.elements.EntityDescriptor;
+import ru.otus.kirillov.myorm.schema.elements.EntityDescriptor;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +15,7 @@ public class OrmMapper {
     private Map<Class<? extends DataSet>, EntityDescriptor> descriptionByClass = new HashMap<>();
 
     public void addAll(Map<Class<? extends DataSet>, EntityDescriptor> descriptionByClass) {
-        descriptionByClass.putAll(descriptionByClass);
+        this.descriptionByClass.putAll(descriptionByClass);
     }
 
     public EntityDescriptor getDescription(Class<? extends DataSet> entityClazz) {

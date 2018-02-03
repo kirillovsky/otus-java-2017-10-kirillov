@@ -41,6 +41,11 @@ public class UserDataSet extends DataSet {
         this.phoneDataSets = phoneDataSets;
     }
 
+    public UserDataSet(long id, String name, int age, AddressDataSet addressDataSet, List<PhoneDataSet> phoneDataSets) {
+        this(name, age, addressDataSet, phoneDataSets);
+        this.setId(id);
+    }
+
     public String getName() {
         return name;
     }

@@ -5,20 +5,25 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import ru.otus.kirillov.configuration.DBServiceConfig;
+import ru.otus.kirillov.model.AddressDataSet;
+import ru.otus.kirillov.model.PhoneDataSet;
+import ru.otus.kirillov.model.UserDataSet;
 import ru.otus.kirillov.service.DBService;
 import ru.otus.kirillov.service.DBServiceTest;
 import ru.otus.kirillov.service.factory.myorm.MyOrmDBServiceFactory;
 import ru.otus.kirillov.utils.H2ConnectionHelper;
 
 import java.sql.Statement;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Created by Александр on 28.01.2018.
  */
-// TODO: 02.02.2018 Поправить тесты - id-щники должны предварительно задаваться
 public class DBServiceMyOrmImplTest extends DBServiceTest {
 
-    public static final String H2_TEST_DB_CONNECTION_STRING = "jdbc:h2:mem:test";
+    private static final AtomicLong ID_GENERATOR = new AtomicLong(1);
+    private static final String H2_TEST_DB_CONNECTION_STRING = "jdbc:h2:mem:test";
 
     protected static DBService dbService;
 
@@ -117,8 +122,8 @@ public class DBServiceMyOrmImplTest extends DBServiceTest {
     }
 
     @Test
-    public void updateReduceDependentDataSets() {
-        super.updateReduceDependentDataSets();
+    public void updateReduceOneToOneFields() {
+        super.updateReduceOneToOneFields();
     }
 
     @Test
@@ -129,5 +134,20 @@ public class DBServiceMyOrmImplTest extends DBServiceTest {
     @Test
     public void deleteUserWithoutDependentEntities() {
         super.deleteUserWithoutDependentEntities();
+    }
+
+    @Override
+    protected PhoneDataSet createPhone(String number) {
+        return PhoneDataSet.of(ID_GENERATOR.getAndIncrement(), number);
+    }
+
+    @Override
+    protected AddressDataSet createAddress(String street) {
+        return AddressDataSet.of(ID_GENERATOR.getAndIncrement(), street);
+    }
+
+    @Override
+    protected UserDataSet createUser(String name, int age, AddressDataSet address, List<PhoneDataSet> phones) {
+        return new UserDataSet(ID_GENERATOR.getAndIncrement(), name, age, address, phones);
     }
 }

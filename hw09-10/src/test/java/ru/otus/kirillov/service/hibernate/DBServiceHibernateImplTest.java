@@ -1,7 +1,6 @@
 package ru.otus.kirillov.service.hibernate;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import ru.otus.kirillov.configuration.DBServiceConfig;
@@ -71,8 +70,8 @@ public class DBServiceHibernateImplTest extends DBServiceTest {
     }
 
     @Test
-    public void updateReduceDependentDataSets() {
-        super.updateReduceDependentDataSets();
+    public void updateReduceOneToOneFields() {
+        super.updateReduceOneToOneFields();
     }
 
     @Test

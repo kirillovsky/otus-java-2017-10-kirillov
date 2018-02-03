@@ -1,6 +1,8 @@
-package ru.otus.kirillov.myorm.shema.elements;
+package ru.otus.kirillov.myorm.schema.elements;
 
+import org.apache.commons.lang3.tuple.Pair;
 import ru.otus.kirillov.model.DataSet;
+import ru.otus.kirillov.utils.ReflectionUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,11 +22,27 @@ public class EntityDescriptor {
 
     private List<AbstractFieldDescriptor> fieldDescriptors = new ArrayList<>();
 
+    public static List<Pair<AbstractFieldDescriptor, Object>>
+    getAllFieldValuePair(EntityDescriptor entityDescriptor, DataSet object) {
+        List<Pair<AbstractFieldDescriptor, Object>> result =
+                entityDescriptor.getFieldDescriptors().stream()
+                        .filter(f -> !f.isSyntheticField())
+                        .map(f -> Pair.of(f, ReflectionUtils.getFieldValue(f.getJavaField(), object)))
+                        .collect(Collectors.toList());
+        result.addAll(
+                entityDescriptor.getFieldDescriptors().stream()
+                        .filter(f -> f.isSyntheticField())
+                        .map(f -> Pair.of(f, null))
+                        .collect(Collectors.toList())
+        );
+        return result;
+    }
+
     public EntityDescriptor(Class<? extends DataSet> entityClass, String tableName,
                             List<AbstractFieldDescriptor> fieldDescriptors) {
         this.entityClass = entityClass;
         this.tableName = tableName;
-        this.fieldDescriptors.addAll(fieldDescriptors);
+        this.fieldDescriptors = fieldDescriptors;
     }
 
     public Class<? extends DataSet> getEntityClass() {
@@ -57,7 +75,7 @@ public class EntityDescriptor {
 
     public FieldDescriptors.GeneratedIdFieldDescriptor getGeneratedIdField() {
         return getFieldDescriptors(f -> f.isGeneratedIdField()).stream()
-                .map(f -> (FieldDescriptors.GeneratedIdFieldDescriptor)f)
+                .map(f -> (FieldDescriptors.GeneratedIdFieldDescriptor) f)
                 .findAny().orElseThrow(
                         () -> new RuntimeException("Not found generatedId field")
                 );
@@ -65,13 +83,13 @@ public class EntityDescriptor {
 
     public List<FieldDescriptors.OneToOneFieldDescriptor> getOneToOneFields() {
         return getFieldDescriptors(f -> f.isOneToOneField()).stream()
-                .map(f -> (FieldDescriptors.OneToOneFieldDescriptor)f)
+                .map(f -> (FieldDescriptors.OneToOneFieldDescriptor) f)
                 .collect(Collectors.toList());
     }
 
     public List<FieldDescriptors.OneToManyFieldDescriptor> getOneToManyFields() {
         return getFieldDescriptors(f -> f.isOneToManyField()).stream()
-                .map(f -> (FieldDescriptors.OneToManyFieldDescriptor)f)
+                .map(f -> (FieldDescriptors.OneToManyFieldDescriptor) f)
                 .collect(Collectors.toList());
     }
 

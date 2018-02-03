@@ -16,7 +16,7 @@ public class AbstractQueryWhereFromGenerator extends AbstractQueryGenerator {
         if (fieldsName.isEmpty()) {
             return this;
         }
-        builder.append("where ").append(
+        builder.append(" where ").append(
                 fieldsName.stream().map(s -> s + " = ?").collect(FIELD_DELIMETER_COLLECTOR)
         );
         return this;
@@ -24,7 +24,7 @@ public class AbstractQueryWhereFromGenerator extends AbstractQueryGenerator {
 
 
     public AbstractQueryWhereFromGenerator from(String tableName) {
-        builder.append("from " + tableName);
+        builder.append(" from " + tableName);
         return this;
     }
 }

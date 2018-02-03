@@ -1,4 +1,4 @@
-package ru.otus.kirillov.myorm.shema.elements;
+package ru.otus.kirillov.myorm.schema.elements;
 
 import ru.otus.kirillov.utils.CommonUtils;
 import ru.otus.kirillov.utils.ReflectionUtils;
@@ -28,7 +28,7 @@ public final class FieldDescriptors {
     public static class IntegerFieldDescriptor extends AbstractSimpleTypeDescriptor {
 
         public IntegerFieldDescriptor(String sqlFieldName, Field javaField) {
-            super(sqlFieldName, javaField, JDBCType.BIGINT);
+            super(sqlFieldName, javaField, JDBCType.INTEGER);
         }
     }
 

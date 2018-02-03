@@ -21,11 +21,20 @@ public class AddressDataSet extends DataSet {
         return new AddressDataSet(street);
     }
 
+    public static AddressDataSet of(long id, String street) {
+        return new AddressDataSet(id, street);
+    }
+
     public AddressDataSet() {
     }
 
     public AddressDataSet(String street) {
         this.street = street;
+    }
+
+    public AddressDataSet(long id, String street) {
+        this(street);
+        this.setId(id);
     }
 
     public String getStreet() {

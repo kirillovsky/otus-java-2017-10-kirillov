@@ -1,7 +1,7 @@
 package ru.otus.kirillov.myorm.executors;
 
 import org.apache.commons.lang3.tuple.Pair;
-import ru.otus.kirillov.myorm.shema.elements.AbstractFieldDescriptor;
+import ru.otus.kirillov.myorm.schema.elements.AbstractFieldDescriptor;
 
 import java.sql.*;
 import java.util.*;
@@ -15,8 +15,9 @@ public class SelectExecutor extends AbstractPreparedStatementExecutor {
 
     static {
         Map<JDBCType, ResultSetHandler> tmpMap = new HashMap<>();
-        tmpMap.put(JDBCType.BIGINT, (rs, sqlFieldName) -> rs.getInt(sqlFieldName));
-        tmpMap.put(JDBCType.VARCHAR, (rs, sqlFieldName) -> rs.getString(sqlFieldName));
+        tmpMap.put(JDBCType.BIGINT, (rs, sqlFieldName) -> rs.getObject(sqlFieldName));
+        tmpMap.put(JDBCType.INTEGER, (rs, sqlFieldName) -> rs.getObject(sqlFieldName));
+        tmpMap.put(JDBCType.VARCHAR, (rs, sqlFieldName) -> rs.getObject(sqlFieldName));
 
         GET_PARAMS_MAP = Collections.unmodifiableMap(tmpMap);
     }
@@ -28,6 +29,7 @@ public class SelectExecutor extends AbstractPreparedStatementExecutor {
     public List<Map<AbstractFieldDescriptor, Object>> execute(String select,
                                                               List<AbstractFieldDescriptor> selectedColumns,
                                                               List<Pair<AbstractFieldDescriptor, Object>> whereColumns) {
+        System.out.println("Execute select: " + select);
 
         List<Map<AbstractFieldDescriptor, Object>> result = new ArrayList<>();
 
@@ -46,7 +48,8 @@ public class SelectExecutor extends AbstractPreparedStatementExecutor {
                 }
             }
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
+            System.err.println(e);
             throw new RuntimeException(e);
         }
         return result;

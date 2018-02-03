@@ -2,8 +2,8 @@ package ru.otus.kirillov.myorm.commands.delete;
 
 import org.apache.commons.lang3.tuple.Pair;
 import ru.otus.kirillov.myorm.commands.Request;
-import ru.otus.kirillov.myorm.shema.elements.AbstractFieldDescriptor;
-import ru.otus.kirillov.myorm.shema.elements.EntityDescriptor;
+import ru.otus.kirillov.myorm.schema.elements.AbstractFieldDescriptor;
+import ru.otus.kirillov.myorm.schema.elements.EntityDescriptor;
 
 import java.util.List;
 

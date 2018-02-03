@@ -6,10 +6,10 @@ import ru.otus.kirillov.myorm.commands.AbstractCommand;
 import ru.otus.kirillov.myorm.commands.CommandInvoker;
 import ru.otus.kirillov.myorm.commands.generatesql.GenerateSQLRequest;
 import ru.otus.kirillov.myorm.executors.SelectExecutor;
-import ru.otus.kirillov.myorm.shema.elements.AbstractFieldDescriptor;
-import ru.otus.kirillov.myorm.shema.elements.EntityDescriptor;
-import ru.otus.kirillov.myorm.shema.elements.FieldDescriptors.OneToOneFieldDescriptor;
-import ru.otus.kirillov.myorm.shema.elements.FieldDescriptors.OneToManyFieldDescriptor;
+import ru.otus.kirillov.myorm.schema.elements.AbstractFieldDescriptor;
+import ru.otus.kirillov.myorm.schema.elements.EntityDescriptor;
+import ru.otus.kirillov.myorm.schema.elements.FieldDescriptors.OneToOneFieldDescriptor;
+import ru.otus.kirillov.myorm.schema.elements.FieldDescriptors.OneToManyFieldDescriptor;
 import ru.otus.kirillov.utils.ReflectionUtils;
 
 import java.util.*;
@@ -82,11 +82,12 @@ public class SelectCommand extends AbstractCommand<SelectRequest, List<? extends
         descriptor.getOneToOneFields()
                 .forEach(f -> {
                     Object refIdValue = selectionResult.get(f.getRefIdFieldDescriptor());
-                    if(refIdValue == null) {
-                        return;
+                    DataSet result = null;
+
+                    if(refIdValue != null) {
+                        //3.1. Селектим объект из связанной таблицы, по id - полученному из синтетического поля для OneToOne
+                        result = getOneToOneRefObject(f, refIdValue);
                     }
-                    //3.1. Селектим объект из связанной таблицы, по id - полученному из синтетического поля для OneToOne
-                    DataSet result = getOneToOneRefObject(f, refIdValue);
                     //3.2. Удаляем из мапы полей данные о данном синтетическом поле
                     selectionResult.remove(f.getRefIdFieldDescriptor());
                     //3.3. Заносим в мапу объект, полученный из результата
@@ -128,10 +129,12 @@ public class SelectCommand extends AbstractCommand<SelectRequest, List<? extends
                 .filter(f -> f.isSyntheticField())
                 .findAny().isPresent();
 
+        //Если после всез обработок остались синтетические поля - очевидно, что это back-reference
         if(syntheticFieldPresent) {
-            throw new RuntimeException(
-                    String.format("In result map\n(%s)\nretains synthetic field", fieldValues)
-            );
+            System.out.println(String.format("In result map\n(%s)\nretains synthetic field", fieldValues));
+            fieldValues = fieldValues.entrySet().stream()
+                    .filter(e -> !e.getKey().isSyntheticField())
+                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
         }
 
 

@@ -174,8 +174,15 @@ public final class ReflectionUtils {
         return result;
     }
 
-    public static Class<?> getGenericType(Class<?> clazz) {
+    public static Class<?> getParentGenericType(Class<?> clazz) {
+        CommonUtils.requiredNotNull(clazz);
         Type result = ((ParameterizedType) clazz.getGenericSuperclass()).getActualTypeArguments()[0];
+        return result instanceof Class ? (Class) result : null;
+    }
+
+    public static Class<?> getGenericType(Field field) {
+        CommonUtils.requiredNotNull(field);
+        Type result = ((ParameterizedType) field.getGenericType()).getActualTypeArguments()[0];
         return result instanceof Class ? (Class) result : null;
     }
 
@@ -251,10 +258,11 @@ public final class ReflectionUtils {
         return resultName.isEmpty() ? field.getName().toLowerCase(): resultName;
     }
 
-    public static String getRefFieldName(Field field, Class<? extends Annotation> annotationClaz, String defaultPrefix) {
+    public static String getRefFieldName(Field field, Class<? extends Annotation> annotationClass, String defaultPrefix) {
         CommonUtils.requiredNotNull(field, "field must be not null");
+        CommonUtils.requiredNotNull(annotationClass, "annotationClass must be not null");
 
-        if(!isAnnotated(field, OneToOne.class)) {
+        if(!isAnnotated(field, annotationClass)) {
             throw new RuntimeException("This is not OneToOne field");
         }
 

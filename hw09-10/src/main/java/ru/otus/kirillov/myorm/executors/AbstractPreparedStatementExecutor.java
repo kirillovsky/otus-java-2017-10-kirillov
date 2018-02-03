@@ -1,6 +1,8 @@
 package ru.otus.kirillov.myorm.executors;
 
-import ru.otus.kirillov.myorm.shema.elements.AbstractFieldDescriptor;
+import org.apache.commons.lang3.tuple.Pair;
+import ru.otus.kirillov.myorm.schema.elements.AbstractFieldDescriptor;
+import ru.otus.kirillov.utils.CommonUtils;
 
 import java.sql.Connection;
 import java.sql.JDBCType;
@@ -28,10 +30,25 @@ public abstract class AbstractPreparedStatementExecutor {
 
     static {
         Map<JDBCType, PreparedParamsSetter> tmpMap = new HashMap<>();
-        tmpMap.put(JDBCType.BIGINT, (ps, o, i) -> ps.setInt(i, (Integer)o));
-        tmpMap.put(JDBCType.VARCHAR, (ps, o, i) -> ps.setString(i, (String)o));
+        CommonUtils.putPair(tmpMap, withNulls(JDBCType.BIGINT, (ps, o, i) -> ps.setLong(i, (Long) o)));
+        CommonUtils.putPair(tmpMap, withNulls(JDBCType.INTEGER, (ps, o, i) -> ps.setInt(i, (Integer)o)));
+        CommonUtils.putPair(tmpMap, withNulls(JDBCType.VARCHAR, (ps, o, i) -> ps.setString(i, (String)o)));
+
+//        tmpMap.put(JDBCType.BIGINT, (ps, o, i) -> ps.setLong(i, (Long) o));
+//        tmpMap.put(JDBCType.INTEGER, (ps, o, i) -> ps.setInt(i, (Integer)o));
+//        tmpMap.put(JDBCType.VARCHAR, (ps, o, i) -> ps.setString(i, (String)o));
 
         SET_PARAMS_MAP = Collections.unmodifiableMap(tmpMap);
+    }
+
+    private static Pair<JDBCType, PreparedParamsSetter> withNulls(JDBCType type, PreparedParamsSetter notNullSetter) {
+        return Pair.of(type, (PreparedParamsSetter)(ps, o, i) -> {
+            if(o == null) {
+                ps.setNull(i, type.getVendorTypeNumber());
+            } else {
+                notNullSetter.accept(ps, o, i);
+            }
+        });
     }
 
     private Connection connection;

@@ -10,8 +10,8 @@ import ru.otus.kirillov.myorm.commands.saveOrUpdate.SaveOrUpdateRequest;
 import ru.otus.kirillov.myorm.commands.select.SelectRequest;
 import ru.otus.kirillov.myorm.connection.ConnectionFactory;
 import ru.otus.kirillov.myorm.connection.SingletonH2ConnectionFactory;
-import ru.otus.kirillov.myorm.shema.OrmMapper;
-import ru.otus.kirillov.myorm.shema.elements.EntityDescriptor;
+import ru.otus.kirillov.myorm.schema.OrmMapper;
+import ru.otus.kirillov.myorm.schema.elements.EntityDescriptor;
 import ru.otus.kirillov.utils.CommonUtils;
 
 import java.util.Collections;
@@ -42,7 +42,7 @@ public class MyOrmServiceImpl implements MyOrmService{
     public <T extends DataSet> void saveOrUpdate(T t) {
         CommonUtils.requiredNotNull(t);
         EntityDescriptor descriptor = mapper.getDescription(t.getClass());
-        invoker.invoke(new SaveOrUpdateRequest(descriptor, t));
+        invoker.invoke(new SaveOrUpdateRequest(descriptor, EntityDescriptor.getAllFieldValuePair(descriptor, t)));
 
     }
 
@@ -50,11 +50,17 @@ public class MyOrmServiceImpl implements MyOrmService{
     public <T extends DataSet> T load(long id, Class<T> clazz) {
         CommonUtils.requiredNotNull(clazz);
         EntityDescriptor descriptor = mapper.getDescription(clazz);
-        return invoker.invoke(
+        List<T> resultList = invoker.invoke(
                 new SelectRequest(descriptor,
                         Collections.singletonList(Pair.of(descriptor.getGeneratedIdField(), id))
                 )
         );
+
+        if(resultList.isEmpty()) {
+            return null;
+        }
+
+        return resultList.get(0);
     }
 
     @Override
@@ -81,9 +87,10 @@ public class MyOrmServiceImpl implements MyOrmService{
     private OrmMapper createOrmMapper(List<Class<? extends DataSet>> entityClasses) {
         OrmMapper mapper = new OrmMapper();
         Map<Class<? extends DataSet>, EntityDescriptor> entityClassMap = new HashMap<>();
-        entityClasses.forEach(aClass -> {
-           entityClassMap.putAll(invoker.invoke(new GenerateSchemaRequest(aClass, entityClassMap)));
-        });
+        entityClasses.forEach(aClass ->
+           entityClassMap.putAll(invoker.invoke(new GenerateSchemaRequest(aClass, entityClassMap)))
+        );
+        mapper.addAll(entityClassMap);
         return mapper;
     }
 }

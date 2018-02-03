@@ -7,8 +7,8 @@ import ru.otus.kirillov.myorm.commands.CommandInvoker;
 import ru.otus.kirillov.myorm.commands.generatesql.GenerateSQLRequest;
 import ru.otus.kirillov.myorm.commands.select.SelectRequest;
 import ru.otus.kirillov.myorm.executors.DmlExecutor;
-import ru.otus.kirillov.myorm.shema.elements.AbstractFieldDescriptor;
-import ru.otus.kirillov.myorm.shema.elements.EntityDescriptor;
+import ru.otus.kirillov.myorm.schema.elements.AbstractFieldDescriptor;
+import ru.otus.kirillov.myorm.schema.elements.EntityDescriptor;
 import ru.otus.kirillov.utils.ReflectionUtils;
 
 import java.sql.Connection;
@@ -76,12 +76,16 @@ public class DeleteCommand extends AbstractCommand<DeleteRequest, Void> {
         descriptor.getOneToOneFields().forEach(
                 f -> {
                     EntityDescriptor entityDescriptor = f.getEntityDescriptor();
+                    DataSet objectForDelete = (DataSet) ReflectionUtils.getFieldValue(f.getJavaField(), selectedObject);
+
+                    if(objectForDelete == null) {
+                        return;
+                    }
+
                     getInvoker().invoke(
                             new DeleteRequest(entityDescriptor, Collections.singletonList(
-                                    Pair.of(entityDescriptor.getGeneratedIdField(),
-                                            ReflectionUtils.getFieldValue(f.getJavaField(), selectedObject)
-                                    )
-                            ), false)
+                                    Pair.of(entityDescriptor.getGeneratedIdField(),objectForDelete.getId())
+                                    ), false)
                     );
                 }
         );
@@ -94,6 +98,11 @@ public class DeleteCommand extends AbstractCommand<DeleteRequest, Void> {
                     EntityDescriptor entityDescriptor = f.getEntityDescriptor();
                     Collection<? extends DataSet> col =
                             (Collection<? extends DataSet>) ReflectionUtils.getFieldValue(f.getJavaField(), selectedObject);
+
+                    if(col == null) {
+                        return;
+                    }
+
                     col.forEach(
                             o -> getInvoker().invoke(
                                     new DeleteRequest(entityDescriptor, Collections.singletonList(
