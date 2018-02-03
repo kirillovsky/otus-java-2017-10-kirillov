@@ -34,10 +34,6 @@ public abstract class AbstractPreparedStatementExecutor {
         CommonUtils.putPair(tmpMap, withNulls(JDBCType.INTEGER, (ps, o, i) -> ps.setInt(i, (Integer)o)));
         CommonUtils.putPair(tmpMap, withNulls(JDBCType.VARCHAR, (ps, o, i) -> ps.setString(i, (String)o)));
 
-//        tmpMap.put(JDBCType.BIGINT, (ps, o, i) -> ps.setLong(i, (Long) o));
-//        tmpMap.put(JDBCType.INTEGER, (ps, o, i) -> ps.setInt(i, (Integer)o));
-//        tmpMap.put(JDBCType.VARCHAR, (ps, o, i) -> ps.setString(i, (String)o));
-
         SET_PARAMS_MAP = Collections.unmodifiableMap(tmpMap);
     }
 
