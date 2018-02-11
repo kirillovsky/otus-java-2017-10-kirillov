@@ -16,7 +16,7 @@ import java.util.function.Function;
 /**
  * Created by Александр on 22.01.2018.
  */
-public abstract class AbstractHibernateDao<T extends DataSet> implements Dao<T> {
+public abstract class HibernateDao<T extends DataSet> implements Dao<T> {
 
     private SessionFactory sessionFactory;
 

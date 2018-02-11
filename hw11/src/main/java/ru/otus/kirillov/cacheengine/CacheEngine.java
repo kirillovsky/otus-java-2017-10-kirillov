@@ -11,6 +11,8 @@ public interface CacheEngine<K, V> {
 
     V get(K key);
 
+    void delete(K key);
+
     CacheStatistics getStats();
 
     void dispose();

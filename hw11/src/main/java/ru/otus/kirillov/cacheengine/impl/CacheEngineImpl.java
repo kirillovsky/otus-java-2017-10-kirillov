@@ -50,6 +50,12 @@ public class CacheEngineImpl<K, V> implements CacheEngine<K, V> {
     }
 
     @Override
+    public void delete(K key) {
+        cache.remove(key);
+        LOGGER.debug("Delete (Key={}) from cache", key);
+    }
+
+    @Override
     public CacheStatistics getStats() {
         return CacheStatistics.of(hit, miss);
     }
