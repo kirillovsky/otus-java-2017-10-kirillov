@@ -52,4 +52,27 @@
     </dependency>
 
   </dependencies>
+  <build>
+    <finalName>hw11</finalName>
+    <plugins>
+      <!-->Fat jar with shade-plugin (по размеру получается меньше, за счет minimizeJar)</-->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <id>build-jar</id>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <minimizeJar>true</minimizeJar>
+              <createDependencyReducedPom>false</createDependencyReducedPom>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 </project>

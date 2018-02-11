@@ -70,7 +70,7 @@ public final class CacheEngineConfigKeys {
 
     private CacheEngineConfigKeys(){}
 
-    private static class CacheEngineConfigKey<T> {
+    static class CacheEngineConfigKey<T> {
         private Class<T> paramType;
         private T defaultValue;
         private String uniqueKey;
@@ -103,7 +103,7 @@ public final class CacheEngineConfigKeys {
         }
     }
 
-    private static class EvictionConfigKey<K> extends CacheEngineConfigKey<K> {
+    static class EvictionConfigKey<K> extends CacheEngineConfigKey<K> {
         private EvictionType evictionType;
 
         public EvictionConfigKey(String uniqueKey, Class<K> paramType, K defaultValue, EvictionType evictionType) {
