@@ -1,0 +1,55 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>hw11</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <parent>
+    <groupId>ru.otus.kirillov</groupId>
+    <artifactId>parent-hw</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+
+  <description>
+    ДЗ-11: my cache engine
+    Напишите свой cache engine с soft references.
+    Добавьте кэширование в DBService из заданий myORM или Hibernate ORM
+  </description>
+
+  <properties>
+    <log4j2.version>2.10.0</log4j2.version>
+    <junit.version>4.12</junit.version>
+    <commons-lang3.version>LATEST</commons-lang3.version>
+    <mockito-core>1.10.19</mockito-core>
+  </properties>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>${commons-lang3.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>${log4j2.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>${log4j2.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+  </dependencies>
+</project>
