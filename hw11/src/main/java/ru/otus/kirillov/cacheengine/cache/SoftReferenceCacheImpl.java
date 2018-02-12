@@ -6,6 +6,8 @@ import ru.otus.kirillov.cacheengine.utils.CommonUtils;
 
 import java.lang.ref.SoftReference;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.stream.Collectors;
 
 /**
@@ -23,7 +25,7 @@ import java.util.stream.Collectors;
  */
 public class SoftReferenceCacheImpl<K, V> implements Cache<K, V> {
 
-    private Map<K, SoftReference<CacheElement<V>>> inner = new LinkedHashMap<>();
+    private Map<K, SoftReference<CacheElement<V>>> inner = new ConcurrentHashMap<>();
 
     @Override
     public int size() {
