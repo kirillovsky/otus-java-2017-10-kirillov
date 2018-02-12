@@ -40,6 +40,11 @@ public final class ReflectionUtils {
         return fields.stream();
     }
 
+    public static <T> Class<T> getSuperClassGenericArgument(Class<?> clazz) {
+        return (Class<T>) ((ParameterizedType) CommonUtils.retunIfNotNull(clazz)
+                .getGenericSuperclass()).getActualTypeArguments()[0];
+    }
+
     /**
      * Инстанцирование нового объекта класса, c заданными аргументами
      *
@@ -62,10 +67,9 @@ public final class ReflectionUtils {
 
     /**
      * Попытка создать инстанс объекта класса {@param type} и проинджектить
-     * в него параметр {@param obj}. Здесь возможно 3 случая:
-     * 1. У него есть конструктор с одним параметров {@param <I>}
+     * в него параметр {@param obj}. Здесь возможно 2 случая:
+     * 1. У него есть конструктор с одним параметром {@param <I>}
      * 2. У него есть дефолтный конструктор и поле {@param <I>}
-     * 3. Он должен иметь модификатор public
      *
      * @param type - класс инстанцируемого объекта
      * @param obj  - инжектируемый объект
@@ -74,14 +78,35 @@ public final class ReflectionUtils {
      * @return инстанс
      */
     public static <T, I> T instantiateWithInjections(Class<?> type, I obj) {
-        T instance = instantiate(type, obj);
-        if (instance == null && hasConstructor(type, obj.getClass())) {
-            instance = instantiate(type, obj);
+        return instantiateWithInjections(type, new Object[]{obj});
+    }
+
+    /**
+     * Попытка создать инстанс объекта класса {@param type} и проинджектить
+     * в него параметры {@param objects}. Здесь возможно 2 случая:
+     * 1. У него есть конструктор с параметрами (в переданном порядке)
+     * 2. У него есть дефолтный конструктор и поле - для случая полей разных типов (иначе см. первый случай*
+     * @param type    - класс инстанцируемого объекта
+     * @param objects - инжектируемые объекты
+     * @param <T>     - тип инстанцируемого объекта
+     * @return инстанс
+     */
+    public static <T> T instantiateWithInjections(Class<?> type, Object... objects) {
+        T instance = instantiate(type, objects);
+        if (instance == null && hasConstructor(type, (Class<?>[]) Arrays.stream(objects)
+                .map(Object::getClass)
+                .collect(Collectors.toList())
+                .toArray(new Class<?>[]{}))) {
+            instance = instantiate(type, objects);
         }
-        if (instance == null && hasConstructor(type)
-                && hasSingleFieldByType(type, obj.getClass())) {
-            instance = withFieldValue(instantiate(type),
-                    getField(type, obj.getClass()), obj);
+        if (instance == null && hasConstructor(type)) {
+            instance = instantiate(type);
+            for (Object obj : objects) {
+                if (!hasSingleFieldByType(type, obj.getClass())) {
+                    return null;
+                }
+                instance = withFieldValue(instance, getField(type, obj.getClass()), obj);
+            }
         }
         return instance;
     }
@@ -242,31 +267,31 @@ public final class ReflectionUtils {
 
     public static String getTableName(Class<? extends DataSet> clazz) {
         CommonUtils.requiredNotNull(clazz, "Class must be not null");
-        if(!isAnnotated(clazz, Table.class)) {
+        if (!isAnnotated(clazz, Table.class)) {
             return clazz.getSimpleName().toLowerCase();
         }
         String resultName = getAnnotation(clazz, Table.class).name();
-        return resultName.isEmpty() ? clazz.getSimpleName().toLowerCase(): resultName;
+        return resultName.isEmpty() ? clazz.getSimpleName().toLowerCase() : resultName;
     }
 
     public static String getSqlColumnName(Field field) {
         CommonUtils.requiredNotNull(field, "field must be not null");
-        if(!isAnnotated(field, Column.class)) {
+        if (!isAnnotated(field, Column.class)) {
             return field.getName().toLowerCase();
         }
         String resultName = getAnnotation(field, Column.class).name();
-        return resultName.isEmpty() ? field.getName().toLowerCase(): resultName;
+        return resultName.isEmpty() ? field.getName().toLowerCase() : resultName;
     }
 
     public static String getRefFieldName(Field field, Class<? extends Annotation> annotationClass, String defaultPrefix) {
         CommonUtils.requiredNotNull(field, "field must be not null");
         CommonUtils.requiredNotNull(annotationClass, "annotationClass must be not null");
 
-        if(!isAnnotated(field, annotationClass)) {
+        if (!isAnnotated(field, annotationClass)) {
             throw new RuntimeException("This is not OneToOne field");
         }
 
-        if(isAnnotated(field, JoinColumn.class)) {
+        if (isAnnotated(field, JoinColumn.class)) {
             return getAnnotation(field, JoinColumn.class).name();
         }
 
