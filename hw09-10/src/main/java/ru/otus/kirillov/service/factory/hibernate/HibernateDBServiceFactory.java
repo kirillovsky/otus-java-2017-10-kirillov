@@ -5,25 +5,20 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
-import org.hibernate.type.descriptor.sql.BigIntTypeDescriptor;
-import org.hibernate.type.descriptor.sql.VarcharTypeDescriptor;
 import ru.otus.kirillov.configuration.DBServiceConfig;
 import ru.otus.kirillov.configuration.DBServiceConfig.DB;
-import ru.otus.kirillov.dao.hibernate.AbstractHibernateDao;
+import ru.otus.kirillov.dao.hibernate.HibernateDao;
 import ru.otus.kirillov.model.AddressDataSet;
 import ru.otus.kirillov.model.PhoneDataSet;
 import ru.otus.kirillov.model.UserDataSet;
 import ru.otus.kirillov.service.DBService;
-import ru.otus.kirillov.service.DBServiceFactory;
 import ru.otus.kirillov.service.factory.AbstractDBServiceFactory;
 import ru.otus.kirillov.service.hibernate.DBServiceHibernateImpl;
-import ru.otus.kirillov.utils.ReflectionUtils;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
 
 /**
  * Фабрика для создания {@link DBService} с реализацией Hibernate
@@ -32,9 +27,9 @@ import java.util.stream.Stream;
 public class HibernateDBServiceFactory extends AbstractDBServiceFactory {
 
     //region DAO-классы для модели из задания
-    public static class UserDataSetDao extends AbstractHibernateDao<UserDataSet> {}
-    public static class AddressDataSetDao extends AbstractHibernateDao<AddressDataSet> {}
-    public static class PhoneDataSetDao extends AbstractHibernateDao<PhoneDataSet> {}
+    public static class UserDataSetDao extends HibernateDao<UserDataSet> {}
+    public static class AddressDataSetDao extends HibernateDao<AddressDataSet> {}
+    public static class PhoneDataSetDao extends HibernateDao<PhoneDataSet> {}
     //endregion
 
 
@@ -60,13 +55,13 @@ public class HibernateDBServiceFactory extends AbstractDBServiceFactory {
 
     @Override
     public DBService createDBService(DBServiceConfig dbServiceConfig) {
-        Configuration configuration = createConfiguration(dbServiceConfig);
+        Configuration configuration = createHibernateConfiguration(dbServiceConfig);
         DBService dbService = new DBServiceHibernateImpl(createSessionFactory(configuration));
         registerDAO(dbService, dbServiceConfig);
         return dbService;
     }
 
-    private Configuration createConfiguration(DBServiceConfig dbServiceConfig) {
+    private Configuration createHibernateConfiguration(DBServiceConfig dbServiceConfig) {
         Configuration configuration = new Configuration();
 
         configuration.setProperty(Environment.DIALECT, DB_TYPES_TO_DIALECT.get(dbServiceConfig.getDbType()));
