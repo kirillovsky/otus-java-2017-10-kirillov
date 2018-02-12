@@ -16,11 +16,13 @@ public abstract class CachedProxyDao<T extends DataSet> implements Dao<T> {
     private final LongFunction<String> ID_TO_KEY_MAPPER =
             id -> String.format("%s#%s", getEntityType().getSimpleName(), id);
 
-    private final CacheEngine<String, T> engine;
+    private CacheEngine<String, DataSet> engine;
 
-    private final Dao<T> readDaoService;
+    private Dao<T> readDaoService;
 
-    public CachedProxyDao(CacheEngine<String, T> engine, Dao<T> realDbDao) {
+    public CachedProxyDao() {}
+
+    public CachedProxyDao(CacheEngine<String, DataSet> engine, Dao<T> realDbDao) {
         this.engine = CommonUtils.retunIfNotNull(engine);
         this.readDaoService = CommonUtils.retunIfNotNull(realDbDao);
     }
@@ -68,6 +70,6 @@ public abstract class CachedProxyDao<T extends DataSet> implements Dao<T> {
     }
 
     private T getFromCache(long id) {
-        return engine.get(ID_TO_KEY_MAPPER.apply(id));
+        return (T) engine.get(ID_TO_KEY_MAPPER.apply(id));
     }
 }

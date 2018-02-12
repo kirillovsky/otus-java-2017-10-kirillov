@@ -102,13 +102,13 @@ public class DBServiceCachedHibernateImplTest extends DBServiceTest {
     @Test
     public void deleteSimpleDataSets() {
         super.deleteSimpleDataSets();
-        checkCacheStats(2, 0, 0);
+        checkCacheStats(0, 0, 0);
     }
 
     @Test
     public void deleteUserWithoutDependentEntities() {
         super.deleteUserWithoutDependentEntities();
-        checkCacheStats(1, 0, 0);
+        checkCacheStats(0, 0, 0);
     }
 
     private void checkCacheStats(long cacheHit, long cacheMiss, int cacheSize) {
