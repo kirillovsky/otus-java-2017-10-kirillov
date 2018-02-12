@@ -9,11 +9,13 @@ public class CacheStatistics {
 
     private long cacheMiss;
 
-    public static CacheStatistics of(long cacheHit, long cacheMiss) {
-        return new CacheStatistics(cacheHit, cacheMiss);
+    private int cacheSize;
+
+    public static CacheStatistics of(long cacheHit, long cacheMiss, int cacheSize) {
+        return new CacheStatistics(cacheHit, cacheMiss, cacheSize);
     }
 
-    protected CacheStatistics(long cacheHit, long cacheMiss) {
+    protected CacheStatistics(long cacheHit, long cacheMiss, int cacheSize) {
         this.cacheHit = cacheHit;
         this.cacheMiss = cacheMiss;
     }
@@ -24,5 +26,9 @@ public class CacheStatistics {
 
     public long getCacheMiss() {
         return cacheMiss;
+    }
+
+    public int getCacheSize() {
+        return cacheSize;
     }
 }

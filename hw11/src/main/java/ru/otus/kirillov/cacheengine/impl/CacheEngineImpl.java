@@ -57,7 +57,7 @@ public class CacheEngineImpl<K, V> implements CacheEngine<K, V> {
 
     @Override
     public CacheStatistics getStats() {
-        return CacheStatistics.of(hit, miss);
+        return CacheStatistics.of(hit, miss, cache.size());
     }
 
     @Override
