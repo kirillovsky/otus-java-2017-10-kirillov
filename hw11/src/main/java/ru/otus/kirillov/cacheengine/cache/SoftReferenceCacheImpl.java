@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
  * <p>
  * Created by Александр on 05.02.2018.
  */
-public class SoftReferenceCache<K, V> implements Cache<K, V> {
+public class SoftReferenceCacheImpl<K, V> implements Cache<K, V> {
 
     private Map<K, SoftReference<CacheElement<V>>> inner = new LinkedHashMap<>();
 
@@ -97,7 +97,7 @@ public class SoftReferenceCache<K, V> implements Cache<K, V> {
     /**
      * Удаление протухших SoftReferences
      */
-    public void removeAddledSoftReference() {
+    private void removeAddledSoftReference() {
         inner.entrySet().stream()
                 .filter(e -> e.getValue().get() == null)
                 .forEach(e -> remove(e.getKey()));

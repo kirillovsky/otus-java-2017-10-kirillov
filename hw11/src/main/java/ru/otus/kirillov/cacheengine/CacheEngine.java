@@ -15,6 +15,8 @@ public interface CacheEngine<K, V> {
 
     CacheStatistics getStats();
 
+    void reset();
+
     void dispose();
 
 }

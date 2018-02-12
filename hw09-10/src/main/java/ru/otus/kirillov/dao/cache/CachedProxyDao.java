@@ -1,19 +1,17 @@
 package ru.otus.kirillov.dao.cache;
 
-import org.apache.commons.lang3.tuple.Pair;
 import ru.otus.kirillov.cacheengine.CacheEngine;
 import ru.otus.kirillov.dao.Dao;
 import ru.otus.kirillov.model.DataSet;
 import ru.otus.kirillov.utils.CommonUtils;
 
 import java.util.List;
-import java.util.function.Function;
 import java.util.function.LongFunction;
 
-/**
+/** Прокся с кешированием к реальному DAO
  * Created by Александр on 11.02.2018.
  */
-public abstract class CachedDao<T extends DataSet> implements Dao<T> {
+public abstract class CachedProxyDao<T extends DataSet> implements Dao<T> {
 
     private final LongFunction<String> ID_TO_KEY_MAPPER =
             id -> String.format("%s#%s", getEntityType().getSimpleName(), id);
@@ -22,19 +20,28 @@ public abstract class CachedDao<T extends DataSet> implements Dao<T> {
 
     private final Dao<T> readDaoService;
 
-    public CachedDao(CacheEngine<String, T> engine, Dao<T> realDbDao) {
+    public CachedProxyDao(CacheEngine<String, T> engine, Dao<T> realDbDao) {
         this.engine = CommonUtils.retunIfNotNull(engine);
         this.readDaoService = CommonUtils.retunIfNotNull(realDbDao);
     }
 
     @Override
     public void delete(T object) {
-
+        if(object == null) {
+            return;
+        }
+        engine.delete(ID_TO_KEY_MAPPER.apply(object.getId()));
+        readDaoService.delete(object);
     }
 
     @Override
     public T saveOrUpdate(T object) {
-        return null;
+        if(object == null) {
+            return null;
+        }
+        T result = readDaoService.saveOrUpdate(object);
+        putToCache(result);
+        return result;
     }
 
     @Override
@@ -42,20 +49,15 @@ public abstract class CachedDao<T extends DataSet> implements Dao<T> {
         T result = getFromCache(id);
         if(result == null) {
             result = readDaoService.read(id);
-            if(result != null) {
-                putToCache();
-            }
+            putToCache(result);
         }
-
-        return result != null ? result: readDaoService.read(id);
+        return result;
     }
 
     @Override
     public List<T> readAll() {
         List<T> result = readDaoService.readAll();
-        result.stream()
-                .filter(entity -> entity != null)
-                .forEach(this::putToCache);
+        result.stream().forEach(this::putToCache);
         return result;
     }
 

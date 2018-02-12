@@ -28,9 +28,9 @@ public interface Cache<K, V> {
 
     void putAll(Map<? extends K, ? extends CacheElement<V>> m);
 
-    public void clear();
+    void clear();
 
-    public Set<K> keySet();
+    Set<K> keySet();
 
     Collection<CacheElement<V>> values();
 

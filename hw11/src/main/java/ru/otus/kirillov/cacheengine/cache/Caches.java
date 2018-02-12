@@ -25,6 +25,6 @@ public final class Caches {
     }
 
     public static <K, V> Cache<K, V> createSoftReferenceCache(CacheEngineConfig config) {
-        return new SoftReferenceCache<>();
+        return new SoftReferenceCacheImpl<>();
     }
 }

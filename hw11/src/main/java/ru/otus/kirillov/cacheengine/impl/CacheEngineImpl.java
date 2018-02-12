@@ -65,6 +65,14 @@ public class CacheEngineImpl<K, V> implements CacheEngine<K, V> {
         scheduledExecutor.stop();
     }
 
+    @Override
+    public void reset() {
+        this.scheduledExecutor.stop();
+        cache.keySet().forEach(e -> cache.remove(e));
+        hit = miss = 0;
+        this.scheduledExecutor.start();
+    }
+
     private void ensureCacheSize() {
         maxCacheSizeEvictionExecutor.execute();
     }
