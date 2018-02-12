@@ -109,7 +109,7 @@ public abstract class DBServiceTest {
         Assert.assertEquals(user, getDbService().read(user.getId(), UserDataSet.class));
     }
 
-    public void updateReduceOneToOneFields() {
+    public void updateReduceOneToManyFields() {
         UserDataSet user = getFullTestUser();
         user.withPhoneDataSets(new ArrayList<>(user.getPhoneDataSets()))
                 .withNewPhoneDataSets(createPhone("333333"))
@@ -149,11 +149,11 @@ public abstract class DBServiceTest {
     }
 
     protected UserDataSet getFullTestUser() {
-        PhoneDataSet phone1 = getDbService().saveOrUpdate(createPhone("122421"));
-        PhoneDataSet phone2 = getDbService().saveOrUpdate(createPhone("8932421"));
+        PhoneDataSet phone1 = createPhone("122421");
+        PhoneDataSet phone2 = createPhone("8932421");
 
         AddressDataSet address =
-                getDbService().saveOrUpdate(createAddress("Moscow, Pushkin's str., h. Kolotushkin's"));
+                createAddress("Moscow, Pushkin's str., h. Kolotushkin's");
 
         return createUser("Vasya Pupkin", 100, address, Arrays.asList(phone1, phone2));
     }
