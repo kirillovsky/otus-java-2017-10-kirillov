@@ -70,8 +70,8 @@ public class DBServiceHibernateImplTest extends DBServiceTest {
     }
 
     @Test
-    public void updateReduceOneToOneFields() {
-        super.updateReduceOneToOneFields();
+    public void updateReduceOneToManyFields() {
+        super.updateReduceOneToManyFields();
     }
 
     @Test
