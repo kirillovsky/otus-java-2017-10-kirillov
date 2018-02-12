@@ -18,6 +18,7 @@ public class CacheStatistics {
     protected CacheStatistics(long cacheHit, long cacheMiss, int cacheSize) {
         this.cacheHit = cacheHit;
         this.cacheMiss = cacheMiss;
+        this.cacheSize = cacheSize;
     }
 
     public long getCacheHit() {
