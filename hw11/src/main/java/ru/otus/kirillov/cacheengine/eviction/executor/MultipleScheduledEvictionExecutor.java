@@ -20,7 +20,7 @@ public class MultipleScheduledEvictionExecutor implements ScheduledCommandExecut
 
     private static final Logger LOGGER = LogManager.getLogger();
 
-    private final Timer timer = new Timer();
+    private Timer timer;
     private final List<Pair<EvictionCommand, Duration>> scheduledCommands = new ArrayList<>();
 
     public MultipleScheduledEvictionExecutor(List<Pair<EvictionCommand, Duration>> scheduledCommands) {
@@ -39,6 +39,7 @@ public class MultipleScheduledEvictionExecutor implements ScheduledCommandExecut
     // TODO: 08.02.2018 Интересно почему. Я же это делал. Из-за protected, а не public конструктора в нем?
     @Override
     public void start() {
+        createOrResetTimer();
         scheduledCommands.stream()
                 .forEach(p -> timer.schedule(new TimerTask() {
                             @Override
@@ -51,7 +52,10 @@ public class MultipleScheduledEvictionExecutor implements ScheduledCommandExecut
 
     @Override
     public void stop() {
-        timer.cancel();
+        if (timer != null) {
+            timer.cancel();
+        }
+        LOGGER.debug("Timer stopped!!!");
     }
 
     private void executeSafety(EvictionCommand command) {
@@ -60,5 +64,15 @@ public class MultipleScheduledEvictionExecutor implements ScheduledCommandExecut
         } catch (Exception e) {
             LOGGER.catching(e);
         }
+    }
+
+    private void createOrResetTimer() {
+        if (timer != null) {
+            LOGGER.debug("Timer already exists. Try to cancel it!");
+            timer.cancel();
+            LOGGER.debug("Existing timer successfully canceled!");
+        }
+        timer = new Timer(true);
+        LOGGER.debug("New timer started!!!");
     }
 }
