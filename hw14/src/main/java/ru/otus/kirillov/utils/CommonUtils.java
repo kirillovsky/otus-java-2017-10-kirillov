@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 /**
  * Утилиты обзего назначения
@@ -41,6 +42,13 @@ public final class CommonUtils {
 
     public static <T> T returnIfNotNull(T value) {
         requiredNotNull(value);
+        return value;
+    }
+
+    public static <T> T returnIfTrue(T value, Predicate<T> predicate) {
+        if (!predicate.test(value)) {
+            throw new IllegalArgumentException("Predicate false for value - " + Objects.toString(value));
+        }
         return value;
     }
 

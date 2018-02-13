@@ -19,7 +19,7 @@ public final class SortAlgo {
     public static <T> List<T> quickSort(List<T> list, Comparator<T> comp) {
         LOGGER.debug("Before sort: {}", list);
         new QuickSort<>(comp).quickSort(list, 0, list.size() - 1);
-        LOGGER.debug("After sort: {}", list);
+        LOGGER.debug("Before sort: {}", list);
         return list;
     }
 

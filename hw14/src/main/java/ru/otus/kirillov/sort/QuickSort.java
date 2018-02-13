@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import ru.otus.kirillov.utils.CommonUtils;
 
 import java.util.*;
+import java.util.concurrent.*;
 
 /**
  * Собственно сама быстрая сортировка
@@ -15,14 +16,25 @@ public final class QuickSort<T> {
     public static final int INSERTION_SORT_THRESHOLD = 47;
 
     private static final Logger LOGGER = LogManager.getLogger();
-
     private static final Random RND = new Random(Calendar.getInstance().getTimeInMillis());
+    private static final int DEFAULT_THREAD_COUNT = 4;
 
-    private Comparator<T> comp;
+    private final Comparator<T> comp;
+    private Semaphore taskCountSemaphore;
+    private int maxTaskCount;
+    private final ExecutorService executorService;
 
     public QuickSort(Comparator<T> comp) {
-        this.comp = CommonUtils.returnIfNotNull(comp);
+        this(comp, DEFAULT_THREAD_COUNT);
     }
+
+    public QuickSort(Comparator<T> comp, int threadCount) {
+        this.comp = CommonUtils.returnIfNotNull(comp);
+        int actualThreadCount = CommonUtils.returnIfTrue(threadCount, i -> i > 0);
+        this.executorService = actualThreadCount != 1 ? Executors.newFixedThreadPool(actualThreadCount) :
+                Executors.newSingleThreadExecutor();
+    }
+
 
     /**
      * Запуск быстрой сортировки
@@ -32,20 +44,57 @@ public final class QuickSort<T> {
      * @param highBound - верхняя граница
      */
     public void quickSort(List<T> lst, int lowBound, int highBound) {
+        maxTaskCount = getMaxTaskCount(highBound - lowBound + 1);
+        taskCountSemaphore = maxTaskCount > 0 ? new Semaphore(maxTaskCount) : null;
+
+        innerQuickSort(lst, lowBound, highBound);
+        awaitThreadExecutionFinished();
+    }
+
+    /**
+     * Верхняя оценка кол-ва тасков (при наихудшем разбиении):
+     * listSize > INSERTION_SORT_THRESHOLD ? listSize + 2 - INSERTION_SORT_THRESHOLD: 0
+     *
+     * @param listSize
+     * @return
+     */
+    private int getMaxTaskCount(int listSize) {
+        int result = listSize > INSERTION_SORT_THRESHOLD ? listSize + 2 - INSERTION_SORT_THRESHOLD : 0;
+        LOGGER.info("Max task count - {} ", result);
+        return result;
+    }
+
+    /**
+     * С ожидание завершения работы все тасков основная проблема, так как
+     * заранее вычислить кол-во тасков (рекурсивных вызовов выполняемых в разных потоках) на исполнении нельзя.
+     * Однако, есть верхняя на кол-ов тасков.
+     * n - длина сортируемого массива
+     * Можно контролировать их максимальное (верхнюю оценку) кол-во тасков и в конце пытаться взять
+     * это число в семафоре.
+     */
+    private void awaitThreadExecutionFinished() {
+        if (maxTaskCount > 0) {
+            acquireAllTask();
+        }
+
+    }
+
+    private void innerQuickSort(List<T> lst, int lowBound, int highBound) {
         if (isTrimTerminalRecursion(lst, lowBound, highBound)) {
             return;
         }
 
         if (lowBound < highBound) {
             int partitionInd = randomPartition(lst, lowBound, highBound);
-            quickSort(lst, lowBound, partitionInd - 1);
-            quickSort(lst, partitionInd + 1, highBound);
+            acquireTask();
+            executorService.execute(withReleaseTask(() -> innerQuickSort(lst, lowBound, partitionInd - 1)));
+            acquireTask();
+            executorService.execute(withReleaseTask(() -> innerQuickSort(lst, partitionInd + 1, highBound)));
         }
-
     }
 
     /**
-     * Постановка выбранного опорного элемента
+     * Постановка выбранного опорного элемента (со случайным выбором опорного элемента)
      * на его порядковое место в итоговом отсортированном массиве
      *
      * @param lst       - сортируемый массив
@@ -126,6 +175,41 @@ public final class QuickSort<T> {
 
     private int comp(List<T> lst, int i, int j) {
         return comp.compare(lst.get(i), lst.get(j));
+    }
+
+    private Runnable withReleaseTask(Runnable r) {
+        return () -> {
+            r.run();
+            taskCountSemaphore.release();
+            LOGGER.info("Release one task succeed!!");
+            LOGGER.debug(() -> "Running tasks - " + getRunningTasks());
+        };
+    }
+
+    private void acquireTask() {
+        try {
+            taskCountSemaphore.acquire();
+            LOGGER.info("Acquire one task succeed!!");
+            LOGGER.debug(() -> "Running tasks - " + getRunningTasks());
+        } catch (InterruptedException e) {
+            LOGGER.catching(e);
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void acquireAllTask() {
+        try {
+            taskCountSemaphore.acquire(maxTaskCount);
+            LOGGER.info("Acquire all task succeed!!");
+        } catch (InterruptedException e) {
+            LOGGER.catching(e);
+            throw new RuntimeException(e);
+        }
+    }
+
+    private int getRunningTasks() {
+        int availablePermits = taskCountSemaphore.availablePermits();
+        return availablePermits == 0 ? 0: maxTaskCount - availablePermits;
     }
 
 }
