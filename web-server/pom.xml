@@ -1,0 +1,52 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>ru.otus.kirillov</groupId>
+        <artifactId>parent-hw</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>ru.otus.kirillov</groupId>
+    <artifactId>web-server</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <properties>
+        <junit.version>5.1.0-RC1</junit.version>
+        <commons-lang3.version>LATEST</commons-lang3.version>
+        <log4j-core.version>2.10.0</log4j-core.version>
+    </properties>
+
+    <description>
+        ДЗ-12: Веб сервер
+        Встроить веб сервер в приложение из ДЗ-11.
+        Сделать админскую страницу, на которой админ должен авторизоваться
+        и получить доступ к параметрам и состоянию кэша.
+    </description>
+
+    <dependencies>
+        <dependency>
+            <groupId>ru.otus.kirillov</groupId>
+            <artifactId>hw09-10</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j-core.version}</version>
+        </dependency>
+    </dependencies>
+</project>
