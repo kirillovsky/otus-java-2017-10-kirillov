@@ -1,23 +1,72 @@
 package ru.otus.kirillov.model.commands;
 
-import ru.otus.kirillov.model.service.SessionService;
-import ru.otus.kirillov.model.service.UserService;
-import ru.otus.kirillov.service.DBService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import ru.otus.kirillov.model.commands.common.ErroneousResult;
+import ru.otus.kirillov.model.commands.common.SessionRequestWrapper;
+import ru.otus.kirillov.model.service.auth.AuthResult;
+import ru.otus.kirillov.model.service.auth.AuthStatus;
+import ru.otus.kirillov.model.service.auth.AuthService;
+import ru.otus.kirillov.utils.CommonUtils;
+
+import java.util.List;
+
 
 public final class CommandInvoker {
 
-    private final DBService dbService;
+    public static class UnknownOperationException extends RuntimeException {
 
-    private final UserService userService;
+        public UnknownOperationException(Request rq) {
+            super("Not found operation for request - " + rq.toString());
+        }
+    }
 
-    private final SessionService sessionService;
+    private final static Logger log = LogManager.getLogger();
 
-    // TODO: 22.02.2018 В конструкторе слишком много параметров, подозреваю, что UserService и SessionService
-    // TODO: 22.02.2018 надо объединить в AuthenticationService (что будет совсем логично)
-    public CommandInvoker(DBService dbService, UserService userService, SessionService sessionService,
-                          ) {
-        this.dbService = dbService;
-        this.userService = userService;
-        this.sessionService = sessionService;
+    private final AuthService authService;
+
+    private final List<Command> commands;
+
+    public CommandInvoker(AuthService authService,
+                          List<Command> operationCommands) {
+        CommonUtils.requiredNotNull(authService, operationCommands);
+        this.authService = authService;
+        this.commands = operationCommands;
+    }
+
+    public Result execute(Request rq) {
+        CommonUtils.requiredNotNull(rq);
+        AuthResult authResult = authenticate(rq);
+
+        if (authResult.getStatus() != AuthStatus.OK) {
+            return ErroneousResult.of(authResult.getAdditionalInfo());
+        }
+
+        final Request actualRq = unpackSessionRequest(rq);
+
+        return commands.stream()
+                .filter(c -> c.isApplicable(actualRq))
+                .findFirst()
+                .orElseThrow(() -> new UnknownOperationException(actualRq))
+                .execute(actualRq);
+    }
+
+    private AuthResult authenticate(Request request) {
+        if (!(request instanceof SessionRequestWrapper)) {
+            return AuthResult.of(AuthStatus.OK);
+        }
+
+        SessionRequestWrapper<?> sessionRq = (SessionRequestWrapper<?>) request;
+
+        if (!authService.isValidSession(sessionRq.getSessionId(), sessionRq.getUserName())) {
+            return AuthResult.of(AuthStatus.NOT_VALID,
+                    String.format("Authentication failed (SessionId = %s, UserName = %s)",
+                            sessionRq.getSessionId(), sessionRq.getUserName()));
+        }
+        return AuthResult.of(AuthStatus.OK);
+    }
+
+    private Request unpackSessionRequest(Request rq) {
+        return rq instanceof SessionRequestWrapper ? ((SessionRequestWrapper) rq).getRequest() : rq;
     }
 }

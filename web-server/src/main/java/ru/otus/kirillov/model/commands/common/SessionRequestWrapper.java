@@ -1,11 +1,12 @@
-package ru.otus.kirillov.model.request;
+package ru.otus.kirillov.model.commands.common;
 
+import ru.otus.kirillov.model.commands.Request;
 import ru.otus.kirillov.utils.CommonUtils;
 
 /**
  * Запрос, для которого нужна сессия
  */
-public final class SessionRequest<T extends Request> implements Request{
+public final class SessionRequestWrapper<T extends Request> implements Request{
 
     /**
      * ID-сессии
@@ -22,19 +23,23 @@ public final class SessionRequest<T extends Request> implements Request{
      */
     private final T request;
 
-    private SessionRequest(String sessionId, String usetName, T request) {
+    private SessionRequestWrapper(String sessionId, String userName, T request) {
         this.sessionId = sessionId;
-        this.userName = usetName;
+        this.userName = userName;
         this.request = request;
     }
 
-    public static <T extends Request> SessionRequest of(String sessionId, String userName, T request) {
+    public static <T extends Request> SessionRequestWrapper of(String sessionId, String userName, T request) {
         CommonUtils.requiredNotNull(sessionId, request);
-        return new SessionRequest(sessionId, userName, request);
+        return new SessionRequestWrapper(sessionId, userName, request);
     }
 
     public String getSessionId() {
         return sessionId;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 
     public T getRequest() {

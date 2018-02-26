@@ -1,6 +1,7 @@
-package ru.otus.kirillov.model.result;
+package ru.otus.kirillov.model.commands.getCacheStats;
 
 import ru.otus.kirillov.cacheengine.stats.CacheStatistics;
+import ru.otus.kirillov.model.commands.Result;
 import ru.otus.kirillov.utils.CommonUtils;
 
 /**
