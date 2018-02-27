@@ -1,5 +1,6 @@
 package ru.otus.kirillov.model.commands.common;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import ru.otus.kirillov.model.commands.Request;
 import ru.otus.kirillov.utils.CommonUtils;
 
@@ -44,5 +45,14 @@ public final class SessionRequestWrapper<T extends Request> implements Request{
 
     public T getRequest() {
         return request;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("sessionId", sessionId)
+                .append("userName", userName)
+                .append("request", request)
+                .toString();
     }
 }

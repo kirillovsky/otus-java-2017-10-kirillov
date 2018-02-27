@@ -1,5 +1,6 @@
 package ru.otus.kirillov.model.commands.common;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import ru.otus.kirillov.model.commands.Result;
 
 /**
@@ -18,5 +19,12 @@ public final class ErroneousResult implements Result {
 
     public static ErroneousResult of(String cause) {
         return new ErroneousResult(cause);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("cause", cause)
+                .toString();
     }
 }

@@ -36,6 +36,7 @@ public final class CommandInvoker {
 
     public Result execute(Request rq) {
         CommonUtils.requiredNotNull(rq);
+        log.info("Start to process request - {}", rq);
         AuthResult authResult = authenticate(rq);
 
         if (authResult.getStatus() != AuthStatus.OK) {
@@ -47,22 +48,28 @@ public final class CommandInvoker {
         return commands.stream()
                 .filter(c -> c.isApplicable(actualRq))
                 .findFirst()
-                .orElseThrow(() -> new UnknownOperationException(actualRq))
+                .orElseThrow(() -> {
+                    log.error("Unable to process request - {}", actualRq);
+                    return new UnknownOperationException(actualRq);
+                })
                 .execute(actualRq);
     }
 
     private AuthResult authenticate(Request request) {
         if (!(request instanceof SessionRequestWrapper)) {
+            log.debug("No needs session context for rq - {}", request);
             return AuthResult.of(AuthStatus.OK);
         }
 
         SessionRequestWrapper<?> sessionRq = (SessionRequestWrapper<?>) request;
 
         if (!authService.isValidSession(sessionRq.getSessionId(), sessionRq.getUserName())) {
+            log.error("Unable to authorize rq - {}", request);
             return AuthResult.of(AuthStatus.NOT_VALID,
                     String.format("Authentication failed (SessionId = %s, UserName = %s)",
                             sessionRq.getSessionId(), sessionRq.getUserName()));
         }
+        log.info("Authorization succeed for request - {}", request);
         return AuthResult.of(AuthStatus.OK);
     }
 

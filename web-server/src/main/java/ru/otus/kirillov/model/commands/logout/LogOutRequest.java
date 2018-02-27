@@ -1,5 +1,6 @@
 package ru.otus.kirillov.model.commands.logout;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import ru.otus.kirillov.model.commands.Request;
 import ru.otus.kirillov.utils.CommonUtils;
 
@@ -21,5 +22,13 @@ public class LogOutRequest implements Request {
 
     public String getUserName() {
         return userName;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("sessionId", sessionId)
+                .append("userName", userName)
+                .toString();
     }
 }

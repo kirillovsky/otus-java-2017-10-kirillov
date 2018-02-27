@@ -1,5 +1,6 @@
 package ru.otus.kirillov.model.commands.getCacheStats;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import ru.otus.kirillov.cacheengine.stats.CacheStatistics;
 import ru.otus.kirillov.model.commands.Result;
 import ru.otus.kirillov.utils.CommonUtils;
@@ -36,5 +37,14 @@ public final class CacheStatsResult implements Result {
 
     public long getCacheSize() {
         return cacheSize;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("cacheHit", cacheHit)
+                .append("cacheMiss", cacheMiss)
+                .append("cacheSize", cacheSize)
+                .toString();
     }
 }

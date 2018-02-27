@@ -1,5 +1,6 @@
 package ru.otus.kirillov.model.commands.login;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import ru.otus.kirillov.model.commands.Request;
 
 /**
@@ -27,5 +28,13 @@ public final class LoginRequest implements Request {
 
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("userName", userName)
+                .append("password", password)
+                .toString();
     }
 }

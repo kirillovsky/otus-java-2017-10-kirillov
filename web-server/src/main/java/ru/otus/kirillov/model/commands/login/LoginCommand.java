@@ -1,14 +1,19 @@
 package ru.otus.kirillov.model.commands.login;
 
 import org.apache.commons.lang3.tuple.Pair;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import ru.otus.kirillov.model.commands.Command;
 import ru.otus.kirillov.model.commands.Request;
 import ru.otus.kirillov.model.commands.Result;
+import ru.otus.kirillov.model.commands.common.ErroneousResult;
 import ru.otus.kirillov.model.service.auth.AuthService;
 import ru.otus.kirillov.utils.AESSecurity;
 import ru.otus.kirillov.utils.CommonUtils;
 
 public class LoginCommand implements Command {
+
+    private static final Logger log = LogManager.getLogger();
 
     private final AuthService authService;
 
@@ -25,17 +30,23 @@ public class LoginCommand implements Command {
 
     @Override
     public Result execute(Request rq) {
-        LoginRequest loginRequest = (LoginRequest) rq;
+        Result rs;
+        log.info("Try to process request {}", rq);
         try {
+            LoginRequest loginRequest = (LoginRequest) rq;
             Pair<String, String> encryptedPair =
                     encryptLoginPassword(loginRequest.getUserName(), loginRequest.getPassword());
+            log.debug("Encrypt session data (userName={}, password={})",
+                    encryptedPair.getLeft(), encryptedPair.getRight());
 
             String sessionId = authService.login(encryptedPair.getLeft(), encryptedPair.getRight());
-            return LoginResult.of(sessionId, encryptedPair.getLeft());
+            rs = LoginResult.of(sessionId, encryptedPair.getLeft());
         } catch (Exception e) {
-            e.printStackTrace();
+            log.catching(e);
+            rs = ErroneousResult.of(e.getMessage());
         }
-        return null;
+        log.info("Request processed. Result - {}", rs);
+        return rs;
     }
 
     private Pair<String, String> encryptLoginPassword(String login, String password) {
