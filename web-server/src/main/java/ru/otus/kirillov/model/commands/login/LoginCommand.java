@@ -17,10 +17,11 @@ public class LoginCommand implements Command {
 
     private final AuthService authService;
 
-    private final AESSecurity security = new AESSecurity();
+    private final AESSecurity security;
 
-    public LoginCommand(AuthService authService) {
+    public LoginCommand(AuthService authService, AESSecurity security) {
         this.authService = CommonUtils.retunIfNotNull(authService);
+        this.security = CommonUtils.retunIfNotNull(security);
     }
 
     @Override

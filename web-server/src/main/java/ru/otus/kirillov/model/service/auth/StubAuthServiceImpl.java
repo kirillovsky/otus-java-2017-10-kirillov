@@ -17,13 +17,20 @@ public class StubAuthServiceImpl implements AuthService {
         }
     }
 
-    private static final AESSecurity SECURITYTOOLS = new AESSecurity();
+    private final AESSecurity security;
 
-    private static final String USERNAME = SECURITYTOOLS.encrypt("admin");
+    private final String username;
 
-    private static final String PASSWORD = SECURITYTOOLS.encrypt("1234567890");
+    private final String password;
 
     private String currentSessionId = null;
+
+    public StubAuthServiceImpl(AESSecurity security) {
+        this.security = CommonUtils.retunIfNotNull(security);
+        username = security.encrypt("admin");
+        password = security.encrypt("1234567890");
+    }
+
 
     @Override
     public boolean isValidSession(String sessionId, String userName) {
@@ -33,7 +40,7 @@ public class StubAuthServiceImpl implements AuthService {
 
     @Override
     public String login(String userName, String password) {
-        if (!Objects.equals(USERNAME, userName) || !Objects.equals(PASSWORD, password)) {
+        if (!Objects.equals(username, userName) || !Objects.equals(this.password, password)) {
             throw new NotAuthorizedException(userName, password);
         }
         return currentSessionId = UUID.randomUUID().toString();
@@ -48,6 +55,6 @@ public class StubAuthServiceImpl implements AuthService {
     }
 
     private boolean isSessionForUserExists(String sessionId, String userName) {
-        return Objects.equals(currentSessionId, sessionId) && Objects.equals(USERNAME, userName);
+        return Objects.equals(currentSessionId, sessionId) && Objects.equals(username, userName);
     }
 }

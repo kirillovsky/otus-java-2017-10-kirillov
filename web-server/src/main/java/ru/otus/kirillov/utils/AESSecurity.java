@@ -16,9 +16,10 @@ import java.security.GeneralSecurityException;
 
 public class AESSecurity {
 
-    private String encryptionKey = "TEST_KEY";
+    private final String encryptionKey;
 
-    public AESSecurity() {
+    public AESSecurity(String encryptionKey) {
+        this.encryptionKey = encryptionKey;
     }
 
     public String encrypt(String str) {
@@ -58,13 +59,5 @@ public class AESSecurity {
         }
 
         return cipher;
-    }
-
-    public String getEncryptionKey() {
-        return encryptionKey;
-    }
-
-    public void setEncryptionKey(String encryptionKey) {
-        this.encryptionKey = encryptionKey;
     }
 }
