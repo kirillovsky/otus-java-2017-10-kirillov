@@ -21,6 +21,10 @@ public final class ErroneousResult implements Result {
         return new ErroneousResult(cause);
     }
 
+    public String getCause() {
+        return cause;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this)

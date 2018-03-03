@@ -24,7 +24,7 @@ public class GetCacheStatsCommand implements Command {
 
     @Override
     public boolean isApplicable(Request rq) {
-        return rq instanceof CacheStatsRequest;
+        return rq instanceof GetCacheStatsRequest;
     }
 
     @Override
@@ -32,7 +32,7 @@ public class GetCacheStatsCommand implements Command {
         log.info("Try to process rq {}", rq);
         Result result;
         try {
-            result = CacheStatsResult.of(cacheEngine.getStats());
+            result = GetCacheStatsResult.of(cacheEngine.getStats());
         } catch (Exception e) {
             log.catching(e);
             result = ErroneousResult.of(e.getMessage());
