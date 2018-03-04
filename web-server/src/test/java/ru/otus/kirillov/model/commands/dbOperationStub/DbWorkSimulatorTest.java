@@ -49,7 +49,7 @@ public class DbWorkSimulatorTest {
     @Test
     public void testCacheStatsChanged() throws InterruptedException {
         CacheStatistics oldStats = cacheEngine.getStats();
-        Thread.sleep((long) (DbWorkSimulator.DELAY_TIME_IN_MS * 2.5));
+        Thread.sleep(DbWorkSimulator.DELAY_TIME_IN_MS * 3);
         CacheStatistics newStats = cacheEngine.getStats();
 
         assertTrue(oldStats.getCacheHit() != newStats.getCacheHit() ||
