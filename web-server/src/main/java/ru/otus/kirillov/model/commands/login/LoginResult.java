@@ -18,6 +18,14 @@ public class LoginResult implements Result {
         return new LoginResult(sessionId, userName);
     }
 
+    public String getSessionId() {
+        return sessionId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this)
