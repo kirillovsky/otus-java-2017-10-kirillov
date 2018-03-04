@@ -18,7 +18,7 @@ import static java.util.Collections.emptyList;
 
 public class DbWorkSimulator {
 
-    public static final long DELAY_TIME_IN_MS = 100;
+    public static final long DELAY_TIME_IN_MS = 50;
     private static final Logger log = LogManager.getLogger();
 
     private final DBService dbService;
@@ -31,7 +31,7 @@ public class DbWorkSimulator {
         executorService = Executors.newScheduledThreadPool(1);
         executorService.scheduleWithFixedDelay(() -> {
             try {
-                switch (random.nextInt() % 3) {
+                switch (random.nextInt(3)) {
                     case 0:
                         randomRead();
                         break;
@@ -53,21 +53,22 @@ public class DbWorkSimulator {
 
     private void randomUpdate() {
         int usersSize = dbService.readAll(UserDataSet.class).size();
-        int updateIndex = random.nextInt();
-        UserDataSet user = dbService.read(updateIndex % usersSize, UserDataSet.class);
-        user.withName(getRandomName()).withAge(random.nextInt());
+        int updateIndex = random.nextInt(usersSize);
+        UserDataSet user = dbService.read(updateIndex, UserDataSet.class);
+        user = (user == null) ? new UserDataSet(): user;
+        user.withName(getRandomName()).withAge(random.nextInt(100));
         dbService.saveOrUpdate(user);
     }
 
     private void randomSave() {
         dbService.saveOrUpdate(new UserDataSet(
-                getRandomName(), random.nextInt(), null, emptyList()
+                getRandomName(), random.nextInt(100), null, emptyList()
         ));
     }
 
     private void randomRead() {
         int usersSize = dbService.readAll(UserDataSet.class).size();
-        dbService.read(random.nextInt() % ((int) (usersSize * 1.75)), UserDataSet.class);
+        dbService.read(random.nextInt((int) (usersSize * 1.75)), UserDataSet.class);
     }
 
     private String getRandomName() {
@@ -75,7 +76,7 @@ public class DbWorkSimulator {
     }
 
     private void initDbEntities() {
-        int entitiesSize = random.nextInt() % 99 + 1;
+        int entitiesSize = random.nextInt(99) + 1;
         for (int i = 0; i < entitiesSize; i++) {
             randomSave();
         }
