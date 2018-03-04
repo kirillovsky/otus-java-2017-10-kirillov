@@ -22,7 +22,7 @@ public class LogoutCommandTest {
     }
 
     private final static String DUMMY_USERNAME = "!!!DUMMY_USERNAME!!!!";
-    private final static String DUMMY_SESSION_ID = "!!!DUMMY_SESSION_ID!!!!";
+    private final static String DUMMY_SESSION_ID = "!!!DUMMY_PASSWORD!!!!";
     private final static String DUMMY_ERRONEOUS_MSG = "!!!DUMMY_ERRONEOUS_MSG####";
 
     @Test
@@ -38,11 +38,8 @@ public class LogoutCommandTest {
     public void testError() {
         doThrow(new UnsupportedOperationException(DUMMY_ERRONEOUS_MSG))
                 .when(mockService).logout(DUMMY_SESSION_ID, DUMMY_USERNAME);
-        Result result = command.execute(
-                new LogOutRequest(DUMMY_SESSION_ID, DUMMY_USERNAME)
-        );
-        assertTrue(result instanceof ErroneousResult);
-        ErroneousResult erroneousResult = (ErroneousResult) result;
+        ErroneousResult erroneousResult = (ErroneousResult) command
+                .execute(new LogOutRequest(DUMMY_SESSION_ID, DUMMY_USERNAME));
         assertEquals(DUMMY_ERRONEOUS_MSG, erroneousResult.getCause());
     }
 }

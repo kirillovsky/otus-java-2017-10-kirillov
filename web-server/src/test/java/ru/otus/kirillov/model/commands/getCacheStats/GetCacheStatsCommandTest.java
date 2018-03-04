@@ -34,11 +34,8 @@ public class GetCacheStatsCommandTest {
         when(cacheEngineMock.getStats()).thenReturn(
                 CacheStatistics.of(CACHE_HIT_RESULT, CACHE_MISS_RESULT, CACHE_SIZE_RESULT)
         );
-        Result result = command.execute(new GetCacheStatsRequest());
-
-        assertTrue(result instanceof GetCacheStatsResult);
-
-        GetCacheStatsResult cacheStatsResult = (GetCacheStatsResult) result;
+        GetCacheStatsResult cacheStatsResult =
+                (GetCacheStatsResult) command.execute(new GetCacheStatsRequest());
 
         assertEquals(CACHE_HIT_RESULT, cacheStatsResult.getCacheHit());
         assertEquals(CACHE_MISS_RESULT, cacheStatsResult.getCacheMiss());
@@ -52,11 +49,8 @@ public class GetCacheStatsCommandTest {
         when(cacheEngineMock.getStats()).thenThrow(
                 new UnsupportedOperationException(ERRONEOUS_MESSAGE)
         );
-        Result result = command.execute(new GetCacheStatsRequest());
 
-        assertTrue(result instanceof ErroneousResult);
-
-        ErroneousResult erroneousResult = (ErroneousResult) result;
+        ErroneousResult erroneousResult = (ErroneousResult) command.execute(new GetCacheStatsRequest());
         assertEquals(ERRONEOUS_MESSAGE, erroneousResult.getCause());
     }
 }
