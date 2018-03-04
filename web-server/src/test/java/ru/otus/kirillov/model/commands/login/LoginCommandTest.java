@@ -32,13 +32,13 @@ public class LoginCommandTest {
                 .thenReturn(DUMMY_ENCRYPTED_PASSWORD);
     }
 
-    public static final String DUMMY_USERNAME = "###DUMMY_USERNAME###";
-    public static final String DUMMY_ENCRYPTED_USERNAME = "###DUMMY_ENCRYPTED_USERNAME###";
+    private static final String DUMMY_USERNAME = "###DUMMY_USERNAME###";
+    private static final String DUMMY_ENCRYPTED_USERNAME = "###DUMMY_ENCRYPTED_USERNAME###";
 
-    public static final String DUMMY_PASSWORD = "###DUMMY_PASSWORD###";
-    public static final String DUMMY_ENCRYPTED_PASSWORD = "###DUMMY_ENCRYPTED_PASSWORD###";
+    private static final String DUMMY_PASSWORD = "###DUMMY_PASSWORD###";
+    private static final String DUMMY_ENCRYPTED_PASSWORD = "###DUMMY_ENCRYPTED_PASSWORD###";
 
-    public static final String DUMMY_SESSION_ID = "###DUMMY_SESSION_ID###";
+    private static final String DUMMY_SESSION_ID = "###DUMMY_SESSION_ID###";
 
     @Test
     public void testSuccess() {

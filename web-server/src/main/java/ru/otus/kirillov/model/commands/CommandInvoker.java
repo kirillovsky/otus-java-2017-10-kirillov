@@ -9,6 +9,7 @@ import ru.otus.kirillov.model.service.auth.AuthStatus;
 import ru.otus.kirillov.model.service.auth.AuthService;
 import ru.otus.kirillov.utils.CommonUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -31,7 +32,7 @@ public final class CommandInvoker {
                           List<Command> operationCommands) {
         CommonUtils.requiredNotNull(authService, operationCommands);
         this.authService = authService;
-        this.commands = operationCommands;
+        this.commands = new ArrayList<>(operationCommands);
     }
 
     public Result execute(Request rq) {
