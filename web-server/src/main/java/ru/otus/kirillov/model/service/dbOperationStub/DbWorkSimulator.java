@@ -1,4 +1,4 @@
-package ru.otus.kirillov.model.commands.dbOperationStub;
+package ru.otus.kirillov.model.service.dbOperationStub;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -7,11 +7,9 @@ import ru.otus.kirillov.service.DBService;
 
 import java.time.LocalTime;
 import java.util.Calendar;
-import java.util.List;
 import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 import static java.util.Collections.emptyList;
@@ -55,7 +53,7 @@ public class DbWorkSimulator {
         int usersSize = dbService.readAll(UserDataSet.class).size();
         int updateIndex = random.nextInt(usersSize);
         UserDataSet user = dbService.read(updateIndex, UserDataSet.class);
-        user = (user == null) ? new UserDataSet(): user;
+        user = (user == null) ? new UserDataSet() : user;
         user.withName(getRandomName()).withAge(random.nextInt(100));
         dbService.saveOrUpdate(user);
     }

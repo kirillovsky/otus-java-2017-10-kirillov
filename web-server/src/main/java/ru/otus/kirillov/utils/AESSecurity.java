@@ -1,6 +1,5 @@
 package ru.otus.kirillov.utils;
 
-import com.sun.org.apache.xml.internal.security.exceptions.Base64DecodingException;
 import com.sun.org.apache.xml.internal.security.utils.Base64;
 
 import javax.crypto.BadPaddingException;
@@ -32,18 +31,6 @@ public class AESSecurity {
         }
 
         return Base64.encode(encryptedBytes);
-    }
-
-    public String decrypt(String str) {
-        Cipher cipher = getCipher(Cipher.DECRYPT_MODE);
-        byte[] plainBytes;
-        try {
-            plainBytes = cipher.doFinal(Base64.decode(str));
-        } catch (IllegalBlockSizeException|BadPaddingException|Base64DecodingException e) {
-            throw new RuntimeException(e);
-        }
-
-        return new String(plainBytes);
     }
 
     private Cipher getCipher(int cipherMode) {

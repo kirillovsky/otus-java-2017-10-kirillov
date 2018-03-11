@@ -12,7 +12,7 @@ import java.util.function.Supplier;
 
 public class TemplateEngine {
 
-    private final static String VIEW_PATH_PREFIX = "/";
+    private final static String VIEW_PATH_PREFIX = "/statics/";
     private final static String VIEW_FILE_EXTENSION = "";
 
     private Handlebars handlebars = new Handlebars();

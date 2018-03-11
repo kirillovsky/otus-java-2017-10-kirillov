@@ -1,4 +1,4 @@
-package ru.otus.kirillov.model.commands.dbOperationStub;
+package ru.otus.kirillov.model.service.dbOperationStub;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.junit.*;
@@ -11,7 +11,6 @@ import ru.otus.kirillov.cacheengine.impl.ConfigCacheEngineImplFactory;
 import ru.otus.kirillov.cacheengine.stats.CacheStatistics;
 import ru.otus.kirillov.configuration.DBServiceConfig;
 import ru.otus.kirillov.model.DataSet;
-import ru.otus.kirillov.model.UserDataSet;
 import ru.otus.kirillov.service.DBService;
 import ru.otus.kirillov.service.factory.cache.CachedProxyDBServiceFactory;
 import ru.otus.kirillov.service.factory.hibernate.HibernateDBServiceFactory;
@@ -20,7 +19,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(Parameterized.class)
@@ -35,8 +33,8 @@ public class DbWorkSimulatorTest {
     public static void init() {
         cacheEngine = new ConfigCacheEngineImplFactory(
                 new CacheEngineConfig().with(CacheEngineConfigKeys.SCHEDULED_EVICTIONS, Collections.emptyList())
-        )
-                .create();
+        ).create();
+
         cachedProxyDbService = new CachedProxyDBServiceFactory(
                 new HibernateDBServiceFactory(), cacheEngine
         ).createDBService(
@@ -55,8 +53,8 @@ public class DbWorkSimulatorTest {
 
         assertTrue(String.format("Not equal old stats-%s,\n new stats - %s", toStr(oldStats), toStr(newStats)),
                 oldStats.getCacheHit() != newStats.getCacheHit() ||
-                oldStats.getCacheMiss() != newStats.getCacheMiss() ||
-                oldStats.getCacheSize() != newStats.getCacheSize()
+                        oldStats.getCacheMiss() != newStats.getCacheMiss() ||
+                        oldStats.getCacheSize() != newStats.getCacheSize()
         );
     }
 

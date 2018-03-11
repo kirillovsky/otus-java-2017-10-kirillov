@@ -27,7 +27,7 @@ public class StubAuthServiceImpl implements AuthService {
 
     public StubAuthServiceImpl(AESSecurity security) {
         this.security = CommonUtils.retunIfNotNull(security);
-        username = security.encrypt("admin");
+        username = "admin";
         password = security.encrypt("1234567890");
     }
 

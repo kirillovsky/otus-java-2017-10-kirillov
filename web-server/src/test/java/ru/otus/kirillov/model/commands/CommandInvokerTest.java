@@ -3,6 +3,7 @@ package ru.otus.kirillov.model.commands;
 import org.junit.Before;
 import org.junit.Test;
 import ru.otus.kirillov.model.commands.common.ErroneousResult;
+import ru.otus.kirillov.model.commands.common.NotAuthResult;
 import ru.otus.kirillov.model.service.auth.AuthService;
 
 import java.util.Collections;
@@ -61,7 +62,7 @@ public class CommandInvokerTest {
                 .thenReturn(true);
 
         Result result = invoker.execute(sessionRequest);
-        assertFalse(result instanceof ErroneousResult);
+        assertFalse(result instanceof NotAuthResult);
 
         verify(commandMock, times(1)).isApplicable(requestMock);
         verify(commandMock, times(1)).execute(requestMock);
@@ -79,7 +80,7 @@ public class CommandInvokerTest {
                 .thenReturn(false);
 
         Result result = invoker.execute(sessionRequest);
-        assertTrue(result instanceof ErroneousResult);
+        assertTrue(result instanceof NotAuthResult);
 
         verify(commandMock, never()).execute(any());
         verify(commandMock, never()).isApplicable(any());

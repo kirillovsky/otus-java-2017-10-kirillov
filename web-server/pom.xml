@@ -16,10 +16,13 @@
     <properties>
         <junit.version>4.12</junit.version>
         <commons-lang3.version>LATEST</commons-lang3.version>
-        <log4j-core.version>2.10.0</log4j-core.version>
+        <log4j-core.version>2.8.1</log4j-core.version>
         <mockito-core.version>1.10.19</mockito-core.version>
         <handlebars.version>4.0.6</handlebars.version>
         <jetbrains.version>15.0</jetbrains.version>
+        <jetty.version>LATEST</jetty.version>
+        <xml-security-impl.version>1.0</xml-security-impl.version>
+        <mainClass>ru.otus.kirillov.Main</mainClass>
     </properties>
 
     <description>
@@ -66,5 +69,45 @@
             <artifactId>annotations</artifactId>
             <version>${jetbrains.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-webapp</artifactId>
+            <version>${jetty.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.xml.security</groupId>
+            <artifactId>xml-security-impl</artifactId>
+            <version>${xml-security-impl.version}</version>
+        </dependency>
     </dependencies>
+
+    <build>
+        <finalName>${project.name}</finalName>
+            <!-->Fat jar with shade-plugin (по размеру получается меньше, за счет minimizeJar)</-->
+        <plugins>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>maven-assembly-plugin</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>${mainClass}</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

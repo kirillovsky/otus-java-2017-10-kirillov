@@ -51,6 +51,6 @@ public class LoginCommand implements Command {
     }
 
     private Pair<String, String> encryptLoginPassword(String login, String password) {
-        return Pair.of(security.encrypt(login), security.encrypt(password));
+        return Pair.of(login, security.encrypt(password));
     }
 }

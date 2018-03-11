@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -35,57 +35,37 @@
             <span class="icon-bar"></span>
         </button>
         <!-- Бренд или логотип фирмы (обычно содержит ссылку на главную страницу) -->
-        <a href="/" class="navbar-brand">Otus.Web-server</a>
+        <a href="/main" class="navbar-brand">Otus.Web-server</a>
     </div>
     <!-- Содержимое меню (коллекция навигационных ссылок, формы и др.) -->
     <div class="collapse navbar-collapse" id="main-menu">
         <!-- Список ссылок, расположенных слева -->
         <ul class="nav navbar-nav">
             <!--Элемент с классом active отображает ссылку подсвеченной -->
-            <li class="active"><a href="/">Главная <span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="/main">Главная <span class="sr-only">(current)</span></a></li>
             <li><a href="/cache-stats">Состояние кеша</a></li>
         </ul>
 
         <div class="form-group">
-            <form action="/logout" class="navbar-form navbar-right">
+            {{#if isAuth}}
+            <form action="/logout" class="navbar-form navbar-right" method="post">
                 {{username}}|
                 <a href="javascript:;" onclick="parentNode.submit();">Выйти</a>
             </form>
+            {{else}}
+            <form action="/login" class="navbar-form navbar-right" method="post">
+                <input type="text" name="username" placeholder="Логин" class="form-control">
+                <input type="password" name="password" placeholder="Пароль" class="form-control">
+                <button type="submit" class="btn btn-success">Войти</button>
+            </form>
+            {{/if}}
         </div>
     </div>
 </nav>
 
 <div class="col-sm-offset-4 col-sm-4 container top-buffer">
-    <div class="row">
-        <div class="col-sm-10">
-            <h2>Состояние кэша</h2>
-        </div>
-    </div>
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Параметр</th>
-                <th>Значение</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>cacheSize</td>
-                <td>{{cacheSize}}</td>
-            </tr>
-            <tr>
-                <td>cacheHit</td>
-                <td>{{cacheHit}}</td>
-            </tr>
-            <tr>
-                <td>cacheMiss</td>
-                <td>{{cacheMiss}}</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+    <h1>Ошибка</h1>
+    <h2>{{error-msg}}</h2>
 </div>
 
 <!-- Bootstrap core JavaScript
@@ -100,6 +80,6 @@
         crossorigin="anonymous"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="bootstrap/jquery-3.2.0.min.js"></script>
-<script src="js/index.js"></script>
+<script src="js"></script>
 </body>
 </html>

@@ -26,14 +26,11 @@ public class LoginCommandTest {
         aesSecurityMock = mock(AESSecurity.class);
         command = new LoginCommand(authServiceMock, aesSecurityMock);
 
-        when(aesSecurityMock.encrypt(DUMMY_USERNAME))
-                .thenReturn(DUMMY_ENCRYPTED_USERNAME);
         when(aesSecurityMock.encrypt(DUMMY_PASSWORD))
                 .thenReturn(DUMMY_ENCRYPTED_PASSWORD);
     }
 
     private static final String DUMMY_USERNAME = "###DUMMY_USERNAME###";
-    private static final String DUMMY_ENCRYPTED_USERNAME = "###DUMMY_ENCRYPTED_USERNAME###";
 
     private static final String DUMMY_PASSWORD = "###DUMMY_PASSWORD###";
     private static final String DUMMY_ENCRYPTED_PASSWORD = "###DUMMY_ENCRYPTED_PASSWORD###";
@@ -42,20 +39,20 @@ public class LoginCommandTest {
 
     @Test
     public void testSuccess() {
-        when(authServiceMock.login(DUMMY_ENCRYPTED_USERNAME, DUMMY_ENCRYPTED_PASSWORD))
+        when(authServiceMock.login(DUMMY_USERNAME, DUMMY_ENCRYPTED_PASSWORD))
                 .thenReturn(DUMMY_SESSION_ID);
 
         Result result = command.execute(LoginRequest.of(DUMMY_USERNAME, DUMMY_PASSWORD));
         LoginResult loginResult = (LoginResult) result;
 
-        assertEquals(DUMMY_ENCRYPTED_USERNAME, loginResult.getUserName());
+        assertEquals(DUMMY_USERNAME, loginResult.getUserName());
         assertEquals(DUMMY_SESSION_ID, loginResult.getSessionId());
         verifyMockCallCount();
     }
 
     @Test
     public void testWrongLoginOrPassword() {
-        when(authServiceMock.login(DUMMY_ENCRYPTED_USERNAME, DUMMY_ENCRYPTED_PASSWORD))
+        when(authServiceMock.login(DUMMY_USERNAME, DUMMY_ENCRYPTED_PASSWORD))
                 .thenThrow(new NotAuthorizedException(DUMMY_USERNAME, DUMMY_PASSWORD));
 
         ErroneousResult result =
@@ -67,9 +64,9 @@ public class LoginCommandTest {
     }
 
     private void verifyMockCallCount() {
-        verify(aesSecurityMock, times(2))
+        verify(aesSecurityMock, times(1))
                 .encrypt(anyString());
         verify(authServiceMock, only())
-                .login(DUMMY_ENCRYPTED_USERNAME, DUMMY_ENCRYPTED_PASSWORD);
+                .login(DUMMY_USERNAME, DUMMY_ENCRYPTED_PASSWORD);
     }
 }

@@ -3,6 +3,7 @@ package ru.otus.kirillov.model.commands;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ru.otus.kirillov.model.commands.common.ErroneousResult;
+import ru.otus.kirillov.model.commands.common.NotAuthResult;
 import ru.otus.kirillov.model.commands.common.SessionRequestWrapper;
 import ru.otus.kirillov.model.service.auth.AuthResult;
 import ru.otus.kirillov.model.service.auth.AuthStatus;
@@ -41,7 +42,7 @@ public final class CommandInvoker {
         AuthResult authResult = authenticate(rq);
 
         if (authResult.getStatus() != AuthStatus.OK) {
-            return ErroneousResult.of(authResult.getAdditionalInfo());
+            return new NotAuthResult(authResult.getAdditionalInfo());
         }
 
         final Request actualRq = unpackSessionRequest(rq);
