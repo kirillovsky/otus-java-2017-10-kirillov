@@ -83,7 +83,6 @@
 
     <build>
         <finalName>${project.name}</finalName>
-            <!-->Fat jar with shade-plugin (по размеру получается меньше, за счет minimizeJar)</-->
         <plugins>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
