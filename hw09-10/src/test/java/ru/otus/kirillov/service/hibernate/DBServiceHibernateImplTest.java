@@ -20,7 +20,7 @@ public class DBServiceHibernateImplTest extends DBServiceTest {
         dbService = new HibernateDBServiceFactory().createDBService(
                 new DBServiceConfig()
                         .withDbType(DBServiceConfig.DB.H2)
-                        .withConnectionURL("jdbc:h2:mem:test")
+                        .withConnectionURL("jdbc:h2:mem:test_2")
         );
     }
 

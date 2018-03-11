@@ -1,9 +1,6 @@
 package ru.otus.kirillov.service.myorm;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 import ru.otus.kirillov.configuration.DBServiceConfig;
 import ru.otus.kirillov.model.AddressDataSet;
 import ru.otus.kirillov.model.PhoneDataSet;
@@ -23,7 +20,7 @@ import java.util.concurrent.atomic.AtomicLong;
 public class DBServiceMyOrmImplTest extends DBServiceTest {
 
     private static final AtomicLong ID_GENERATOR = new AtomicLong(1);
-    private static final String H2_TEST_DB_CONNECTION_STRING = "jdbc:h2:mem:test";
+    private static final String H2_TEST_DB_CONNECTION_STRING = "jdbc:h2:mem:test_1";
 
     protected static DBService dbService;
 
