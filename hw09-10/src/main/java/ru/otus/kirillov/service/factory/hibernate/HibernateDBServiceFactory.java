@@ -69,10 +69,8 @@ public class HibernateDBServiceFactory extends AbstractDBServiceFactory {
         configuration.setProperty(Environment.URL, dbServiceConfig.getConnectionURL());
         configuration.setProperty(Environment.USER, dbServiceConfig.getUsername());
         configuration.setProperty(Environment.PASS, dbServiceConfig.getConnectionURL());
-        configuration.setProperty(Environment.FORMAT_SQL, Boolean.TRUE.toString());
         configuration.setProperty(Environment.ENABLE_LAZY_LOAD_NO_TRANS, Boolean.TRUE.toString());
         configuration.setProperty(Environment.HBM2DDL_AUTO, "create");
-        configuration.setProperty(Environment.SHOW_SQL, Boolean.TRUE.toString());
 
         getDaoClasses(dbServiceConfig.getUsersDaoClasses())
                 .forEach(dao -> configuration.addAnnotatedClass(getDaoTypeArgument(dao)));
