@@ -1,13 +1,11 @@
 package ru.otus.kirillov.controller;
 
-import org.jetbrains.annotations.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
 import ru.otus.kirillov.model.commands.CommandInvoker;
 import ru.otus.kirillov.model.commands.Result;
 import ru.otus.kirillov.model.commands.common.ErroneousResult;
-import ru.otus.kirillov.model.commands.getCacheStats.GetCacheStatsResult;
 import ru.otus.kirillov.model.commands.login.LoginRequest;
 import ru.otus.kirillov.model.commands.login.LoginResult;
-import ru.otus.kirillov.view.TemplateEngine;
 import ru.otus.kirillov.view.View;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,13 +19,8 @@ public class LoginServlet extends AbstractServlet {
     private static final String USERNAME_PARAM_NAME = "username";
     private static final String PASSWORD_PARAM_NAME = "password";
 
-    protected final CommandInvoker invoker;
-
-    public LoginServlet(@NotNull TemplateEngine templateEngine, @NotNull CommandInvoker invoker) {
-        super(templateEngine);
-        this.invoker = invoker;
-        templateEngine.initView(View.MAIN);
-    }
+    @Autowired
+    protected CommandInvoker invoker;
 
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
