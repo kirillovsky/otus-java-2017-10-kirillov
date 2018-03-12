@@ -22,6 +22,7 @@ import ru.otus.kirillov.service.factory.hibernate.HibernateDBServiceFactory;
 import ru.otus.kirillov.utils.AESSecurity;
 import ru.otus.kirillov.view.TemplateEngine;
 import ru.otus.kirillov.view.View;
+import javax.annotation.PostConstruct;
 import java.util.Arrays;
 
 @Configuration
@@ -79,7 +80,7 @@ public class WebServerConfiguration {
         return new TemplateEngine(Arrays.asList(View.values()));
     }
 
-    @Bean
+    @Bean(initMethod = "start", destroyMethod = "detach")
     @Scope("singleton")
     public DbWorkScheduledSimulator dbWorkSimulator() {
         return new DbWorkScheduledSimulator(
