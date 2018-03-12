@@ -40,7 +40,7 @@ public class DbWorkSimulatorTest {
         ).createDBService(
                 new DBServiceConfig()
                         .withDbType(DBServiceConfig.DB.H2)
-                        .withConnectionURL("jdbc:h2:mem:test")
+                        .withConnectionURL("jdbc:h2:mem:DbWorkSimulatorTest")
         );
         simulator = new DbWorkSimulator(cachedProxyDbService);
     }
@@ -48,10 +48,10 @@ public class DbWorkSimulatorTest {
     @Test
     public void testCacheStatsChanged() throws InterruptedException {
         CacheStatistics oldStats = cacheEngine.getStats();
-        Thread.sleep(DbWorkSimulator.DELAY_TIME_IN_MS * 5);
+        Thread.sleep(DbWorkSimulator.DELAY_TIME_IN_MS * 7);
         CacheStatistics newStats = cacheEngine.getStats();
 
-        assertTrue(String.format("Not equal old stats-%s,\n new stats - %s", toStr(oldStats), toStr(newStats)),
+        assertTrue(String.format("Equels old stats-%s,\n new stats - %s", toStr(oldStats), toStr(newStats)),
                 oldStats.getCacheHit() != newStats.getCacheHit() ||
                         oldStats.getCacheMiss() != newStats.getCacheMiss() ||
                         oldStats.getCacheSize() != newStats.getCacheSize()

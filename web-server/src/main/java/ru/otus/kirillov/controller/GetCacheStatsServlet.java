@@ -1,6 +1,6 @@
 package ru.otus.kirillov.controller;
 
-import org.jetbrains.annotations.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
 import ru.otus.kirillov.model.commands.CommandInvoker;
 import ru.otus.kirillov.model.commands.Request;
 import ru.otus.kirillov.model.commands.Result;
@@ -8,7 +8,6 @@ import ru.otus.kirillov.model.commands.common.ErroneousResult;
 import ru.otus.kirillov.model.commands.common.SessionRequestWrapper;
 import ru.otus.kirillov.model.commands.getCacheStats.GetCacheStatsRequest;
 import ru.otus.kirillov.model.commands.getCacheStats.GetCacheStatsResult;
-import ru.otus.kirillov.view.TemplateEngine;
 import ru.otus.kirillov.view.View;
 
 import javax.servlet.ServletException;
@@ -20,13 +19,8 @@ import java.util.Map;
 
 public class GetCacheStatsServlet extends AbstractServlet {
 
-    protected final CommandInvoker invoker;
-
-    public GetCacheStatsServlet(@NotNull TemplateEngine templateEngine, @NotNull CommandInvoker invoker) {
-        super(templateEngine);
-        this.invoker = invoker;
-        templateEngine.initView(View.CACHE_STATS);
-    }
+    @Autowired
+    protected CommandInvoker invoker;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

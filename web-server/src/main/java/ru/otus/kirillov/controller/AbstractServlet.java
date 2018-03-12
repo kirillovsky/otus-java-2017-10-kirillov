@@ -1,9 +1,9 @@
 package ru.otus.kirillov.controller;
 
-import org.jetbrains.annotations.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import ru.otus.kirillov.model.commands.login.LoginResult;
 import ru.otus.kirillov.view.TemplateEngine;
-import ru.otus.kirillov.view.View;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -18,11 +18,12 @@ public class AbstractServlet extends HttpServlet {
     protected static final String COOKIE_SESSION_ID_PARAM_NAME = "SESSION_ID";
     protected static final int COOKIE_MAX_AGE_SEC = 1 * 60 * 60;
 
-    protected final TemplateEngine templateEngine;
+    @Autowired
+    protected TemplateEngine templateEngine;
 
-    public AbstractServlet(@NotNull TemplateEngine templateEngine) {
-        this.templateEngine = templateEngine;
-        templateEngine.initView(View.ERROR);
+    @Override
+    public void init() {
+        SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
     }
 
     protected void setSessionCookies(HttpServletResponse resp, LoginResult result) {
