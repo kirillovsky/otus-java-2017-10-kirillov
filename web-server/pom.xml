@@ -11,7 +11,7 @@
     <groupId>ru.otus.kirillov</groupId>
     <artifactId>web-server</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <properties>
         <junit.version>4.12</junit.version>
@@ -22,7 +22,6 @@
         <jetbrains.version>15.0</jetbrains.version>
         <jetty.version>LATEST</jetty.version>
         <xml-security-impl.version>1.0</xml-security-impl.version>
-        <spring.version>5.0.4.RELEASE</spring.version>
         <mainClass>ru.otus.kirillov.Main</mainClass>
     </properties>
 
@@ -80,48 +79,32 @@
             <artifactId>xml-security-impl</artifactId>
             <version>${xml-security-impl.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-aspects</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
     </dependencies>
 
     <build>
         <finalName>${project.name}</finalName>
         <plugins>
             <plugin>
-                <artifactId>maven-war-plugin</artifactId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>maven-assembly-plugin</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
-                    <webXml>src/main/resources/WEB-INF/web.xml</webXml>
-                    <webResources>
-                        <resource>
-                            <directory>src/main/resources/statics</directory>
-                        </resource>
-                        <resource>
-                            <filtering>true</filtering>
-                            <targetPath>WEB-INF</targetPath>
-                            <directory>src/main/resources/WEB-INF</directory>
-                            <includes>
-                                <include>applicationContext.xml</include>
-                            </includes>
-                        </resource>
-                    </webResources>
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>${mainClass}</mainClass>
+                        </manifest>
+                    </archive>
                 </configuration>
             </plugin>
         </plugins>

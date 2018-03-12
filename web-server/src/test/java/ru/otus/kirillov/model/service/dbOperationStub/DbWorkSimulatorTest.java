@@ -39,7 +39,7 @@ public class DbWorkSimulatorTest {
         ).createDBService(
                 new DBServiceConfig()
                         .withDbType(DBServiceConfig.DB.H2)
-                        .withConnectionURL("jdbc:h2:mem:DbWorkSimulatorTest")
+                        .withConnectionURL("jdbc:h2:mem:test")
         );
         simulator = new DbWorkSimulator(cachedProxyDbService);
         simulator.initDbEntities();

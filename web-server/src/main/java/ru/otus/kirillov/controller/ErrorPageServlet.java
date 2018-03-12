@@ -1,5 +1,7 @@
 package ru.otus.kirillov.controller;
 
+import org.jetbrains.annotations.NotNull;
+import ru.otus.kirillov.view.TemplateEngine;
 import ru.otus.kirillov.view.View;
 
 import javax.servlet.ServletException;
@@ -9,10 +11,13 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-
 public class ErrorPageServlet extends AbstractServlet {
 
     private static final String ERROR_MSG_PARAM_NAME = "error-msg";
+
+    public ErrorPageServlet(@NotNull TemplateEngine templateEngine) {
+        super(templateEngine);
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
