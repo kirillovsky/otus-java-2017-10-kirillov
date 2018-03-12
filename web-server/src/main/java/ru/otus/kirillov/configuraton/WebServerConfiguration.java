@@ -11,6 +11,7 @@ import ru.otus.kirillov.model.commands.CommandInvoker;
 import ru.otus.kirillov.model.commands.getCacheStats.GetCacheStatsCommand;
 import ru.otus.kirillov.model.commands.login.LoginCommand;
 import ru.otus.kirillov.model.commands.logout.LogoutCommand;
+import ru.otus.kirillov.model.service.dbOperationStub.DbWorkScheduledSimulator;
 import ru.otus.kirillov.model.service.dbOperationStub.DbWorkSimulator;
 import ru.otus.kirillov.model.service.auth.AuthService;
 import ru.otus.kirillov.model.service.auth.StubAuthServiceImpl;
@@ -110,7 +111,9 @@ public final class WebServerConfiguration {
     }
 
     @NotNull
-    public static DbWorkSimulator createDbWorkSimulator() {
-        return new DbWorkSimulator(DBServiceInstance.cachedProxyDbService);
+    public static DbWorkScheduledSimulator createDbWorkSimulatorScheduler() {
+        return new DbWorkScheduledSimulator(
+                new DbWorkSimulator(DBServiceInstance.cachedProxyDbService)
+        );
     }
 }
