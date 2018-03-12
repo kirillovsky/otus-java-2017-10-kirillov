@@ -21,7 +21,6 @@ import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 
-@RunWith(Parameterized.class)
 public class DbWorkSimulatorTest {
 
     private static CacheEngine<String, DataSet> cacheEngine;
@@ -43,24 +42,39 @@ public class DbWorkSimulatorTest {
                         .withConnectionURL("jdbc:h2:mem:DbWorkSimulatorTest")
         );
         simulator = new DbWorkSimulator(cachedProxyDbService);
+        simulator.initDbEntities();
     }
 
     @Test
-    public void testCacheStatsChanged() throws InterruptedException {
+    public void testCacheStatsAfterRead() {
         CacheStatistics oldStats = cacheEngine.getStats();
-        Thread.sleep(DbWorkSimulator.DELAY_TIME_IN_MS * 7);
+        simulator.randomRead();
         CacheStatistics newStats = cacheEngine.getStats();
+        compareCacheStats(oldStats, newStats);
+    }
 
-        assertTrue(String.format("Equels old stats-%s,\n new stats - %s", toStr(oldStats), toStr(newStats)),
+    @Test
+    public void testCacheStatsAfterSave() {
+        CacheStatistics oldStats = cacheEngine.getStats();
+        simulator.randomSave();
+        CacheStatistics newStats = cacheEngine.getStats();
+        compareCacheStats(oldStats, newStats);
+    }
+
+    @Test
+    public void testCacheStatsAfterUpdate() {
+        CacheStatistics oldStats = cacheEngine.getStats();
+        simulator.randomUpdate();
+        CacheStatistics newStats = cacheEngine.getStats();
+        compareCacheStats(oldStats, newStats);
+    }
+
+    public void compareCacheStats(CacheStatistics oldStats, CacheStatistics newStats) {
+        assertTrue(String.format("Equals old stats-%s,\n new stats - %s", toStr(oldStats), toStr(newStats)),
                 oldStats.getCacheHit() != newStats.getCacheHit() ||
                         oldStats.getCacheMiss() != newStats.getCacheMiss() ||
                         oldStats.getCacheSize() != newStats.getCacheSize()
         );
-    }
-
-    @Parameterized.Parameters
-    public static List<Object[]> data() {
-        return Arrays.asList(new Object[5][0]);
     }
 
     private String toStr(CacheStatistics stats) {
