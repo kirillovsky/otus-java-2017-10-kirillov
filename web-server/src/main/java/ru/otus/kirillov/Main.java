@@ -5,6 +5,7 @@ import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
+import ru.otus.kirillov.model.service.dbOperationStub.DbWorkScheduledSimulator;
 import ru.otus.kirillov.model.service.dbOperationStub.DbWorkSimulator;
 
 import static ru.otus.kirillov.configuraton.WebServerConfiguration.*;
@@ -13,11 +14,10 @@ public class Main {
 
     private final static int PORT = 8090;
     private final static String PUBLIC_HTML = "statics";
-    private static DbWorkSimulator simulator;
+    private static DbWorkScheduledSimulator simulator;
 
     public static void main(String[] args) throws Exception {
-
-        simulator = createDbWorkSimulator();
+        initScheduledSimulator();
 
         ResourceHandler resourceHandler = new ResourceHandler();
         resourceHandler.setResourceBase(PUBLIC_HTML);
@@ -35,5 +35,16 @@ public class Main {
 
         server.start();
         server.join();
+
+        detachScheduledSimulator();
+    }
+
+    private static void initScheduledSimulator() {
+        simulator = createDbWorkSimulatorScheduler();
+        simulator.start();
+    }
+
+    private static void detachScheduledSimulator() {
+        simulator.detach();
     }
 }
