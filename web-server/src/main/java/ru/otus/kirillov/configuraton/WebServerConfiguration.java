@@ -31,22 +31,22 @@ public final class WebServerConfiguration {
     }
 
     static class AESSecurityInstance {
-        private static AESSecurity security = new AESSecurity(ENCRYPTION_KEY);
+        private static final AESSecurity security = new AESSecurity(ENCRYPTION_KEY);
     }
 
     static class AuthServiceInstance {
-        private static AuthService authService = new StubAuthServiceImpl(AESSecurityInstance.security);
+        private static final AuthService authService = new StubAuthServiceImpl(AESSecurityInstance.security);
     }
 
     static class CacheEngineInstance {
-        private static CacheEngine<String, DataSet> cacheEngine =
+        private static final CacheEngine<String, DataSet> cacheEngine =
                 new ConfigCacheEngineImplFactory(
                         new CacheEngineConfig()
                 ).create();
     }
 
     static class DBServiceInstance {
-        private static DBService cachedProxyDbService =
+        private static final DBService cachedProxyDbService =
                 new CachedProxyDBServiceFactory(
                         new HibernateDBServiceFactory(), CacheEngineInstance.cacheEngine
                 ).createDBService(
@@ -57,7 +57,7 @@ public final class WebServerConfiguration {
     }
 
     static class CommandInvokerInstance {
-        private static CommandInvoker commandInvoker =
+        private static final CommandInvoker commandInvoker =
                 new CommandInvoker(AuthServiceInstance.authService,
                         Arrays.asList(
                                 new LoginCommand(AuthServiceInstance.authService, AESSecurityInstance.security),
@@ -68,7 +68,7 @@ public final class WebServerConfiguration {
     }
 
     static class TemplateEngineInstance {
-        private static TemplateEngine templateEngine =
+        private static final TemplateEngine templateEngine =
                 new TemplateEngine();
     }
 
