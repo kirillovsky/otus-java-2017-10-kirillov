@@ -52,7 +52,7 @@ public final class WebServerConfiguration {
                 ).createDBService(
                         new DBServiceConfig()
                                 .withDbType(DBServiceConfig.DB.H2)
-                                .withConnectionURL("jdbc:h2:mem:")
+                                .withConnectionURL("jdbc:h2:mem:db1;DB_CLOSE_DELAY=-1")
                 );
     }
 

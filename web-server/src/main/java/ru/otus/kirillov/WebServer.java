@@ -16,7 +16,7 @@ import static ru.otus.kirillov.configuraton.WebServerConfiguration.createMainSer
 public class WebServer {
 
     private final static Logger log = LogManager.getLogger();
-    private final static String PUBLIC_HTML = "statics";
+    private final static String PUBLIC_HTML = "./src/main/resources/statics";
     private final Server server;
 
     public WebServer(int portNumber) {
