@@ -11,7 +11,7 @@
     <groupId>ru.otus.kirillov</groupId>
     <artifactId>web-server</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <properties>
         <junit.version>4.12</junit.version>
@@ -106,22 +106,26 @@
         <finalName>${project.name}</finalName>
         <plugins>
             <plugin>
-                <artifactId>maven-war-plugin</artifactId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>maven-assembly-plugin</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
-                    <webXml>src/main/resources/WEB-INF/web.xml</webXml>
-                    <webResources>
-                        <resource>
-                            <directory>src/main/resources/statics</directory>
-                        </resource>
-                        <resource>
-                            <filtering>true</filtering>
-                            <targetPath>WEB-INF</targetPath>
-                            <directory>src/main/resources/WEB-INF</directory>
-                            <includes>
-                                <include>applicationContext.xml</include>
-                            </includes>
-                        </resource>
-                    </webResources>
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>${mainClass}</mainClass>
+                        </manifest>
+                    </archive>
                 </configuration>
             </plugin>
         </plugins>
