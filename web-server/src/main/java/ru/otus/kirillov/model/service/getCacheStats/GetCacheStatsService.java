@@ -8,6 +8,8 @@ import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.listener.DataListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ru.otus.kirillov.cacheengine.stats.CacheStatistics;
+import ru.otus.kirillov.model.commands.getCacheStats.GetCacheStatsResult;
 import ru.otus.kirillov.model.service.getCacheStats.messages.GetCacheStatsRq;
 import ru.otus.kirillov.utils.CommonUtils;
 
@@ -53,9 +55,8 @@ public class GetCacheStatsService {
         endpoint.addEventListener("message", GetCacheStatsRq.class, new DataListener<GetCacheStatsRq>() {
             @Override
             public void onData(SocketIOClient client, GetCacheStatsRq data, AckRequest ackSender) throws Exception {
-                ackSender.sendAckData("HELLO!!!");
                 log.error(data);
-                client.sendEvent("message", "Task!!!");
+                client.sendEvent("message", GetCacheStatsResult.of(CacheStatistics.of(0 , 0, 0)));
             }
         });
         return server;

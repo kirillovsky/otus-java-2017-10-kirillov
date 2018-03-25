@@ -111,14 +111,14 @@
     });
 
     socket.on('message', function(data) {
-
+      console.log(data);
       if (data.errorMsg) {
         window.location.replace('http://{{host}}:{{port}}/error?error-msg=\'' + data.errorMsg + '\'');
       }
 
-      $('#cacheSize').val(data.cacheSize);
-      $('#cacheHit').val(data.cacheHit);
-      $('#cacheMiss').val(data.cacheMiss);
+      $('#cacheSize').html(data.cacheSize);
+      $('#cacheHit').html(data.cacheHit);
+      $('#cacheMiss').html(data.cacheMiss);
     });
     return socket;
   }

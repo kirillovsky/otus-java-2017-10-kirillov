@@ -19,24 +19,12 @@ public class GetCacheStatsRq {
         return clientKey;
     }
 
-    public void setClientKey(String clientKey) {
-        this.clientKey = clientKey;
-    }
-
     public String getUserName() {
         return userName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
     public String getSessionId() {
         return sessionId;
-    }
-
-    public void setSessionId(String sessionId) {
-        this.sessionId = sessionId;
     }
 
     @Override

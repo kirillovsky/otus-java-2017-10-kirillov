@@ -12,7 +12,7 @@ public final class GetCacheStatsResult implements Result {
 
     private final long cacheHit;
 
-    private  final long cacheMiss;
+    private final long cacheMiss;
 
     private final long cacheSize;
 
