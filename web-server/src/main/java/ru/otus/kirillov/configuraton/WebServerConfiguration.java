@@ -1,5 +1,6 @@
 package ru.otus.kirillov.configuraton;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -16,6 +17,7 @@ import ru.otus.kirillov.model.service.auth.AuthService;
 import ru.otus.kirillov.model.service.auth.StubAuthServiceImpl;
 import ru.otus.kirillov.model.service.dbOperationStub.DbWorkScheduledSimulator;
 import ru.otus.kirillov.model.service.dbOperationStub.DbWorkSimulator;
+import ru.otus.kirillov.model.service.getCacheStats.GetCacheStatsService;
 import ru.otus.kirillov.service.DBService;
 import ru.otus.kirillov.service.factory.cache.CachedProxyDBServiceFactory;
 import ru.otus.kirillov.service.factory.hibernate.HibernateDBServiceFactory;
@@ -28,6 +30,15 @@ import java.util.Arrays;
 public class WebServerConfiguration {
 
     private static final String ENCRYPTION_KEY = "MZygpewJsCpRrfOr";
+
+    @Value("${frontend.cache-stats.port}")
+    private String cacheStatPortNumber;
+
+    @Value("${frontend.cache-stats.endpoint}")
+    private String endpoint;
+
+    @Value("${frontend.host}")
+    private String host;
 
     @Bean
     @Scope("singleton")
@@ -57,7 +68,7 @@ public class WebServerConfiguration {
         ).createDBService(
                 new DBServiceConfig()
                         .withDbType(DBServiceConfig.DB.H2)
-                        .withConnectionURL("jdbc:h2:mem:;DB_CLOSE_DELAY=-1")
+                        .withConnectionURL("jdbc:h2:mem:test1;DB_CLOSE_DELAY=-1")
         );
     }
 
@@ -85,5 +96,11 @@ public class WebServerConfiguration {
         return new DbWorkScheduledSimulator(
                 new DbWorkSimulator(dbService())
         );
+    }
+
+    @Bean(initMethod = "start", destroyMethod = "detach")
+    @Scope("singleton")
+    public GetCacheStatsService getCacheStatsService() {
+        return new GetCacheStatsService(host, endpoint, cacheStatPortNumber);
     }
 }

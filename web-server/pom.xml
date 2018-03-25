@@ -23,6 +23,8 @@
         <jetty.version>LATEST</jetty.version>
         <xml-security-impl.version>1.0</xml-security-impl.version>
         <spring.version>5.0.4.RELEASE</spring.version>
+        <netty-socketio.version>LATEST</netty-socketio.version>
+
         <mainClass>ru.otus.kirillov.Main</mainClass>
     </properties>
 
@@ -99,6 +101,11 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-aspects</artifactId>
             <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.corundumstudio.socketio</groupId>
+            <artifactId>netty-socketio</artifactId>
+            <version>${netty-socketio.version}</version>
         </dependency>
     </dependencies>
 
