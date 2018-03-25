@@ -2,22 +2,16 @@ package ru.otus.kirillov.model.service.getCacheStats.messages;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class GetCacheStatsRq {
-    private String clientKey;
+public class GetCacheStatsUiRq {
     private String userName;
     private String sessionId;
 
-    public GetCacheStatsRq(String clientKey, String userName, String sessionId) {
-        this.clientKey = clientKey;
+    public GetCacheStatsUiRq(String userName, String sessionId) {
         this.userName = userName;
         this.sessionId = sessionId;
     }
 
-    public GetCacheStatsRq() {}
-
-    public String getClientKey() {
-        return clientKey;
-    }
+    public GetCacheStatsUiRq() {}
 
     public String getUserName() {
         return userName;
@@ -30,7 +24,6 @@ public class GetCacheStatsRq {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .append("clientKey", clientKey)
                 .append("userName", userName)
                 .append("sessionId", sessionId)
                 .toString();

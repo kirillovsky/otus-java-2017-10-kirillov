@@ -41,8 +41,6 @@ public class GetCacheStatsServlet extends AbstractServlet {
     @Value("${frontend.cache-stats.refresh.delay}")
     private String cacheInfoRefreshDelayInMsl;
 
-    private String clientKey = UUID.randomUUID().toString();
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         if (!checkAuthentication(req)) {
@@ -79,7 +77,6 @@ public class GetCacheStatsServlet extends AbstractServlet {
         paramMap.put("host", host);
         paramMap.put("port", portNumber);
         paramMap.put("cacheStatsDelay", cacheInfoRefreshDelayInMsl);
-        paramMap.put("clientKey", clientKey);
         paramMap.put("sessionIdKey", COOKIE_SESSION_ID_PARAM_NAME);
         paramMap.put("userNameKey", COOKIE_USERNAME_PARAM_NAME);
         return templateEngine.getPage(View.CACHE_STATS, paramMap);

@@ -111,8 +111,8 @@
     });
 
     socket.on('message', function(data) {
-      console.log(data);
-      if (data.errorMsg) {
+      console.debug(data);
+      if (data.cause) {
         window.location.replace('http://{{host}}:{{port}}/error?error-msg=\'' + data.errorMsg + '\'');
       }
 
@@ -124,10 +124,7 @@
   }
 
   function sendMessage(socket) {
-    const clientKey = '{{clientKey}}';
     var msg = {
-      '@class': 'ru.otus.kirillov.model.service.getCacheStats.messages.GetCacheStatsRq',
-      clientKey: clientKey,
       sessionId: getCookie('{{sessionIdKey}}'),
       userName: getCookie('{{userNameKey}}'),
     };
@@ -142,10 +139,7 @@
   }
 
   var socket = createConection();
-  setInterval(function() {
-    console.log(socket);
-    sendMessage(socket);
-  }, Number('{{cacheStatsDelay}}'));
+  setInterval(function() {sendMessage(socket);}, Number('{{cacheStatsDelay}}'));
 
 </script>
 
