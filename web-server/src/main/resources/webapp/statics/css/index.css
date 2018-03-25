@@ -150,7 +150,7 @@ body {
   -webkit-animation-timing-function: linear;
 }
 
-@-webkit-keyframes "rotateThis" {
+@-webkit-keyframes 'rotateThis' {
   from {
     -webkit-transform: rotate( 0deg );
   }

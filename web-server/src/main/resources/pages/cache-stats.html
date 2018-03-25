@@ -91,9 +91,60 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script>window.jQuery || document.write('<script src="statics/bootstrap/jquery-3.2.0.min.js"><\/script>')</script>
+<script>window.jQuery || document.write('<script src="statics/bootstrap/jquery-3.2.0.min.js"><\/script>');</script>
 <script src="statics/bootstrap/js/bootstrap.min.js"></script>
 <script src="statics/bootstrap/jquery-3.2.0.min.js"></script>
 <script src="statics/js/socket.io.js"/>
+
+<script>
+  function createConection() {
+    var socket = io.connect('http://{{frontend.host}}:{{frontend.cache-stats.port}}/{{frontend.cache-stats.endpoint}}',
+        {transports: ['websocket']}
+    );
+
+    socket.on('connect', function() {
+      console.log('Connected to server');
+    });
+
+    socket.on('disconnect', function() {
+      console.error('Disconnected from server');
+    });
+
+    socket.on('cache-stats', function(data) {
+
+      if (data.errorMsg) {
+        window.location.replace('http://{{frontend.host}}:{{frontend.port}}/error?error-msg=\'' + data.errorMsg + '\'');
+      }
+
+      $('#cacheSize').val(data.cacheSize);
+      $('#cacheHit').val(data.cacheHit);
+      $('#cacheMiss').val(data.cacheMiss);
+    });
+  }
+
+  function sendMessage(socket) {
+    const clientKey = '{{client-key}}';
+    var msg = {
+      clientKey: clientKey,
+      sessionId: getCookie('{{sessionIdKey}}'),
+      userName: getCookie('{{userNameKey}}'),
+    };
+    socket.emit('cache-stats', msg);
+  }
+
+  function getCookie(name) {
+    var matches = document.cookie.match(new RegExp(
+        '(?:^|; )' + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)'
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+  }
+
+  const socket = createConection();
+  setTimeout(function() {
+    sendMessage(socket);
+  }, '{{frontend.cache-stats.refresh.delay}}');
+
+</script>
+
 </body>
 </html>

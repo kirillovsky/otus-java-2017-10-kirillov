@@ -10,5 +10,6 @@
     <context:annotation-config />
 
     <bean class="ru.otus.kirillov.configuraton.WebServerConfiguration"/>
+    <context:property-placeholder location="classpath:webapp/service.properties" />
 
 </beans>
