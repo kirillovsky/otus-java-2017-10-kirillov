@@ -7,11 +7,6 @@ import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
-import static ru.otus.kirillov.configuraton.WebServerConfiguration.createErrorPageServlet;
-import static ru.otus.kirillov.configuraton.WebServerConfiguration.createGetCacheStatsServlet;
-import static ru.otus.kirillov.configuraton.WebServerConfiguration.createLoginServlet;
-import static ru.otus.kirillov.configuraton.WebServerConfiguration.createLogoutServlet;
-import static ru.otus.kirillov.configuraton.WebServerConfiguration.createMainServlet;
 
 public class WebServer {
 
@@ -24,12 +19,6 @@ public class WebServer {
         resourceHandler.setResourceBase(PUBLIC_HTML);
 
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
-
-        context.addServlet(new ServletHolder(createMainServlet()), "/main");
-        context.addServlet(new ServletHolder(createLoginServlet()), "/login");
-        context.addServlet(new ServletHolder(createLogoutServlet()), "/logout");
-        context.addServlet(new ServletHolder(createGetCacheStatsServlet()), "/cache-stats");
-        context.addServlet(new ServletHolder(createErrorPageServlet()), "/error");
 
         server = new Server(portNumber);
         server.setHandler(new HandlerList(resourceHandler, context));

@@ -7,6 +7,7 @@ import com.github.jknack.handlebars.io.TemplateSource;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
@@ -23,6 +24,11 @@ public class TemplateEngine {
         TemplateLoader loader = handlebars.getLoader();
         loader.setPrefix(VIEW_PATH_PREFIX);
         loader.setSuffix(VIEW_FILE_EXTENSION);
+    }
+
+    public TemplateEngine(List<View> views) {
+        this();
+        views.forEach(this::initView);
     }
 
     public void initView(@NotNull View view) {
