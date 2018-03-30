@@ -4,9 +4,21 @@ import ru.otus.kirillov.cacheengine.CacheEngine;
 import ru.otus.kirillov.service.DBService;
 import java.util.function.Function;
 
-public final class Operations {
+public final class Requests {
 
-    private Operations() {
+    private Requests() {
+    }
+
+    public static abstract class Request {
+        private final Header header;
+
+        protected Request() {
+            header = new Header();
+        }
+
+        public Header getHeader() {
+            return header;
+        }
     }
 
     /**
@@ -14,19 +26,12 @@ public final class Operations {
      * @param <T> - тип удаленного сервиса
      * @param <T> - тип результата
      */
-    public static abstract class Operation<T, R> {
-
-        private final Header header;
+    public static abstract class RemoteOperation<T, R> extends Request{
 
         private final Function<T, R> remoteOp;
 
-        public Operation(Function<T, R> remoteOp) {
+        public RemoteOperation(Function<T, R> remoteOp) {
             this.remoteOp = remoteOp;
-            header = new Header();
-        }
-
-        public Header getHeader() {
-            return header;
         }
 
         public Function<T, R> getRemoteOp() {
@@ -34,16 +39,15 @@ public final class Operations {
         }
     }
 
+    public static final class RemoteCacheOperation<R> extends RemoteOperation<CacheEngine, R> {
 
-    public static final class CacheOperation<R> extends Operation<CacheEngine, R> {
-
-        public CacheOperation(Function<CacheEngine, R> remoteOp) {
+        public RemoteCacheOperation(Function<CacheEngine, R> remoteOp) {
             super(remoteOp);
         }
     }
 
-    public static final class DbOperation<R> extends Operation<DBService, R> {
-        public DbOperation(Function<DBService, R> remoteOp) {
+    public static final class RemoteDbOperation<R> extends RemoteOperation<DBService, R> {
+        public RemoteDbOperation(Function<DBService, R> remoteOp) {
             super(remoteOp);
         }
     }
