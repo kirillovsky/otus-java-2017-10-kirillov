@@ -1,6 +1,4 @@
-package ru.otus.kirillov.transport;
-
-import ru.otus.kirillov.transport.Responses.Response;
+package ru.otus.kirillov.model;
 
 public interface Observer<RS> {
 

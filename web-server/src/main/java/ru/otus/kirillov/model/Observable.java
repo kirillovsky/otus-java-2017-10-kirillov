@@ -1,4 +1,4 @@
-package ru.otus.kirillov.transport;
+package ru.otus.kirillov.model;
 
 public interface Observable<T> {
 
