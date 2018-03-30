@@ -1,6 +1,6 @@
 package ru.otus.kirillov.model.channels;
 
-import ru.otus.kirillov.transport.Observable;
+import ru.otus.kirillov.model.Observable;
 
 /**
  * Однонаправленный канал с асинхронной обработкой

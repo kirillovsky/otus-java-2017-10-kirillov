@@ -2,7 +2,7 @@ package ru.otus.kirillov.model.channels;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ru.otus.kirillov.transport.Observer;
+import ru.otus.kirillov.model.Observer;
 import ru.otus.kirillov.utils.CommonUtils;
 import java.util.ArrayList;
 import java.util.List;

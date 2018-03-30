@@ -1,6 +1,6 @@
 package ru.otus.kirillov.model.channels;
 
-import ru.otus.kirillov.transport.Observer;
+import ru.otus.kirillov.model.Observer;
 import ru.otus.kirillov.utils.CommonUtils;
 
 /**
