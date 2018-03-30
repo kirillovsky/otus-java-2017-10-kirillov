@@ -2,7 +2,6 @@ package ru.otus.kirillov.transport;
 
 import ru.otus.kirillov.cacheengine.CacheEngine;
 import ru.otus.kirillov.service.DBService;
-import java.util.UUID;
 import java.util.function.Function;
 
 public final class Operations {
@@ -17,17 +16,17 @@ public final class Operations {
      */
     public static abstract class Operation<T, R> {
 
-        private final UUID opUid;
+        private final Header header;
 
         private final Function<T, R> remoteOp;
 
         public Operation(Function<T, R> remoteOp) {
-            this.opUid = UUID.randomUUID();
             this.remoteOp = remoteOp;
+            header = new Header();
         }
 
-        public UUID getOpUid() {
-            return opUid;
+        public Header getHeader() {
+            return header;
         }
 
         public Function<T, R> getRemoteOp() {
