@@ -1,4 +1,4 @@
-package ru.otus.kirillov.transport;
+package ru.otus.kirillov.model.transport;
 
 import ru.otus.kirillov.cacheengine.CacheEngine;
 import ru.otus.kirillov.service.DBService;
