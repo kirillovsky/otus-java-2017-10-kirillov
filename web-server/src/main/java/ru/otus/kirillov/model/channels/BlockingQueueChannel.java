@@ -62,5 +62,6 @@ public class BlockingQueueChannel<T> implements Channel<T> {
 
     @Override
     public void subscribe(Observer<T> observable) {
+        observers.add(observable);
     }
 }

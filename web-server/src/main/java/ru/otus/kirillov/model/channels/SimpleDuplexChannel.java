@@ -1,7 +1,5 @@
 package ru.otus.kirillov.model.channels;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import ru.otus.kirillov.transport.Observer;
 import ru.otus.kirillov.utils.CommonUtils;
 
@@ -10,8 +8,6 @@ import ru.otus.kirillov.utils.CommonUtils;
  * Для многопроцессной реализации может быть заменен на реализацию на netty-socketio
  */
 public class SimpleDuplexChannel<RQ, RS> implements DuplexChannel<RQ, RS> {
-
-    private static final Logger log = LogManager.getLogger();
 
     private final Channel<RQ> inChannel;
     private final Channel<RS> outChannel;
