@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.LinkedBlockingQueue;
 import static ru.otus.kirillov.utils.WorkerUtils.initWorkers;
 
 /**
@@ -24,6 +25,10 @@ public class BlockingQueueChannel<T> implements Channel<T> {
 
     private final BlockingQueue<T> inQueue;
     private final List<Observer<T>> observers;
+
+    public BlockingQueueChannel(ExecutorService service, int workersCount) {
+        this(new LinkedBlockingQueue<>(), service, workersCount);
+    }
 
     public BlockingQueueChannel(BlockingQueue<T> inQueue, ExecutorService service, int workersCount) {
         this.inQueue = CommonUtils.retunIfNotNull(inQueue);
