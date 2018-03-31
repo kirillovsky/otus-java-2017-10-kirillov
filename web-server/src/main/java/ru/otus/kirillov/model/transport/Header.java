@@ -1,5 +1,6 @@
 package ru.otus.kirillov.model.transport;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -29,5 +30,12 @@ public class Header {
     public int hashCode() {
 
         return Objects.hash(opUid);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("opUid", opUid)
+                .toString();
     }
 }

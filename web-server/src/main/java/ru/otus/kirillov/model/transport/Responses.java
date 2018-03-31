@@ -1,5 +1,7 @@
 package ru.otus.kirillov.model.transport;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 public final class Responses {
 
     private Responses() {}
@@ -22,6 +24,14 @@ public final class Responses {
         public T getValue() {
             return value;
         }
+
+        @Override
+        public String toString() {
+            return new ToStringBuilder(this)
+                    .append(super.toString())
+                    .append("value", value)
+                    .toString();
+        }
     }
 
     public static class ExceptionResponse<T extends Throwable> extends Response {
@@ -38,6 +48,14 @@ public final class Responses {
 
         public void rethrow() throws T {
             throw exception;
+        }
+
+        @Override
+        public String toString() {
+            return new ToStringBuilder(this)
+                    .append(super.toString())
+                    .append("exception", exception)
+                    .toString();
         }
     }
 }

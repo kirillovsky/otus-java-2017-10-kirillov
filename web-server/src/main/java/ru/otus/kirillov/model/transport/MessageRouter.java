@@ -1,8 +1,9 @@
 package ru.otus.kirillov.model.transport;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import ru.otus.kirillov.model.Observable;
 import ru.otus.kirillov.model.Observer;
-import ru.otus.kirillov.model.channels.BlockingQueueChannel;
 import ru.otus.kirillov.model.channels.Channel;
 import ru.otus.kirillov.model.channels.DuplexChannel;
 import ru.otus.kirillov.model.transport.Requests.Request;
@@ -11,18 +12,18 @@ import ru.otus.kirillov.utils.CommonUtils;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ExecutorService;
 
 /**
  * Маршрутизатор входящих запросов по типу сообщения.
- * Реализует интерфейс {@link Observable}, однако гарантирует, что
- * сообщение получит только тот подписчик, который направил соответствующий запрос.
+ * Гарантирует, что сообщение получит только тот подписчик, который направил соответствующий запрос.
  * Реализация роутера для многопоточной системы подразумевает, что каждый тип запроса можно отправить
- * только в определенный канал.
+ * только в определенный выходной канал.
  * Опять же, данная реализация подразумевает, что {@link Header} уникален в рамках системы
  * хотя бы в промежутке обработки запроса
  */
 public class MessageRouter implements Observer<Response> {
+
+    private static final Logger log = LogManager.getLogger();
 
     private Channel<Response> backwardChannel;
     private final Map<Header, Observer<Response>> messageCorrelations;
@@ -31,8 +32,8 @@ public class MessageRouter implements Observer<Response> {
     public MessageRouter(Map<Class<? extends Request>, DuplexChannel<Request, Response>> outgoingChannelsMap,
                          Channel<Response> backwardChannel) {
         messageCorrelations = new ConcurrentHashMap<>();
-        initBackwardFlow(backwardChannel);
         initDirectFlow(outgoingChannelsMap);
+        initBackwardFlow(backwardChannel);
     }
 
     private void initDirectFlow(Map<Class<? extends Request>, DuplexChannel<Request, Response>> outgoingChannelsMap) {
@@ -43,6 +44,7 @@ public class MessageRouter implements Observer<Response> {
     private void initBackwardFlow(Channel<Response> backwardChannel) {
         this.backwardChannel = CommonUtils.retunIfNotNull(backwardChannel);
         this.backwardChannel.subscribe((rs) -> {
+            log.info("Response received - {}", rs);
             Header rsHeader = rs.getHeader();
             //Ищем корреляцию ответа
             Observer<Response> sender = messageCorrelations.computeIfAbsent(rsHeader, (h) -> {

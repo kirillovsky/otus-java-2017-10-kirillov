@@ -1,5 +1,6 @@
 package ru.otus.kirillov.model.transport;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import ru.otus.kirillov.utils.CommonUtils;
 
 public abstract class Message {
@@ -15,5 +16,12 @@ public abstract class Message {
 
     public Header getHeader() {
         return header;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("header", header)
+                .toString();
     }
 }
