@@ -29,9 +29,9 @@ public class MessageRouter implements Observer<Response> {
     private Map<Class<? extends Request>, DuplexChannel<Request, Response>> outgoingChannelsMap;
 
     public MessageRouter(Map<Class<? extends Request>, DuplexChannel<Request, Response>> outgoingChannelsMap,
-                         ExecutorService service, int workersCount) {
+                         Channel<Response> backwardChannel) {
         messageCorrelations = new ConcurrentHashMap<>();
-        initBackwardFlow(service, workersCount);
+        initBackwardFlow(backwardChannel);
         initDirectFlow(outgoingChannelsMap);
     }
 
@@ -40,9 +40,9 @@ public class MessageRouter implements Observer<Response> {
         subscribeToAllOutgoingChannels();
     }
 
-    private void initBackwardFlow(ExecutorService service, int workersCount) {
-        backwardChannel = new BlockingQueueChannel<>(service, workersCount);
-        backwardChannel.subscribe((rs) -> {
+    private void initBackwardFlow(Channel<Response> backwardChannel) {
+        this.backwardChannel = CommonUtils.retunIfNotNull(backwardChannel);
+        this.backwardChannel.subscribe((rs) -> {
             Header rsHeader = rs.getHeader();
             //Ищем корреляцию ответа
             Observer<Response> sender = messageCorrelations.computeIfAbsent(rsHeader, (h) -> {
