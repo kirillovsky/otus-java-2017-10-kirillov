@@ -1,20 +1,12 @@
 package ru.otus.kirillov.model.transport;
 
-import ru.otus.kirillov.utils.CommonUtils;
-
 public final class Responses {
-    
+
     private Responses() {}
 
-    public static abstract class Response {
-        private final Header header;
-
+    public static abstract class Response extends Message {
         public Response(Header header) {
-            this.header = CommonUtils.retunIfNotNull(header);
-        }
-
-        public Header getHeader() {
-            return header;
+            super(header);
         }
     }
 

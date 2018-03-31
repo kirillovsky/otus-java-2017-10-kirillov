@@ -9,24 +9,18 @@ public final class Requests {
     private Requests() {
     }
 
-    public static abstract class Request {
-        private final Header header;
-
+    public static abstract class Request extends Message {
         protected Request() {
-            header = new Header();
-        }
-
-        public Header getHeader() {
-            return header;
         }
     }
 
     /**
      * Абстракция для работы с удаленными (как в контексте многопоточности, так и многопроцессности) операциями
+     *
      * @param <T> - тип удаленного сервиса
      * @param <T> - тип результата
      */
-    public static abstract class RemoteOperation<T, R> extends Request{
+    public static abstract class RemoteOperation<T, R> extends Request {
 
         private final Function<T, R> remoteOp;
 
