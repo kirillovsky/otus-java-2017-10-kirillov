@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
-import java.util.stream.IntStream;
 import static ru.otus.kirillov.utils.WorkerUtils.initWorkers;
 
 /**
@@ -19,14 +18,14 @@ import static ru.otus.kirillov.utils.WorkerUtils.initWorkers;
  *
  * @param <T> - тип сообщения
  */
-public class QueueChannel<T> implements Channel<T> {
+public class BlockingQueueChannel<T> implements Channel<T> {
 
     private static final Logger log = LogManager.getLogger();
 
     private final BlockingQueue<T> inQueue;
-    private final List<Observer<? super T>> observers;
+    private final List<Observer<T>> observers;
 
-    public QueueChannel(BlockingQueue<T> inQueue, ExecutorService service, int workersCount) {
+    public BlockingQueueChannel(BlockingQueue<T> inQueue, ExecutorService service, int workersCount) {
         this.inQueue = CommonUtils.retunIfNotNull(inQueue);
         this.observers = new ArrayList<>();
         initWorkers(service, workersCount, () -> {
@@ -43,7 +42,7 @@ public class QueueChannel<T> implements Channel<T> {
     }
 
     @Override
-    public void subscribe(Observer<? super T> observable) {
+    public void subscribe(Observer<T> observable) {
         observers.add(observable);
     }
 }
