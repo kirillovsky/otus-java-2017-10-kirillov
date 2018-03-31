@@ -2,7 +2,8 @@ package ru.otus.kirillov.model.transport;
 
 import ru.otus.kirillov.utils.CommonUtils;
 
-public class Responses {
+public final class Responses {
+    
     private Responses() {}
 
     public static abstract class Response {

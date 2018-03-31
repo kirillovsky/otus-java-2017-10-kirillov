@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.stream.IntStream;
+import static ru.otus.kirillov.utils.WorkerUtils.initWorkers;
 
 /**
  * Однонаправленный канал, построенный на блокирующей очереди.
@@ -18,40 +19,21 @@ import java.util.stream.IntStream;
  *
  * @param <T> - тип сообщения
  */
-public class BlockingQueueChannel<T> implements Channel<T> {
+public class QueueChannel<T> implements Channel<T> {
 
     private static final Logger log = LogManager.getLogger();
 
     private final BlockingQueue<T> inQueue;
-    private final List<Observer<T>> observers;
+    private final List<Observer<? super T>> observers;
 
-    public BlockingQueueChannel(BlockingQueue<T> inQueue, ExecutorService service, int processorsCount) {
-        checkProcessorsCount(processorsCount);
+    public QueueChannel(BlockingQueue<T> inQueue, ExecutorService service, int workersCount) {
         this.inQueue = CommonUtils.retunIfNotNull(inQueue);
         this.observers = new ArrayList<>();
-        initProcessors(CommonUtils.retunIfNotNull(service), processorsCount);
-    }
-
-    private void checkProcessorsCount(int processorsCount) {
-        if (processorsCount <= 0) {
-            throw new IllegalArgumentException("Processors count must be more than zero, actual - " + processorsCount);
-        }
-    }
-
-    private void initProcessors(ExecutorService service, int processorsCount) {
-        IntStream.range(0, processorsCount + 1).forEach(i ->
-                service.execute(() -> {
-                    while (true) {
-                        try {
-                            T msg = inQueue.take();
-                            log.info("Message {} received!", msg);
-                            observers.forEach(o -> o.notify(msg));
-                        } catch (InterruptedException e) {
-                            log.catching(e);
-                        }
-                    }
-                })
-        );
+        initWorkers(service, workersCount, () -> {
+            T msg = inQueue.take();
+            log.info("Message {} received!", msg);
+            observers.forEach(o -> o.notify(msg));
+        });
     }
 
     @Override
@@ -61,7 +43,7 @@ public class BlockingQueueChannel<T> implements Channel<T> {
     }
 
     @Override
-    public void subscribe(Observer<T> observable) {
+    public void subscribe(Observer<? super T> observable) {
         observers.add(observable);
     }
 }
