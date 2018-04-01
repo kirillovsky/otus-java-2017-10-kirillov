@@ -1,11 +1,11 @@
-package ru.otus.kirillov.controller;
+package ru.otus.kirillov.controllers.http;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.otus.kirillov.model.commands.CommandInvoker;
-import ru.otus.kirillov.model.commands.Result;
-import ru.otus.kirillov.model.commands.common.ErroneousResult;
-import ru.otus.kirillov.model.commands.login.LoginRequest;
-import ru.otus.kirillov.model.commands.login.LoginResult;
+import ru.otus.kirillov.model.commands.ModelResult;
+import ru.otus.kirillov.model.commands.common.ErroneousModelResult;
+import ru.otus.kirillov.model.commands.login.LoginModelRequest;
+import ru.otus.kirillov.model.commands.login.LoginModelResult;
 import ru.otus.kirillov.view.View;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,28 +24,28 @@ public class LoginServlet extends AbstractServlet {
 
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        Result result = authenticate(
+        ModelResult modelResult = authenticate(
                 req.getParameter(USERNAME_PARAM_NAME), req.getParameter(PASSWORD_PARAM_NAME)
         );
 
-        if (result instanceof LoginResult) {
-            setSessionCookies(resp, (LoginResult) result);
+        if (modelResult instanceof LoginModelResult) {
+            setSessionCookies(resp, (LoginModelResult) modelResult);
         } else {
-            resp.sendRedirect("/error?error-msg=" + ((ErroneousResult) result).getCause());
+            resp.sendRedirect("/error?error-msg=" + ((ErroneousModelResult) modelResult).getCause());
             return;
         }
 
-        doAnswer(resp, getPage(req, result));
+        doAnswer(resp, getPage(req, modelResult));
     }
 
-    private Result authenticate(String userName, String password) {
-        return invoker.execute(LoginRequest.of(userName, password));
+    private ModelResult authenticate(String userName, String password) {
+        return invoker.execute(LoginModelRequest.of(userName, password));
     }
 
-    private String getPage(HttpServletRequest req, Result result) {
+    private String getPage(HttpServletRequest req, ModelResult modelResult) {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("isAuth", true);
-        paramMap.put("username", ((LoginResult) result).getUserName());
+        paramMap.put("username", ((LoginModelResult) modelResult).getUserName());
         return templateEngine.getPage(View.MAIN, paramMap);
     }
 }

@@ -1,24 +1,24 @@
 package ru.otus.kirillov.model.commands.common;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import ru.otus.kirillov.model.commands.Result;
+import ru.otus.kirillov.model.commands.ModelResult;
 
 /**
  * Ответ об ошибке
  */
-public class ErroneousResult implements Result {
+public class ErroneousModelResult implements ModelResult {
 
     /**
      * Причина. Возможно стоило добавить код
      */
     private final String cause;
 
-    protected ErroneousResult(String cause) {
+    protected ErroneousModelResult(String cause) {
         this.cause = cause;
     }
 
-    public static ErroneousResult of(String cause) {
-        return new ErroneousResult(cause);
+    public static ErroneousModelResult of(String cause) {
+        return new ErroneousModelResult(cause);
     }
 
     public String getCause() {

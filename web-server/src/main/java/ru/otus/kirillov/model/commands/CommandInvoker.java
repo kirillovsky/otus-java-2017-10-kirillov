@@ -2,14 +2,12 @@ package ru.otus.kirillov.model.commands;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ru.otus.kirillov.model.commands.common.ErroneousResult;
-import ru.otus.kirillov.model.commands.common.NotAuthResult;
-import ru.otus.kirillov.model.commands.common.SessionRequestWrapper;
-import ru.otus.kirillov.model.service.auth.AuthResult;
-import ru.otus.kirillov.model.service.auth.AuthStatus;
-import ru.otus.kirillov.model.service.auth.AuthService;
+import ru.otus.kirillov.model.commands.common.NotAuthModelResult;
+import ru.otus.kirillov.model.commands.common.SessionModelRequestWrapper;
+import ru.otus.kirillov.model.services.auth.AuthResult;
+import ru.otus.kirillov.model.services.auth.AuthService;
+import ru.otus.kirillov.model.services.auth.AuthStatus;
 import ru.otus.kirillov.utils.CommonUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +16,7 @@ public final class CommandInvoker {
 
     public static class UnknownOperationException extends RuntimeException {
 
-        public UnknownOperationException(Request rq) {
+        UnknownOperationException(ModelRequest rq) {
             super("Not found operation for request - " + rq.toString());
         }
     }
@@ -36,16 +34,16 @@ public final class CommandInvoker {
         this.commands = new ArrayList<>(operationCommands);
     }
 
-    public Result execute(Request rq) {
+    public ModelResult execute(ModelRequest rq) {
         CommonUtils.requiredNotNull(rq);
         log.info("Start to process request - {}", rq);
         AuthResult authResult = authenticate(rq);
 
         if (authResult.getStatus() != AuthStatus.OK) {
-            return new NotAuthResult(authResult.getAdditionalInfo());
+            return new NotAuthModelResult(authResult.getAdditionalInfo());
         }
 
-        final Request actualRq = unpackSessionRequest(rq);
+        final ModelRequest actualRq = unpackSessionRequest(rq);
 
         return commands.stream()
                 .filter(c -> c.isApplicable(actualRq))
@@ -57,25 +55,25 @@ public final class CommandInvoker {
                 .execute(actualRq);
     }
 
-    private AuthResult authenticate(Request request) {
-        if (!(request instanceof SessionRequestWrapper)) {
-            log.debug("No needs session context for rq - {}", request);
+    private AuthResult authenticate(ModelRequest modelRequest) {
+        if (!(modelRequest instanceof SessionModelRequestWrapper)) {
+            log.debug("No needs session context for rq - {}", modelRequest);
             return AuthResult.of(AuthStatus.OK);
         }
 
-        SessionRequestWrapper<?> sessionRq = (SessionRequestWrapper<?>) request;
+        SessionModelRequestWrapper<?> sessionRq = (SessionModelRequestWrapper<?>) modelRequest;
 
         if (!authService.isValidSession(sessionRq.getSessionId(), sessionRq.getUserName())) {
-            log.error("Unable to authorize rq - {}", request);
+            log.error("Unable to authorize rq - {}", modelRequest);
             return AuthResult.of(AuthStatus.NOT_VALID,
                     String.format("Authentication failed (SessionId = %s, UserName = %s)",
                             sessionRq.getSessionId(), sessionRq.getUserName()));
         }
-        log.info("Authorization succeed for request - {}", request);
+        log.info("Authorization succeed for modelRequest - {}", modelRequest);
         return AuthResult.of(AuthStatus.OK);
     }
 
-    private Request unpackSessionRequest(Request rq) {
-        return rq instanceof SessionRequestWrapper ? ((SessionRequestWrapper) rq).getRequest() : rq;
+    private ModelRequest unpackSessionRequest(ModelRequest rq) {
+        return rq instanceof SessionModelRequestWrapper ? ((SessionModelRequestWrapper) rq).getRequest() : rq;
     }
 }

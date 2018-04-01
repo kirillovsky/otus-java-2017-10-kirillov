@@ -2,17 +2,16 @@ package ru.otus.kirillov.model.commands.login;
 
 import org.junit.Before;
 import org.junit.Test;
-import ru.otus.kirillov.model.commands.Result;
-import ru.otus.kirillov.model.commands.common.ErroneousResult;
-import ru.otus.kirillov.model.service.auth.AuthService;
-import ru.otus.kirillov.model.service.auth.StubAuthServiceImpl;
+import ru.otus.kirillov.model.commands.ModelResult;
+import ru.otus.kirillov.model.commands.common.ErroneousModelResult;
+import ru.otus.kirillov.model.services.auth.AuthService;
 import ru.otus.kirillov.utils.AESSecurity;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
-import static ru.otus.kirillov.model.service.auth.StubAuthServiceImpl.*;
+import static ru.otus.kirillov.model.services.auth.StubAuthServiceImpl.*;
 
 public class LoginCommandTest {
 
@@ -42,8 +41,8 @@ public class LoginCommandTest {
         when(authServiceMock.login(DUMMY_USERNAME, DUMMY_ENCRYPTED_PASSWORD))
                 .thenReturn(DUMMY_SESSION_ID);
 
-        Result result = command.execute(LoginRequest.of(DUMMY_USERNAME, DUMMY_PASSWORD));
-        LoginResult loginResult = (LoginResult) result;
+        ModelResult modelResult = command.execute(LoginModelRequest.of(DUMMY_USERNAME, DUMMY_PASSWORD));
+        LoginModelResult loginResult = (LoginModelResult) modelResult;
 
         assertEquals(DUMMY_USERNAME, loginResult.getUserName());
         assertEquals(DUMMY_SESSION_ID, loginResult.getSessionId());
@@ -55,8 +54,8 @@ public class LoginCommandTest {
         when(authServiceMock.login(DUMMY_USERNAME, DUMMY_ENCRYPTED_PASSWORD))
                 .thenThrow(new NotAuthorizedException(DUMMY_USERNAME, DUMMY_PASSWORD));
 
-        ErroneousResult result =
-                (ErroneousResult) command.execute(LoginRequest.of(DUMMY_USERNAME, DUMMY_PASSWORD));
+        ErroneousModelResult result =
+                (ErroneousModelResult) command.execute(LoginModelRequest.of(DUMMY_USERNAME, DUMMY_PASSWORD));
 
         assertNotNull(result.getCause());
 

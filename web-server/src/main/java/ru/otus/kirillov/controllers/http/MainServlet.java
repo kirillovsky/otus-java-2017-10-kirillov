@@ -1,4 +1,4 @@
-package ru.otus.kirillov.controller;
+package ru.otus.kirillov.controllers.http;
 
 import ru.otus.kirillov.view.View;
 

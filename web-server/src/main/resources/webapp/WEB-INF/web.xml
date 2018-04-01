@@ -12,7 +12,7 @@
 
     <servlet>
         <servlet-name>mainServlet</servlet-name>
-        <servlet-class>ru.otus.kirillov.controller.MainServlet</servlet-class>
+        <servlet-class>ru.otus.kirillov.controllers.http.MainServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>mainServlet</servlet-name>
@@ -21,7 +21,7 @@
 
     <servlet>
         <servlet-name>loginServlet</servlet-name>
-        <servlet-class>ru.otus.kirillov.controller.LoginServlet</servlet-class>
+        <servlet-class>ru.otus.kirillov.controllers.http.LoginServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>loginServlet</servlet-name>
@@ -30,7 +30,7 @@
 
     <servlet>
         <servlet-name>logoutServlet</servlet-name>
-        <servlet-class>ru.otus.kirillov.controller.LogoutServlet</servlet-class>
+        <servlet-class>ru.otus.kirillov.controllers.http.LogoutServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>logoutServlet</servlet-name>
@@ -39,7 +39,7 @@
 
     <servlet>
         <servlet-name>errorServlet</servlet-name>
-        <servlet-class>ru.otus.kirillov.controller.ErrorPageServlet</servlet-class>
+        <servlet-class>ru.otus.kirillov.controllers.http.ErrorPageServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>errorServlet</servlet-name>
@@ -48,7 +48,7 @@
 
     <servlet>
         <servlet-name>cacheStatsServlet</servlet-name>
-        <servlet-class>ru.otus.kirillov.controller.GetCacheStatsServlet</servlet-class>
+        <servlet-class>ru.otus.kirillov.controllers.http.GetCacheStatsServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>cacheStatsServlet</servlet-name>

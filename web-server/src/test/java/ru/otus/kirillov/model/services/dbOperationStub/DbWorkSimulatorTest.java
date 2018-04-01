@@ -1,9 +1,7 @@
-package ru.otus.kirillov.model.service.dbOperationStub;
+package ru.otus.kirillov.model.services.dbOperationStub;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.junit.*;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import ru.otus.kirillov.cacheengine.CacheEngine;
 import ru.otus.kirillov.cacheengine.config.CacheEngineConfig;
 import ru.otus.kirillov.cacheengine.config.CacheEngineConfigKeys;
@@ -15,9 +13,7 @@ import ru.otus.kirillov.service.DBService;
 import ru.otus.kirillov.service.factory.cache.CachedProxyDBServiceFactory;
 import ru.otus.kirillov.service.factory.hibernate.HibernateDBServiceFactory;
 
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 

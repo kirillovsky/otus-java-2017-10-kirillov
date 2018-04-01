@@ -4,8 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import ru.otus.kirillov.cacheengine.CacheEngine;
 import ru.otus.kirillov.cacheengine.stats.CacheStatistics;
-import ru.otus.kirillov.model.commands.Result;
-import ru.otus.kirillov.model.commands.common.ErroneousResult;
+import ru.otus.kirillov.model.commands.common.ErroneousModelResult;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -34,8 +33,8 @@ public class GetCacheStatsCommandTest {
         when(cacheEngineMock.getStats()).thenReturn(
                 CacheStatistics.of(CACHE_HIT_RESULT, CACHE_MISS_RESULT, CACHE_SIZE_RESULT)
         );
-        GetCacheStatsResult cacheStatsResult =
-                (GetCacheStatsResult) command.execute(new GetCacheStatsRequest());
+        GetCacheStatsModelResult cacheStatsResult =
+                (GetCacheStatsModelResult) command.execute(new GetCacheStatsModelRequest());
 
         assertEquals(CACHE_HIT_RESULT, cacheStatsResult.getCacheHit());
         assertEquals(CACHE_MISS_RESULT, cacheStatsResult.getCacheMiss());
@@ -50,7 +49,7 @@ public class GetCacheStatsCommandTest {
                 new UnsupportedOperationException(ERRONEOUS_MESSAGE)
         );
 
-        ErroneousResult erroneousResult = (ErroneousResult) command.execute(new GetCacheStatsRequest());
+        ErroneousModelResult erroneousResult = (ErroneousModelResult) command.execute(new GetCacheStatsModelRequest());
         assertEquals(ERRONEOUS_MESSAGE, erroneousResult.getCause());
     }
 }

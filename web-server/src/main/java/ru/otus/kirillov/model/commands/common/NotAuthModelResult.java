@@ -1,8 +1,8 @@
 package ru.otus.kirillov.model.commands.common;
 
-public class NotAuthResult extends ErroneousResult {
+public class NotAuthModelResult extends ErroneousModelResult {
 
-    public NotAuthResult(String additionalInfo) {
+    public NotAuthModelResult(String additionalInfo) {
         super("Not authorised: " + additionalInfo);
     }
 }

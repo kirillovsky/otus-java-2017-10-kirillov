@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ru.otus.kirillov.cacheengine.CacheEngine;
 import ru.otus.kirillov.model.commands.Command;
-import ru.otus.kirillov.model.commands.Request;
-import ru.otus.kirillov.model.commands.common.ErroneousResult;
-import ru.otus.kirillov.model.commands.Result;
+import ru.otus.kirillov.model.commands.ModelRequest;
+import ru.otus.kirillov.model.commands.common.ErroneousModelResult;
+import ru.otus.kirillov.model.commands.ModelResult;
 import ru.otus.kirillov.utils.CommonUtils;
 
 /**
@@ -23,21 +23,21 @@ public class GetCacheStatsCommand implements Command {
     }
 
     @Override
-    public boolean isApplicable(Request rq) {
-        return rq instanceof GetCacheStatsRequest;
+    public boolean isApplicable(ModelRequest rq) {
+        return rq instanceof GetCacheStatsModelRequest;
     }
 
     @Override
-    public Result execute(Request rq) {
+    public ModelResult execute(ModelRequest rq) {
         log.info("Try to process rq {}", rq);
-        Result result;
+        ModelResult modelResult;
         try {
-            result = GetCacheStatsResult.of(cacheEngine.getStats());
+            modelResult = GetCacheStatsModelResult.of(cacheEngine.getStats());
         } catch (Exception e) {
             log.catching(e);
-            result = ErroneousResult.of(e.getMessage());
+            modelResult = ErroneousModelResult.of(e.getMessage());
         }
-        log.info("Request processed. Result {}", result);
-        return result;
+        log.info("Response processed. Response {}", modelResult);
+        return modelResult;
     }
 }

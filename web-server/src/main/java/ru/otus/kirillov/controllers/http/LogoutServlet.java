@@ -1,13 +1,13 @@
-package ru.otus.kirillov.controller;
+package ru.otus.kirillov.controllers.http;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.otus.kirillov.model.commands.CommandInvoker;
-import ru.otus.kirillov.model.commands.Request;
-import ru.otus.kirillov.model.commands.Result;
-import ru.otus.kirillov.model.commands.common.ErroneousResult;
-import ru.otus.kirillov.model.commands.common.SessionRequestWrapper;
-import ru.otus.kirillov.model.commands.logout.LogOutRequest;
-import ru.otus.kirillov.model.commands.logout.LogOutResult;
+import ru.otus.kirillov.model.commands.ModelRequest;
+import ru.otus.kirillov.model.commands.ModelResult;
+import ru.otus.kirillov.model.commands.common.ErroneousModelResult;
+import ru.otus.kirillov.model.commands.common.SessionModelRequestWrapper;
+import ru.otus.kirillov.model.commands.logout.LogOutModelRequest;
+import ru.otus.kirillov.model.commands.logout.LogOutModelResult;
 import ru.otus.kirillov.view.View;
 
 import javax.servlet.ServletException;
@@ -33,28 +33,28 @@ public class LogoutServlet extends AbstractServlet {
             resp.sendRedirect("/main");
             return;
         }
-        Result rs = doLogout(createRequest(req));
+        ModelResult rs = doLogout(createRequest(req));
         deleteSessionCookies(resp, req);
-        if (!(rs instanceof LogOutResult)) {
-            resp.sendRedirect("/error?error-msg=" + ((ErroneousResult) rs).getCause());
+        if (!(rs instanceof LogOutModelResult)) {
+            resp.sendRedirect("/error?error-msg=" + ((ErroneousModelResult) rs).getCause());
             return;
         }
         doAnswer(resp, getPage(req, rs));
     }
 
-    private Request createRequest(HttpServletRequest request) {
+    private ModelRequest createRequest(HttpServletRequest request) {
         String username = getUserName(request);
         String sessionId = getSessionId(request);
-        return SessionRequestWrapper.of(sessionId, username,
-                new LogOutRequest(sessionId, username)
+        return SessionModelRequestWrapper.of(sessionId, username,
+                new LogOutModelRequest(sessionId, username)
         );
     }
 
-    private Result doLogout(Request rq) {
+    private ModelResult doLogout(ModelRequest rq) {
         return invoker.execute(rq);
     }
 
-    private String getPage(HttpServletRequest rq, Result rs) {
+    private String getPage(HttpServletRequest rq, ModelResult rs) {
         return templateEngine.getPage(View.MAIN, singletonMap("isAuth", false));
     }
 }

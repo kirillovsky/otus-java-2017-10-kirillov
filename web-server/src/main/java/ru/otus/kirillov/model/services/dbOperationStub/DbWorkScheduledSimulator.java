@@ -1,4 +1,4 @@
-package ru.otus.kirillov.model.service.dbOperationStub;
+package ru.otus.kirillov.model.services.dbOperationStub;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

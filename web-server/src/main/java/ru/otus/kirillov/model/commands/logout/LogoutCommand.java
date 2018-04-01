@@ -3,10 +3,10 @@ package ru.otus.kirillov.model.commands.logout;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ru.otus.kirillov.model.commands.Command;
-import ru.otus.kirillov.model.commands.Request;
-import ru.otus.kirillov.model.commands.common.ErroneousResult;
-import ru.otus.kirillov.model.commands.Result;
-import ru.otus.kirillov.model.service.auth.AuthService;
+import ru.otus.kirillov.model.commands.ModelRequest;
+import ru.otus.kirillov.model.commands.common.ErroneousModelResult;
+import ru.otus.kirillov.model.commands.ModelResult;
+import ru.otus.kirillov.model.services.auth.AuthService;
 
 public class LogoutCommand implements Command {
 
@@ -19,23 +19,23 @@ public class LogoutCommand implements Command {
     }
 
     @Override
-    public boolean isApplicable(Request rq) {
-        return rq instanceof LogOutRequest;
+    public boolean isApplicable(ModelRequest rq) {
+        return rq instanceof LogOutModelRequest;
     }
 
     @Override
-    public Result execute(Request rq) {
-        Result rs;
+    public ModelResult execute(ModelRequest rq) {
+        ModelResult rs;
         log.info("Try to process request - {}", rq);
-        LogOutRequest actRq = (LogOutRequest) rq;
+        LogOutModelRequest actRq = (LogOutModelRequest) rq;
         try {
             authService.logout(actRq.getSessionId(), actRq.getUserName());
-            rs = new LogOutResult();
+            rs = new LogOutModelResult();
         } catch (Exception e) {
             log.catching(e);
-            rs = ErroneousResult.of(e.getMessage());
+            rs = ErroneousModelResult.of(e.getMessage());
         }
-        log.info("Request processed. Result - {}", rs);
+        log.info("Response processed. Response - {}", rs);
         return rs;
     }
 }

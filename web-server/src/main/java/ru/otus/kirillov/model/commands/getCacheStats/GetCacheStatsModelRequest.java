@@ -1,12 +1,12 @@
 package ru.otus.kirillov.model.commands.getCacheStats;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import ru.otus.kirillov.model.commands.Request;
+import ru.otus.kirillov.model.commands.ModelRequest;
 
 /**
  * Запрос на получение сстояния кэша
  */
-public class GetCacheStatsRequest implements Request {
+public class GetCacheStatsModelRequest implements ModelRequest {
 
     @Override
     public String toString() {

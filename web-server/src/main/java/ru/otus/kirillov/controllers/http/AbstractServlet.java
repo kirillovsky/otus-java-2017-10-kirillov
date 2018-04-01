@@ -1,8 +1,8 @@
-package ru.otus.kirillov.controller;
+package ru.otus.kirillov.controllers.http;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
-import ru.otus.kirillov.model.commands.login.LoginResult;
+import ru.otus.kirillov.model.commands.login.LoginModelResult;
 import ru.otus.kirillov.view.TemplateEngine;
 
 import javax.servlet.http.Cookie;
@@ -26,7 +26,7 @@ public class AbstractServlet extends HttpServlet {
         SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
     }
 
-    protected void setSessionCookies(HttpServletResponse resp, LoginResult result) {
+    protected void setSessionCookies(HttpServletResponse resp, LoginModelResult result) {
         resp.addCookie(createSessionCookie(COOKIE_USERNAME_PARAM_NAME, result.getUserName()));
         resp.addCookie(createSessionCookie(COOKIE_SESSION_ID_PARAM_NAME, result.getSessionId()));
     }

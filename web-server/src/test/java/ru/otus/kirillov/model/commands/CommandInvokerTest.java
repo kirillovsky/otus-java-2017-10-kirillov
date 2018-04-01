@@ -2,15 +2,15 @@ package ru.otus.kirillov.model.commands;
 
 import org.junit.Before;
 import org.junit.Test;
-import ru.otus.kirillov.model.commands.common.ErroneousResult;
-import ru.otus.kirillov.model.commands.common.NotAuthResult;
-import ru.otus.kirillov.model.service.auth.AuthService;
+import ru.otus.kirillov.model.commands.common.ErroneousModelResult;
+import ru.otus.kirillov.model.commands.common.NotAuthModelResult;
+import ru.otus.kirillov.model.services.auth.AuthService;
 
 import java.util.Collections;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
-import static ru.otus.kirillov.model.commands.common.SessionRequestWrapper.of;
+import static ru.otus.kirillov.model.commands.common.SessionModelRequestWrapper.of;
 
 public class CommandInvokerTest {
 
@@ -33,16 +33,16 @@ public class CommandInvokerTest {
 
     @Test
     public void testNonSessionRequest() {
-        Request requestMock = mock(Request.class);
+        ModelRequest modelRequestMock = mock(ModelRequest.class);
 
-        when(commandMock.execute(requestMock))
-                .thenReturn(mock(Result.class));
+        when(commandMock.execute(modelRequestMock))
+                .thenReturn(mock(ModelResult.class));
 
-        Result result = invoker.execute(requestMock);
-        assertFalse(result instanceof ErroneousResult);
+        ModelResult modelResult = invoker.execute(modelRequestMock);
+        assertFalse(modelResult instanceof ErroneousModelResult);
 
-        verify(commandMock, times(1)).isApplicable(requestMock);
-        verify(commandMock, times(1)).execute(requestMock);
+        verify(commandMock, times(1)).isApplicable(modelRequestMock);
+        verify(commandMock, times(1)).execute(modelRequestMock);
         verify(authServiceMock, never()).isValidSession(anyString(), anyString());
         verify(authServiceMock, never()).login(anyString(), anyString());
         verify(authServiceMock, never()).logout(anyString(), anyString());
@@ -53,34 +53,34 @@ public class CommandInvokerTest {
 
     @Test
     public void testSessionAuthSuccess() {
-        Request requestMock = mock(Request.class);
-        Request sessionRequest = of(DUMMY_SESSION_ID, DUMMY_USERNAME, requestMock);
+        ModelRequest modelRequestMock = mock(ModelRequest.class);
+        ModelRequest sessionModelRequest = of(DUMMY_SESSION_ID, DUMMY_USERNAME, modelRequestMock);
 
-        when(commandMock.execute(requestMock))
-                .thenReturn(mock(Result.class));
+        when(commandMock.execute(modelRequestMock))
+                .thenReturn(mock(ModelResult.class));
         when(authServiceMock.isValidSession(DUMMY_SESSION_ID, DUMMY_USERNAME))
                 .thenReturn(true);
 
-        Result result = invoker.execute(sessionRequest);
-        assertFalse(result instanceof NotAuthResult);
+        ModelResult modelResult = invoker.execute(sessionModelRequest);
+        assertFalse(modelResult instanceof NotAuthModelResult);
 
-        verify(commandMock, times(1)).isApplicable(requestMock);
-        verify(commandMock, times(1)).execute(requestMock);
+        verify(commandMock, times(1)).isApplicable(modelRequestMock);
+        verify(commandMock, times(1)).execute(modelRequestMock);
         verify(authServiceMock, only()).isValidSession(DUMMY_SESSION_ID, DUMMY_USERNAME);
     }
 
     @Test
     public void testSessionAuthError() {
-        Request requestMock = mock(Request.class);
-        Request sessionRequest = of(DUMMY_SESSION_ID, DUMMY_USERNAME, requestMock);
+        ModelRequest modelRequestMock = mock(ModelRequest.class);
+        ModelRequest sessionModelRequest = of(DUMMY_SESSION_ID, DUMMY_USERNAME, modelRequestMock);
 
-        when(commandMock.execute(requestMock))
-                .thenReturn(mock(Result.class));
+        when(commandMock.execute(modelRequestMock))
+                .thenReturn(mock(ModelResult.class));
         when(authServiceMock.isValidSession(DUMMY_SESSION_ID, DUMMY_USERNAME))
                 .thenReturn(false);
 
-        Result result = invoker.execute(sessionRequest);
-        assertTrue(result instanceof NotAuthResult);
+        ModelResult modelResult = invoker.execute(sessionModelRequest);
+        assertTrue(modelResult instanceof NotAuthModelResult);
 
         verify(commandMock, never()).execute(any());
         verify(commandMock, never()).isApplicable(any());
@@ -91,19 +91,19 @@ public class CommandInvokerTest {
 
     @Test
     public void testCommandErroneousResult() {
-        Request requestMock = mock(Request.class);
-        Request sessionRequest = of(DUMMY_SESSION_ID, DUMMY_USERNAME, requestMock);
+        ModelRequest modelRequestMock = mock(ModelRequest.class);
+        ModelRequest sessionModelRequest = of(DUMMY_SESSION_ID, DUMMY_USERNAME, modelRequestMock);
 
-        when(commandMock.execute(requestMock))
-                .thenReturn(ErroneousResult.of(DUMMY_ERRONEOUS_SESSION_ID));
+        when(commandMock.execute(modelRequestMock))
+                .thenReturn(ErroneousModelResult.of(DUMMY_ERRONEOUS_SESSION_ID));
         when(authServiceMock.isValidSession(DUMMY_SESSION_ID, DUMMY_USERNAME))
                 .thenReturn(true);
 
-        ErroneousResult result = (ErroneousResult) invoker.execute(sessionRequest);
+        ErroneousModelResult result = (ErroneousModelResult) invoker.execute(sessionModelRequest);
         assertEquals(DUMMY_ERRONEOUS_SESSION_ID, result.getCause());
 
-        verify(commandMock, times(1)).isApplicable(requestMock);
-        verify(commandMock, times(1)).execute(requestMock);
+        verify(commandMock, times(1)).isApplicable(modelRequestMock);
+        verify(commandMock, times(1)).execute(modelRequestMock);
         verify(authServiceMock, only()).isValidSession(DUMMY_SESSION_ID, DUMMY_USERNAME);
     }
 }

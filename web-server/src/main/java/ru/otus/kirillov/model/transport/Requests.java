@@ -19,7 +19,7 @@ public final class Requests {
      * Абстракция для работы с удаленными (как в контексте многопоточности, так и многопроцессности) операциями
      *
      * @param <T> - тип удаленного сервиса
-     * @param <T> - тип результата
+     * @param <R> - тип результата
      */
     public static abstract class RemoteOperation<T, R> extends Request {
 
@@ -41,7 +41,7 @@ public final class Requests {
         }
     }
 
-    public static final class RemoteCacheOperation<R> extends RemoteOperation<CacheEngine, R> {
+    public static class RemoteCacheOperation<R> extends RemoteOperation<CacheEngine, R> {
 
         public RemoteCacheOperation(Function<CacheEngine, R> remoteOp) {
             super(remoteOp);
@@ -55,7 +55,7 @@ public final class Requests {
         }
     }
 
-    public static final class RemoteDbOperation<R> extends RemoteOperation<DBService, R> {
+    public static class RemoteDbOperation<R> extends RemoteOperation<DBService, R> {
         public RemoteDbOperation(Function<DBService, R> remoteOp) {
             super(remoteOp);
         }

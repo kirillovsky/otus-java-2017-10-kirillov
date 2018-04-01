@@ -1,4 +1,4 @@
-package ru.otus.kirillov.model.service.auth;
+package ru.otus.kirillov.model.services.auth;
 
 import ru.otus.kirillov.utils.AESSecurity;
 import ru.otus.kirillov.utils.CommonUtils;

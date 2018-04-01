@@ -1,14 +1,15 @@
-package ru.otus.kirillov.model.service.getCacheStats.messages;
+package ru.otus.kirillov.controllers.sockets.getCacheStats.messages;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import ru.otus.kirillov.utils.CommonUtils;
 
 public class GetCacheStatsUiRq {
     private String userName;
     private String sessionId;
 
     public GetCacheStatsUiRq(String userName, String sessionId) {
-        this.userName = userName;
-        this.sessionId = sessionId;
+        this.userName = CommonUtils.retunIfNotNull(userName);
+        this.sessionId = CommonUtils.retunIfNotNull(sessionId);
     }
 
     public GetCacheStatsUiRq() {}

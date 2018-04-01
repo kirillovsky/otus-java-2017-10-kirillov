@@ -4,10 +4,10 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ru.otus.kirillov.model.commands.Command;
-import ru.otus.kirillov.model.commands.Request;
-import ru.otus.kirillov.model.commands.Result;
-import ru.otus.kirillov.model.commands.common.ErroneousResult;
-import ru.otus.kirillov.model.service.auth.AuthService;
+import ru.otus.kirillov.model.commands.ModelRequest;
+import ru.otus.kirillov.model.commands.ModelResult;
+import ru.otus.kirillov.model.commands.common.ErroneousModelResult;
+import ru.otus.kirillov.model.services.auth.AuthService;
 import ru.otus.kirillov.utils.AESSecurity;
 import ru.otus.kirillov.utils.CommonUtils;
 
@@ -25,28 +25,28 @@ public class LoginCommand implements Command {
     }
 
     @Override
-    public boolean isApplicable(Request rq) {
-        return rq instanceof LoginRequest;
+    public boolean isApplicable(ModelRequest rq) {
+        return rq instanceof LoginModelRequest;
     }
 
     @Override
-    public Result execute(Request rq) {
-        Result rs;
+    public ModelResult execute(ModelRequest rq) {
+        ModelResult rs;
         log.info("Try to process request {}", rq);
         try {
-            LoginRequest loginRequest = (LoginRequest) rq;
+            LoginModelRequest loginRequest = (LoginModelRequest) rq;
             Pair<String, String> encryptedPair =
                     encryptLoginPassword(loginRequest.getUserName(), loginRequest.getPassword());
             log.debug("Encrypt session data (userName={}, password={})",
                     encryptedPair.getLeft(), encryptedPair.getRight());
 
             String sessionId = authService.login(encryptedPair.getLeft(), encryptedPair.getRight());
-            rs = LoginResult.of(sessionId, encryptedPair.getLeft());
+            rs = LoginModelResult.of(sessionId, encryptedPair.getLeft());
         } catch (Exception e) {
             log.catching(e);
-            rs = ErroneousResult.of(e.getMessage());
+            rs = ErroneousModelResult.of(e.getMessage());
         }
-        log.info("Request processed. Result - {}", rs);
+        log.info("Response processed. Response - {}", rs);
         return rs;
     }
 

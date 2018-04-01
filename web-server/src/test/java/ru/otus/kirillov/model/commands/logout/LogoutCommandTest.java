@@ -2,10 +2,9 @@ package ru.otus.kirillov.model.commands.logout;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
-import ru.otus.kirillov.model.commands.Result;
-import ru.otus.kirillov.model.commands.common.ErroneousResult;
-import ru.otus.kirillov.model.service.auth.AuthService;
+import ru.otus.kirillov.model.commands.ModelResult;
+import ru.otus.kirillov.model.commands.common.ErroneousModelResult;
+import ru.otus.kirillov.model.services.auth.AuthService;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -27,10 +26,10 @@ public class LogoutCommandTest {
 
     @Test
     public void testSuccess() {
-        Result result = command.execute(
-                new LogOutRequest(DUMMY_SESSION_ID, DUMMY_USERNAME)
+        ModelResult modelResult = command.execute(
+                new LogOutModelRequest(DUMMY_SESSION_ID, DUMMY_USERNAME)
         );
-        assertTrue(result instanceof LogOutResult);
+        assertTrue(modelResult instanceof LogOutModelResult);
         verify(mockService, only()).logout(DUMMY_SESSION_ID, DUMMY_USERNAME);
     }
 
@@ -38,8 +37,8 @@ public class LogoutCommandTest {
     public void testError() {
         doThrow(new UnsupportedOperationException(DUMMY_ERRONEOUS_MSG))
                 .when(mockService).logout(DUMMY_SESSION_ID, DUMMY_USERNAME);
-        ErroneousResult erroneousResult = (ErroneousResult) command
-                .execute(new LogOutRequest(DUMMY_SESSION_ID, DUMMY_USERNAME));
+        ErroneousModelResult erroneousResult = (ErroneousModelResult) command
+                .execute(new LogOutModelRequest(DUMMY_SESSION_ID, DUMMY_USERNAME));
         assertEquals(DUMMY_ERRONEOUS_MSG, erroneousResult.getCause());
     }
 }

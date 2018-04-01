@@ -36,7 +36,7 @@ public class BlockingQueueChannel<T> implements Channel<T> {
         initWorkers(service, workersCount, () -> {
             T msg = inQueue.take();
             log.info("Message {} received!", msg);
-            observers.forEach(o -> o.notify(msg));
+            observers.forEach(o -> o.receive(msg));
         });
     }
 

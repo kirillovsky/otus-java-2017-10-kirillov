@@ -1,4 +1,4 @@
-package ru.otus.kirillov.model.service.dbOperationStub;
+package ru.otus.kirillov.model.services.dbOperationStub;
 
 import ru.otus.kirillov.model.UserDataSet;
 import ru.otus.kirillov.service.DBService;

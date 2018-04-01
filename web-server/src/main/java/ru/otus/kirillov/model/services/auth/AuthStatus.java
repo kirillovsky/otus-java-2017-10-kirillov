@@ -1,4 +1,4 @@
-package ru.otus.kirillov.model.service.auth;
+package ru.otus.kirillov.model.services.auth;
 
 public enum AuthStatus {
     OK,

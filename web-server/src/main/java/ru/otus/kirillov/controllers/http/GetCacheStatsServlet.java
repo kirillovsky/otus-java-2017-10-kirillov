@@ -1,23 +1,20 @@
-package ru.otus.kirillov.controller;
+package ru.otus.kirillov.controllers.http;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import ru.otus.kirillov.model.commands.CommandInvoker;
-import ru.otus.kirillov.model.commands.Request;
-import ru.otus.kirillov.model.commands.Result;
-import ru.otus.kirillov.model.commands.common.ErroneousResult;
-import ru.otus.kirillov.model.commands.common.SessionRequestWrapper;
-import ru.otus.kirillov.model.commands.getCacheStats.GetCacheStatsRequest;
-import ru.otus.kirillov.model.commands.getCacheStats.GetCacheStatsResult;
+import ru.otus.kirillov.model.commands.ModelRequest;
+import ru.otus.kirillov.model.commands.ModelResult;
+import ru.otus.kirillov.model.commands.common.AuthenticationRequest;
+import ru.otus.kirillov.model.commands.common.ErroneousModelResult;
 import ru.otus.kirillov.view.View;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 public class GetCacheStatsServlet extends AbstractServlet {
 
@@ -47,28 +44,25 @@ public class GetCacheStatsServlet extends AbstractServlet {
             resp.sendRedirect("/main");
             return;
         }
-        Result commandResult = getCacheStats(createRequest(req));
-        if (!(commandResult instanceof GetCacheStatsResult)) {
-            resp.sendRedirect("/error?error-msg="+((ErroneousResult)commandResult).getCause());
+        ModelResult commandModelResult = auth(createRequest(req));
+        if (commandModelResult instanceof ErroneousModelResult) {
+            resp.sendRedirect("/error?error-msg="+((ErroneousModelResult) commandModelResult).getCause());
             return;
         }
 
-        String page = getPage(req, commandResult);
+        String page = getPage(req);
         doAnswer(resp, page);
     }
 
-    private Request createRequest(HttpServletRequest rq) {
-        return SessionRequestWrapper.of(
-                getSessionId(rq), getUserName(rq), new GetCacheStatsRequest()
-        );
+    private ModelRequest createRequest(HttpServletRequest rq) {
+        return AuthenticationRequest.of(getSessionId(rq), getUserName(rq));
     }
 
-    private Result getCacheStats(Request rq) {
+    private ModelResult auth(ModelRequest rq) {
         return invoker.execute(rq);
     }
 
-    private String getPage(HttpServletRequest rq, Result result) {
-        GetCacheStatsResult rs = (GetCacheStatsResult) result;
+    private String getPage(HttpServletRequest rq) {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("isAuth", true);
         paramMap.put("username", getUserName(rq));

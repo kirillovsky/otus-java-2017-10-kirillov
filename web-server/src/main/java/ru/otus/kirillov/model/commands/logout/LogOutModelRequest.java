@@ -1,16 +1,16 @@
 package ru.otus.kirillov.model.commands.logout;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import ru.otus.kirillov.model.commands.Request;
+import ru.otus.kirillov.model.commands.ModelRequest;
 import ru.otus.kirillov.utils.CommonUtils;
 
-public class LogOutRequest implements Request {
+public class LogOutModelRequest implements ModelRequest {
 
     private final String sessionId;
 
     private final String userName;
 
-    public LogOutRequest(String sessionId, String userName) {
+    public LogOutModelRequest(String sessionId, String userName) {
         CommonUtils.requiredNotNull(sessionId, userName);
         this.sessionId = sessionId;
         this.userName = userName;
