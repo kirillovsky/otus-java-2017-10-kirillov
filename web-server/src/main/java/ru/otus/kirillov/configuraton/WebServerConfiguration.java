@@ -100,7 +100,6 @@ public class WebServerConfiguration {
                 Arrays.asList(
                         new LoginCommand(authService(), security()),
                         new LogoutCommand(authService()),
-                        //new GetCacheStatsCommand(cacheEngine()),
                         new RemoteOpsCommand(frontendAsyncClient()),
                         new EmptyCommand()
                 )
