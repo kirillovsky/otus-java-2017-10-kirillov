@@ -6,8 +6,9 @@
         </Console>
     </Appenders>
     <Loggers>
-        <Root level="DEBUG">
+        <Root level="warn">
             <AppenderRef ref="STDOUT"/>
+            <ThresholdFilter level="warn"/>
         </Root>
     </Loggers>
 </Configuration>
