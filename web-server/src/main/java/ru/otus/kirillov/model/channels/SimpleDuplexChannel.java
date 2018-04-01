@@ -2,19 +2,23 @@ package ru.otus.kirillov.model.channels;
 
 import ru.otus.kirillov.model.Observer;
 import ru.otus.kirillov.utils.CommonUtils;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Простейший вариант обработчика дуплексного канала.
  * Для многопроцессной реализации может быть заменен на реализацию на netty-socketio
  */
-public class SimpleDuplexChannel<RQ, RS> implements DuplexChannel<RQ, RS> {
+public class SimpleDuplexChannel<RQ, RS> implements DuplexChannel<RQ, RS>, Observer<RS> {
 
     private final Channel<RQ> inChannel;
-    private final Channel<RS> outChannel;
+    private final List<Observer<RS>> observers;
 
     public SimpleDuplexChannel(Channel<RQ> inQueue, Channel<RS> outQueue) {
-        this.inChannel = CommonUtils.retunIfNotNull(inQueue);
-        this.outChannel = CommonUtils.retunIfNotNull(outQueue);
+        observers = new ArrayList<>();
+        inChannel = CommonUtils.retunIfNotNull(inQueue);
+        Channel<RS> outChannel = CommonUtils.retunIfNotNull(outQueue);
+        outChannel.subscribe(this);
     }
 
     @Override
@@ -24,6 +28,11 @@ public class SimpleDuplexChannel<RQ, RS> implements DuplexChannel<RQ, RS> {
 
     @Override
     public void subscribe(Observer<RS> observable) {
-        outChannel.subscribe(observable);
+        observers.add(observable);
+    }
+
+    @Override
+    public void receive(RS response) {
+        observers.forEach(o -> o.receive(response));
     }
 }
